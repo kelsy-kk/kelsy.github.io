@@ -3855,17 +3855,19 @@
     .op-flow-section-actions {
       position: absolute;
       right: 8px;
-      top: 6px;
+      bottom: 0;
+      top: auto;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      justify-content: flex-end;
       gap: 6px;
       z-index: 2;
     }
 
     .op-flow-visit-del {
-      width: 28px;
-      height: 28px;
+      width: 20px;
+      height: 20px;
       padding: 0;
       border: none;
       border-radius: 4px;
@@ -3876,6 +3878,19 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      opacity: 0.72;
+      transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .op-flow-visit-del svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+    }
+
+    .op-flow-section-head:hover .op-flow-visit-del,
+    .op-flow-visit-del:focus-visible {
+      opacity: 1;
     }
 
     .op-flow-visit-del:hover {
@@ -3889,7 +3904,7 @@
       justify-content: center;
       position: relative;
       margin-bottom: 8px;
-      padding-right: 52px;
+      padding-right: 40px;
       min-height: 28px;
     }
 
@@ -3916,6 +3931,7 @@
     .op-flow-section-title {
       font-weight: 700;
       font-size: 13px;
+      line-height: 20px;
       color: var(--text);
       text-align: center;
     }
@@ -3985,7 +4001,41 @@
       gap: 8px;
       padding-bottom: 14px;
       padding-left: 4px;
+      padding-right: 28px;
       min-height: 28px;
+    }
+
+    .op-flow-node-del {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      border: none;
+      border-radius: 4px;
+      background: transparent;
+      color: #8c8c8c;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0.72;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 400;
+      transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .op-flow-node:hover .op-flow-node-del,
+    .op-flow-node-del:focus-visible {
+      opacity: 1;
+    }
+
+    .op-flow-node-del:hover {
+      color: #ff4d4f;
+      background: rgba(255, 77, 79, 0.08);
     }
 
     .op-flow-node:last-child {
@@ -4033,6 +4083,51 @@
 
     .op-flow-node--interactive:hover .op-flow-node-label {
       text-decoration: underline;
+    }
+
+    .op-flow-op-group {
+      position: relative;
+    }
+
+    .op-flow-op-group + .op-flow-op-group {
+      margin-top: 4px;
+    }
+
+    .op-flow-op-group__resources {
+      position: relative;
+      margin: 2px 0 6px 8px;
+      padding-left: 14px;
+    }
+
+    .op-flow-op-group__resources::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 8px;
+      width: 2px;
+      background: #d6e4ff;
+      border-radius: 1px;
+    }
+
+    .op-flow-node--nested {
+      padding-right: 28px;
+    }
+
+    .op-flow-node--nested .op-flow-node-icon {
+      left: -18px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .op-flow-node--nested .op-flow-node-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .op-flow-node--nested.op-flow-node--resource .op-flow-node-label {
+      font-size: 12px;
+      font-weight: 500;
     }
 
     .rd-root {
@@ -4215,6 +4310,53 @@
       color: var(--muted);
       border-color: #d9d9d9;
       background: #f5f5f5;
+    }
+
+    .op-flow-save-wrap {
+      display: inline-flex;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    .op-flow-save-wrap--disabled-tip {
+      cursor: not-allowed;
+    }
+
+    .op-flow-save-wrap--disabled-tip .op-flow-save {
+      pointer-events: none;
+    }
+
+    .op-flow-save-wrap--disabled-tip:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 20;
+      min-width: 148px;
+      max-width: 220px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+      white-space: normal;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .op-flow-save.op-flow-save--dirty {
+      background: #1890ff;
+      border-color: #1890ff;
+      color: #fff;
+      opacity: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.28);
+    }
+
+    .op-flow-save.op-flow-save--dirty:hover:not(:disabled) {
+      background: #096dd9;
+      border-color: #096dd9;
     }
 
     .app-toast {
@@ -8236,41 +8378,201 @@
       height: 100%;
     }
 
-    /* 进入流程后的工作台：突出操作导航 + 操作流程 */
+    /* 进入流程后的工作台：顶栏紧贴二级菜单，三栏内容在 main 内 */
     main.main--workspace {
       grid-template-columns: 292px minmax(460px, 1fr) 304px;
-      gap: 14px;
-      padding: 14px;
+      grid-template-rows: minmax(0, 1fr);
+      gap: 0 14px;
+      padding: 0 14px 14px;
       background:
         radial-gradient(circle at 0% 50%, rgba(37, 99, 235, 0.06), transparent 28%),
         radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.06), transparent 28%),
         linear-gradient(180deg, #eef2f9 0%, var(--bg) 100%);
     }
 
+    body.main--workspace-mode .sub-nav {
+      border-bottom: none;
+    }
+
+    .workspace-toolbar {
+      display: none;
+      flex-shrink: 0;
+      width: 100%;
+      align-items: center;
+      min-height: 48px;
+      padding: 8px 14px;
+      background: #fff;
+      border-bottom: 1px solid #e5e8ef;
+      box-sizing: border-box;
+    }
+
+    .workspace-toolbar:not([hidden]) {
+      display: flex;
+    }
+
+    .workspace-toolbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 0 0 292px;
+    }
+
+    .workspace-toolbar__spacer {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .workspace-toolbar__op {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex: 0 0 304px;
+    }
+
+    .workspace-toolbar__back {
+      flex-shrink: 0;
+    }
+
+    .workspace-toolbar__sep {
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .workspace-toolbar__title {
+      margin: 0;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .ws-toolbar-btn {
+      height: 32px;
+      padding: 0 14px;
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      background: #fff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2563eb;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .ws-toolbar-btn--ghost:hover:not(:disabled) {
+      background: #eff6ff;
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    .ws-toolbar-btn--primary,
+    body.main--workspace-mode .workspace-toolbar .op-flow-save.ws-toolbar-btn--primary {
+      border-color: #2563eb;
+      background: #2563eb;
+      color: #fff;
+      opacity: 1;
+    }
+
+    .ws-toolbar-btn--primary:hover:not(:disabled),
+    body.main--workspace-mode .workspace-toolbar .op-flow-save.ws-toolbar-btn--primary:hover:not(:disabled) {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      color: #fff;
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      color: var(--muted);
+      border-color: #d9d9d9;
+      background: #f5f5f5;
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save.op-flow-save--dirty:not(:disabled) {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save-wrap--disabled-tip {
+      cursor: not-allowed;
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save-wrap--disabled-tip .op-flow-save {
+      pointer-events: none;
+    }
+
+    body.main--workspace-mode .workspace-toolbar .op-flow-save-wrap--disabled-tip:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 30;
+      min-width: 148px;
+      max-width: 220px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+      white-space: normal;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    main.main--workspace > .panel-nav {
+      grid-column: 1;
+      grid-row: 1;
+      min-height: 0;
+    }
+
+    main.main--workspace > .canvas-wrap {
+      grid-column: 2;
+      grid-row: 1;
+      min-height: 0;
+      margin-top: 14px;
+      align-self: start;
+      height: calc(100% - 14px);
+      max-height: calc(100% - 14px);
+    }
+
+    main.main--workspace > .op-flow-aside {
+      grid-column: 3;
+      grid-row: 1;
+      min-height: 0;
+    }
+
     main.main--workspace .panel-nav,
     main.main--workspace .op-flow-aside {
       position: relative;
       z-index: 2;
-      border: 1px solid rgba(37, 99, 235, 0.18);
-      border-radius: var(--radius-xl);
+      border: 1px solid #e5e8ef;
+      border-top: none;
       background: #fff;
-      box-shadow:
-        0 14px 36px rgba(37, 99, 235, 0.12),
-        0 4px 12px rgba(16, 24, 40, 0.06);
+      box-shadow: 0 4px 16px rgba(16, 24, 40, 0.05);
       overflow: hidden;
     }
 
     main.main--workspace .panel-nav::before,
     main.main--workspace .op-flow-aside::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #2563eb 0%, #6366f1 52%, #0ea5e9 100%);
-      z-index: 1;
-      pointer-events: none;
+      content: none;
+      display: none;
     }
 
     main.main--workspace .panel-nav .panel-head {
@@ -8372,23 +8674,40 @@
 
     main.main--workspace .canvas-wrap {
       z-index: 1;
-      border-color: rgba(203, 213, 225, 0.72);
-      background: #f8fafc;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.42);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 18%),
+        linear-gradient(180deg, #e9eef5 0%, #f1f5f9 100%);
+      box-shadow:
+        inset 0 2px 10px rgba(15, 23, 42, 0.05),
+        0 8px 24px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
     }
 
     main.main--workspace .canvas-toolbar {
-      background: linear-gradient(180deg, #fafbfc 0%, #f3f6fa 100%);
-      color: #94a3b8;
-      font-weight: 500;
-      border-bottom: 1px solid rgba(203, 213, 225, 0.65);
+      display: none !important;
+    }
+
+    main.main--workspace .op-flow-header .op-flow-clear {
+      margin-left: auto;
     }
 
     main.main--workspace .canvas {
-      margin: 12px;
-      border-color: rgba(203, 213, 225, 0.75);
-      background-color: #fafbfc;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      margin: 10px;
+      border-color: rgba(148, 163, 184, 0.38);
+      background-color: #f8fafc;
+      background-image: radial-gradient(rgba(100, 116, 139, 0.14) 1px, transparent 1px);
+      background-size: 18px 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    }
+
+    main.main--workspace .canvas.canvas--physical {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      background: #fff;
+      background-image: none;
+      box-shadow: none;
     }
 
     main {
@@ -8404,12 +8723,22 @@
       animation: appWorkspacePanelOutLeft 0.34s ease forwards;
     }
 
+    main.main--leave-workspace .workspace-toolbar,
+    body.main--leave-workspace .workspace-toolbar {
+      animation: appWorkspacePanelOutLeft 0.34s ease forwards;
+    }
+
     main.main--leave-workspace .op-flow-aside {
       animation: appWorkspacePanelOutRight 0.34s ease forwards;
     }
 
     main.main--leave-workspace .canvas-wrap {
       animation: appWorkspaceCanvasOut 0.34s ease forwards;
+    }
+
+    main.main--enter-workspace .workspace-toolbar,
+    body.main--enter-workspace .workspace-toolbar {
+      animation: appWorkspaceToolbarIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     main.main--enter-workspace .panel-nav {
@@ -8481,6 +8810,17 @@
       to {
         opacity: 0;
         transform: translateY(12px);
+      }
+    }
+
+    @keyframes appWorkspaceToolbarIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -9076,6 +9416,48 @@
       border-color: var(--accent);
       color: #fff;
       box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+    }
+
+    .op-flow-save.op-flow-save--dirty {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    }
+
+    .op-flow-save-wrap {
+      display: inline-flex;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    .op-flow-save-wrap--disabled-tip {
+      cursor: not-allowed;
+    }
+
+    .op-flow-save-wrap--disabled-tip .op-flow-save {
+      pointer-events: none;
+    }
+
+    .op-flow-save-wrap--disabled-tip:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 20;
+      min-width: 148px;
+      max-width: 220px;
+      padding: 6px 10px;
+      border-radius: 8px !important;
+      background: rgba(15, 23, 42, 0.88);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+      white-space: normal;
+      pointer-events: none;
+      box-shadow: var(--shadow-md);
     }
 
     .op-flow-clear,
@@ -12391,6 +12773,11 @@
     html .bp-sp-placeholder-dialog__btn {
       border-radius: 8px !important;
     }
+
+    /* 仅导航搜索框保留圆角（须在全站直角规则之后覆盖） */
+    html .nav-search-box {
+      border-radius: 16px !important;
+    }
   </style>
 </head>
 <body>
@@ -12487,17 +12874,31 @@
     <a class="sub-nav-item" href="javascript:void(0)" data-hub-bp="1">场景流程</a>
   </nav>
 
+  <div class="workspace-toolbar" id="workspaceToolbar" hidden aria-label="工作台功能栏">
+    <div class="workspace-toolbar__nav">
+      <button type="button" class="nav-back-list bp-flow-back workspace-toolbar__back" id="navBackToList" title="返回" aria-label="返回">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        <span>返回</span>
+      </button>
+      <span class="workspace-toolbar__sep" aria-hidden="true">/</span>
+      <h1 class="workspace-toolbar__title" id="workspaceToolbarTitle">工作台</h1>
+    </div>
+    <div class="workspace-toolbar__spacer" aria-hidden="true"></div>
+    <div class="workspace-toolbar__op">
+      <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarNewFlow">新建流程</button>
+      <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarAllFlows">所有流程</button>
+      <span class="op-flow-save-wrap" id="opFlowSaveWrap">
+        <button type="button" class="op-flow-save ws-toolbar-btn ws-toolbar-btn--primary" id="opFlowSave" disabled>保存</button>
+      </span>
+      <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarExit">退出工作台</button>
+      <button type="button" class="op-flow-edit-cancel" id="opFlowEditCancel" hidden>取消</button>
+    </div>
+  </div>
+
   <main id="mainLayout">
     <aside class="panel panel-nav" aria-label="操作导航">
       <div class="panel-head">
-        <div class="nav-panel-crumb">
-          <button type="button" class="nav-back-list bp-flow-back" id="navBackToList" hidden title="返回" aria-label="返回">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-            <span>返回</span>
-          </button>
-          <span class="bp-flow-crumb-sep nav-panel-crumb-sep" id="navPanelCrumbSep" hidden aria-hidden="true">/</span>
-          <span class="panel-head-label">操作导航</span>
-        </div>
+        <span class="panel-head-label">操作导航</span>
       </div>
       <div class="nav-search" aria-label="导航搜索">
         <label class="nav-search-box">
@@ -12527,8 +12928,6 @@
       <div class="op-flow-header">
         <span class="op-flow-header-title">操作流程</span>
         <span class="op-flow-step-badge" id="opFlowStepBadge">0步</span>
-        <button type="button" class="op-flow-save" id="opFlowSave" disabled>保存</button>
-        <button type="button" class="op-flow-edit-cancel" id="opFlowEditCancel" hidden>取消</button>
         <button type="button" class="op-flow-clear" id="opFlowClear" disabled>清空</button>
       </div>
       <div class="op-list op-flow-body" id="opList"></div>
@@ -13166,14 +13565,19 @@
     const opFlowStepBadgeEl = document.getElementById("opFlowStepBadge");
     const opFlowClearEl = document.getElementById("opFlowClear");
     const opFlowSaveEl = document.getElementById("opFlowSave");
+    const opFlowSaveWrapEl = document.getElementById("opFlowSaveWrap");
     const opFlowEditCancelEl = document.getElementById("opFlowEditCancel");
     const appToastEl = document.getElementById("appToast");
     const canvasWrapEl = document.getElementById("canvasWrap");
     const canvasEl = document.getElementById("canvas");
     const canvasToolbarEl = document.getElementById("canvasToolbar");
     const mainLayoutEl = document.getElementById("mainLayout");
+    const workspaceToolbarEl = document.getElementById("workspaceToolbar");
+    const workspaceToolbarTitleEl = document.getElementById("workspaceToolbarTitle");
     const navBackToListEl = document.getElementById("navBackToList");
-    const navPanelCrumbSepEl = document.getElementById("navPanelCrumbSep");
+    const wsToolbarNewFlowEl = document.getElementById("wsToolbarNewFlow");
+    const wsToolbarAllFlowsEl = document.getElementById("wsToolbarAllFlows");
+    const wsToolbarExitEl = document.getElementById("wsToolbarExit");
 
     const APP_PAGE_TRANSITION_MS = 380;
     let appPageTransitionLock = false;
@@ -13288,8 +13692,14 @@
     let reverseModelingDevPathNodesAdded = [];
     /** 最近从右侧操作流程激活的大框标题，用于把后续节点插入当前大框 */
     let activeOpFlowSectionTitle = null;
-    /** 从业务流程进入时，右侧顶部先展示「编辑」，进入编辑态后再展示「保存 / 取消」 */
+    /** 从业务流程进入时，右侧顶部展示「保存」（步数变更后可保存） */
     let opFlowFromBusinessProcess = false;
+    /** 打开已有流程时的操作步数基线，用于判断保存是否可用 */
+    let opFlowBaselineStepCount = 0;
+    /** 当前工作台对应的业务流程条目（保存时回写） */
+    let opFlowSourceProcessItem = null;
+    /** 工作台顶栏展示的流程/模板标题 */
+    let workspaceFlowTitle = "";
     let opFlowBusinessEditing = false;
     /** 资源详情页数据（由操作时间线资源节点打开） */
     let resourceDetailState = null;
@@ -13319,6 +13729,8 @@
     const demoDeletedIds = new Set();
     /** 演示流程标题覆盖（会话内，与收藏/模板演示状态一致） */
     const demoBpTitleOverrides = Object.create(null);
+    /** 演示流程 flowModules 覆盖（从工作台保存已有演示流程时写入） */
+    const demoBpFlowModulesOverrides = Object.create(null);
     /** 业务流程列表：按标题中「（来源模板：…）」整段筛选，null 表示未启用 */
     let bpListSourceTemplateFilter = null;
     let bpCopyTemplatePendingItem = null;
@@ -13495,14 +13907,21 @@
 
     function buildFlowModulesFromLeafIds(leafIds, item) {
       const h = bpItemHash(item);
-      return (leafIds || []).map((leafId, moduleIndex) => ({
-        leafId,
-        resources: buildMockResourcesForModule(
+      const leafCount = Object.create(null);
+      return (leafIds || []).map((leafId, moduleIndex) => {
+        const count = (leafCount[leafId] || 0) + 1;
+        leafCount[leafId] = count;
+        const baseLabel = getDefaultOperationLabelForLeaf(leafId);
+        return {
           leafId,
-          pickResourceCountForModule(leafId, h, moduleIndex),
-          item
-        ),
-      }));
+          label: count > 1 ? baseLabel + " " + count : baseLabel,
+          resources: buildMockResourcesForModule(
+            leafId,
+            pickResourceCountForModule(leafId, h, moduleIndex),
+            item
+          ),
+        };
+      });
     }
 
     function migrateLegacyFlowToModules(item) {
@@ -13516,7 +13935,7 @@
         const isResource = kinds[i] === "resource";
         const leafId = !isResource ? getNavLeafIdByLabel(clean) : null;
         if (!isResource && leafId) {
-          current = { leafId, resources: [] };
+          current = { leafId, label: clean, resources: [] };
           modules.push(current);
           return;
         }
@@ -13525,7 +13944,7 @@
             id: "legacy_" + i,
             kind: getNavResourceKind(current.leafId) || "models",
             name: clean,
-            fromNode: getNavLeafLabel(current.leafId),
+            fromNode: current.label || getNavLeafLabel(current.leafId),
             leafId: current.leafId,
             status: "online",
           });
@@ -13541,6 +13960,9 @@
     }
 
     function getBpFlowModules(item) {
+      if (item && item.id && demoBpFlowModulesOverrides[item.id]) {
+        return demoBpFlowModulesOverrides[item.id];
+      }
       if (item && item.flowModules && item.flowModules.length) return item.flowModules;
       return migrateLegacyFlowToModules(item || {});
     }
@@ -13551,7 +13973,7 @@
       item.flowNodes = [];
       item.nodeKinds = [];
       modules.forEach((m) => {
-        item.flowNodes.push(getNavLeafLabel(m.leafId));
+        item.flowNodes.push(getModuleOperationLabel(m));
         item.nodeKinds.push("action");
         (m.resources || []).forEach((r) => {
           item.flowNodes.push(r.name);
@@ -13564,7 +13986,7 @@
       const nodes = [];
       const nodeKinds = [];
       modules.forEach((m) => {
-        nodes.push(getNavLeafLabel(m.leafId));
+        nodes.push(getModuleOperationLabel(m));
         nodeKinds.push("action");
         (m.resources || []).forEach((r) => {
           nodes.push(r.name);
@@ -13580,11 +14002,46 @@
       };
     }
 
+    const OP_FLOW_DEFAULT_OP_LABELS = {
+      "physical-modeling": "逆向建模",
+      "logical-modeling": "DDL新建",
+      "business-modeling": "基础模型",
+      "smart-dev": "新建脚本",
+      "offline-dev-task": "新建任务流",
+      "offline-integration-task": "离线任务",
+      "realtime-integration-task": "实时任务",
+      "realtime-dev-task": "新建任务",
+      "api-market": "新建API",
+      "create-report": "新建仪表板",
+      "smart-query": "开启新对话",
+    };
+
+    function getDefaultOperationLabelForLeaf(leafId) {
+      return OP_FLOW_DEFAULT_OP_LABELS[leafId] || getNavLeafLabel(leafId) || "操作";
+    }
+
+    function getModuleOperationLabel(module) {
+      if (!module) return "操作";
+      if (module.label) return module.label;
+      if (module.operationLabel) return module.operationLabel;
+      const resources = module.resources || [];
+      if (resources[0] && resources[0].fromNode) return resources[0].fromNode;
+      return getDefaultOperationLabelForLeaf(module.leafId);
+    }
+
     function moduleToFlowState(module) {
       const resources = module && module.resources ? module.resources : [];
+      const actionLabel = getModuleOperationLabel(module);
+      const nodes = [actionLabel];
+      const nodeKinds = ["action"];
+      resources.forEach((r) => {
+        nodes.push(r.name);
+        nodeKinds.push("resource");
+      });
       return {
-        nodes: resources.map((r) => r.name),
-        nodeKinds: resources.map(() => "resource"),
+        nodes,
+        nodeKinds,
+        operationLabel: actionLabel,
       };
     }
 
@@ -14561,20 +15018,66 @@
       opFlowClearEl.disabled = !opFlowHasAggregateSteps();
     }
 
+    function resetOpFlowBusinessProcessContext() {
+      opFlowFromBusinessProcess = false;
+      opFlowBusinessEditing = false;
+      opFlowBaselineStepCount = 0;
+      opFlowSourceProcessItem = null;
+      workspaceFlowTitle = "";
+    }
+
+    function resolveWorkspaceTitle() {
+      if (workspaceFlowTitle) return workspaceFlowTitle;
+      if (opFlowSourceProcessItem) {
+        return getBpDisplayTitle(opFlowSourceProcessItem) || "业务流程";
+      }
+      if (devPathFlowState && devPathFlowState.title) return devPathFlowState.title;
+      return "工作台";
+    }
+
+    function syncWorkspaceToolbar() {
+      const workspace = isProcessDevWorkspace();
+      if (workspaceToolbarEl) workspaceToolbarEl.hidden = !workspace;
+      if (workspaceToolbarTitleEl) {
+        workspaceToolbarTitleEl.textContent = workspace ? resolveWorkspaceTitle() : "工作台";
+      }
+    }
+
+    function computeStepCountFromModules(modules) {
+      return (modules || []).reduce((sum, m) => sum + moduleToFlowState(m).nodes.length, 0);
+    }
+
     function syncOpFlowSaveButton() {
       if (!opFlowSaveEl) return;
       const hasSteps = opFlowHasAggregateSteps();
-      opFlowSaveEl.disabled = !hasSteps;
       if (opFlowFromBusinessProcess) {
-        opFlowSaveEl.textContent = opFlowBusinessEditing ? "保存" : "编辑";
+        opFlowSaveEl.textContent = "保存";
+        const hasChanges = opFlowTotalStepCount() !== opFlowBaselineStepCount;
+        opFlowSaveEl.disabled = !hasChanges;
+        opFlowSaveEl.classList.toggle("op-flow-save--dirty", hasChanges);
+        if (opFlowSaveWrapEl) {
+          if (!hasChanges) {
+            opFlowSaveWrapEl.setAttribute("data-tip", "当前操作步数无变更");
+            opFlowSaveWrapEl.classList.add("op-flow-save-wrap--disabled-tip");
+          } else {
+            opFlowSaveWrapEl.removeAttribute("data-tip");
+            opFlowSaveWrapEl.classList.remove("op-flow-save-wrap--disabled-tip");
+          }
+        }
         if (opFlowEditCancelEl) {
-          opFlowEditCancelEl.hidden = !opFlowBusinessEditing;
-          opFlowEditCancelEl.disabled = !hasSteps;
+          opFlowEditCancelEl.hidden = true;
+          opFlowEditCancelEl.disabled = true;
         }
         return;
       }
       opFlowBusinessEditing = false;
       opFlowSaveEl.textContent = "保存";
+      opFlowSaveEl.disabled = !hasSteps;
+      opFlowSaveEl.classList.remove("op-flow-save--dirty");
+      if (opFlowSaveWrapEl) {
+        opFlowSaveWrapEl.removeAttribute("data-tip");
+        opFlowSaveWrapEl.classList.remove("op-flow-save-wrap--disabled-tip");
+      }
       if (opFlowEditCancelEl) {
         opFlowEditCancelEl.hidden = true;
         opFlowEditCancelEl.disabled = true;
@@ -14599,9 +15102,13 @@
       devPathFlowState = buildDevPathStateFromModules(item, modules);
       opFlowFromBusinessProcess = true;
       opFlowBusinessEditing = false;
+      opFlowSourceProcessItem = item;
+      opFlowBaselineStepCount = computeStepCountFromModules(modules);
+      workspaceFlowTitle = bpTitle;
       opFlowVisitStack = modules.map((m) => ({
         leafId: m.leafId,
-        label: getNavLeafLabel(m.leafId),
+        label: getOpFlowSectionTitle(m.leafId),
+        operationLabel: getModuleOperationLabel(m),
         snapshot: buildModuleOpSnapshot(m),
         fromBusinessProcess: true,
       }));
@@ -14749,10 +15256,8 @@
     }
 
     function isOpFlowFlowViewMode() {
-      return (
-        (opFlowFromBusinessProcess && !opFlowBusinessEditing) ||
-        (isOpFlowModuleListLocked() && !opFlowBusinessEditing)
-      );
+      if (opFlowFromBusinessProcess) return true;
+      return isOpFlowModuleListLocked() && !opFlowBusinessEditing;
     }
 
     function setOpFlowModuleList(leafIds) {
@@ -14816,7 +15321,7 @@
       head.tabIndex = 0;
       head.title = "点击进入" + sectionTitle;
       function openSection(e) {
-        if (e && e.target.closest(".op-flow-visit-del")) return;
+        if (e && e.target.closest(".op-flow-visit-del, .op-flow-node-del")) return;
         if (leafId === selectedLeafId) return;
         activeOpFlowSectionTitle = sectionTitle;
         activateNavLeafFromOperationFlow(leafId);
@@ -14853,12 +15358,12 @@
       initTemplateFlowLiveStates(modules);
       devPathFlowState = buildDevPathStateFromTemplate(template);
 
-      opFlowFromBusinessProcess = false;
-      opFlowBusinessEditing = false;
+      resetOpFlowBusinessProcessContext();
       opFlowModuleLeafIds = groups.map((g) => g.leafId);
       opFlowVisitStack = groups.map((g) => buildTemplateVisitFromGroup(g));
 
       const firstLeafId = groups[0].leafId || modules[0].leafId || "physical-modeling";
+      workspaceFlowTitle = template.name || "新建流程";
       enterFlowWithFirstModule(firstLeafId, null);
       showToast("已进入「" + template.name + "」开发", "success");
       appendOperation({
@@ -14884,11 +15389,11 @@
         nodeKinds: leafIds.map(() => "action"),
         groupByNavTitle: true,
       };
-      opFlowFromBusinessProcess = false;
-      opFlowBusinessEditing = false;
+      resetOpFlowBusinessProcessContext();
       opFlowVisitStack = leafIds.map((leafId) => buildTemplateVisit(leafId));
       setOpFlowModuleList(leafIds);
       const firstLeafId = leafIds[0] || "physical-modeling";
+      workspaceFlowTitle = templateName || "新建流程";
       enterFlowWithFirstModule(firstLeafId, null);
       showToast("已进入「" + templateName + "」开发", "success");
       appendOperation({ id: "flow-template-" + Date.now(), label: "新建流程 · " + templateName });
@@ -15116,39 +15621,252 @@
       trySnapshotLastVisitForLeaf(prevLeafId);
     }
 
-    function appendModuleFlowTimeline(section, flowState, interactive) {
-      const nodes = flowState && flowState.nodes ? flowState.nodes : [];
-      const kinds = flowState && flowState.nodeKinds ? flowState.nodeKinds : [];
-      if (!nodes.length) return;
-      const timeline = document.createElement("div");
-      timeline.className = "op-flow-timeline";
-      nodes.forEach((label, i) => {
-        const kind = kinds[i] === "resource" ? "resource" : "action";
-        const row = document.createElement("div");
-        row.className =
-          "op-flow-node " + (kind === "resource" ? "op-flow-node--resource" : "op-flow-node--action");
-        const icon = kind === "resource" ? opFlowIconDoc : opFlowIconDb;
-        row.innerHTML = `<span class="op-flow-node-icon">${icon}</span><span class="op-flow-node-label"></span>`;
-        row.querySelector(".op-flow-node-label").textContent = label;
-        if (interactive) {
-          row.classList.add("op-flow-node--interactive");
-          row.setAttribute("role", "button");
-          row.tabIndex = 0;
-          row.addEventListener("click", (e) => {
+    function canDeleteOpFlowItems() {
+      if (!isProcessDevWorkspace()) return false;
+      return true;
+    }
+
+    const opFlowDelIconSvg =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>';
+
+    function createOpFlowDelButton(className, ariaLabel, onClick, iconKind) {
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = className;
+      del.setAttribute("aria-label", ariaLabel);
+      del.title = ariaLabel;
+      if (iconKind === "close") {
+        del.textContent = "×";
+      } else {
+        del.innerHTML = opFlowDelIconSvg;
+      }
+      del.addEventListener("click", (e) => {
+        e.stopPropagation();
+        onClick(e);
+      });
+      return del;
+    }
+
+    function removeOpFlowModuleAt(stackIndex) {
+      if (stackIndex < 0 || stackIndex >= opFlowVisitStack.length) return;
+      const removed = opFlowVisitStack[stackIndex];
+      opFlowVisitStack.splice(stackIndex, 1);
+      if (removed && removed.leafId) {
+        opFlowModuleLeafIds = opFlowModuleLeafIds.filter((id) => id !== removed.leafId);
+        delete opFlowModuleState[removed.leafId];
+      }
+      if (removed && removed.leafId === selectedLeafId) {
+        const nextVisit = opFlowVisitStack[0];
+        if (nextVisit && nextVisit.leafId) {
+          switchOpFlowModule(nextVisit.leafId, { skipAppendOp: true });
+          syncCanvas();
+        } else {
+          selectedLeafId = null;
+          syncCanvas();
+        }
+      }
+      renderOperationFlow();
+      showToast("已移除该模块", "success");
+    }
+
+    function removeOpFlowModuleNodeAt(leafId, nodeIndex) {
+      const state = getLiveFlowStateForLeaf(leafId);
+      if (!state.nodes || nodeIndex < 0 || nodeIndex >= state.nodes.length) return;
+      const kinds = state.nodeKinds || [];
+      const isAction = kinds[nodeIndex] !== "resource";
+      const removeIndexes = [nodeIndex];
+      if (isAction) {
+        for (let i = nodeIndex + 1; i < kinds.length; i += 1) {
+          if (kinds[i] === "resource") removeIndexes.push(i);
+          else break;
+        }
+      }
+      const removeSet = new Set(removeIndexes);
+      const next = {
+        nodes: state.nodes.filter((_, i) => !removeSet.has(i)),
+        nodeKinds: kinds.filter((_, i) => !removeSet.has(i)),
+      };
+      setLiveFlowStateForLeaf(leafId, next);
+      const visit = findOpFlowVisit(leafId);
+      if (visit) trySnapshotLastVisitForLeaf(leafId);
+      renderOperationFlow();
+      showToast("已移除该操作步骤", "success");
+    }
+
+    function removeOpFlowDevPathNodeAt(nodeIndex) {
+      if (!devPathFlowState || !devPathFlowState.nodes) return;
+      if (nodeIndex < 0 || nodeIndex >= devPathFlowState.nodes.length) return;
+      devPathFlowState = {
+        ...devPathFlowState,
+        nodes: devPathFlowState.nodes.filter((_, i) => i !== nodeIndex),
+        nodeKinds: (devPathFlowState.nodeKinds || []).filter((_, i) => i !== nodeIndex),
+      };
+      renderOperationFlow();
+      showToast("已移除该操作步骤", "success");
+    }
+
+    function removeOpFlowPhysicalNodeAt(timelineIndex, useDevPath) {
+      if (useDevPath) {
+        removeOpFlowDevPathNodeAt(timelineIndex);
+        return;
+      }
+      if (timelineIndex === 0 && physicalFlowState.reverse) {
+        physicalFlowState = { ...physicalFlowState, reverse: false };
+        if (physicalCanvasMode === "reverse-modeling") {
+          physicalCanvasMode = "list";
+          reverseModelingStep = 1;
+          syncCanvas();
+        }
+      } else {
+        const tableIdx = physicalFlowState.reverse ? timelineIndex - 1 : timelineIndex;
+        const tables = [...(physicalFlowState.tables || [])];
+        if (tableIdx >= 0 && tableIdx < tables.length) {
+          tables.splice(tableIdx, 1);
+          physicalFlowState = { ...physicalFlowState, tables };
+        }
+      }
+      renderOperationFlow();
+      showToast("已移除该操作步骤", "success");
+    }
+
+    function attachOpFlowNodeDeleteButton(row, onDelete) {
+      if (!canDeleteOpFlowItems() || !onDelete) return;
+      row.appendChild(createOpFlowDelButton("op-flow-node-del", "删除此步骤", onDelete, "close"));
+    }
+
+    function groupOpFlowTimelineNodes(nodes, kinds) {
+      const groups = [];
+      let current = null;
+      (nodes || []).forEach((label, i) => {
+        const rawKind = (kinds || [])[i];
+        const kind = rawKind === "resource" ? "resource" : "action";
+        if (kind === "action") {
+          current = { action: { label, index: i }, resources: [] };
+          groups.push(current);
+          return;
+        }
+        if (current) {
+          current.resources.push({ label, index: i });
+          return;
+        }
+        current = { action: null, resources: [{ label, index: i }] };
+        groups.push(current);
+      });
+      return groups;
+    }
+
+    function createOpFlowTimelineNodeRow(label, kind, interactive, nested, onDelete) {
+      const row = document.createElement("div");
+      const isResource = kind === "resource";
+      row.className =
+        "op-flow-node " +
+        (isResource ? "op-flow-node--resource" : "op-flow-node--action") +
+        (nested ? " op-flow-node--nested" : "");
+      const icon = isResource ? opFlowIconDoc : opFlowIconDb;
+      row.innerHTML = `<span class="op-flow-node-icon">${icon}</span><span class="op-flow-node-label"></span>`;
+      row.querySelector(".op-flow-node-label").textContent = label;
+      if (interactive) {
+        row.classList.add("op-flow-node--interactive");
+        row.setAttribute("role", "button");
+        row.tabIndex = 0;
+        row.addEventListener("click", (e) => {
+          if (e.target.closest(".op-flow-node-del")) return;
+          e.stopPropagation();
+          handleOpFlowTimelineNodeClick(label, kind);
+        });
+        row.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
             e.stopPropagation();
             handleOpFlowTimelineNodeClick(label, kind);
-          });
-          row.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleOpFlowTimelineNodeClick(label, kind);
-            }
-          });
+          }
+        });
+      }
+      if (onDelete) attachOpFlowNodeDeleteButton(row, onDelete);
+      return row;
+    }
+
+    function normalizeModuleFlowState(flow, moduleHint) {
+      if (!flow || !flow.nodes || !flow.nodes.length) {
+        if (moduleHint) return moduleToFlowState(moduleHint);
+        return { nodes: [], nodeKinds: [] };
+      }
+      const kinds = flow.nodeKinds || [];
+      const hasAction = kinds.some((k) => k === "action" || k === "section");
+      if (hasAction) return flow;
+      const actionLabel =
+        flow.operationLabel ||
+        (moduleHint ? getModuleOperationLabel(moduleHint) : "操作");
+      return {
+        nodes: [actionLabel, ...flow.nodes],
+        nodeKinds: ["action", ...kinds.map(() => "resource")],
+        operationLabel: actionLabel,
+      };
+    }
+
+    function appendOpFlowGroupedTimeline(section, nodes, nodeKinds, interactive, timelineOpts) {
+      const opts = timelineOpts || {};
+      const leafId = opts.leafId;
+      const onDeleteAt = opts.onDeleteAt;
+      if (!nodes || !nodes.length) return;
+      const timeline = document.createElement("div");
+      timeline.className = "op-flow-timeline";
+      const groups = groupOpFlowTimelineNodes(nodes, nodeKinds);
+      groups.forEach((group) => {
+        const groupEl = document.createElement("div");
+        groupEl.className = "op-flow-op-group";
+        if (group.action) {
+          groupEl.appendChild(
+            createOpFlowTimelineNodeRow(
+              group.action.label,
+              "action",
+              interactive,
+              false,
+              onDeleteAt
+                ? () => onDeleteAt(group.action.index)
+                : leafId
+                  ? () => removeOpFlowModuleNodeAt(leafId, group.action.index)
+                  : null
+            )
+          );
         }
-        timeline.appendChild(row);
+        if (group.resources.length) {
+          const resWrap = document.createElement("div");
+          resWrap.className = "op-flow-op-group__resources";
+          group.resources.forEach((res) => {
+            resWrap.appendChild(
+              createOpFlowTimelineNodeRow(
+                res.label,
+                "resource",
+                interactive,
+                true,
+                onDeleteAt
+                  ? () => onDeleteAt(res.index)
+                  : leafId
+                    ? () => removeOpFlowModuleNodeAt(leafId, res.index)
+                    : null
+              )
+            );
+          });
+          groupEl.appendChild(resWrap);
+        }
+        timeline.appendChild(groupEl);
       });
       section.appendChild(timeline);
+    }
+
+    function appendModuleFlowTimeline(section, flowState, interactive, timelineOpts) {
+      const normalized = normalizeModuleFlowState(flowState, {
+        leafId: timelineOpts && timelineOpts.leafId,
+        label: flowState && flowState.operationLabel,
+      });
+      appendOpFlowGroupedTimeline(
+        section,
+        normalized.nodes,
+        normalized.nodeKinds,
+        interactive,
+        timelineOpts
+      );
     }
 
     function resolveVisitModuleFlowState(visit, isLive) {
@@ -15157,15 +15875,47 @@
         snap.moduleFlow ||
         (visit.leafId === "business-modeling" ? snap.business : null) ||
         (visit.leafId === "smart-dev" ? snap.smartDev : null);
+      const moduleHint = {
+        leafId: visit.leafId,
+        label: visit.operationLabel,
+        resources: [],
+      };
+
+      if (visit.fromBusinessProcess) {
+        if (isLive) {
+          const live = getLiveFlowStateForLeaf(visit.leafId);
+          if (live && live.nodes && live.nodes.length) {
+            return normalizeModuleFlowState(live, moduleHint);
+          }
+        }
+        if (snapFlow && snapFlow.nodes) {
+          return normalizeModuleFlowState(snapFlow, moduleHint);
+        }
+        if (visit.operationLabel) {
+          return { nodes: [visit.operationLabel], nodeKinds: ["action"] };
+        }
+        return { nodes: [], nodeKinds: [] };
+      }
+
       if (isLive) {
         const live = getLiveFlowStateForLeaf(visit.leafId);
-        if (live && live.nodes && live.nodes.length) return live;
-        if (snapFlow && snapFlow.nodes) return snapFlow;
+        if (live && live.nodes && live.nodes.length) {
+          return normalizeModuleFlowState(live, moduleHint);
+        }
+        if (snapFlow && snapFlow.nodes) {
+          return normalizeModuleFlowState(snapFlow, moduleHint);
+        }
         return live || { nodes: [], nodeKinds: [] };
       }
-      if (snap.moduleFlow && snap.moduleFlow.nodes) return snap.moduleFlow;
-      if (visit.leafId === "business-modeling" && snap.business) return snap.business;
-      if (visit.leafId === "smart-dev" && snap.smartDev) return snap.smartDev;
+      if (snapFlow && snapFlow.nodes) {
+        return normalizeModuleFlowState(snapFlow, moduleHint);
+      }
+      if (visit.leafId === "business-modeling" && snap.business) {
+        return normalizeModuleFlowState(snap.business, moduleHint);
+      }
+      if (visit.leafId === "smart-dev" && snap.smartDev) {
+        return normalizeModuleFlowState(snap.smartDev, moduleHint);
+      }
       return { nodes: [], nodeKinds: [] };
     }
 
@@ -15176,93 +15926,96 @@
     }
 
     function appendPhysicalTimelineFromState(section, devPath, physical, interactive, options) {
+      const opts = options || {};
       const canClick = !!interactive;
       const nodeClickable =
         canClick && !(isProcessDevWorkspace() && isOpFlowModuleListLocked());
       if (!physical) return;
       if (devPath && devPath.nodes && devPath.nodes.length) {
-        const showProcessName = !options || options.showProcessName !== false;
+        const showProcessName = opts.showProcessName !== false;
         if (showProcessName) {
           const pname = document.createElement("div");
           pname.className = "op-flow-process-name";
           pname.textContent = devPath.title || "业务流程";
           section.appendChild(pname);
         }
-        const timeline = document.createElement("div");
-        timeline.className = "op-flow-timeline";
-        const kinds = devPath.nodeKinds || [];
-        devPath.nodes.forEach((label, i) => {
-          const kind = kinds[i] === "resource" ? "resource" : "action";
-          const row = document.createElement("div");
-          row.className =
-            "op-flow-node " + (kind === "resource" ? "op-flow-node--resource" : "op-flow-node--action");
-          const icon = kind === "resource" ? opFlowIconDoc : opFlowIconDb;
-          row.innerHTML = `<span class="op-flow-node-icon">${icon}</span><span class="op-flow-node-label"></span>`;
-          row.querySelector(".op-flow-node-label").textContent = label;
-          if (nodeClickable) {
-            row.classList.add("op-flow-node--interactive");
-            row.setAttribute("role", "button");
-            row.tabIndex = 0;
-            row.addEventListener("click", (e) => {
-              e.stopPropagation();
-              handleOpFlowTimelineNodeClick(label, kind);
-            });
-            row.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                e.stopPropagation();
-                handleOpFlowTimelineNodeClick(label, kind);
-              }
-            });
-          }
-          timeline.appendChild(row);
+        appendOpFlowGroupedTimeline(section, devPath.nodes, devPath.nodeKinds || [], nodeClickable, {
+          onDeleteAt: (nodeIndex) => removeOpFlowDevPathNodeAt(nodeIndex),
         });
-        section.appendChild(timeline);
       } else if (physical.reverse || (physical.tables || []).length) {
+        const nodes = [];
+        const nodeKinds = [];
+        if (physical.reverse) {
+          nodes.push("逆向建模");
+          nodeKinds.push("action");
+        }
+        (physical.tables || []).forEach((tableName) => {
+          nodes.push(tableName);
+          nodeKinds.push("resource");
+        });
         const timeline = document.createElement("div");
         timeline.className = "op-flow-timeline";
-        const n1 = document.createElement("div");
-        n1.className = "op-flow-node op-flow-node--action";
-        n1.innerHTML = `<span class="op-flow-node-icon">${opFlowIconDb}</span><span class="op-flow-node-label">逆向建模</span>`;
-        if (canClick) {
-          n1.classList.add("op-flow-node--interactive");
-          n1.setAttribute("role", "button");
-          n1.tabIndex = 0;
-          n1.addEventListener("click", (e) => {
-            e.stopPropagation();
-            openReverseModelingFromOpList();
-          });
-          n1.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              openReverseModelingFromOpList();
-            }
-          });
-        }
-        timeline.appendChild(n1);
-        (physical.tables || []).forEach((tableName) => {
-          const n2 = document.createElement("div");
-          n2.className = "op-flow-node op-flow-node--resource";
-          n2.innerHTML = `<span class="op-flow-node-icon">${opFlowIconDoc}</span><span class="op-flow-node-label"></span>`;
-          n2.querySelector(".op-flow-node-label").textContent = tableName;
-          if (canClick) {
-            n2.classList.add("op-flow-node--interactive");
-            n2.setAttribute("role", "button");
-            n2.tabIndex = 0;
-            n2.addEventListener("click", (e) => {
-              e.stopPropagation();
-              openResourceDetailFromOpList(tableName);
-            });
-            n2.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
+        const groups = groupOpFlowTimelineNodes(nodes, nodeKinds);
+        groups.forEach((group) => {
+          const groupEl = document.createElement("div");
+          groupEl.className = "op-flow-op-group";
+          if (group.action) {
+            const n1 = document.createElement("div");
+            n1.className = "op-flow-node op-flow-node--action";
+            n1.innerHTML = `<span class="op-flow-node-icon">${opFlowIconDb}</span><span class="op-flow-node-label">逆向建模</span>`;
+            const reverseIdx = group.action.index;
+            if (canClick) {
+              n1.classList.add("op-flow-node--interactive");
+              n1.setAttribute("role", "button");
+              n1.tabIndex = 0;
+              n1.addEventListener("click", (e) => {
+                if (e.target.closest(".op-flow-node-del")) return;
                 e.stopPropagation();
-                openResourceDetailFromOpList(tableName);
-              }
-            });
+                openReverseModelingFromOpList();
+              });
+              n1.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  openReverseModelingFromOpList();
+                }
+              });
+            }
+            attachOpFlowNodeDeleteButton(n1, () => removeOpFlowPhysicalNodeAt(reverseIdx, false));
+            groupEl.appendChild(n1);
           }
-          timeline.appendChild(n2);
+          if (group.resources.length) {
+            const resWrap = document.createElement("div");
+            resWrap.className = "op-flow-op-group__resources";
+            group.resources.forEach((res) => {
+              const n2 = document.createElement("div");
+              n2.className = "op-flow-node op-flow-node--resource op-flow-node--nested";
+              n2.innerHTML = `<span class="op-flow-node-icon">${opFlowIconDoc}</span><span class="op-flow-node-label"></span>`;
+              n2.querySelector(".op-flow-node-label").textContent = res.label;
+              const tableIdx = res.index;
+              if (canClick) {
+                n2.classList.add("op-flow-node--interactive");
+                n2.setAttribute("role", "button");
+                n2.tabIndex = 0;
+                n2.addEventListener("click", (e) => {
+                  if (e.target.closest(".op-flow-node-del")) return;
+                  e.stopPropagation();
+                  openResourceDetailFromOpList(res.label);
+                });
+                n2.addEventListener("keydown", (e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openResourceDetailFromOpList(res.label);
+                  }
+                });
+              }
+              attachOpFlowNodeDeleteButton(n2, () => removeOpFlowPhysicalNodeAt(tableIdx, false));
+              resWrap.appendChild(n2);
+            });
+            groupEl.appendChild(resWrap);
+          }
+          timeline.appendChild(groupEl);
         });
         section.appendChild(timeline);
       }
@@ -15581,37 +16334,35 @@
     }
 
     function attachOpFlowVisitDeleteButton(mountEl, kind, stackIndex) {
-      if (isOpFlowModuleListLocked()) return;
-      const del = document.createElement("button");
-      del.type = "button";
-      del.className = "op-flow-visit-del";
-      del.setAttribute("aria-label", "删除此条");
-      del.title = "删除";
-      del.innerHTML =
-        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>';
-      del.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (kind === "stack") {
-          if (stackIndex >= 0 && stackIndex < opFlowVisitStack.length) {
-            opFlowVisitStack.splice(stackIndex, 1);
+      if (!canDeleteOpFlowItems()) return;
+      mountEl.appendChild(
+        createOpFlowDelButton("op-flow-visit-del", "删除此模块", () => {
+          if (kind === "stack") {
+            removeOpFlowModuleAt(stackIndex);
+          } else if (kind === "legacy-physical") {
+            physicalFlowState = { reverse: false, tables: [] };
+            devPathFlowState = null;
+            if (physicalCanvasMode === "reverse-modeling") {
+              physicalCanvasMode = "list";
+              reverseModelingStep = 1;
+              syncCanvas();
+            }
             renderOperationFlow();
-            showToast("已移除该条操作记录", "success");
+            showToast("已移除当前流程示意", "success");
+          } else if (kind === "legacy-other") {
+            if (selectedLeafId === "business-modeling") {
+              businessModelingFlowState = { nodes: [], nodeKinds: [] };
+            } else if (selectedLeafId === "smart-dev") {
+              smartDevFlowState = { nodes: [], nodeKinds: [] };
+              smartDevScriptEditorActive = false;
+            } else if (selectedLeafId) {
+              setLiveFlowStateForLeaf(selectedLeafId, { nodes: [], nodeKinds: [] });
+            }
+            renderOperationFlow();
+            showToast("已清空当前模块操作", "success");
           }
-        } else if (kind === "legacy-physical") {
-          physicalFlowState = { reverse: false, tables: [] };
-          devPathFlowState = null;
-          if (physicalCanvasMode === "reverse-modeling") {
-            physicalCanvasMode = "list";
-            reverseModelingStep = 1;
-            syncCanvas();
-          }
-          renderOperationFlow();
-          showToast("已移除当前流程示意", "success");
-        } else if (kind === "legacy-other") {
-          showToast("已关闭当前示意", "info");
-        }
-      });
-      mountEl.appendChild(del);
+        })
+      );
     }
 
     function buildPhysicalOpFlowSection(titleText, devPath, physical, interactive, deleteKind, stackIndex, navLeafId) {
@@ -15703,7 +16454,7 @@
       attachOpFlowVisitDeleteButton(actions, deleteKind, stackIndex);
       head.appendChild(actions);
       section.appendChild(head);
-      appendModuleFlowTimeline(section, flowState, !!opts.interactive);
+      appendModuleFlowTimeline(section, flowState, !!opts.interactive, { leafId: navLeafId });
       if (navLeafId && navLeafId === selectedLeafId) {
         section.classList.add("op-flow-section--active");
       }
@@ -15712,7 +16463,7 @@
 
     function buildOpFlowVisitSection(visit, index, total) {
       const isLive = isOpFlowVisitLive(visit);
-      const interactive = isLive && (!opFlowFromBusinessProcess || opFlowBusinessEditing);
+      const interactive = isLive;
 
       if (isOpFlowModuleListLocked()) {
         const moduleFlow = resolveVisitModuleFlowState(visit, isLive);
@@ -15932,6 +16683,15 @@
 
     function getOpFlowClearStatsFromSnapshot(snap) {
       if (!snap) return { actions: 0, resources: 0, total: 0 };
+      if (snap.moduleFlow && snap.moduleFlow.nodes && snap.moduleFlow.nodes.length) {
+        let actions = 0;
+        let resources = 0;
+        (snap.moduleFlow.nodeKinds || []).forEach((kind) => {
+          if (kind === "resource") resources += 1;
+          else actions += 1;
+        });
+        return { actions, resources, total: actions + resources };
+      }
       if (snap.business && snap.business.nodes && snap.business.nodes.length) {
         let actions = 0;
         let resources = 0;
@@ -16061,8 +16821,7 @@
       smartDevListSavedRows = [];
       smartDevScriptEditorActive = false;
       devPathFlowState = null;
-      opFlowFromBusinessProcess = false;
-      opFlowBusinessEditing = false;
+      resetOpFlowBusinessProcessContext();
       if (physicalCanvasMode === "reverse-modeling") {
         physicalCanvasMode = "list";
         reverseModelingStep = 1;
@@ -16122,6 +16881,101 @@
       return nodes;
     }
 
+    function snapshotAllOpFlowVisits() {
+      opFlowVisitStack.forEach((visit) => {
+        if (visit && visit.leafId) trySnapshotLastVisitForLeaf(visit.leafId);
+      });
+    }
+
+    function buildFlowModulesFromOpStack() {
+      if (!opFlowVisitStack.length) return [];
+      return opFlowVisitStack.map((visit) => {
+        const snap = visit.snapshot || captureOpSnapshotForLeaf(visit.leafId);
+        const flow = snap.moduleFlow || snap.business || snap.smartDev || { nodes: [], nodeKinds: [] };
+        const normalized = normalizeModuleFlowState(flow, {
+          leafId: visit.leafId,
+          label: visit.operationLabel,
+        });
+        const kind = getNavResourceKind(visit.leafId);
+        let actionLabel = visit.operationLabel || "";
+        const resources = [];
+        (normalized.nodes || []).forEach((name, ri) => {
+          const nodeKind = (normalized.nodeKinds || [])[ri];
+          if (nodeKind === "action" || nodeKind === "section") {
+            if (!actionLabel) actionLabel = name;
+            return;
+          }
+          resources.push({
+            id: "saved_" + visit.leafId + "_" + ri,
+            kind,
+            name,
+            fromNode: actionLabel || getDefaultOperationLabelForLeaf(visit.leafId),
+            leafId: visit.leafId,
+            status: "online",
+          });
+        });
+        return {
+          leafId: visit.leafId,
+          label: actionLabel || getDefaultOperationLabelForLeaf(visit.leafId),
+          resources,
+        };
+      });
+    }
+
+    function saveExistingBusinessProcessFlow() {
+      if (!opFlowFromBusinessProcess || !opFlowSourceProcessItem) return false;
+      if (opFlowTotalStepCount() === opFlowBaselineStepCount) {
+        showToast("当前操作步数无变更", "info");
+        return false;
+      }
+      snapshotAllOpFlowVisits();
+      const flowModules = buildFlowModulesFromOpStack();
+      const source = opFlowSourceProcessItem;
+      const id = source.id;
+      let savedItem = source;
+
+      if (String(id).startsWith("bp_")) {
+        const list = readStoredProcesses();
+        const idx = list.findIndex((x) => x.id === id);
+        if (idx >= 0) {
+          list[idx].flowModules = flowModules;
+          syncLegacyFlowFieldsFromModules(list[idx]);
+          list[idx].updateTime = new Date().toISOString().slice(0, 10);
+          writeStoredProcesses(list);
+          savedItem = list[idx];
+        } else {
+          source.flowModules = flowModules;
+          syncLegacyFlowFieldsFromModules(source);
+          source.updateTime = new Date().toISOString().slice(0, 10);
+        }
+      } else {
+        demoBpFlowModulesOverrides[id] = JSON.parse(JSON.stringify(flowModules));
+        source.flowModules = flowModules;
+        syncLegacyFlowFieldsFromModules(source);
+        source.updateTime = new Date().toISOString().slice(0, 10);
+      }
+
+      opFlowSourceProcessItem = savedItem;
+      devPathFlowState = buildDevPathStateFromModules(savedItem, flowModules);
+      opFlowVisitStack.forEach((visit, i) => {
+        const module = flowModules[i];
+        if (!module) return;
+        visit.operationLabel = getModuleOperationLabel(module);
+        visit.snapshot = buildModuleOpSnapshot(module);
+        visit.fromBusinessProcess = true;
+      });
+      applyModuleToLiveState(flowModules.find((m) => m.leafId === selectedLeafId) || flowModules[0]);
+      opFlowBaselineStepCount = opFlowTotalStepCount();
+      syncOpFlowSaveButton();
+      renderOperationFlow();
+      appendOperation({
+        id: "bp-save-" + id,
+        label: "业务流程 · " + (getBpDisplayTitle(savedItem) || "保存操作流程"),
+      });
+      showToast("操作流程已保存", "success");
+      return true;
+    }
+
     function saveCurrentFlowAsBusinessProcess(meta) {
       if (selectedLeafId !== "physical-modeling") {
         showToast("请在「物理建模」页面保存当前流程", "warn");
@@ -16147,22 +17001,7 @@
         domain: meta && meta.domain != null ? String(meta.domain) : "",
       };
       if (opFlowVisitStack.length) {
-        item.flowModules = opFlowVisitStack.map((visit) => {
-          const snap = visit.snapshot || captureOpSnapshotForLeaf(visit.leafId);
-          const flow = snap.moduleFlow || snap.business || snap.smartDev || { nodes: [], nodeKinds: [] };
-          const kind = getNavResourceKind(visit.leafId);
-          return {
-            leafId: visit.leafId,
-            resources: (flow.nodes || []).map((name, ri) => ({
-              id: "saved_" + visit.leafId + "_" + ri,
-              kind,
-              name,
-              fromNode: getNavLeafLabel(visit.leafId),
-              leafId: visit.leafId,
-              status: "online",
-            })),
-          };
-        });
+        item.flowModules = buildFlowModulesFromOpStack();
       } else if (devPathFlowState && devPathFlowState.nodes && devPathFlowState.nodes.length) {
         item.flowModules = migrateLegacyFlowToModules({
           flowNodes: devPathFlowState.nodes.slice(),
@@ -16214,8 +17053,8 @@
         mainLayoutEl.classList.toggle("main--hub", hub);
         mainLayoutEl.classList.toggle("main--workspace", workspace);
       }
-      if (navBackToListEl) navBackToListEl.hidden = hub;
-      if (navPanelCrumbSepEl) navPanelCrumbSepEl.hidden = hub;
+      document.body.classList.toggle("main--workspace-mode", workspace);
+      syncWorkspaceToolbar();
     }
 
     function runAppPageTransition(transitionClass, applyState) {
@@ -16225,15 +17064,19 @@
       }
       appPageTransitionLock = true;
       mainLayoutEl.classList.add("main--transitioning", transitionClass);
+      document.body.classList.add("main--transitioning", transitionClass);
       window.setTimeout(() => {
         applyState();
         mainLayoutEl.classList.remove(transitionClass);
+        document.body.classList.remove(transitionClass);
         const enterClass =
           transitionClass === "main--leave-hub" ? "main--enter-workspace" : "main--enter-hub";
         mainLayoutEl.classList.add(enterClass);
+        document.body.classList.add(enterClass);
         window.requestAnimationFrame(() => {
           window.setTimeout(() => {
             mainLayoutEl.classList.remove(enterClass, "main--transitioning");
+            document.body.classList.remove(enterClass, "main--transitioning");
             appPageTransitionLock = false;
           }, APP_PAGE_TRANSITION_MS);
         });
@@ -16274,8 +17117,7 @@
 
     function resetHubWorkspaceState() {
       selectedLeafId = null;
-      opFlowFromBusinessProcess = false;
-      opFlowBusinessEditing = false;
+      resetOpFlowBusinessProcessContext();
       opFlowModuleLeafIds = [];
       opFlowVisitStack = [];
       devPathFlowState = null;
@@ -16391,9 +17233,6 @@
       syncMainLayout();
       renderNav();
     }
-
-
-    let sfSaveBoardId = "";
     let sfSaveDomain = "";
 
     function renderSfSaveCascade() {
@@ -25382,8 +26221,7 @@ LIMIT 5;</pre>
       centerOverride = null;
       const flowViewMode = isOpFlowFlowViewMode();
       if (!opts.keepBpMode && !flowViewMode) {
-        opFlowFromBusinessProcess = false;
-        opFlowBusinessEditing = false;
+        resetOpFlowBusinessProcessContext();
       }
       if (!flowViewMode && !opts.skipStateReset) {
         resetStateForNavLeaf(leafId);
@@ -25914,9 +26752,8 @@ LIMIT 5;</pre>
       if (opFlowSaveEl) {
         opFlowSaveEl.addEventListener("click", () => {
           if (opFlowSaveEl.disabled) return;
-          if (opFlowFromBusinessProcess && !opFlowBusinessEditing) {
-            opFlowBusinessEditing = true;
-            syncOpFlowSaveButton();
+          if (opFlowFromBusinessProcess) {
+            saveExistingBusinessProcessFlow();
             return;
           }
           openSaveFlowModal();
@@ -25930,8 +26767,21 @@ LIMIT 5;</pre>
         });
       }
 
-      const navBackBtn = document.getElementById("navBackToList");
-      if (navBackBtn) navBackBtn.addEventListener("click", () => goToBusinessProcesses());
+      if (navBackToListEl) {
+        navBackToListEl.addEventListener("click", () => goToBusinessProcesses());
+      }
+
+      if (wsToolbarNewFlowEl) {
+        wsToolbarNewFlowEl.addEventListener("click", () => openBpNewFlowModal());
+      }
+
+      if (wsToolbarAllFlowsEl) {
+        wsToolbarAllFlowsEl.addEventListener("click", () => goToBusinessProcesses());
+      }
+
+      if (wsToolbarExitEl) {
+        wsToolbarExitEl.addEventListener("click", () => goToBusinessProcesses());
+      }
 
       if (navSearchInputEl) {
         navSearchInputEl.addEventListener("input", () => {
