@@ -1162,6 +1162,60 @@
       gap: 14px;
     }
 
+    .bp-newflow-blank {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid #bae0ff;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #f0f7ff 0%, #fafcff 100%);
+    }
+
+    .bp-newflow-blank-btn {
+      display: block;
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28);
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .bp-newflow-blank-btn:hover {
+      background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.32);
+    }
+
+    .bp-newflow-blank-hint {
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: #667085;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .bp-newflow-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      font-size: 12px;
+      color: #98a2b3;
+    }
+
+    .bp-newflow-divider::before,
+    .bp-newflow-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e8e8e8;
+    }
+
     /* —— 统一右侧抽屉（列表/开发共用） —— */
     .bp-side-drawer-backdrop {
       position: fixed;
@@ -4719,6 +4773,19 @@
       flex-direction: column;
       background: #f5f7fb;
       overflow: hidden;
+      padding: 0 48px 16px;
+      box-sizing: border-box;
+    }
+
+    .otb-inner {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     .otb-header {
@@ -4727,7 +4794,8 @@
       justify-content: space-between;
       gap: 12px;
       padding: 14px 20px;
-      border-bottom: 1px solid #e6ebf2;
+      border: 1px solid #e6ebf2;
+      border-bottom: none;
       background: #fff;
       flex-shrink: 0;
     }
@@ -4756,10 +4824,12 @@
       flex: 1;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(320px, 1.1fr) minmax(360px, 0.9fr);
+      grid-template-columns: minmax(300px, 1fr) minmax(340px, 1fr);
       gap: 14px;
       padding: 14px 16px 16px;
       overflow: hidden;
+      border: 1px solid #e6ebf2;
+      background: #fff;
     }
 
     .otb-panel {
@@ -4867,6 +4937,16 @@
       font-weight: 600;
     }
 
+    .otb-op-chip.is-selected:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+
+    .otb-op-chip.is-selected:disabled:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
     .otb-op-chip input {
       pointer-events: none;
     }
@@ -4938,6 +5018,51 @@
       margin-top: 2px;
       font-size: 11px;
       color: #667085;
+    }
+
+    .otb-capsule-switch {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 3px;
+      border-radius: 999px;
+      background: #eef2f6;
+      border: 1px solid #dfe5ee;
+      gap: 2px;
+    }
+
+    .otb-capsule-switch__opt {
+      min-width: 56px;
+      height: 28px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      font: inherit;
+      font-size: 12px;
+      line-height: 28px;
+      color: #667085;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .otb-capsule-switch__opt:hover:not(.is-active) {
+      color: #475569;
+    }
+
+    .otb-capsule-switch__opt.is-active {
+      background: #fff;
+      color: #1677ff;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+    }
+
+    .otb-capsule-switch[data-state="on"] .otb-capsule-switch__opt.is-active {
+      color: #1677ff;
+    }
+
+    .otb-capsule-switch[data-state="off"] .otb-capsule-switch__opt.is-active {
+      color: #64748b;
     }
 
     .otb-switch {
@@ -5039,8 +5164,12 @@
     }
 
     .otb-flow-section-head {
-      text-align: center;
-      padding-bottom: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 72px 8px;
       margin-bottom: 8px;
       border-bottom: 1px solid #eef2f6;
     }
@@ -5049,6 +5178,24 @@
       font-size: 13px;
       font-weight: 700;
       color: #1f2937;
+      text-align: center;
+    }
+
+    .otb-flow-section-actions {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .otb-flow-section:hover .otb-flow-section-actions,
+    .otb-flow-section:focus-within .otb-flow-section-actions {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .otb-flow-section--active .otb-flow-section-title {
@@ -5085,7 +5232,7 @@
       display: flex;
       align-items: flex-start;
       gap: 6px;
-      padding-right: 72px;
+      padding-right: 28px;
     }
 
     .otb-flow-node-row .op-flow-node {
@@ -5209,6 +5356,14 @@
     }
 
     @media (max-width: 960px) {
+      .otb-root {
+        padding: 0 16px 12px;
+      }
+
+      .otb-inner {
+        max-width: none;
+      }
+
       .otb-body {
         grid-template-columns: 1fr;
         overflow: auto;
@@ -5281,6 +5436,29 @@
       min-height: 0;
       overflow: auto;
       padding: 16px 20px 24px;
+    }
+
+    /* 与新建/编辑业务场景 otb-inner 同宽（1500px + 两侧 48px） */
+    .tc-content-wrap {
+      padding: 0 48px;
+      box-sizing: border-box;
+    }
+
+    .tc-inner {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 960px) {
+      .tc-content-wrap {
+        padding: 0 16px;
+      }
+
+      .tc-inner {
+        max-width: none;
+      }
     }
 
     .tc-guide {
@@ -8428,7 +8606,114 @@
       align-items: center;
       justify-content: flex-end;
       gap: 10px;
-      flex: 0 0 304px;
+      flex-shrink: 0;
+    }
+
+    .ws-resource-auto-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      margin-right: 4px;
+    }
+
+    .ws-resource-auto-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: #344054;
+      white-space: nowrap;
+    }
+
+    .ws-resource-auto-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .ws-resource-auto-switch {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      border-radius: 10px;
+      background: #cbd5e1;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .ws-resource-auto-switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s ease;
+    }
+
+    .ws-resource-auto-input:checked + .ws-resource-auto-switch {
+      background: #2563eb;
+    }
+
+    .ws-resource-auto-input:checked + .ws-resource-auto-switch::after {
+      transform: translateX(16px);
+    }
+
+    .ws-resource-auto-input:focus-visible + .ws-resource-auto-switch {
+      outline: 2px solid rgba(37, 99, 235, 0.35);
+      outline-offset: 2px;
+    }
+
+    .ws-resource-auto-help {
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      background: #f8fafc;
+      color: #64748b;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: help;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .ws-resource-auto-help:hover {
+      color: #2563eb;
+      border-color: #91caff;
+      background: #f0f7ff;
+    }
+
+    .ws-resource-auto-help:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      z-index: 50;
+      width: max-content;
+      max-width: 280px;
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.92);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.55;
+      text-align: left;
+      white-space: normal;
+      border-radius: 6px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+      pointer-events: none;
     }
 
     .workspace-toolbar__back {
@@ -12884,6 +13169,20 @@
       <h1 class="workspace-toolbar__title" id="workspaceToolbarTitle">工作台</h1>
     </div>
     <div class="workspace-toolbar__spacer" aria-hidden="true"></div>
+    <div class="ws-resource-auto-wrap" id="wsResourceAutoWrap">
+      <label class="ws-resource-auto-label">
+        <input type="checkbox" id="wsResourceAutoInclude" class="ws-resource-auto-input" checked />
+        <span class="ws-resource-auto-switch" aria-hidden="true"></span>
+        <span class="ws-resource-auto-text">资源节点计入</span>
+      </label>
+      <button
+        type="button"
+        class="ws-resource-auto-help"
+        id="wsResourceAutoHelp"
+        aria-label="资源节点计入说明"
+        data-tip="打开此开关后：① 打开的资源会自动记入流程；② 点击页面操作按钮（详情、提交等）时，会将当前资源名称自动追加到右侧对应模块操作下。已记入的节点支持删除；若不需要计入，请直接关闭。"
+      >?</button>
+    </div>
     <div class="workspace-toolbar__op">
       <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarNewFlow">新建流程</button>
       <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarAllFlows">所有流程</button>
@@ -13269,21 +13568,38 @@
     function getModuleSectionTitle(mod) {
       if (mod.sectionTitle) return mod.sectionTitle;
       if (mod.leafId === "create-report") return "制作报告";
-      if (mod.leafId === "offline-dev-task") return "数据开发";
-      return getNavLeafLabel(mod.leafId);
+      return getTemplateModuleGroupTitle(mod);
+    }
+
+    function getTemplateModuleGroupTitle(mod) {
+      const path = mod.path || "";
+      if (path) {
+        const parts = path.split(" / ").map((s) => s.trim()).filter(Boolean);
+        if (parts.length >= 2) return parts[1];
+      }
+      for (let i = 0; i < navTree.length; i += 1) {
+        const node = navTree[i];
+        if (node.type === "group" && node.children) {
+          const ch = node.children.find((c) => c.id === mod.leafId);
+          if (ch) return node.label;
+        }
+      }
+      return getNavLeafLabel(mod.leafId) || "操作模块";
     }
 
     function groupModulesBySection(modules) {
       const groups = [];
-      const indexBySection = new Map();
+      const indexByLeaf = new Map();
       modules.forEach((m) => {
-        const title = getModuleSectionTitle(m);
-        const key = title + "\0" + m.leafId;
-        let idx = indexBySection.get(key);
+        let idx = indexByLeaf.get(m.leafId);
         if (idx === undefined) {
           idx = groups.length;
-          indexBySection.set(key, idx);
-          groups.push({ title, leafId: m.leafId, operations: [] });
+          indexByLeaf.set(m.leafId, idx);
+          groups.push({
+            title: getTemplateModuleGroupTitle(m),
+            leafId: m.leafId,
+            operations: [],
+          });
         }
         groups[idx].operations.push(m);
       });
@@ -13371,26 +13687,26 @@
         l1: "开发中心",
         groups: [
           {
-            l2: "数据集成",
-            l3: "离线集成",
+            l2: "离线集成",
+            l3: "-",
             operations: [{ id: "oi-offline-task", label: "离线任务", leafId: "offline-integration-task" }],
           },
           {
-            l2: "数据集成",
-            l3: "实时集成",
+            l2: "实时集成",
+            l3: "-",
             operations: [{ id: "oi-rt-task", label: "实时任务", leafId: "realtime-integration-task" }],
           },
           {
-            l2: "数据开发",
-            l3: "离线开发",
+            l2: "离线开发",
+            l3: "-",
             operations: [
               { id: "od-offline-task", label: "离线任务", leafId: "offline-dev-task" },
               { id: "od-light-task", label: "轻任务", leafId: "offline-dev-task" },
             ],
           },
           {
-            l2: "数据开发",
-            l3: "实时开发",
+            l2: "实时开发",
+            l3: "-",
             operations: [{ id: "od-rt-task", label: "实时任务", leafId: "realtime-dev-task" }],
           },
           {
@@ -13510,6 +13826,109 @@
       t.updatedAt = Date.now();
       writeCustomFlowTemplates(all);
       return true;
+    }
+
+    let tcDeleteTemplatePending = null;
+    let tcDeleteTemplateAfterConfirm = null;
+
+    function deleteCustomTemplate(id) {
+      const all = readCustomFlowTemplates();
+      const idx = all.findIndex((t) => t.id === id);
+      if (idx < 0) return false;
+      all.splice(idx, 1);
+      writeCustomFlowTemplates(all);
+      return true;
+    }
+
+    function closeTcTemplateDeleteConfirmModal() {
+      const bd = document.getElementById("tcTemplateDeleteBackdrop");
+      if (bd) bd.hidden = true;
+      tcDeleteTemplatePending = null;
+      tcDeleteTemplateAfterConfirm = null;
+    }
+
+    function ensureTcTemplateDeleteConfirmModal() {
+      if (document.getElementById("tcTemplateDeleteBackdrop")) return;
+      const backdrop = document.createElement("div");
+      backdrop.id = "tcTemplateDeleteBackdrop";
+      backdrop.className = "sf-backdrop";
+      backdrop.hidden = true;
+
+      const dialog = document.createElement("div");
+      dialog.className = "sf-dialog";
+      dialog.setAttribute("role", "dialog");
+      dialog.setAttribute("aria-modal", "true");
+      dialog.setAttribute("aria-labelledby", "tcTemplateDeleteTitle");
+      dialog.addEventListener("click", (e) => e.stopPropagation());
+
+      const hd = document.createElement("div");
+      hd.className = "sf-dialog-hd";
+      const h2 = document.createElement("h2");
+      h2.id = "tcTemplateDeleteTitle";
+      h2.className = "sf-dialog-title";
+      h2.textContent = "删除业务场景";
+      hd.appendChild(h2);
+
+      const body = document.createElement("div");
+      body.className = "sf-dialog-body";
+      const msg = document.createElement("p");
+      msg.className = "bp-copy-confirm-text";
+      msg.textContent =
+        "只会删除场景模板，历史根据场景模板生成的流程不会受到影响。";
+      const name = document.createElement("div");
+      name.id = "tcTemplateDeleteName";
+      name.className = "bp-copy-confirm-name";
+      body.appendChild(msg);
+      body.appendChild(name);
+
+      const ft = document.createElement("div");
+      ft.className = "sf-dialog-ft";
+      const ok = document.createElement("button");
+      ok.type = "button";
+      ok.className = "sf-btn sf-btn-primary";
+      ok.style.background = "#dc2626";
+      ok.style.borderColor = "#dc2626";
+      ok.textContent = "确认删除";
+      ok.addEventListener("click", () => {
+        if (!tcDeleteTemplatePending) {
+          closeTcTemplateDeleteConfirmModal();
+          return;
+        }
+        const tpl = tcDeleteTemplatePending;
+        const onConfirm = tcDeleteTemplateAfterConfirm;
+        const deleted = deleteCustomTemplate(tpl.id);
+        closeTcTemplateDeleteConfirmModal();
+        if (deleted) {
+          showToast("已删除场景模板「" + tpl.name + "」", "success");
+          if (typeof onConfirm === "function") onConfirm(tpl);
+        }
+      });
+      const cancel = document.createElement("button");
+      cancel.type = "button";
+      cancel.className = "sf-btn";
+      cancel.textContent = "取消";
+      cancel.addEventListener("click", () => closeTcTemplateDeleteConfirmModal());
+
+      ft.appendChild(cancel);
+      ft.appendChild(ok);
+      dialog.appendChild(hd);
+      dialog.appendChild(body);
+      dialog.appendChild(ft);
+      backdrop.appendChild(dialog);
+      backdrop.addEventListener("click", () => closeTcTemplateDeleteConfirmModal());
+      document.body.appendChild(backdrop);
+    }
+
+    function openTcTemplateDeleteConfirmModal(template, afterConfirm) {
+      tcDeleteTemplatePending = template;
+      tcDeleteTemplateAfterConfirm = afterConfirm;
+      ensureTcTemplateDeleteConfirmModal();
+      const name = document.getElementById("tcTemplateDeleteName");
+      if (name) {
+        name.textContent = "即将删除：" + (template.name || "未命名场景");
+      }
+      const bd = document.getElementById("tcTemplateDeleteBackdrop");
+      if (bd) bd.hidden = false;
     }
 
     function getTemplateFlowPreviewLabels(template) {
@@ -13701,10 +14120,40 @@
     /** 工作台顶栏展示的流程/模板标题 */
     let workspaceFlowTitle = "";
     let opFlowBusinessEditing = false;
+    /** 资源节点自动计入流程（顶栏开关，默认开启） */
+    const OP_FLOW_RESOURCE_AUTO_KEY = "bp_op_flow_resource_auto_include_v1";
+    let opFlowResourceAutoInclude = true;
+
+    function readOpFlowResourceAutoInclude() {
+      try {
+        const raw = localStorage.getItem(OP_FLOW_RESOURCE_AUTO_KEY);
+        if (raw === null) return true;
+        return raw === "1";
+      } catch {
+        return true;
+      }
+    }
+
+    function writeOpFlowResourceAutoInclude(enabled) {
+      opFlowResourceAutoInclude = !!enabled;
+      try {
+        localStorage.setItem(OP_FLOW_RESOURCE_AUTO_KEY, opFlowResourceAutoInclude ? "1" : "0");
+      } catch (_) {}
+      const input = document.getElementById("wsResourceAutoInclude");
+      if (input) input.checked = opFlowResourceAutoInclude;
+    }
+
+    function shouldAutoIncludeOpFlowResource(kind) {
+      if (kind !== "resource") return true;
+      return opFlowResourceAutoInclude;
+    }
+
     /** 资源详情页数据（由操作时间线资源节点打开） */
     let resourceDetailState = null;
     /** 各导航模块在操作流程中的资源时间线（除物理/业务/智能开发专用 state 外） */
     let opFlowModuleState = Object.create(null);
+    /** 各模块当前选中的资源节点名称（资源节点计入开启时，操作按钮会挂到该资源下） */
+    let opFlowCurrentResourceByLeaf = Object.create(null);
     let navSearchQuery = "";
 
     const RD_TABS = [
@@ -14061,6 +14510,7 @@
       businessModelingFlowState = { nodes: [], nodeKinds: [] };
       smartDevFlowState = { nodes: [], nodeKinds: [] };
       opFlowModuleState = Object.create(null);
+      opFlowCurrentResourceByLeaf = Object.create(null);
     }
 
     function getLiveFlowStateForLeaf(leafId) {
@@ -14554,18 +15004,210 @@
       }));
     }
 
-    function appendOfflineInstanceFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "offline-integration-instance";
+    function setOpFlowCurrentResource(leafId, resourceName) {
+      if (!leafId || !resourceName) return;
+      opFlowCurrentResourceByLeaf[leafId] = String(resourceName).trim();
+    }
+
+    function getOpFlowCurrentResource(leafId) {
+      const id = leafId || selectedLeafId;
+      if (!id) return "";
+      return opFlowCurrentResourceByLeaf[id] || "";
+    }
+
+    function resolveLeafFlowState(leafId) {
+      if (leafId === "business-modeling") return businessModelingFlowState;
+      if (leafId === "smart-dev") return smartDevFlowState;
+      return getLiveFlowStateForLeaf(leafId);
+    }
+
+    function commitLeafFlowState(leafId, state) {
+      if (leafId === "business-modeling") {
+        businessModelingFlowState = state;
+        return;
+      }
+      if (leafId === "smart-dev") {
+        smartDevFlowState = state;
+        return;
+      }
+      setLiveFlowStateForLeaf(leafId, state);
+    }
+
+    function syncDevPathFlowResourceNodes(leafId, nodes, nodeKinds) {
+      if (
+        leafId !== "physical-modeling" ||
+        !devPathFlowState ||
+        !devPathFlowState.nodes ||
+        isOpFlowModuleListLocked() ||
+        opFlowFromBusinessProcess
+      ) {
+        return;
+      }
+      devPathFlowState.nodes = nodes ? nodes.slice() : [];
+      devPathFlowState.nodeKinds = nodeKinds ? nodeKinds.slice() : [];
+    }
+
+    function normalizeOpFlowActionLabel(label) {
+      const text = String(label || "").trim();
+      const parts = text.split(" · ");
+      if (parts.length >= 2) return parts[parts.length - 1].trim();
+      return text;
+    }
+
+    function findOpFlowActionIndexByLabel(nodes, nodeKinds, actionLabel) {
+      for (let i = 0; i < (nodes || []).length; i += 1) {
+        if (nodeKinds[i] === "action" && normalizeOpFlowActionLabel(nodes[i]) === actionLabel) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    function findOpFlowActionGroupEnd(nodes, nodeKinds, actionIdx) {
+      let end = actionIdx + 1;
+      while (end < nodes.length && nodeKinds[end] !== "action" && nodeKinds[end] !== "section") {
+        end += 1;
+      }
+      return end;
+    }
+
+    function opFlowActionHasResource(nodes, nodeKinds, actionIdx, resourceName) {
+      let i = actionIdx + 1;
+      while (i < nodes.length && nodeKinds[i] !== "action" && nodeKinds[i] !== "section") {
+        if (nodeKinds[i] === "resource" && nodes[i] === resourceName) return true;
+        i += 1;
+      }
+      return false;
+    }
+
+    /**
+     * 统一追加模块流程节点。
+     * 资源节点计入开启时：打开资源会记录 resource；点击操作按钮会追加 action，
+     * 并将当前资源名称作为子节点挂在该操作下。同名操作不重复，资源追加到已有操作下。
+     */
+    function appendLeafFlowNode(leafId, label, kind, options) {
+      const opts = options || {};
+      let cleanLabel = String(label || "").trim();
+      if (!cleanLabel || !leafId) return;
+
+      let attachResource = "";
+
+      if (kind === "resource") {
+        if (!opFlowResourceAutoInclude) return;
+        attachResource = cleanLabel;
+        setOpFlowCurrentResource(leafId, cleanLabel);
+      } else {
+        if (opts.resourceName) {
+          attachResource = String(opts.resourceName).trim();
+          if (attachResource) setOpFlowCurrentResource(leafId, attachResource);
+        } else if (opFlowResourceAutoInclude) {
+          const parts = cleanLabel.split(" · ");
+          if (parts.length >= 2) {
+            attachResource = parts.slice(0, -1).join(" · ").trim();
+            if (attachResource) setOpFlowCurrentResource(leafId, attachResource);
+          } else {
+            attachResource = getOpFlowCurrentResource(leafId);
+          }
+        }
+        cleanLabel = normalizeOpFlowActionLabel(cleanLabel);
+      }
+
+      selectedLeafId = leafId;
       centerOverride = null;
-      ensureTrailingOpFlowVisit("offline-integration-instance");
-      const state = getLiveFlowStateForLeaf("offline-integration-instance");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("offline-integration-instance", state);
+      ensureTrailingOpFlowVisit(leafId);
+
+      const state = resolveLeafFlowState(leafId);
+      if (!state.nodes) state.nodes = [];
+      if (!state.nodeKinds) state.nodeKinds = [];
+
+      if (kind === "action") {
+        const lastIdx = state.nodes.length - 1;
+        if (
+          opFlowResourceAutoInclude &&
+          attachResource &&
+          lastIdx >= 0 &&
+          state.nodeKinds[lastIdx] === "resource" &&
+          state.nodes[lastIdx] === attachResource
+        ) {
+          state.nodes.pop();
+          state.nodeKinds.pop();
+        }
+
+        const existingIdx = findOpFlowActionIndexByLabel(
+          state.nodes,
+          state.nodeKinds,
+          cleanLabel
+        );
+
+        if (existingIdx >= 0) {
+          if (
+            opFlowResourceAutoInclude &&
+            attachResource &&
+            !opFlowActionHasResource(
+              state.nodes,
+              state.nodeKinds,
+              existingIdx,
+              attachResource
+            )
+          ) {
+            const insertAt = findOpFlowActionGroupEnd(
+              state.nodes,
+              state.nodeKinds,
+              existingIdx
+            );
+            state.nodes.splice(insertAt, 0, attachResource);
+            state.nodeKinds.splice(insertAt, 0, "resource");
+          }
+        } else {
+          state.nodes.push(cleanLabel);
+          state.nodeKinds.push("action");
+          if (opFlowResourceAutoInclude && attachResource) {
+            state.nodes.push(attachResource);
+            state.nodeKinds.push("resource");
+          }
+        }
+      } else {
+        state.nodes.push(cleanLabel);
+        state.nodeKinds.push("resource");
+      }
+
+      commitLeafFlowState(leafId, state);
+      if (leafId === "physical-modeling") {
+        syncDevPathFlowResourceNodes(leafId, state.nodes, state.nodeKinds);
+      }
+
       renderOperationFlow();
-      appendOperation({ id: "oii-flow-" + Date.now(), label: "离线实例 · " + cleanLabel });
+      const prefix = opts.opListPrefix || getNavLeafLabel(leafId) || "模块";
+      const opText = kind === "action" ? cleanLabel : String(label || "").trim();
+      appendOperation({
+        id: (opts.opIdPrefix || "flow-") + Date.now(),
+        label: prefix + " · " + opText,
+      });
+    }
+
+    /** 页面操作按钮记入流程：资源节点计入开启时，将资源名挂到该操作下 */
+    function recordOpFlowPageAction(leafId, actionLabel, resourceName, options) {
+      if (!isProcessDevWorkspace() || !leafId || !actionLabel) return;
+      const action = String(actionLabel).trim();
+      const res = String(resourceName || getOpFlowCurrentResource(leafId) || "").trim();
+      appendLeafFlowNode(leafId, action, "action", {
+        ...(options || {}),
+        resourceName: res || undefined,
+      });
+    }
+
+    /** 打开/选中资源时记入流程（仅资源节点计入开启时） */
+    function recordOpFlowResourceOpen(leafId, resourceName, options) {
+      if (!isProcessDevWorkspace() || !leafId || !resourceName) return;
+      appendLeafFlowNode(leafId, resourceName, "resource", options || {});
+    }
+
+    function appendOfflineInstanceFlowNode(label, kind, options) {
+      appendLeafFlowNode("offline-integration-instance", label, kind, {
+        ...(options || {}),
+        opListPrefix: "离线实例",
+        opIdPrefix: "oii-flow-",
+      });
     }
 
     function mountOiiPagination(pagesEl, totalPages, currentPage, onGo) {
@@ -14665,18 +15307,12 @@
       }));
     }
 
-    function appendRealtimeInstanceFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "realtime-integration-instance";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("realtime-integration-instance");
-      const state = getLiveFlowStateForLeaf("realtime-integration-instance");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("realtime-integration-instance", state);
-      renderOperationFlow();
-      appendOperation({ id: "rii-flow-" + Date.now(), label: "实时实例 · " + cleanLabel });
+    function appendRealtimeInstanceFlowNode(label, kind, options) {
+      appendLeafFlowNode("realtime-integration-instance", label, kind, {
+        ...(options || {}),
+        opListPrefix: "实时实例",
+        opIdPrefix: "rii-flow-",
+      });
     }
 
     const odiInstanceTemplates = [
@@ -14705,18 +15341,12 @@
       }));
     }
 
-    function appendOfflineDevInstanceFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "offline-dev-instance";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("offline-dev-instance");
-      const state = getLiveFlowStateForLeaf("offline-dev-instance");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("offline-dev-instance", state);
-      renderOperationFlow();
-      appendOperation({ id: "odi-flow-" + Date.now(), label: "离线实例 · " + cleanLabel });
+    function appendOfflineDevInstanceFlowNode(label, kind, options) {
+      appendLeafFlowNode("offline-dev-instance", label, kind, {
+        ...(options || {}),
+        opListPrefix: "离线实例",
+        opIdPrefix: "odi-flow-",
+      });
     }
 
     const ritTaskTemplates = [
@@ -14753,19 +15383,12 @@
       return ritTaskTemplates.map((tpl) => ({ ...tpl }));
     }
 
-    function appendRealtimeTaskFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      const leafId = "realtime-integration-task";
-      selectedLeafId = leafId;
-      centerOverride = null;
-      ensureTrailingOpFlowVisit(leafId);
-      const state = getLiveFlowStateForLeaf(leafId);
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf(leafId, state);
-      renderOperationFlow();
-      appendOperation({ id: "rit-flow-" + Date.now(), label: "实时任务 · " + cleanLabel });
+    function appendRealtimeTaskFlowNode(label, kind, options) {
+      appendLeafFlowNode("realtime-integration-task", label, kind, {
+        ...(options || {}),
+        opListPrefix: "实时任务",
+        opIdPrefix: "rit-flow-",
+      });
     }
 
     const rdtTaskTemplates = [
@@ -14797,18 +15420,12 @@
       return rdtTaskTemplates.map((tpl) => ({ ...tpl }));
     }
 
-    function appendRealtimeDevTaskFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "realtime-dev-task";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("realtime-dev-task");
-      const state = getLiveFlowStateForLeaf("realtime-dev-task");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("realtime-dev-task", state);
-      renderOperationFlow();
-      appendOperation({ id: "rdt-flow-" + Date.now(), label: "实时任务 · " + cleanLabel });
+    function appendRealtimeDevTaskFlowNode(label, kind, options) {
+      appendLeafFlowNode("realtime-dev-task", label, kind, {
+        ...(options || {}),
+        opListPrefix: "实时任务",
+        opIdPrefix: "rdt-flow-",
+      });
     }
 
     const rdiInstanceTemplates = [
@@ -14891,18 +15508,12 @@
       }));
     }
 
-    function appendRealtimeDevInstanceFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "realtime-dev-instance";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("realtime-dev-instance");
-      const state = getLiveFlowStateForLeaf("realtime-dev-instance");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("realtime-dev-instance", state);
-      renderOperationFlow();
-      appendOperation({ id: "rdi-flow-" + Date.now(), label: "实时实例 · " + cleanLabel });
+    function appendRealtimeDevInstanceFlowNode(label, kind, options) {
+      appendLeafFlowNode("realtime-dev-instance", label, kind, {
+        ...(options || {}),
+        opListPrefix: "实时实例",
+        opIdPrefix: "rdi-flow-",
+      });
     }
 
     const businessKnowledgeRows = [
@@ -15403,6 +16014,34 @@
       startNewFlowFromModuleTemplate(template);
     }
 
+    function startNewBlankFlow() {
+      closeBpNewFlowModal();
+      resourceDetailState = null;
+      resetAllOpFlowLiveStates();
+      physicalCanvasMode = "list";
+      reverseModelingStep = 1;
+      devPathFlowState = null;
+      resetOpFlowBusinessProcessContext();
+      opFlowModuleLeafIds = [];
+      opFlowVisitStack = [];
+      workspaceFlowTitle = "新建流程";
+      smartDevScriptEditorActive = false;
+
+      const apply = () => {
+        activeOpFlowSectionTitle = "";
+        enterProcessDevMode(null);
+        renderOperationFlow();
+        syncOpFlowClearButton();
+        syncOpFlowSaveButton();
+      };
+      animateHubToWorkspace(apply);
+      showToast("已进入空白流程开发，请从左侧选择模块开始", "success");
+      appendOperation({
+        id: "flow-blank-" + Date.now(),
+        label: "新建流程 · 空白流程",
+      });
+    }
+
     function applyFlowTemplateToOperationFlow(templateName, leafIds) {
       startNewFlowFromTemplate(templateName, leafIds);
     }
@@ -15735,14 +16374,15 @@
     }
 
     function groupOpFlowTimelineNodes(nodes, kinds) {
-      const groups = [];
+      const rawGroups = [];
       let current = null;
       (nodes || []).forEach((label, i) => {
         const rawKind = (kinds || [])[i];
         const kind = rawKind === "resource" ? "resource" : "action";
         if (kind === "action") {
-          current = { action: { label, index: i }, resources: [] };
-          groups.push(current);
+          const actionLabel = normalizeOpFlowActionLabel(label);
+          current = { action: { label: actionLabel, index: i }, resources: [] };
+          rawGroups.push(current);
           return;
         }
         if (current) {
@@ -15750,9 +16390,25 @@
           return;
         }
         current = { action: null, resources: [{ label, index: i }] };
-        groups.push(current);
+        rawGroups.push(current);
       });
-      return groups;
+
+      const merged = [];
+      const byAction = new Map();
+      rawGroups.forEach((group) => {
+        if (!group.action) {
+          merged.push(group);
+          return;
+        }
+        const key = group.action.label;
+        if (byAction.has(key)) {
+          byAction.get(key).resources.push(...group.resources);
+          return;
+        }
+        byAction.set(key, group);
+        merged.push(group);
+      });
+      return merged;
     }
 
     function createOpFlowTimelineNodeRow(label, kind, interactive, nested, onDelete) {
@@ -16067,20 +16723,19 @@
       appendOperation({ id: "res-detail", label: "资源 · " + resourceDetailState.zhName });
     }
 
-    function appendBusinessModelingFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
+    function appendBusinessModelingFlowNode(label, kind, options) {
       if (kind === "resource") {
-        appendModuleNewResource(cleanLabel, { leafId: "business-modeling", resourceLabel: cleanLabel });
+        appendModuleNewResource(String(label || "").trim(), {
+          leafId: "business-modeling",
+          resourceLabel: String(label || "").trim(),
+        });
         return;
       }
-      selectedLeafId = "business-modeling";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("business-modeling");
-      businessModelingFlowState.nodes.push(cleanLabel);
-      businessModelingFlowState.nodeKinds.push("action");
-      renderOperationFlow();
-      appendOperation({ id: "bm-flow-" + Date.now(), label: "业务建模 · " + cleanLabel });
+      appendLeafFlowNode("business-modeling", label, kind, {
+        ...(options || {}),
+        opListPrefix: "业务建模",
+        opIdPrefix: "bm-flow-",
+      });
     }
 
     function formatOpFlowResourceStamp() {
@@ -16116,6 +16771,8 @@
 
     function pushModuleFlowResource(leafId, resourceLabel) {
       if (!leafId || !resourceLabel) return;
+      if (!opFlowResourceAutoInclude) return;
+      setOpFlowCurrentResource(leafId, resourceLabel);
       ensureTrailingOpFlowVisit(leafId);
       const state = getLiveFlowStateForLeaf(leafId);
       if (!state.nodes) state.nodes = [];
@@ -16139,6 +16796,7 @@
     function appendModuleNewResource(actionLabel, options) {
       const opts = options || {};
       if (!isProcessDevWorkspace()) return null;
+      if (!opFlowResourceAutoInclude) return null;
       const leafId = opts.leafId || selectedLeafId;
       if (!leafId) return null;
       const resourceLabel =
@@ -16210,16 +16868,12 @@
       });
     }
 
-    function appendSmartDevFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "smart-dev";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("smart-dev");
-      smartDevFlowState.nodes.push(cleanLabel);
-      smartDevFlowState.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      renderOperationFlow();
-      appendOperation({ id: "smart-dev-op-" + Date.now(), label: "智能开发 · " + cleanLabel });
+    function appendSmartDevFlowNode(label, kind, options) {
+      appendLeafFlowNode("smart-dev", label, kind, {
+        ...(options || {}),
+        opListPrefix: "智能开发",
+        opIdPrefix: "smart-dev-op-",
+      });
     }
 
     function escapeHtmlSmartDev(s) {
@@ -16291,10 +16945,14 @@
       selectedLeafId = "smart-dev";
       centerOverride = null;
       ensureTrailingOpFlowVisit("smart-dev");
-      smartDevFlowState.nodes.push(label);
-      smartDevFlowState.nodeKinds.push("resource");
-      renderOperationFlow();
-      appendOperation({ id: "smart-dev-save-" + Date.now(), label: "智能开发 · 保存 · " + label });
+      if (opFlowResourceAutoInclude) {
+        appendLeafFlowNode("smart-dev", label, "resource", {
+          opListPrefix: "智能开发 · 保存",
+          opIdPrefix: "smart-dev-save-",
+        });
+      } else {
+        appendOperation({ id: "smart-dev-save-" + Date.now(), label: "智能开发 · 保存 · " + label });
+      }
       showToast("已保存，流程已新增资源：" + label, "success");
     }
 
@@ -17992,6 +18650,19 @@
     }
 
     function handleBpResourceAction(item, kind, row, action) {
+      const bpResLeafMap = {
+        models: "physical-modeling",
+        tasks: "offline-integration-task",
+        apis: "api-market",
+        reports: "create-report",
+      };
+      const bpLeafId = bpResLeafMap[kind];
+      if (isProcessDevWorkspace() && bpLeafId) {
+        recordOpFlowPageAction(bpLeafId, action, row.name, {
+          opListPrefix: getNavLeafLabel(bpLeafId) || kind,
+          opIdPrefix: "bp-outcome-act-",
+        });
+      }
       if (action === "血缘") {
         showToast("打开「" + row.name + "」血缘图谱（示意）", "info");
         return;
@@ -20179,13 +20850,33 @@
       hd.appendChild(closeBtn);
       const body = document.createElement("div");
       body.className = "bp-newflow-body";
+
+      const blankBlock = document.createElement("div");
+      blankBlock.className = "bp-newflow-blank";
+      const blankBtn = document.createElement("button");
+      blankBtn.type = "button";
+      blankBtn.className = "bp-newflow-blank-btn";
+      blankBtn.textContent = "不使用模板，直接进入工作台";
+      blankBtn.addEventListener("click", () => startNewBlankFlow());
+      const blankHint = document.createElement("p");
+      blankHint.className = "bp-newflow-blank-hint";
+      blankHint.textContent = "从左侧自由选择模块，按需记录操作流程";
+      blankBlock.appendChild(blankBtn);
+      blankBlock.appendChild(blankHint);
+
+      const divider = document.createElement("div");
+      divider.className = "bp-newflow-divider";
+      divider.textContent = "或选择场景模板";
+
       const intro = document.createElement("div");
       intro.className = "ft-intro";
       intro.innerHTML =
-        '<p class="ft-intro-lead"><span class="ft-tag">说明</span>选择默认流程模板后进入<strong>流程开发</strong>，左侧为操作导航、右侧为操作流程。各阶段可跳跃进入、可多次创建实例，<strong>不强制按顺序</strong>执行。</p>';
+        '<p class="ft-intro-lead"><span class="ft-tag">说明</span>也可选择场景模板后进入<strong>流程开发</strong>，左侧为操作导航、右侧为操作流程。各阶段可跳跃进入、可多次创建实例，<strong>不强制按顺序</strong>执行。</p>';
       const grid = document.createElement("div");
       grid.className = "ft-grid";
       appendFlowTemplateCards(grid);
+      body.appendChild(blankBlock);
+      body.appendChild(divider);
       body.appendChild(intro);
       body.appendChild(grid);
       dialog.appendChild(hd);
@@ -20347,8 +21038,15 @@
       customSection.appendChild(customGrid);
 
       body.appendChild(guide);
-      body.appendChild(presetSection);
-      body.appendChild(customSection);
+
+      const contentWrap = document.createElement("div");
+      contentWrap.className = "tc-content-wrap";
+      const contentInner = document.createElement("div");
+      contentInner.className = "tc-inner";
+      contentInner.appendChild(presetSection);
+      contentInner.appendChild(customSection);
+      contentWrap.appendChild(contentInner);
+      body.appendChild(contentWrap);
       root.appendChild(header);
       root.appendChild(body);
       canvasEl.appendChild(root);
@@ -20430,6 +21128,9 @@
         if (template.published) {
           addAction("场景流程开发", "tc-link-btn", () => startNewFlowFromCustomTemplate(template));
         }
+        addAction("删除", "tc-link-btn tc-link-btn--danger", () => {
+          openTcTemplateDeleteConfirmModal(template, () => renderGrids());
+        });
 
         card.appendChild(head);
         card.appendChild(creatorRow);
@@ -20507,6 +21208,9 @@
       const root = document.createElement("div");
       root.className = "otb-root";
 
+      const inner = document.createElement("div");
+      inner.className = "otb-inner";
+
       const header = document.createElement("header");
       header.className = "otb-header";
       const headerMain = document.createElement("div");
@@ -20527,6 +21231,18 @@
       backBtn.textContent = "返回场景定义";
       backBtn.addEventListener("click", () => goToTemplateCenter());
       headerActions.appendChild(backBtn);
+      if (editing) {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.type = "button";
+        deleteBtn.className = "otb-btn";
+        deleteBtn.style.color = "#dc2626";
+        deleteBtn.style.borderColor = "#fecaca";
+        deleteBtn.textContent = "删除";
+        deleteBtn.addEventListener("click", () => {
+          openTcTemplateDeleteConfirmModal(editing, () => goToTemplateCenter());
+        });
+        headerActions.insertBefore(deleteBtn, backBtn);
+      }
       header.appendChild(headerMain);
       header.appendChild(headerActions);
 
@@ -20538,7 +21254,7 @@
       const catalogHead = document.createElement("div");
       catalogHead.className = "otb-panel-head";
       catalogHead.innerHTML =
-        "<h2>操作模块目录</h2><p>点击操作名称即可追加到右侧流程顺序，可重复添加。</p>";
+        "<h2>操作模块目录</h2><p>点击操作名称即可追加到右侧流程顺序；同一模块分组下每个操作仅可添加一次。</p>";
       const catalogSearchWrap = document.createElement("div");
       catalogSearchWrap.style.padding = "0 12px 8px";
       const catalogSearch = document.createElement("input");
@@ -20585,17 +21301,44 @@
       publishRow.className = "otb-switch-row";
       publishRow.innerHTML =
         '<div><strong>是否上线</strong><small>上线后可在「新建流程 · 选择模板」中与业务场景并列选用</small></div>';
-      const publishLabel = document.createElement("label");
-      publishLabel.className = "otb-switch";
       const publishInput = document.createElement("input");
       publishInput.type = "checkbox";
       publishInput.checked = true;
-      publishInput.setAttribute("aria-label", "是否上线");
-      const publishSlider = document.createElement("span");
-      publishSlider.className = "otb-switch-slider";
-      publishLabel.appendChild(publishInput);
-      publishLabel.appendChild(publishSlider);
-      publishRow.appendChild(publishLabel);
+      publishInput.hidden = true;
+      publishInput.setAttribute("aria-hidden", "true");
+
+      const publishCapsule = document.createElement("div");
+      publishCapsule.className = "otb-capsule-switch";
+      publishCapsule.setAttribute("role", "group");
+      publishCapsule.setAttribute("aria-label", "是否上线");
+      publishCapsule.dataset.state = "on";
+
+      const publishOffBtn = document.createElement("button");
+      publishOffBtn.type = "button";
+      publishOffBtn.className = "otb-capsule-switch__opt";
+      publishOffBtn.textContent = "下线";
+
+      const publishOnBtn = document.createElement("button");
+      publishOnBtn.type = "button";
+      publishOnBtn.className = "otb-capsule-switch__opt is-active";
+      publishOnBtn.textContent = "上线";
+
+      function syncPublishCapsule(checked) {
+        publishInput.checked = checked;
+        publishCapsule.dataset.state = checked ? "on" : "off";
+        publishOffBtn.classList.toggle("is-active", !checked);
+        publishOnBtn.classList.toggle("is-active", checked);
+        publishOffBtn.setAttribute("aria-pressed", String(!checked));
+        publishOnBtn.setAttribute("aria-pressed", String(checked));
+      }
+
+      publishOffBtn.addEventListener("click", () => syncPublishCapsule(false));
+      publishOnBtn.addEventListener("click", () => syncPublishCapsule(true));
+
+      publishCapsule.appendChild(publishOffBtn);
+      publishCapsule.appendChild(publishOnBtn);
+      publishRow.appendChild(publishInput);
+      publishRow.appendChild(publishCapsule);
 
       const formActions = document.createElement("div");
       formActions.className = "otb-form-actions";
@@ -20622,8 +21365,9 @@
 
       body.appendChild(catalogPanel);
       body.appendChild(formPanel);
-      root.appendChild(header);
-      root.appendChild(body);
+      inner.appendChild(header);
+      inner.appendChild(body);
+      root.appendChild(inner);
       canvasEl.appendChild(root);
 
       const nameInput = form.querySelector("#otbSceneName");
@@ -20631,11 +21375,13 @@
       if (editing) {
         nameInput.value = editing.name || "";
         descInput.value = editing.description || "";
-        publishInput.checked = !!editing.published;
+        syncPublishCapsule(!!editing.published);
+      } else {
+        syncPublishCapsule(true);
       }
 
-      function isOpSelected(opId) {
-        return selectedModules.some((m) => m.id === opId);
+      function isOpInLeafGroup(op) {
+        return selectedModules.some((m) => m.id === op.id && m.leafId === op.leafId);
       }
 
       function groupSelectedModules() {
@@ -20650,59 +21396,91 @@
           groupIndexByLeaf.set(mod.leafId, groups.length);
           groups.push({
             leafId: mod.leafId,
-            title: getNavLeafLabel(mod.leafId) || mod.path.split(" / ")[1] || "操作模块",
+            title: getTemplateModuleGroupTitle(mod),
             items: [{ mod, index }],
           });
         });
         return groups;
       }
 
-      function buildFlowNodeActions(index, total) {
+      function flattenGroupsToModules(groups) {
+        return groups.flatMap((g) => g.items.map((item) => item.mod));
+      }
+
+      function moveGroup(groupIndex, delta) {
+        const groups = groupSelectedModules();
+        const target = groupIndex + delta;
+        if (target < 0 || target >= groups.length) return;
+        const tmp = groups[groupIndex];
+        groups[groupIndex] = groups[target];
+        groups[target] = tmp;
+        selectedModules.length = 0;
+        selectedModules.push(...flattenGroupsToModules(groups));
+        renderSelectedList();
+        renderCatalog();
+      }
+
+      function removeGroup(groupIndex) {
+        const groups = groupSelectedModules();
+        groups.splice(groupIndex, 1);
+        selectedModules.length = 0;
+        selectedModules.push(...flattenGroupsToModules(groups));
+        renderSelectedList();
+        renderCatalog();
+      }
+
+      function buildFlowGroupActions(groupIndex, totalGroups) {
         const actions = document.createElement("div");
-        actions.className = "otb-flow-node-actions";
+        actions.className = "otb-flow-section-actions";
         const upBtn = document.createElement("button");
         upBtn.type = "button";
         upBtn.className = "otb-icon-btn";
         upBtn.textContent = "↑";
-        upBtn.title = "上移";
-        upBtn.disabled = index === 0;
+        upBtn.title = "大模块上移";
+        upBtn.disabled = groupIndex === 0;
         upBtn.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (index <= 0) return;
-          const tmp = selectedModules[index - 1];
-          selectedModules[index - 1] = selectedModules[index];
-          selectedModules[index] = tmp;
-          renderSelectedList();
-          renderCatalog();
+          moveGroup(groupIndex, -1);
         });
         const downBtn = document.createElement("button");
         downBtn.type = "button";
         downBtn.className = "otb-icon-btn";
         downBtn.textContent = "↓";
-        downBtn.title = "下移";
-        downBtn.disabled = index === total - 1;
+        downBtn.title = "大模块下移";
+        downBtn.disabled = groupIndex === totalGroups - 1;
         downBtn.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (index >= total - 1) return;
-          const tmp = selectedModules[index + 1];
-          selectedModules[index + 1] = selectedModules[index];
-          selectedModules[index] = tmp;
-          renderSelectedList();
-          renderCatalog();
+          moveGroup(groupIndex, 1);
         });
         const removeBtn = document.createElement("button");
         removeBtn.type = "button";
         removeBtn.className = "otb-icon-btn";
         removeBtn.textContent = "×";
-        removeBtn.title = "移除";
+        removeBtn.title = "删除整个大模块";
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          removeGroup(groupIndex);
+        });
+        actions.appendChild(upBtn);
+        actions.appendChild(downBtn);
+        actions.appendChild(removeBtn);
+        return actions;
+      }
+
+      function buildFlowNodeActions(index) {
+        const actions = document.createElement("div");
+        actions.className = "otb-flow-node-actions";
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "otb-icon-btn";
+        removeBtn.textContent = "×";
+        removeBtn.title = "删除该操作";
         removeBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           selectedModules.splice(index, 1);
           renderSelectedList();
           renderCatalog();
         });
-        actions.appendChild(upBtn);
-        actions.appendChild(downBtn);
         actions.appendChild(removeBtn);
         return actions;
       }
@@ -20747,6 +21525,7 @@
           sectionTitle.className = "otb-flow-section-title";
           sectionTitle.textContent = group.title;
           sectionHead.appendChild(sectionTitle);
+          sectionHead.appendChild(buildFlowGroupActions(groupIndex, groups.length));
           section.appendChild(sectionHead);
 
           const timeline = document.createElement("div");
@@ -20764,7 +21543,7 @@
             row.querySelector(".op-flow-node-label").textContent = mod.label;
 
             rowWrap.appendChild(row);
-            rowWrap.appendChild(buildFlowNodeActions(index, selectedModules.length));
+            rowWrap.appendChild(buildFlowNodeActions(index));
             timeline.appendChild(rowWrap);
           });
           section.appendChild(timeline);
@@ -20775,14 +21554,21 @@
         selectedList.appendChild(body);
       }
 
-      function resolveCatalogSectionTitle(g, op) {
+      function resolveCatalogSectionTitle(g) {
         if (g.l2 === "数据分析") return "制作报告";
-        if (g.l2 === "数据开发") return "数据开发";
-        if (g.l2 === "数据集成" && g.l3 && g.l3 !== "-") return g.l3;
-        return getModuleSectionTitle({ leafId: op.leafId, sectionTitle: g.l2 });
+        return g.l2;
+      }
+
+      function buildCatalogOpPath(l1, g, op) {
+        return [l1.l1, g.l2, op.label].filter(Boolean).join(" / ");
       }
 
       function addOpModule(op, path, sectionTitle) {
+        if (isOpInLeafGroup(op)) {
+          const groupLabel = getTemplateModuleGroupTitle({ leafId: op.leafId, path: path, sectionTitle: sectionTitle });
+          showToast("「" + op.label + "」已在「" + groupLabel + "」中添加，不可重复添加", "info");
+          return;
+        }
         selectedModules.push({
           id: op.id,
           label: op.label,
@@ -20807,9 +21593,7 @@
           l1.groups.forEach((g) => {
             const ops = g.operations.filter((op) => {
               if (!q) return true;
-              const path = [l1.l1, g.l2, g.l3 !== "-" ? g.l3 : null, op.label]
-                .filter(Boolean)
-                .join(" / ");
+              const path = buildCatalogOpPath(l1, g, op);
               return (
                 op.label.toLowerCase().includes(q) ||
                 path.toLowerCase().includes(q) ||
@@ -20827,26 +21611,22 @@
             l2Title.className = "otb-l2-title";
             l2Title.textContent = g.l2;
             l2Block.appendChild(l2Title);
-            if (g.l3 && g.l3 !== "-") {
-              const l3 = document.createElement("div");
-              l3.className = "otb-l3";
-              l3.textContent = g.l3;
-              l2Block.appendChild(l3);
-            }
             const opList = document.createElement("div");
             opList.className = "otb-op-list";
             ops.forEach((op) => {
-              const path = [l1.l1, g.l2, g.l3 !== "-" ? g.l3 : null, op.label]
-                .filter(Boolean)
-                .join(" / ");
+              const path = buildCatalogOpPath(l1, g, op);
               const chip = document.createElement("button");
               chip.type = "button";
-              chip.className = "otb-op-chip" + (isOpSelected(op.id) ? " is-selected" : "");
+              const added = isOpInLeafGroup(op);
+              chip.className = "otb-op-chip" + (added ? " is-selected" : "");
               chip.textContent = op.label;
-              chip.title = path;
-              chip.addEventListener("click", () =>
-                addOpModule(op, path, resolveCatalogSectionTitle(g, op))
-              );
+              chip.title = added ? path + "（该分组下已添加）" : path;
+              chip.disabled = added;
+              if (!added) {
+                chip.addEventListener("click", () =>
+                  addOpModule(op, path, resolveCatalogSectionTitle(g))
+                );
+              }
               opList.appendChild(chip);
             });
             l2Block.appendChild(opList);
@@ -22633,18 +23413,12 @@ LIMIT 5;</pre>
       return '<span class="' + cls + '"><span aria-hidden="true">' + icon + "</span>" + label + "</span>";
     }
 
-    function appendApiMarketFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "api-market";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("api-market");
-      const state = getLiveFlowStateForLeaf("api-market");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("api-market", state);
-      renderOperationFlow();
-      appendOperation({ id: "apm-flow-" + Date.now(), label: "API · " + cleanLabel });
+    function appendApiMarketFlowNode(label, kind, options) {
+      appendLeafFlowNode("api-market", label, kind, {
+        ...(options || {}),
+        opListPrefix: "API",
+        opIdPrefix: "apm-flow-",
+      });
     }
 
     function mountApiMarketCanvas() {
@@ -22943,7 +23717,10 @@ LIMIT 5;</pre>
           nameCell.style.cursor = "pointer";
           nameCell.style.color = "var(--nav-active)";
           nameCell.addEventListener("click", () => {
-            appendApiMarketFlowNode(row.name, "resource");
+            recordOpFlowResourceOpen("api-market", row.name, {
+              opListPrefix: "API",
+              opIdPrefix: "apm-flow-",
+            });
             showToast("打开「" + row.name + "」详情（示意）", "info");
           });
           tbody.appendChild(tr);
@@ -23105,18 +23882,12 @@ LIMIT 5;</pre>
       return '<span class="da-th-sort">' + label + daSortIconSvg + "</span>";
     }
 
-    function appendDataAnalysisFlowNode(label, kind) {
-      const cleanLabel = String(label || "").trim();
-      if (!cleanLabel) return;
-      selectedLeafId = "create-report";
-      centerOverride = null;
-      ensureTrailingOpFlowVisit("create-report");
-      const state = getLiveFlowStateForLeaf("create-report");
-      state.nodes.push(cleanLabel);
-      state.nodeKinds.push(kind === "resource" ? "resource" : "action");
-      setLiveFlowStateForLeaf("create-report", state);
-      renderOperationFlow();
-      appendOperation({ id: "da-flow-" + Date.now(), label: "数据分析 · " + cleanLabel });
+    function appendDataAnalysisFlowNode(label, kind, options) {
+      appendLeafFlowNode("create-report", label, kind, {
+        ...(options || {}),
+        opListPrefix: "数据分析",
+        opIdPrefix: "da-flow-",
+      });
     }
 
     function mountDataAnalysisCanvas() {
@@ -23278,6 +24049,12 @@ LIMIT 5;</pre>
               if (!daOpenTabs.some((t) => t.id === child.id)) {
                 daOpenTabs.push({ id: child.id, label: child.label });
               }
+              const reportMeta = daReportMeta[child.id];
+              const reportTitle = reportMeta ? reportMeta.title : child.label;
+              recordOpFlowResourceOpen("create-report", reportTitle, {
+                opListPrefix: "数据分析",
+                opIdPrefix: "da-flow-",
+              });
               daPage = 1;
               mountDataAnalysisCanvas();
             });
@@ -23306,7 +24083,10 @@ LIMIT 5;</pre>
       publishBtn.className = "da-btn da-btn-primary";
       publishBtn.innerHTML = '<span aria-hidden="true">➤</span> 发布';
       publishBtn.addEventListener("click", () => {
-        appendDataAnalysisFlowNode(meta.title + " · 发布", "action");
+        recordOpFlowPageAction("create-report", "发布", meta.title, {
+          opListPrefix: "数据分析",
+          opIdPrefix: "da-flow-",
+        });
         showToast("发布「" + meta.title + "」（示意）", "info");
       });
       const editBtn = document.createElement("button");
@@ -23314,7 +24094,10 @@ LIMIT 5;</pre>
       editBtn.className = "da-btn";
       editBtn.innerHTML = '<span aria-hidden="true">✎</span> 编辑';
       editBtn.addEventListener("click", () => {
-        appendDataAnalysisFlowNode(meta.title + " · 编辑", "action");
+        recordOpFlowPageAction("create-report", "编辑", meta.title, {
+          opListPrefix: "数据分析",
+          opIdPrefix: "da-flow-",
+        });
         showToast("编辑「" + meta.title + "」（示意）", "info");
       });
       const moreBtn = document.createElement("button");
@@ -23849,7 +24632,10 @@ LIMIT 5;</pre>
         primaryBtn.type = "button";
         primaryBtn.textContent = primaryLabel;
         primaryBtn.addEventListener("click", () => {
-          appendBusinessModelingFlowNode(row.name, "resource");
+          recordOpFlowPageAction("business-modeling", primaryLabel, row.name, {
+            opListPrefix: "业务建模",
+            opIdPrefix: "bm-flow-",
+          });
         });
         const delBtn = document.createElement("button");
         delBtn.type = "button";
@@ -23860,7 +24646,10 @@ LIMIT 5;</pre>
         if (nameLink) {
           nameLink.addEventListener("click", (e) => {
             e.preventDefault();
-            appendBusinessModelingFlowNode(row.name, "resource");
+            recordOpFlowResourceOpen("business-modeling", row.name, {
+              opListPrefix: "业务建模",
+              opIdPrefix: "bm-flow-",
+            });
           });
         }
         tbody.appendChild(tr);
@@ -24112,6 +24901,23 @@ LIMIT 5;</pre>
           const b = document.createElement("button");
           b.type = "button";
           b.textContent = t;
+          if (t === "详情") {
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("physical-modeling", "详情", row.zh, {
+                opListPrefix: "物理建模",
+                opIdPrefix: "pm-flow-",
+              });
+              showToast("打开「" + row.zh + "」详情（示意）", "info");
+            });
+          } else if (t === "提交") {
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("physical-modeling", "提交", row.zh, {
+                opListPrefix: "物理建模",
+                opIdPrefix: "pm-flow-",
+              });
+              showToast("提交「" + row.zh + "」（示意）", "info");
+            });
+          }
           ops.appendChild(b);
         });
         tbody.appendChild(tr);
@@ -24357,7 +25163,21 @@ LIMIT 5;</pre>
           b.type = "button";
           b.textContent = t;
           if (t === "详情") {
-            b.addEventListener("click", () => showToast("打开「" + row.zh + "」详情（示意）", "info"));
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("logical-modeling", "详情", row.zh, {
+                opListPrefix: "逻辑建模",
+                opIdPrefix: "lm-flow-",
+              });
+              showToast("打开「" + row.zh + "」详情（示意）", "info");
+            });
+          } else if (t === "提交") {
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("logical-modeling", "提交", row.zh, {
+                opListPrefix: "逻辑建模",
+                opIdPrefix: "lm-flow-",
+              });
+              showToast("提交「" + row.zh + "」（示意）", "info");
+            });
           }
           ops.appendChild(b);
         });
@@ -24586,9 +25406,21 @@ LIMIT 5;</pre>
           b.type = "button";
           b.textContent = t;
           if (t === "详情") {
-            b.addEventListener("click", () => showToast("打开「" + row.name + "」详情（示意）", "info"));
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("offline-integration-task", "详情", row.name, {
+                opListPrefix: "离线任务",
+                opIdPrefix: "oit-flow-",
+              });
+              showToast("打开「" + row.name + "」详情（示意）", "info");
+            });
           } else if (t === "调度配置") {
-            b.addEventListener("click", () => showToast("配置「" + row.name + "」调度（示意）", "info"));
+            b.addEventListener("click", () => {
+              recordOpFlowPageAction("offline-integration-task", "调度配置", row.name, {
+                opListPrefix: "离线任务",
+                opIdPrefix: "oit-flow-",
+              });
+              showToast("配置「" + row.name + "」调度（示意）", "info");
+            });
           }
           ops.appendChild(b);
         });
@@ -24812,20 +25644,32 @@ LIMIT 5;</pre>
         }
 
         addOp("任务列表", false, () => {
-          appendOfflineInstanceFlowNode(row.name + " · 任务列表", "action");
+          recordOpFlowPageAction("offline-integration-instance", "任务列表", row.name, {
+            opListPrefix: "离线实例",
+            opIdPrefix: "oii-flow-",
+          });
           showToast("打开「" + row.name + "」任务列表（示意）", "info");
         });
         const sep1 = document.createElement("span");
         sep1.className = "oii-op-sep";
         sep1.textContent = "|";
         ops.appendChild(sep1);
-        addOp("停止", !canStop, canStop ? () => showToast("停止实例 " + row.id + "（示意）", "info") : null);
+        addOp("停止", !canStop, canStop ? () => {
+          recordOpFlowPageAction("offline-integration-instance", "停止", row.name, {
+            opListPrefix: "离线实例",
+            opIdPrefix: "oii-flow-",
+          });
+          showToast("停止实例 " + row.id + "（示意）", "info");
+        } : null);
         const sep2 = document.createElement("span");
         sep2.className = "oii-op-sep";
         sep2.textContent = "|";
         ops.appendChild(sep2);
         addOp("重跑", false, () => {
-          appendOfflineInstanceFlowNode(row.name + " · 重跑", "action");
+          recordOpFlowPageAction("offline-integration-instance", "重跑", row.name, {
+            opListPrefix: "离线实例",
+            opIdPrefix: "oii-flow-",
+          });
           showToast("重跑实例 " + row.id + "（示意）", "info");
         });
         tbody.appendChild(tr);
@@ -25015,7 +25859,10 @@ LIMIT 5;</pre>
         }
 
         addOp("拓扑视图", () => {
-          appendOfflineDevInstanceFlowNode(row.name + " · 拓扑视图", "action");
+          recordOpFlowPageAction("offline-dev-instance", "拓扑视图", row.name, {
+            opListPrefix: "离线实例",
+            opIdPrefix: "odi-flow-",
+          });
           showToast("打开「" + row.name + "」拓扑视图（示意）", "info");
         });
         const sep1 = document.createElement("span");
@@ -25023,7 +25870,10 @@ LIMIT 5;</pre>
         sep1.textContent = "|";
         ops.appendChild(sep1);
         addOp("列表视图", () => {
-          appendOfflineDevInstanceFlowNode(row.name + " · 列表视图", "action");
+          recordOpFlowPageAction("offline-dev-instance", "列表视图", row.name, {
+            opListPrefix: "离线实例",
+            opIdPrefix: "odi-flow-",
+          });
           showToast("打开「" + row.name + "」列表视图（示意）", "info");
         });
         const sep2 = document.createElement("span");
@@ -25205,7 +26055,10 @@ LIMIT 5;</pre>
         detailBtn.type = "button";
         detailBtn.textContent = "详情";
         detailBtn.addEventListener("click", () => {
-          appendRealtimeTaskFlowNode(row.name, "resource");
+          recordOpFlowPageAction("realtime-integration-task", "详情", row.name, {
+            opListPrefix: "实时任务",
+            opIdPrefix: "rit-flow-",
+          });
           showToast("打开「" + row.name + "」详情（示意）", "info");
         });
         ops.appendChild(detailBtn);
@@ -25388,7 +26241,10 @@ LIMIT 5;</pre>
         detailBtn.type = "button";
         detailBtn.textContent = "详情";
         detailBtn.addEventListener("click", () => {
-          appendRealtimeDevTaskFlowNode(row.name, "resource");
+          recordOpFlowPageAction("realtime-dev-task", "详情", row.name, {
+            opListPrefix: "实时任务",
+            opIdPrefix: "rdt-flow-",
+          });
           showToast("打开「" + row.name + "」详情（示意）", "info");
         });
         ops.appendChild(detailBtn);
@@ -25587,7 +26443,10 @@ LIMIT 5;</pre>
         }
 
         addOp("详情", false, () => {
-          appendRealtimeDevInstanceFlowNode(row.name, "resource");
+          recordOpFlowPageAction("realtime-dev-instance", "详情", row.name, {
+            opListPrefix: "实时实例",
+            opIdPrefix: "rdi-flow-",
+          });
           showToast("打开实例「" + row.id + "」详情（示意）", "info");
         });
         const sep1 = document.createElement("span");
@@ -25787,7 +26646,10 @@ LIMIT 5;</pre>
         }
 
         addOp("详情", false, () => {
-          appendRealtimeInstanceFlowNode(row.name, "resource");
+          recordOpFlowPageAction("realtime-integration-instance", "详情", row.name, {
+            opListPrefix: "实时实例",
+            opIdPrefix: "rii-flow-",
+          });
           showToast("打开实例「" + row.id + "」详情（示意）", "info");
         });
         const sep1 = document.createElement("span");
@@ -25796,7 +26658,10 @@ LIMIT 5;</pre>
         ops.appendChild(sep1);
         const toggleLabel = isRunning ? "停止" : "启动";
         addOp(toggleLabel, false, () => {
-          appendRealtimeInstanceFlowNode(row.name + " · " + toggleLabel, "action");
+          recordOpFlowPageAction("realtime-integration-instance", toggleLabel, row.name, {
+            opListPrefix: "实时实例",
+            opIdPrefix: "rii-flow-",
+          });
           showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         });
         const sep2 = document.createElement("span");
@@ -26781,6 +27646,21 @@ LIMIT 5;</pre>
 
       if (wsToolbarExitEl) {
         wsToolbarExitEl.addEventListener("click", () => goToBusinessProcesses());
+      }
+
+      opFlowResourceAutoInclude = readOpFlowResourceAutoInclude();
+      const wsResourceAutoIncludeEl = document.getElementById("wsResourceAutoInclude");
+      if (wsResourceAutoIncludeEl) {
+        wsResourceAutoIncludeEl.checked = opFlowResourceAutoInclude;
+        wsResourceAutoIncludeEl.addEventListener("change", () => {
+          writeOpFlowResourceAutoInclude(wsResourceAutoIncludeEl.checked);
+          showToast(
+            wsResourceAutoIncludeEl.checked
+              ? "已开启：资源与页面操作将自动记入流程"
+              : "已关闭：资源与操作不再自动记入流程",
+            "info"
+          );
+        });
       }
 
       if (navSearchInputEl) {
