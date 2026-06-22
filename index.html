@@ -8566,6 +8566,11 @@
         radial-gradient(circle at 0% 50%, rgba(37, 99, 235, 0.06), transparent 28%),
         radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.06), transparent 28%),
         linear-gradient(180deg, #eef2f9 0%, var(--bg) 100%);
+      transition: grid-template-columns 0.22s ease;
+    }
+
+    main.main--workspace.main--nav-collapsed {
+      grid-template-columns: 52px minmax(460px, 1fr) 304px;
     }
 
     body.main--workspace-mode .sub-nav {
@@ -8866,6 +8871,158 @@
       padding: 16px 14px 14px;
       background: linear-gradient(180deg, #edf4ff 0%, #ffffff 100%);
       border-bottom: 1px solid rgba(37, 99, 235, 0.12);
+      justify-content: space-between;
+    }
+
+    .nav-panel-collapse-btn {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: 8px;
+      background: #fff;
+      color: #2563eb;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .nav-panel-collapse-btn:hover {
+      background: #eff6ff;
+      border-color: rgba(37, 99, 235, 0.35);
+      color: #1d4ed8;
+    }
+
+    .nav-panel-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .nav-panel-collapsed-hint {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 0;
+      padding: 18px 6px;
+      border: 0;
+      background: linear-gradient(180deg, #edf4ff 0%, #ffffff 100%);
+      color: #1d4ed8;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.16s ease;
+    }
+
+    .nav-panel-collapsed-hint:hover {
+      background: linear-gradient(180deg, #dbeafe 0%, #f8fbff 100%);
+    }
+
+    @keyframes nav-mascot-jump {
+      0%,
+      100% {
+        transform: translateY(0) scale(1, 1);
+      }
+      18% {
+        transform: translateY(0) scale(1.04, 0.94);
+      }
+      42% {
+        transform: translateY(-11px) scale(0.96, 1.06);
+      }
+      55% {
+        transform: translateY(-11px) scale(1, 1);
+      }
+      72% {
+        transform: translateY(0) scale(1.05, 0.92);
+      }
+      86% {
+        transform: translateY(-3px) scale(0.98, 1.02);
+      }
+    }
+
+    @keyframes nav-mascot-wave {
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(-16deg);
+      }
+      50% {
+        transform: rotate(12deg);
+      }
+      75% {
+        transform: rotate(-8deg);
+      }
+    }
+
+    .nav-panel-collapsed-hint__mascot {
+      flex-shrink: 0;
+      width: 36px;
+      height: 44px;
+      animation: nav-mascot-jump 1.05s ease-in-out infinite;
+      transform-origin: center bottom;
+      filter: drop-shadow(0 3px 6px rgba(37, 99, 235, 0.18));
+    }
+
+    .nav-panel-collapsed-hint__mascot svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav-panel-collapsed-hint__mascot-arm {
+      transform-origin: 24px 22px;
+      animation: nav-mascot-wave 1.05s ease-in-out infinite;
+    }
+
+    .nav-panel-collapsed-hint:hover .nav-panel-collapsed-hint__mascot {
+      animation-duration: 0.82s;
+    }
+
+    .nav-panel-collapsed-hint:hover .nav-panel-collapsed-hint__mascot-arm {
+      animation-duration: 0.82s;
+    }
+
+    .nav-panel-collapsed-hint__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(37, 99, 235, 0.1);
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .nav-panel-collapsed-hint__text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 12px;
+      line-height: 1.55;
+      letter-spacing: 0.04em;
+      max-height: min(420px, 72vh);
+    }
+
+    main.main--workspace .panel-nav.is-collapsed .panel-head,
+    main.main--workspace .panel-nav.is-collapsed .nav-panel-body {
+      display: none;
+    }
+
+    main.main--workspace .panel-nav.is-collapsed .nav-panel-collapsed-hint {
+      display: flex;
+    }
+
+    main.main--workspace .panel-nav.is-collapsed {
+      cursor: pointer;
     }
 
     main.main--workspace .panel-nav .panel-head-label {
@@ -13180,7 +13337,7 @@
         class="ws-resource-auto-help"
         id="wsResourceAutoHelp"
         aria-label="资源节点计入说明"
-        data-tip="打开此开关后：① 打开的资源会自动记入流程；② 点击页面操作按钮（详情、提交等）时，会将当前资源名称自动追加到右侧对应模块操作下。已记入的节点支持删除；若不需要计入，请直接关闭。"
+        data-tip="打开此开关后：① 打开的资源会自动记入流程；② 页面操作（详情、提交等）统一归入「其他操作」，相关资源追加在其下；「新建」类操作仍单独展示。已记入节点支持删除。"
       >?</button>
     </div>
     <div class="workspace-toolbar__op">
@@ -13195,10 +13352,19 @@
   </div>
 
   <main id="mainLayout">
-    <aside class="panel panel-nav" aria-label="操作导航">
+    <aside class="panel panel-nav" id="panelNav" aria-label="操作导航">
       <div class="panel-head">
         <span class="panel-head-label">操作导航</span>
+        <button
+          type="button"
+          class="nav-panel-collapse-btn"
+          id="navPanelCollapseBtn"
+          aria-label="收起操作导航"
+          aria-expanded="true"
+          title="收起操作导航"
+        >‹</button>
       </div>
+      <div class="nav-panel-body" id="navPanelBody">
       <div class="nav-search" aria-label="导航搜索">
         <label class="nav-search-box">
           <input id="navSearchInput" type="search" placeholder="搜索模块或资源" />
@@ -13216,6 +13382,35 @@
         </div>
       </div>
       <ul class="sidenav" id="nav" role="tree"></ul>
+      </div>
+      <button
+        type="button"
+        class="nav-panel-collapsed-hint"
+        id="navPanelCollapsedHint"
+        hidden
+        aria-label="展开操作导航"
+      >
+        <span class="nav-panel-collapsed-hint__mascot" aria-hidden="true">
+          <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="40" rx="10" ry="2.2" fill="rgba(37,99,235,0.14)"/>
+            <path d="M11 30c0-3.9 3.1-7 7-7s7 3.1 7 7v4H11v-4Z" fill="#3b82f6"/>
+            <path d="M11 34h14v3.5c0 1.1-.9 2-2 2H13c-1.1 0-2-.9-2-2V34Z" fill="#2563eb"/>
+            <circle cx="18" cy="15" r="9" fill="#60a5fa"/>
+            <circle cx="18" cy="15" r="7.2" fill="#dbeafe"/>
+            <circle cx="15.2" cy="14.2" r="1.3" fill="#1e3a8a"/>
+            <circle cx="20.8" cy="14.2" r="1.3" fill="#1e3a8a"/>
+            <circle cx="15.6" cy="13.8" r=".45" fill="#fff"/>
+            <circle cx="21.2" cy="13.8" r=".45" fill="#fff"/>
+            <path d="M15.8 17.8c1.2 1 3.2 1 4.4 0" stroke="#1e40af" stroke-width="1.2" stroke-linecap="round"/>
+            <g class="nav-panel-collapsed-hint__mascot-arm">
+              <path d="M24 22c3.5-1.2 6.2-3.8 7.5-7.2" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="31.8" cy="14.5" r="2.2" fill="#fbbf24" stroke="#f59e0b" stroke-width=".8"/>
+            </g>
+            <path d="M8.5 24c-2.2-.4-3.6-2.4-3.2-4.4" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="nav-panel-collapsed-hint__text">如果需要其他操作或者使用全局搜索，请点击此处</span>
+      </button>
     </aside>
 
     <section class="canvas-wrap" id="canvasWrap" aria-label="画布">
@@ -13977,6 +14172,10 @@
     };
 
     const navEl = document.getElementById("nav");
+    const panelNavEl = document.getElementById("panelNav");
+    const navPanelBodyEl = document.getElementById("navPanelBody");
+    const navPanelCollapseBtnEl = document.getElementById("navPanelCollapseBtn");
+    const navPanelCollapsedHintEl = document.getElementById("navPanelCollapsedHint");
     const navSearchInputEl = document.getElementById("navSearchInput");
     const navSearchModuleScopeEl = document.getElementById("navSearchModuleScope");
     const navSearchResourceScopeEl = document.getElementById("navSearchResourceScope");
@@ -14141,6 +14340,58 @@
       } catch (_) {}
       const input = document.getElementById("wsResourceAutoInclude");
       if (input) input.checked = opFlowResourceAutoInclude;
+    }
+
+    /** 操作导航收起状态（工作台） */
+    const NAV_PANEL_COLLAPSED_KEY = "bp_nav_panel_collapsed_v1";
+    let navPanelCollapsed = false;
+
+    function readNavPanelCollapsed() {
+      try {
+        return localStorage.getItem(NAV_PANEL_COLLAPSED_KEY) === "1";
+      } catch {
+        return false;
+      }
+    }
+
+    function writeNavPanelCollapsed(collapsed) {
+      navPanelCollapsed = !!collapsed;
+      try {
+        localStorage.setItem(NAV_PANEL_COLLAPSED_KEY, navPanelCollapsed ? "1" : "0");
+      } catch (_) {}
+    }
+
+    function expandNavPanel(options) {
+      const opts = options || {};
+      writeNavPanelCollapsed(false);
+      syncNavPanelCollapsed();
+      if (opts.focusSearch && navSearchInputEl) {
+        window.requestAnimationFrame(() => navSearchInputEl.focus());
+      }
+    }
+
+    function collapseNavPanel() {
+      writeNavPanelCollapsed(true);
+      syncNavPanelCollapsed();
+    }
+
+    function syncNavPanelCollapsed() {
+      const workspace = isProcessDevWorkspace();
+      const collapsed = workspace && navPanelCollapsed;
+      if (panelNavEl) panelNavEl.classList.toggle("is-collapsed", collapsed);
+      if (mainLayoutEl) mainLayoutEl.classList.toggle("main--nav-collapsed", collapsed);
+      if (navPanelBodyEl) navPanelBodyEl.hidden = collapsed;
+      if (navPanelCollapsedHintEl) navPanelCollapsedHintEl.hidden = !collapsed;
+      if (navPanelCollapseBtnEl) {
+        navPanelCollapseBtnEl.hidden = !workspace;
+        navPanelCollapseBtnEl.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        navPanelCollapseBtnEl.setAttribute(
+          "aria-label",
+          collapsed ? "展开操作导航" : "收起操作导航"
+        );
+        navPanelCollapseBtnEl.title = collapsed ? "展开操作导航" : "收起操作导航";
+        navPanelCollapseBtnEl.textContent = collapsed ? "›" : "‹";
+      }
     }
 
     function shouldAutoIncludeOpFlowResource(kind) {
@@ -15047,6 +15298,23 @@
       devPathFlowState.nodeKinds = nodeKinds ? nodeKinds.slice() : [];
     }
 
+    const OP_FLOW_OTHER_ACTION_LABEL = "其他操作";
+
+    function isOpFlowNewActionLabel(label) {
+      const text = normalizeOpFlowActionLabel(String(label || "").trim());
+      if (!text) return false;
+      if (text === "新建" || text === "+") return true;
+      if (/^新建/.test(text) || /^创建/.test(text)) return true;
+      if (text === "DDL新建") return true;
+      return false;
+    }
+
+    function resolveOpFlowPageActionLabel(actionLabel) {
+      const normalized = normalizeOpFlowActionLabel(actionLabel);
+      if (isOpFlowNewActionLabel(normalized)) return normalized;
+      return OP_FLOW_OTHER_ACTION_LABEL;
+    }
+
     function normalizeOpFlowActionLabel(label) {
       const text = String(label || "").trim();
       const parts = text.split(" · ");
@@ -15110,6 +15378,9 @@
           }
         }
         cleanLabel = normalizeOpFlowActionLabel(cleanLabel);
+        if (!opts.keepActionLabel && !isOpFlowNewActionLabel(cleanLabel)) {
+          cleanLabel = OP_FLOW_OTHER_ACTION_LABEL;
+        }
       }
 
       selectedLeafId = leafId;
@@ -15185,10 +15456,10 @@
       });
     }
 
-    /** 页面操作按钮记入流程：资源节点计入开启时，将资源名挂到该操作下 */
+    /** 页面操作按钮记入流程：非「新建」类操作统一归入「其他操作」，资源挂在其下 */
     function recordOpFlowPageAction(leafId, actionLabel, resourceName, options) {
       if (!isProcessDevWorkspace() || !leafId || !actionLabel) return;
-      const action = String(actionLabel).trim();
+      const action = resolveOpFlowPageActionLabel(actionLabel);
       const res = String(resourceName || getOpFlowCurrentResource(leafId) || "").trim();
       appendLeafFlowNode(leafId, action, "action", {
         ...(options || {}),
@@ -15196,10 +15467,14 @@
       });
     }
 
-    /** 打开/选中资源时记入流程（仅资源节点计入开启时） */
+    /** 打开/选中资源时记入流程：资源追加到「其他操作」下（仅资源节点计入开启时） */
     function recordOpFlowResourceOpen(leafId, resourceName, options) {
       if (!isProcessDevWorkspace() || !leafId || !resourceName) return;
-      appendLeafFlowNode(leafId, resourceName, "resource", options || {});
+      if (!opFlowResourceAutoInclude) return;
+      appendLeafFlowNode(leafId, OP_FLOW_OTHER_ACTION_LABEL, "action", {
+        ...(options || {}),
+        resourceName: resourceName,
+      });
     }
 
     function appendOfflineInstanceFlowNode(label, kind, options) {
@@ -17713,6 +17988,7 @@
       }
       document.body.classList.toggle("main--workspace-mode", workspace);
       syncWorkspaceToolbar();
+      syncNavPanelCollapsed();
     }
 
     function runAppPageTransition(transitionClass, applyState) {
@@ -27671,6 +27947,21 @@ LIMIT 5;</pre>
       }
       if (navSearchModuleScopeEl) navSearchModuleScopeEl.addEventListener("change", renderNav);
       if (navSearchResourceScopeEl) navSearchResourceScopeEl.addEventListener("change", renderNav);
+
+      navPanelCollapsed = readNavPanelCollapsed();
+      syncNavPanelCollapsed();
+      if (navPanelCollapseBtnEl) {
+        navPanelCollapseBtnEl.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (navPanelCollapsed) expandNavPanel({ focusSearch: true });
+          else collapseNavPanel();
+        });
+      }
+      if (navPanelCollapsedHintEl) {
+        navPanelCollapsedHintEl.addEventListener("click", () => {
+          expandNavPanel({ focusSearch: true });
+        });
+      }
 
       document.querySelectorAll(".sub-nav-item[data-hub-scene]").forEach((el) => {
         el.addEventListener("click", (e) => {
