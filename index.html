@@ -13086,8 +13086,499 @@
     }
 
     .bp-hub--v3 .bp-flow-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
       padding: 8px 12px 5px;
       background: transparent;
+    }
+
+    .bp-hub--v3 .bp-flow-section-head-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bp-flow-view-switch {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+      border: 1px solid #e4e7ec;
+      border-radius: 8px;
+      background: #f2f4f7;
+      flex-shrink: 0;
+    }
+
+    .bp-flow-view-switch-btn {
+      height: 24px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #667085;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .bp-flow-view-switch-btn.is-on {
+      background: #fff;
+      color: #1677ff;
+      box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+    }
+
+    .bp-flow-view-switch-btn:hover:not(.is-on) {
+      color: #344054;
+    }
+
+    .bp-flow-view-panel {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .bp-flow-view-panel[hidden] {
+      display: none !important;
+    }
+
+    .bp-lineage-diagram {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      max-height: 100%;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .bp-lineage-diagram--preview {
+      position: relative;
+      flex-direction: column;
+    }
+
+    .bp-lineage-preview-frame {
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+      border-radius: 8px;
+    }
+
+    .bp-lineage-preview-frame:focus-visible {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
+    }
+
+    .bp-lineage-preview-scale {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+
+    .bp-lineage-open-hint {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      z-index: 2;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #dbeafe;
+      color: #1677ff;
+      font-size: 10px;
+      font-weight: 600;
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+    }
+
+    .bp-lineage-graph-scroll {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bp-lineage-graph-scroll--detail {
+      overflow: auto;
+      padding: 8px;
+      scrollbar-gutter: stable;
+    }
+
+    .bp-lineage-graph {
+      position: relative;
+      overflow: visible;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card {
+      padding: 8px 10px 8px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(16, 24, 40, 0.05);
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__menu {
+      display: none;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__title {
+      font-size: 11px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__type {
+      font-size: 10px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__port {
+      width: 14px;
+      height: 14px;
+      font-size: 10px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__port--in {
+      left: -7px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-card__port--out {
+      right: -7px;
+    }
+
+    .bp-lineage-graph--compact .bp-lineage-graph__edge {
+      stroke-width: 1.2;
+    }
+
+    .bp-lineage-detail-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 12100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    .bp-lineage-detail-backdrop[hidden] {
+      display: none;
+    }
+
+    .bp-lineage-detail-panel {
+      width: min(1280px, 98vw);
+      height: min(860px, 92vh);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #e4e7ec;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.2);
+    }
+
+    .bp-lineage-detail-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid #eef2f6;
+      background: linear-gradient(180deg, #fafcff 0%, #fff 100%);
+      flex-shrink: 0;
+    }
+
+    .bp-lineage-detail-title {
+      margin: 0;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+      color: #101828;
+    }
+
+    .bp-lineage-detail-close {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid #e4e7ec;
+      border-radius: 8px;
+      background: #fff;
+      color: #667085;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .bp-lineage-detail-close:hover {
+      border-color: #93c5fd;
+      color: #1677ff;
+    }
+
+    .bp-lineage-detail-body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+
+    .bp-lineage-detail-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 18px;
+      border-bottom: 1px solid #eef2f6;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .bp-lineage-detail-toolbar-left,
+    .bp-lineage-detail-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .bp-lineage-detail-meta {
+      color: #667085;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .bp-lineage-detail-zoom-btn {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      background: #fff;
+      color: #344054;
+      font: inherit;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .bp-lineage-detail-zoom-btn:hover {
+      border-color: #93c5fd;
+      color: #1677ff;
+      background: #eff6ff;
+    }
+
+    .bp-lineage-detail-zoom-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .bp-lineage-detail-zoom-label {
+      min-width: 44px;
+      text-align: center;
+      color: #667085;
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bp-lineage-detail-viewport {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 24px;
+      scrollbar-gutter: stable;
+    }
+
+    .bp-lineage-detail-stage {
+      position: relative;
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    .bp-lineage-detail-scale {
+      transform-origin: 0 0;
+      overflow: visible;
+    }
+
+    .bp-lineage-graph--detail {
+      overflow: visible;
+    }
+
+    .bp-lineage-graph--detail .bp-lineage-graph__nodes {
+      overflow: visible;
+    }
+
+    .bp-lineage-graph__svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .bp-lineage-graph__edge {
+      fill: none;
+      stroke: #c8d0dc;
+      stroke-width: 1.5;
+    }
+
+    .bp-lineage-graph__nodes {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bp-lineage-card {
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      display: flex;
+      align-items: stretch;
+      padding: 12px 14px 12px 12px;
+      border: 1px solid #eef2f6;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(16, 24, 40, 0.06);
+    }
+
+    .bp-lineage-card__menu {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #93c5fd;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .bp-lineage-card__menu:hover {
+      background: #eff6ff;
+      color: #1677ff;
+    }
+
+    .bp-lineage-card__port {
+      position: absolute;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e4e7ec;
+      border-radius: 999px;
+      background: #fff;
+      color: #98a2b3;
+      font-size: 12px;
+      line-height: 1;
+      transform: translateY(-50%);
+      box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+      pointer-events: none;
+    }
+
+    .bp-lineage-card__port--in {
+      left: -9px;
+    }
+
+    .bp-lineage-card__port--out {
+      right: -9px;
+    }
+
+    .bp-lineage-card__body {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+      padding-right: 16px;
+    }
+
+    .bp-lineage-card__icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #edf4ff 0%, #dbeafe 100%);
+      color: #2563eb;
+    }
+
+    .bp-lineage-card__icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bp-lineage-card--tasks .bp-lineage-card__icon,
+    .bp-lineage-card--taskInstances .bp-lineage-card__icon {
+      background: linear-gradient(180deg, #fff4e8 0%, #ffedd5 100%);
+      color: #ea580c;
+    }
+
+    .bp-lineage-card--apis .bp-lineage-card__icon {
+      background: linear-gradient(180deg, #f1edff 0%, #ede9fe 100%);
+      color: #7c3aed;
+    }
+
+    .bp-lineage-card--reports .bp-lineage-card__icon {
+      background: linear-gradient(180deg, #e8faf3 0%, #d1fae5 100%);
+      color: #059669;
+    }
+
+    .bp-lineage-card__text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bp-lineage-card__title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #101828;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .bp-lineage-card__type {
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #98a2b3;
+      font-size: 11px;
+      line-height: 1.35;
     }
 
     .bp-hub--v3 .bp-flow-section-title {
@@ -13102,6 +13593,19 @@
       display: flex;
       padding: 0 12px 10px;
       overflow: hidden;
+    }
+
+    .bp-hub--v3 .bp-flow-view-panel {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      max-height: 100%;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .bp-hub--v3 .bp-lineage-diagram {
+      width: 100%;
     }
 
     .bp-hub--v3 .bp-dev-pipeline {
@@ -19571,6 +20075,627 @@
       return pipeline;
     }
 
+    const BP_LINEAGE_NODE_W = 228;
+    const BP_LINEAGE_NODE_H = 76;
+    const BP_LINEAGE_GAP_X = 96;
+    const BP_LINEAGE_GAP_Y = 28;
+    const BP_LINEAGE_PAD = 24;
+
+    function getBpLineageLayoutMetrics(compact) {
+      if (compact) {
+        return {
+          nodeW: 168,
+          nodeH: 56,
+          gapX: 56,
+          gapY: 16,
+          pad: 12,
+        };
+      }
+      return {
+        nodeW: BP_LINEAGE_NODE_W,
+        nodeH: BP_LINEAGE_NODE_H,
+        gapX: BP_LINEAGE_GAP_X,
+        gapY: BP_LINEAGE_GAP_Y,
+        pad: BP_LINEAGE_PAD,
+      };
+    }
+
+    function collectAllFlowResources(item) {
+      const modules = getBpFlowModules(item);
+      const list = [];
+      modules.forEach((module, moduleIndex) => {
+        const stepLabel = getNavLeafLabel(module.leafId);
+        (module.resources || []).forEach((row, resourceIndex) => {
+          list.push({
+            id: row.id || "lineage_" + moduleIndex + "_" + resourceIndex,
+            name: row.name,
+            kind: row.kind || getNavResourceKind(module.leafId) || "models",
+            fromNode: row.fromNode || getModuleOperationLabel(module),
+            fromStep: stepLabel,
+            moduleIndex,
+            status: row.status,
+            row,
+          });
+        });
+      });
+      return list;
+    }
+
+    function buildBpResourceLineageTree(resources) {
+      if (!resources.length) return null;
+      const nodes = resources.map((resource) => ({ ...resource, children: [] }));
+      const byModule = new Map();
+      resources.forEach((resource, index) => {
+        if (!byModule.has(resource.moduleIndex)) byModule.set(resource.moduleIndex, []);
+        byModule.get(resource.moduleIndex).push(index);
+      });
+      const sortedModules = [...byModule.keys()].sort((a, b) => a - b);
+      if (!sortedModules.length) return nodes[0];
+
+      const rootIdx = byModule.get(sortedModules[0])[0];
+      let prevIndices = [rootIdx];
+
+      sortedModules.slice(1).forEach((moduleIndex) => {
+        const currIndices = byModule.get(moduleIndex) || [];
+        const parents = prevIndices.length ? prevIndices : [rootIdx];
+        const nextIndices = [];
+        currIndices.forEach((resIdx, childIndex) => {
+          const parentIdx = parents[Math.min(childIndex, parents.length - 1)];
+          if (parentIdx !== resIdx && !nodes[parentIdx].children.includes(nodes[resIdx])) {
+            nodes[parentIdx].children.push(nodes[resIdx]);
+          }
+          nextIndices.push(resIdx);
+        });
+        prevIndices = nextIndices.length ? nextIndices : prevIndices;
+      });
+
+      const firstModuleIndices = byModule.get(sortedModules[0]) || [rootIdx];
+      firstModuleIndices.slice(1).forEach((resIdx) => {
+        if (resIdx !== rootIdx && !nodes[rootIdx].children.includes(nodes[resIdx])) {
+          nodes[rootIdx].children.push(nodes[resIdx]);
+        }
+      });
+
+      return nodes[rootIdx];
+    }
+
+    function getBpLineageNodeIconSvg(kind) {
+      if (kind === "tasks" || kind === "taskInstances") {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
+      }
+      if (kind === "apis") {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h6v10H4zM14 7h6v10h-6z"/><path d="M10 12h4"/></svg>';
+      }
+      if (kind === "reports") {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2z"/><path d="M10 9h4M10 13h4"/></svg>';
+      }
+      if (kind === "scripts") {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6l-4 4 4 4"/><path d="M16 18l4-4-4-4"/><path d="M13 4l-2 16"/></svg>';
+      }
+      if (kind === "sessions") {
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10M7 12h6"/><path d="M6 4h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-3 3V6a2 2 0 0 1 2-2z"/></svg>';
+      }
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20V8l6-4 6 4v12"/><path d="M9 20v-6h6v6"/><path d="M9 10h6"/></svg>';
+    }
+
+    function layoutBpResourceLineageTree(root, metrics) {
+      const m = metrics || getBpLineageLayoutMetrics(false);
+      let leafRow = 0;
+      function assignRows(node) {
+        if (!node.children || !node.children.length) {
+          node.layoutRow = leafRow;
+          leafRow += 1;
+          return;
+        }
+        node.children.forEach(assignRows);
+        const rows = node.children.map((child) => child.layoutRow);
+        node.layoutRow = (Math.min(...rows) + Math.max(...rows)) / 2;
+      }
+      assignRows(root);
+
+      function assignColumns(node, depth) {
+        node.layoutCol = depth;
+        (node.children || []).forEach((child) => assignColumns(child, depth + 1));
+      }
+      assignColumns(root, 0);
+
+      function toPixels(node) {
+        node.layoutX = m.pad + node.layoutCol * (m.nodeW + m.gapX);
+        node.layoutY = m.pad + node.layoutRow * (m.nodeH + m.gapY);
+        (node.children || []).forEach(toPixels);
+      }
+      toPixels(root);
+
+      const maxCol = (function walkMaxCol(node) {
+        let max = node.layoutCol || 0;
+        (node.children || []).forEach((child) => {
+          max = Math.max(max, walkMaxCol(child));
+        });
+        return max;
+      })(root);
+
+      const width = m.pad * 2 + (maxCol + 1) * m.nodeW + maxCol * m.gapX;
+      const height =
+        m.pad * 2 + leafRow * m.nodeH + Math.max(0, leafRow - 1) * m.gapY;
+      const layout = { root, width, height, leafCount: leafRow, metrics: m };
+      finalizeBpLineageGraphBounds(layout);
+      return layout;
+    }
+
+    function finalizeBpLineageGraphBounds(layout) {
+      const m = layout.metrics;
+      const portPad = 18;
+      let minX = Infinity;
+      let minY = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+
+      function walk(node) {
+        minX = Math.min(minX, node.layoutX);
+        minY = Math.min(minY, node.layoutY);
+        maxX = Math.max(maxX, node.layoutX + m.nodeW);
+        maxY = Math.max(maxY, node.layoutY + m.nodeH);
+        (node.children || []).forEach(walk);
+      }
+      walk(layout.root);
+
+      const offsetX = portPad - minX;
+      const offsetY = portPad - minY;
+      if (offsetX || offsetY) {
+        function shift(node) {
+          node.layoutX += offsetX;
+          node.layoutY += offsetY;
+          (node.children || []).forEach(shift);
+        }
+        shift(layout.root);
+        maxX += offsetX;
+        maxY += offsetY;
+      }
+
+      layout.width = Math.ceil(maxX + portPad);
+      layout.height = Math.ceil(maxY + portPad);
+    }
+
+    function countBpLineageNodes(root) {
+      let count = 0;
+      (function walk(node) {
+        count += 1;
+        (node.children || []).forEach(walk);
+      })(root);
+      return count;
+    }
+
+    function collectBpLineageEdges(node, edges, metrics) {
+      const m = metrics || getBpLineageLayoutMetrics(false);
+      const list = edges || [];
+      const x1 = node.layoutX + m.nodeW;
+      const y1 = node.layoutY + m.nodeH / 2;
+      (node.children || []).forEach((child) => {
+        const x2 = child.layoutX;
+        const y2 = child.layoutY + m.nodeH / 2;
+        list.push({ x1, y1, x2, y2 });
+        collectBpLineageEdges(child, list, m);
+      });
+      return list;
+    }
+
+    function buildBpLineageCardElement(node, hasParent, metrics, options) {
+      const opts = options || {};
+      const m = metrics || getBpLineageLayoutMetrics(false);
+      const meta = getResourceKindMeta(node.kind);
+      const typeLabel = meta ? meta.label : "资源";
+      const card = document.createElement("div");
+      card.className = "bp-lineage-card bp-lineage-card--" + node.kind;
+      card.style.width = m.nodeW + "px";
+      card.style.height = m.nodeH + "px";
+      card.style.transform = "translate(" + node.layoutX + "px, " + node.layoutY + "px)";
+
+      if (!opts.compact) {
+        const menu = document.createElement("button");
+        menu.type = "button";
+        menu.className = "bp-lineage-card__menu";
+        menu.textContent = "⋯";
+        menu.setAttribute("aria-label", "更多操作");
+        menu.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showToast("查看「" + node.name + "」资源血缘详情（示意）", "info");
+        });
+        card.appendChild(menu);
+      }
+
+      if (hasParent) {
+        const portIn = document.createElement("span");
+        portIn.className = "bp-lineage-card__port bp-lineage-card__port--in";
+        portIn.textContent = "−";
+        portIn.setAttribute("aria-hidden", "true");
+        card.appendChild(portIn);
+      }
+
+      const body = document.createElement("div");
+      body.className = "bp-lineage-card__body";
+      const icon = document.createElement("div");
+      icon.className = "bp-lineage-card__icon";
+      icon.innerHTML = getBpLineageNodeIconSvg(node.kind);
+      const text = document.createElement("div");
+      text.className = "bp-lineage-card__text";
+      const title = document.createElement("div");
+      title.className = "bp-lineage-card__title";
+      title.textContent = node.name;
+      title.title = node.name;
+      const sub = document.createElement("div");
+      sub.className = "bp-lineage-card__type";
+      sub.textContent =
+        "节点类型：" + typeLabel + " · " + (node.fromStep || node.fromNode || "流程资源");
+      text.appendChild(title);
+      text.appendChild(sub);
+      body.appendChild(icon);
+      body.appendChild(text);
+      card.appendChild(body);
+
+      if (node.children && node.children.length) {
+        const portOut = document.createElement("span");
+        portOut.className = "bp-lineage-card__port bp-lineage-card__port--out";
+        portOut.textContent = "−";
+        portOut.setAttribute("aria-hidden", "true");
+        card.appendChild(portOut);
+      }
+
+      return card;
+    }
+
+    function appendBpLineageGraphNodes(node, layer, hasParent, metrics, options) {
+      layer.appendChild(buildBpLineageCardElement(node, hasParent, metrics, options));
+      (node.children || []).forEach((child) =>
+        appendBpLineageGraphNodes(child, layer, true, metrics, options)
+      );
+    }
+
+    function buildBpLineageGraphElement(item, options) {
+      const opts = options || {};
+      const compact = !!opts.compact;
+      const metrics = getBpLineageLayoutMetrics(compact);
+      const graph = document.createElement("div");
+
+      const resources = collectAllFlowResources(item);
+      if (!resources.length) {
+        return { graph: null, layout: null, nodeCount: 0, emptyText: "暂无资源血缘，请先在流程中产出资源" };
+      }
+
+      const tree = buildBpResourceLineageTree(resources);
+      if (!tree) {
+        return { graph: null, layout: null, nodeCount: 0, emptyText: "暂无资源血缘，请先在流程中产出资源" };
+      }
+
+      const layout = layoutBpResourceLineageTree(tree, metrics);
+      graph.className =
+        "bp-lineage-graph" +
+        (compact ? " bp-lineage-graph--compact" : " bp-lineage-graph--detail");
+      graph.style.width = layout.width + "px";
+      graph.style.height = layout.height + "px";
+      graph.style.minWidth = layout.width + "px";
+      graph.style.minHeight = layout.height + "px";
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("class", "bp-lineage-graph__svg");
+      svg.setAttribute("width", String(layout.width));
+      svg.setAttribute("height", String(layout.height));
+      svg.setAttribute("viewBox", "0 0 " + layout.width + " " + layout.height);
+
+      collectBpLineageEdges(layout.root, null, metrics).forEach((edge) => {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const mx = (edge.x1 + edge.x2) / 2;
+        path.setAttribute(
+          "d",
+          "M " +
+            edge.x1 +
+            " " +
+            edge.y1 +
+            " C " +
+            mx +
+            " " +
+            edge.y1 +
+            ", " +
+            mx +
+            " " +
+            edge.y2 +
+            ", " +
+            edge.x2 +
+            " " +
+            edge.y2
+        );
+        path.setAttribute("class", "bp-lineage-graph__edge");
+        svg.appendChild(path);
+      });
+
+      const nodesLayer = document.createElement("div");
+      nodesLayer.className = "bp-lineage-graph__nodes";
+      nodesLayer.style.width = layout.width + "px";
+      nodesLayer.style.height = layout.height + "px";
+      appendBpLineageGraphNodes(layout.root, nodesLayer, false, metrics, { compact });
+
+      graph.appendChild(svg);
+      graph.appendChild(nodesLayer);
+      return {
+        graph,
+        layout,
+        nodeCount: countBpLineageNodes(layout.root),
+        emptyText: null,
+      };
+    }
+
+    function fitBpLineagePreviewScale(frame, scaleWrap, layout) {
+      if (!frame || !scaleWrap || !layout) return;
+      const fw = frame.clientWidth;
+      const fh = frame.clientHeight;
+      if (!fw || !fh) return;
+      const scale = Math.min(fw / layout.width, fh / layout.height, 1);
+      const offsetX = Math.max(0, (fw - layout.width * scale) / 2);
+      const offsetY = Math.max(0, (fh - layout.height * scale) / 2);
+      scaleWrap.style.width = layout.width + "px";
+      scaleWrap.style.height = layout.height + "px";
+      scaleWrap.style.transform =
+        "translate(" + offsetX + "px, " + offsetY + "px) scale(" + scale + ")";
+    }
+
+    function scheduleBpLineagePreviewFit(diagram) {
+      if (!diagram || typeof diagram._lineageFit !== "function") return;
+      window.requestAnimationFrame(() => {
+        diagram._lineageFit();
+        window.requestAnimationFrame(() => diagram._lineageFit());
+      });
+    }
+
+    function buildBpLineageDiagramElement(item) {
+      const diagram = document.createElement("div");
+      diagram.className = "bp-lineage-diagram bp-lineage-diagram--preview";
+      diagram.setAttribute("role", "group");
+      diagram.setAttribute("aria-label", "资源血缘简图");
+
+      const graphResult = buildBpLineageGraphElement(item, { compact: true });
+      if (!graphResult.graph) {
+        const empty = document.createElement("p");
+        empty.className = "bp-pipe-res-empty";
+        empty.textContent = graphResult.emptyText;
+        diagram.appendChild(empty);
+        return diagram;
+      }
+
+      const frame = document.createElement("div");
+      frame.className = "bp-lineage-preview-frame";
+      frame.setAttribute("role", "button");
+      frame.tabIndex = 0;
+      frame.setAttribute("aria-label", "点击查看资源血缘详情");
+
+      const scaleWrap = document.createElement("div");
+      scaleWrap.className = "bp-lineage-preview-scale";
+      scaleWrap.appendChild(graphResult.graph);
+      frame.appendChild(scaleWrap);
+
+      const hint = document.createElement("span");
+      hint.className = "bp-lineage-open-hint";
+      hint.textContent = "点击查看大图";
+
+      diagram.appendChild(frame);
+      diagram.appendChild(hint);
+
+      diagram._lineageFit = () =>
+        fitBpLineagePreviewScale(frame, scaleWrap, graphResult.layout);
+
+      const openDetail = (e) => {
+        e.stopPropagation();
+        openBpLineageDetailModal(item);
+      };
+      frame.addEventListener("click", openDetail);
+      frame.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openDetail(e);
+        }
+      });
+
+      scheduleBpLineagePreviewFit(diagram);
+      return diagram;
+    }
+
+    function ensureBpLineageDetailModal() {
+      if (document.getElementById("bpLineageDetailBackdrop")) return;
+      const backdrop = document.createElement("div");
+      backdrop.id = "bpLineageDetailBackdrop";
+      backdrop.className = "bp-lineage-detail-backdrop";
+      backdrop.hidden = true;
+
+      const panel = document.createElement("div");
+      panel.className = "bp-lineage-detail-panel";
+      panel.setAttribute("role", "dialog");
+      panel.setAttribute("aria-modal", "true");
+
+      const hd = document.createElement("div");
+      hd.className = "bp-lineage-detail-hd";
+      const title = document.createElement("h2");
+      title.className = "bp-lineage-detail-title";
+      title.id = "bpLineageDetailTitle";
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "bp-lineage-detail-close";
+      closeBtn.setAttribute("aria-label", "关闭");
+      closeBtn.textContent = "×";
+      closeBtn.addEventListener("click", () => closeBpLineageDetailModal());
+      hd.appendChild(title);
+      hd.appendChild(closeBtn);
+
+      const body = document.createElement("div");
+      body.className = "bp-lineage-detail-body";
+      body.id = "bpLineageDetailBody";
+
+      panel.appendChild(hd);
+      panel.appendChild(body);
+      backdrop.appendChild(panel);
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeBpLineageDetailModal();
+      });
+      document.body.appendChild(backdrop);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !backdrop.hidden) closeBpLineageDetailModal();
+      });
+    }
+
+    function closeBpLineageDetailModal() {
+      const backdrop = document.getElementById("bpLineageDetailBackdrop");
+      if (backdrop) backdrop.hidden = true;
+    }
+
+    function getBpLineageDetailFitScale(state) {
+      const layout = state.layout;
+      const vw = Math.max(state.viewport.clientWidth - 48, 240);
+      const vh = Math.max(state.viewport.clientHeight - 48, 180);
+      return Math.min(vw / layout.width, vh / layout.height, 1);
+    }
+
+    function clampBpLineageDetailScale(scale) {
+      return Math.min(3, Math.max(0.25, scale));
+    }
+
+    function applyBpLineageDetailScale(state, scale) {
+      if (!state || !state.scaleWrap || !state.stage || !state.layout) return;
+      const layout = state.layout;
+      const nextScale = clampBpLineageDetailScale(scale);
+      state.currentScale = nextScale;
+      state.scaleWrap.style.width = layout.width + "px";
+      state.scaleWrap.style.height = layout.height + "px";
+      state.scaleWrap.style.transform = "scale(" + nextScale + ")";
+      state.stage.style.width = Math.ceil(layout.width * nextScale) + "px";
+      state.stage.style.height = Math.ceil(layout.height * nextScale) + "px";
+      if (state.zoomLabel) state.zoomLabel.textContent = Math.round(nextScale * 100) + "%";
+      if (state.zoomOutBtn) state.zoomOutBtn.disabled = nextScale <= 0.26;
+      if (state.zoomInBtn) state.zoomInBtn.disabled = nextScale >= 2.99;
+    }
+
+    function mountBpLineageDetailView(bodyEl, graphResult) {
+      const toolbar = document.createElement("div");
+      toolbar.className = "bp-lineage-detail-toolbar";
+
+      const toolbarLeft = document.createElement("div");
+      toolbarLeft.className = "bp-lineage-detail-toolbar-left";
+      const meta = document.createElement("span");
+      meta.className = "bp-lineage-detail-meta";
+      meta.textContent = "共 " + graphResult.nodeCount + " 个资源节点";
+      toolbarLeft.appendChild(meta);
+
+      const toolbarRight = document.createElement("div");
+      toolbarRight.className = "bp-lineage-detail-toolbar-right";
+      const zoomOutBtn = document.createElement("button");
+      zoomOutBtn.type = "button";
+      zoomOutBtn.className = "bp-lineage-detail-zoom-btn";
+      zoomOutBtn.setAttribute("aria-label", "缩小");
+      zoomOutBtn.title = "缩小";
+      zoomOutBtn.textContent = "−";
+      const zoomLabel = document.createElement("span");
+      zoomLabel.className = "bp-lineage-detail-zoom-label";
+      zoomLabel.textContent = "100%";
+      const zoomInBtn = document.createElement("button");
+      zoomInBtn.type = "button";
+      zoomInBtn.className = "bp-lineage-detail-zoom-btn";
+      zoomInBtn.setAttribute("aria-label", "放大");
+      zoomInBtn.title = "放大";
+      zoomInBtn.textContent = "+";
+      toolbarRight.appendChild(zoomOutBtn);
+      toolbarRight.appendChild(zoomLabel);
+      toolbarRight.appendChild(zoomInBtn);
+
+      toolbar.appendChild(toolbarLeft);
+      toolbar.appendChild(toolbarRight);
+
+      const viewport = document.createElement("div");
+      viewport.className = "bp-lineage-detail-viewport";
+      const stage = document.createElement("div");
+      stage.className = "bp-lineage-detail-stage";
+      const scaleWrap = document.createElement("div");
+      scaleWrap.className = "bp-lineage-detail-scale";
+      scaleWrap.appendChild(graphResult.graph);
+      stage.appendChild(scaleWrap);
+      viewport.appendChild(stage);
+
+      bodyEl.appendChild(toolbar);
+      bodyEl.appendChild(viewport);
+
+      const state = {
+        viewport,
+        stage,
+        scaleWrap,
+        layout: graphResult.layout,
+        zoomOutBtn,
+        zoomInBtn,
+        zoomLabel,
+        baseFitScale: 1,
+        currentScale: 1,
+        userAdjusted: false,
+      };
+      bodyEl._lineageDetailState = state;
+
+      const setUserScale = (scale) => {
+        state.userAdjusted = true;
+        applyBpLineageDetailScale(state, scale);
+      };
+
+      zoomInBtn.addEventListener("click", () => setUserScale(state.currentScale * 1.15));
+      zoomOutBtn.addEventListener("click", () => setUserScale(state.currentScale / 1.15));
+
+      viewport.addEventListener(
+        "wheel",
+        (e) => {
+          if (!e.ctrlKey && !e.metaKey) return;
+          e.preventDefault();
+          setUserScale(state.currentScale * (e.deltaY > 0 ? 0.9 : 1.1));
+        },
+        { passive: false }
+      );
+
+      const initFit = () => {
+        state.baseFitScale = getBpLineageDetailFitScale(state);
+        if (!state.userAdjusted) applyBpLineageDetailScale(state, state.baseFitScale);
+        else applyBpLineageDetailScale(state, state.currentScale);
+      };
+
+      window.requestAnimationFrame(initFit);
+      window.requestAnimationFrame(initFit);
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(initFit);
+        ro.observe(viewport);
+        state.resizeObserver = ro;
+      }
+      return state;
+    }
+
+    function openBpLineageDetailModal(item) {
+      ensureBpLineageDetailModal();
+      const backdrop = document.getElementById("bpLineageDetailBackdrop");
+      const titleEl = document.getElementById("bpLineageDetailTitle");
+      const bodyEl = document.getElementById("bpLineageDetailBody");
+      if (!backdrop || !titleEl || !bodyEl) return;
+
+      if (bodyEl._lineageDetailState && bodyEl._lineageDetailState.resizeObserver) {
+        bodyEl._lineageDetailState.resizeObserver.disconnect();
+      }
+      bodyEl._lineageDetailState = null;
+      bodyEl.innerHTML = "";
+
+      titleEl.textContent = getBpDisplayTitle(item) + " · 资源血缘";
+
+      const graphResult = buildBpLineageGraphElement(item, { compact: false });
+      if (!graphResult.graph) {
+        const empty = document.createElement("p");
+        empty.className = "bp-pipe-res-empty";
+        empty.style.padding = "24px";
+        empty.textContent = graphResult.emptyText;
+        bodyEl.appendChild(empty);
+      } else {
+        mountBpLineageDetailView(bodyEl, graphResult);
+      }
+
+      backdrop.hidden = false;
+    }
+
     function groupBpRowsByCategory(rows) {
       const map = new Map();
       rows.forEach((item) => {
@@ -20672,17 +21797,80 @@
       flowSection.className = "bp-flow-section";
       const flowHead = document.createElement("div");
       flowHead.className = "bp-flow-section-head";
+      const flowHeadLeft = document.createElement("div");
+      flowHeadLeft.className = "bp-flow-section-head-left";
       const flowTitle = document.createElement("span");
       flowTitle.className = "bp-flow-section-title";
       flowTitle.textContent = "▾ 开发流程概览";
+      const viewSwitch = document.createElement("div");
+      viewSwitch.className = "bp-flow-view-switch";
+      viewSwitch.setAttribute("role", "tablist");
+      viewSwitch.setAttribute("aria-label", "概览视角");
+      const flowViewBtn = document.createElement("button");
+      flowViewBtn.type = "button";
+      flowViewBtn.className = "bp-flow-view-switch-btn is-on";
+      flowViewBtn.setAttribute("role", "tab");
+      flowViewBtn.setAttribute("aria-selected", "true");
+      flowViewBtn.textContent = "流程视角";
+      const lineageViewBtn = document.createElement("button");
+      lineageViewBtn.type = "button";
+      lineageViewBtn.className = "bp-flow-view-switch-btn";
+      lineageViewBtn.setAttribute("role", "tab");
+      lineageViewBtn.setAttribute("aria-selected", "false");
+      lineageViewBtn.textContent = "血缘视角";
+      viewSwitch.appendChild(flowViewBtn);
+      viewSwitch.appendChild(lineageViewBtn);
+      flowHeadLeft.appendChild(flowTitle);
+      flowHeadLeft.appendChild(viewSwitch);
       const flowChev = document.createElement("span");
       flowChev.className = "bp-card-toggle";
       flowChev.textContent = "▾";
-      flowHead.appendChild(flowTitle);
+      flowHead.appendChild(flowHeadLeft);
       flowHead.appendChild(flowChev);
       const flowBody = document.createElement("div");
       flowBody.className = "bp-flow-section-body";
-      flowBody.appendChild(buildBpDevPipelineElement(item));
+      const flowPanel = document.createElement("div");
+      flowPanel.className = "bp-flow-view-panel is-active";
+      flowPanel.dataset.view = "flow";
+      flowPanel.appendChild(buildBpDevPipelineElement(item));
+      const lineagePanel = document.createElement("div");
+      lineagePanel.className = "bp-flow-view-panel";
+      lineagePanel.dataset.view = "lineage";
+      lineagePanel.hidden = true;
+      flowBody.appendChild(flowPanel);
+      flowBody.appendChild(lineagePanel);
+      let flowViewMode = "flow";
+
+      function setFlowViewMode(mode) {
+        flowViewMode = mode;
+        const isFlow = mode === "flow";
+        flowViewBtn.classList.toggle("is-on", isFlow);
+        flowViewBtn.setAttribute("aria-selected", isFlow ? "true" : "false");
+        lineageViewBtn.classList.toggle("is-on", !isFlow);
+        lineageViewBtn.setAttribute("aria-selected", !isFlow ? "true" : "false");
+        flowPanel.hidden = !isFlow;
+        flowPanel.classList.toggle("is-active", isFlow);
+        lineagePanel.hidden = isFlow;
+        lineagePanel.classList.toggle("is-active", !isFlow);
+        if (!isFlow && !lineagePanel.dataset.mounted) {
+          lineagePanel.appendChild(buildBpLineageDiagramElement(item));
+          lineagePanel.dataset.mounted = "1";
+        }
+        if (!isFlow) {
+          scheduleBpLineagePreviewFit(lineagePanel.querySelector(".bp-lineage-diagram"));
+        }
+      }
+
+      flowViewBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (flowViewMode !== "flow") setFlowViewMode("flow");
+      });
+      lineageViewBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (flowViewMode !== "lineage") setFlowViewMode("lineage");
+      });
+      viewSwitch.addEventListener("click", (e) => e.stopPropagation());
+
       const meta = document.createElement("div");
       meta.className = "bp-meta";
       meta.innerHTML =
