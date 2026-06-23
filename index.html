@@ -14691,10 +14691,17 @@
 
     function readNavPanelCollapsed() {
       try {
-        return localStorage.getItem(NAV_PANEL_COLLAPSED_KEY) === "1";
+        const v = localStorage.getItem(NAV_PANEL_COLLAPSED_KEY);
+        if (v === null) return true;
+        return v === "1";
       } catch {
-        return false;
+        return true;
       }
+    }
+
+    /** 进入工作台时按场景设置操作导航默认展开/收起（空白流程展开，其余收起） */
+    function applyNavPanelEntryDefault(blankFlow) {
+      writeNavPanelCollapsed(!blankFlow);
     }
 
     function writeNavPanelCollapsed(collapsed) {
@@ -16316,6 +16323,7 @@
     function enterFlowWithFirstModule(firstLeafId, firstModule) {
       const leafId = firstLeafId || "physical-modeling";
       const apply = () => {
+        applyNavPanelEntryDefault(false);
         if (firstModule) applyModuleToLiveState(firstModule);
         activeOpFlowSectionTitle = getNavLeafLabel(leafId);
         enterProcessDevMode(leafId);
@@ -16646,6 +16654,7 @@
       smartDevScriptEditorActive = false;
 
       const apply = () => {
+        applyNavPanelEntryDefault(true);
         activeOpFlowSectionTitle = "";
         enterProcessDevMode(null);
         renderOperationFlow();
