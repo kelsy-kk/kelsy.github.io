@@ -6068,6 +6068,304 @@
       align-items: stretch;
     }
 
+    .tc-grid--template-row6,
+    .ft-grid.ft-grid--template-row6 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .tc-template-grid-shell {
+      position: relative;
+    }
+
+    .tc-template-grid-add {
+      margin-top: 12px;
+    }
+
+    .tc-template-more-guide {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px dashed #91caff;
+      background: linear-gradient(90deg, #f0f7ff 0%, #fafcff 100%);
+    }
+
+    .tc-template-more-guide__main {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .tc-template-more-guide__badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 8px;
+      background: #1677ff;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .tc-template-more-guide__text {
+      margin: 0;
+      font-size: 13px;
+      color: #475467;
+      line-height: 1.55;
+    }
+
+    .tc-template-more-guide__text strong {
+      color: #1677ff;
+      font-weight: 700;
+    }
+
+    .tc-template-more-guide__btn {
+      flex-shrink: 0;
+      height: 32px;
+      padding: 0 14px;
+      border: 1px solid #1677ff;
+      background: #fff;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .tc-template-more-guide__btn:hover {
+      background: #1677ff;
+      color: #fff;
+    }
+
+    .tc-template-float-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 12050;
+      pointer-events: none;
+    }
+
+    .tc-template-float-layer.is-open,
+    .tc-template-float-layer.is-closing {
+      pointer-events: auto;
+    }
+
+    .tc-template-float-layer__backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(15, 23, 42, 0);
+      cursor: pointer;
+      transition: background 0.28s ease;
+    }
+
+    .tc-template-float-layer.is-open .tc-template-float-layer__backdrop {
+      background: rgba(15, 23, 42, 0.38);
+    }
+
+    .tc-template-float-layer.is-closing .tc-template-float-layer__backdrop {
+      background: rgba(15, 23, 42, 0);
+    }
+
+    .tc-template-float-layer__panel {
+      position: fixed;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform-origin: top center;
+      transform: scaleY(0.88) translateY(-10px);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.26s ease,
+        visibility 0.34s;
+    }
+
+    .tc-template-float-layer.is-open .tc-template-float-layer__panel {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .tc-template-float-layer.is-closing .tc-template-float-layer__panel {
+      transform: scaleY(0.92) translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* 场景流程 · 场景模板浮层：与原卡片区同 UI，不占位 */
+    .tc-template-float-layer--scene .tc-template-float-layer__panel {
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow:
+        0 4px 16px rgba(16, 24, 40, 0.06),
+        0 24px 64px rgba(15, 23, 42, 0.16);
+      max-height: min(calc(100vh - 24px), 82vh);
+    }
+
+    .tc-template-float-layer--scene .tc-template-float-layer__body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 14px 14px 10px;
+    }
+
+    .tc-template-float-layer--scene .tc-template-float-layer__grid {
+      margin: 0;
+      width: 100%;
+    }
+
+    .tc-template-float-layer--scene .bp-scene-filter-cards {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .tc-template-float-layer--scene .tc-template-float-layer__hub {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      max-height: inherit;
+    }
+
+    .tc-template-float-layer--scene .bp-scene-filter-card {
+      flex: none;
+      min-width: 0;
+    }
+
+    .tc-template-float-layer__foot {
+      display: flex;
+      justify-content: center;
+      padding: 10px 14px 14px;
+      border-top: 1px solid #eef2f6;
+      background: linear-gradient(180deg, #fafcff 0%, #fff 100%);
+      flex-shrink: 0;
+    }
+
+    .tc-template-float-layer__collapse-btn {
+      height: 32px;
+      padding: 0 18px;
+      border: 1px solid #1677ff;
+      background: #fff;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .tc-template-float-layer__collapse-btn:hover {
+      background: #1677ff;
+      color: #fff;
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__panel {
+      max-height: min(78vh, 720px);
+      border: 1px solid #91caff;
+      background: #fff;
+      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.22);
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #e6ebf2;
+      background: linear-gradient(180deg, #edf4ff 0%, #fff 100%);
+      flex-shrink: 0;
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: #1e40af;
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__close {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid #d8e0ea;
+      background: #fff;
+      color: #667085;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__close:hover {
+      border-color: #91caff;
+      color: #1677ff;
+    }
+
+    .tc-template-float-layer--default .tc-template-float-layer__body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 14px;
+    }
+
+    @media (max-width: 1400px) {
+      .tc-template-float-layer--scene .bp-scene-filter-cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .tc-template-float-layer--scene .bp-scene-filter-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tc-template-float-layer--scene .bp-scene-filter-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1400px) {
+      .tc-grid--template-row6,
+      .ft-grid.ft-grid--template-row6 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .tc-grid--template-row6,
+      .ft-grid.ft-grid--template-row6 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .tc-template-more-guide {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tc-grid--template-row6,
+      .ft-grid.ft-grid--template-row6 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 1200px) {
       .tc-grid--preset-v3,
       .tc-grid--custom-v3 {
@@ -11784,6 +12082,51 @@
       gap: 12px;
       width: 100%;
       margin-bottom: 12px;
+    }
+
+    .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--row6 {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ≤6 个模板：按实际数量均分整行，居中平铺适应宽度 */
+    .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--fit {
+      display: grid;
+      grid-template-columns: repeat(var(--scene-card-fit-cols, 1), minmax(0, 1fr));
+      flex-wrap: unset;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .bp-hub--v3 .bp-scene-filter-cards--row6 .bp-scene-filter-card,
+    .bp-hub--v3 .bp-scene-filter-cards--fit .bp-scene-filter-card {
+      flex: none;
+      min-width: 0;
+    }
+
+    .bp-scene-template-shell {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1400px) {
+      .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--row6 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--row6 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--row6 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     .bp-hub--v3 .bp-scene-filter-card {
@@ -20909,6 +21252,273 @@
         .join("");
     }
 
+    const TC_TEMPLATE_VISIBLE_MAX = 6;
+    const TC_TEMPLATE_FLOAT_ANIM_MS = 360;
+    let tcTemplateFloatLayerEl = null;
+    let tcTemplateFloatEscHandler = null;
+    let tcTemplateFloatCloseTimer = null;
+    let tcTemplateFloatBodyOverflow = "";
+
+    function lockTcTemplateFloatBodyScroll() {
+      if (tcTemplateFloatBodyOverflow !== "") return;
+      tcTemplateFloatBodyOverflow = document.body.style.overflow || "";
+      document.body.style.overflow = "hidden";
+    }
+
+    function unlockTcTemplateFloatBodyScroll() {
+      if (tcTemplateFloatBodyOverflow === "") return;
+      document.body.style.overflow = tcTemplateFloatBodyOverflow;
+      tcTemplateFloatBodyOverflow = "";
+    }
+
+    function closeTcTemplateGridOverlay(immediate) {
+      if (tcTemplateFloatEscHandler) {
+        document.removeEventListener("keydown", tcTemplateFloatEscHandler);
+        tcTemplateFloatEscHandler = null;
+      }
+      if (!tcTemplateFloatLayerEl) return;
+      const layer = tcTemplateFloatLayerEl;
+      if (immediate) {
+        if (tcTemplateFloatCloseTimer) {
+          clearTimeout(tcTemplateFloatCloseTimer);
+          tcTemplateFloatCloseTimer = null;
+        }
+        layer.remove();
+        tcTemplateFloatLayerEl = null;
+        unlockTcTemplateFloatBodyScroll();
+        return;
+      }
+      if (layer.classList.contains("is-closing")) return;
+      layer.classList.remove("is-open");
+      layer.classList.add("is-closing");
+      if (tcTemplateFloatCloseTimer) clearTimeout(tcTemplateFloatCloseTimer);
+      tcTemplateFloatCloseTimer = window.setTimeout(() => {
+        if (tcTemplateFloatLayerEl) tcTemplateFloatLayerEl.remove();
+        tcTemplateFloatLayerEl = null;
+        tcTemplateFloatCloseTimer = null;
+        unlockTcTemplateFloatBodyScroll();
+      }, TC_TEMPLATE_FLOAT_ANIM_MS);
+    }
+
+    function clearTemplateGridShellExtras(shellEl) {
+      if (!shellEl) return;
+      shellEl.querySelectorAll(".tc-template-more-guide").forEach((el) => el.remove());
+    }
+
+    function resolveOverflowGridClass(gridEl, opts) {
+      if (opts && opts.gridClass) return opts.gridClass;
+      if (gridEl && gridEl.classList.contains("bp-scene-filter-cards")) {
+        return "bp-scene-filter-cards--row6";
+      }
+      if (gridElUsesFtClass(gridEl)) return "ft-grid--template-row6";
+      return "tc-grid--template-row6";
+    }
+
+    function mountOverflowTemplateGrid(config) {
+      const opts = config || {};
+      const shellEl = opts.shellEl;
+      const gridEl = opts.gridEl;
+      const items = opts.items || [];
+      const buildCard = opts.buildCard;
+      const overlayTitle = opts.overlayTitle || "全部场景模板";
+      const emptyText = opts.emptyText;
+      const gridClass = resolveOverflowGridClass(gridEl, opts);
+
+      if (!shellEl || !gridEl || typeof buildCard !== "function") return;
+
+      clearTemplateGridShellExtras(shellEl);
+      gridEl.innerHTML = "";
+      gridEl.classList.remove("bp-scene-filter-cards--row6", "bp-scene-filter-cards--fit");
+      if (
+        gridEl.classList.contains("bp-scene-filter-cards") &&
+        items.length > 0 &&
+        items.length <= TC_TEMPLATE_VISIBLE_MAX
+      ) {
+        gridEl.classList.add("bp-scene-filter-cards--fit");
+        gridEl.style.setProperty("--scene-card-fit-cols", String(items.length));
+      } else {
+        gridEl.classList.add(gridClass);
+        gridEl.style.removeProperty("--scene-card-fit-cols");
+      }
+
+      if (!items.length) {
+        if (emptyText) {
+          const empty = document.createElement("div");
+          empty.className = "tc-empty";
+          empty.textContent = emptyText;
+          gridEl.appendChild(empty);
+        }
+        return;
+      }
+
+      items.slice(0, TC_TEMPLATE_VISIBLE_MAX).forEach((item, index) => {
+        gridEl.appendChild(buildCard(item, index));
+      });
+
+      if (items.length <= TC_TEMPLATE_VISIBLE_MAX) return;
+
+      const hiddenCount = items.length - TC_TEMPLATE_VISIBLE_MAX;
+      const guide = document.createElement("div");
+      guide.className = "tc-template-more-guide";
+      guide.setAttribute("role", "note");
+      guide.innerHTML =
+        '<div class="tc-template-more-guide__main">' +
+        '<span class="tc-template-more-guide__badge">用户引导</span>' +
+        '<p class="tc-template-more-guide__text">当前仅展示前 <strong>' +
+        TC_TEMPLATE_VISIBLE_MAX +
+        "</strong> 个场景模板，还有 <strong>" +
+        hiddenCount +
+        "</strong> 个未展示。如需浏览全部模板，请点击查看更多。</p>" +
+        "</div>" +
+        '<button type="button" class="tc-template-more-guide__btn">查看更多</button>';
+      guide.querySelector(".tc-template-more-guide__btn").addEventListener("click", () => {
+        openTcTemplateGridOverlay({
+          anchorEl: shellEl,
+          items: items,
+          buildCard: buildCard,
+          title: overlayTitle,
+          gridClass: gridClass,
+          variant:
+            opts.overlayVariant ||
+            (gridEl.classList.contains("bp-scene-filter-cards") ? "scene" : "default"),
+        });
+      });
+      shellEl.appendChild(guide);
+    }
+
+    function openTcTemplateGridOverlay(config) {
+      const opts = config || {};
+      const anchorEl = opts.anchorEl;
+      const items = opts.items || [];
+      const buildCard = opts.buildCard;
+      const title = opts.title || "全部场景模板";
+      const variant =
+        opts.variant ||
+        (anchorEl && anchorEl.querySelector(".bp-scene-filter-cards") ? "scene" : "default");
+      const gridClass =
+        opts.gridClass ||
+        resolveOverflowGridClass(
+          anchorEl && anchorEl.classList.contains("bp-scene-filter-cards")
+            ? anchorEl
+            : anchorEl && anchorEl.querySelector(".bp-scene-filter-cards"),
+          opts
+        );
+      if (!anchorEl || !items.length || typeof buildCard !== "function") return;
+
+      closeTcTemplateGridOverlay(true);
+
+      const rect = anchorEl.getBoundingClientRect();
+      const layer = document.createElement("div");
+      layer.className =
+        "tc-template-float-layer tc-template-float-layer--" +
+        variant;
+      layer.setAttribute("role", "dialog");
+      layer.setAttribute("aria-modal", "true");
+      layer.setAttribute("aria-label", title);
+
+      const backdrop = document.createElement("button");
+      backdrop.type = "button";
+      backdrop.className = "tc-template-float-layer__backdrop";
+      backdrop.setAttribute("aria-label", "关闭模板浮层");
+
+      const panel = document.createElement("div");
+      panel.className = "tc-template-float-layer__panel";
+      panel.style.top = Math.max(8, rect.top) + "px";
+      panel.style.left = Math.max(8, rect.left) + "px";
+      panel.style.width = Math.min(rect.width, window.innerWidth - 16) + "px";
+
+      function bindClose(closeLayer) {
+        backdrop.addEventListener("click", closeLayer);
+        tcTemplateFloatEscHandler = (e) => {
+          if (e.key === "Escape") closeLayer();
+        };
+        document.addEventListener("keydown", tcTemplateFloatEscHandler);
+      }
+
+      if (variant === "scene") {
+        const hubWrap = document.createElement("div");
+        hubWrap.className = "bp-hub--v3 tc-template-float-layer__hub";
+
+        const body = document.createElement("div");
+        body.className = "tc-template-float-layer__body";
+        const fullGrid = document.createElement("div");
+        fullGrid.className =
+          "bp-scene-filter-cards bp-scene-filter-cards--row6 tc-template-float-layer__grid";
+        fullGrid.setAttribute("role", "list");
+        fullGrid.setAttribute("aria-label", "全部场景模板");
+        items.forEach((item, index) => fullGrid.appendChild(buildCard(item, index)));
+        body.appendChild(fullGrid);
+
+        const foot = document.createElement("div");
+        foot.className = "tc-template-float-layer__foot";
+        const collapseBtn = document.createElement("button");
+        collapseBtn.type = "button";
+        collapseBtn.className = "tc-template-float-layer__collapse-btn";
+        collapseBtn.textContent = "收起";
+        collapseBtn.setAttribute("aria-label", "收起场景模板面板");
+        foot.appendChild(collapseBtn);
+
+        hubWrap.appendChild(body);
+        hubWrap.appendChild(foot);
+        panel.appendChild(hubWrap);
+
+        function closeLayer() {
+          closeTcTemplateGridOverlay(false);
+        }
+        collapseBtn.addEventListener("click", closeLayer);
+        bindClose(closeLayer);
+      } else {
+        const head = document.createElement("div");
+        head.className = "tc-template-float-layer__head";
+        const headTitle = document.createElement("h3");
+        headTitle.className = "tc-template-float-layer__title";
+        headTitle.id = "tcTemplateFloatTitle";
+        headTitle.textContent = title + "（共 " + items.length + " 个）";
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "tc-template-float-layer__close";
+        closeBtn.setAttribute("aria-label", "关闭");
+        closeBtn.textContent = "×";
+        head.appendChild(headTitle);
+        head.appendChild(closeBtn);
+
+        const body = document.createElement("div");
+        body.className = "tc-template-float-layer__body";
+        const fullGrid = document.createElement("div");
+        const baseGridClass = anchorEl.classList.contains("bp-scene-filter-cards")
+          ? "bp-scene-filter-cards"
+          : gridElUsesFtClass(anchorEl)
+            ? "ft-grid"
+            : "tc-grid";
+        fullGrid.className = baseGridClass + " " + gridClass + " tc-template-float-layer__grid";
+        items.forEach((item, index) => fullGrid.appendChild(buildCard(item, index)));
+        body.appendChild(fullGrid);
+
+        panel.appendChild(head);
+        panel.appendChild(body);
+
+        function closeLayer() {
+          closeTcTemplateGridOverlay(false);
+        }
+        closeBtn.addEventListener("click", closeLayer);
+        bindClose(closeLayer);
+      }
+
+      layer.appendChild(backdrop);
+      layer.appendChild(panel);
+      document.body.appendChild(layer);
+      tcTemplateFloatLayerEl = layer;
+      lockTcTemplateFloatBodyScroll();
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => layer.classList.add("is-open"));
+      });
+    }
+
+    function gridElUsesFtClass(el) {
+      return !!(el && el.classList && el.classList.contains("ft-grid"));
+    }
+
     function buildPresetTemplateCard(preset) {
       const meta = PRESET_CARD_META[preset.id] || {};
       const card = document.createElement("section");
@@ -22008,6 +22618,8 @@
 
       if (!canvasEl) return;
 
+      closeTcTemplateGridOverlay(true);
+
       try {
       canvasEl.innerHTML = "";
       canvasEl.classList.remove("canvas--physical");
@@ -22161,11 +22773,14 @@
       catPanel.setAttribute("aria-label", "场景筛选");
       const catPanelBody = document.createElement("div");
       catPanelBody.className = "bp-filter-panel__body";
+      const sceneTemplateShell = document.createElement("div");
+      sceneTemplateShell.className = "tc-template-grid-shell bp-scene-template-shell";
       const sceneCardsEl = document.createElement("div");
       sceneCardsEl.className = "bp-scene-filter-cards";
       sceneCardsEl.setAttribute("role", "list");
-      sceneCardsEl.setAttribute("aria-label", "场景与业务域");
-      catPanelBody.appendChild(sceneCardsEl);
+      sceneCardsEl.setAttribute("aria-label", "场景模板");
+      sceneTemplateShell.appendChild(sceneCardsEl);
+      catPanelBody.appendChild(sceneTemplateShell);
       catPanel.appendChild(catPanelBody);
 
       let filterBoardIds = [];
@@ -22425,8 +23040,8 @@
           { bg: "#f7fdfb", iconBg: "#e8faf3", iconColor: "#6ee7b7", iconKey: "models" },
           { bg: "#f8faff", iconBg: "#edf4ff", iconColor: "#93c5fd", iconKey: "boards" },
         ];
-        sceneCardsEl.innerHTML = "";
-        getBpCascadeData().forEach((board, index) => {
+
+        function buildSceneFilterCard(board, index) {
           const tone = sceneCardTones[index % sceneCardTones.length];
           const card = document.createElement("article");
           card.className =
@@ -22450,6 +23065,11 @@
           title.textContent = board.label;
           head.appendChild(icon);
           head.appendChild(title);
+          head.addEventListener("click", (e) => {
+            e.stopPropagation();
+            closeTcTemplateGridOverlay();
+            toggleBoardFilter(board.id);
+          });
 
           const domainsWrap = document.createElement("div");
           domainsWrap.className = "bp-scene-filter-card__domains";
@@ -22461,12 +23081,29 @@
             tag.textContent = domain;
             tag.dataset.domain = domain;
             tag.setAttribute("aria-label", "筛选业务域 " + domain);
+            tag.addEventListener("click", (e) => {
+              e.stopPropagation();
+              closeTcTemplateGridOverlay();
+              toggleDomainFilter(domain);
+            });
             domainsWrap.appendChild(tag);
           });
 
           card.appendChild(head);
           card.appendChild(domainsWrap);
-          sceneCardsEl.appendChild(card);
+          return card;
+        }
+
+        const boards = getBpCascadeData();
+        mountOverflowTemplateGrid({
+          shellEl: sceneTemplateShell,
+          gridEl: sceneCardsEl,
+          items: boards,
+          buildCard: buildSceneFilterCard,
+          gridClass: "bp-scene-filter-cards--row6",
+          overlayVariant: "scene",
+          overlayTitle: "全部场景模板",
+          emptyText: boards.length ? null : "暂无场景模板",
         });
       }
 
@@ -22495,21 +23132,6 @@
         renderAllFilters();
         renderCards();
       }
-
-      sceneCardsEl.addEventListener("click", (e) => {
-        const domainBtn = e.target.closest(".bp-scene-filter-card__domain");
-        if (domainBtn) {
-          e.stopPropagation();
-          toggleDomainFilter(domainBtn.dataset.domain);
-          return;
-        }
-        const headBtn = e.target.closest(".bp-scene-filter-card__head");
-        if (headBtn) {
-          e.stopPropagation();
-          const card = headBtn.closest(".bp-scene-filter-card");
-          if (card && card.dataset.boardId) toggleBoardFilter(card.dataset.boardId);
-        }
-      });
 
       function matchesFilters(item) {
         const bd = resolveBpBoardDomain(item);
