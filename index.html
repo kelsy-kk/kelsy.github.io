@@ -5445,16 +5445,39 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      gap: 10px;
+      padding: 12px 16px 16px;
       background: #f5f7fb;
       overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .tc-top-panel {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e6ebf2;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+      overflow: hidden;
+    }
+
+    .tc-list-panel {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      border: 1px solid #e6ebf2;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
     }
 
     .tc-header {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 14px 20px;
-      border-bottom: 1px solid #e6ebf2;
+      padding: 12px 14px 10px;
       background: #fff;
       flex-shrink: 0;
       flex-wrap: wrap;
@@ -5550,6 +5573,11 @@
       padding: 16px 20px 24px;
     }
 
+    .tc-list-panel .tc-content-wrap {
+      padding: 12px 48px 16px;
+      box-sizing: border-box;
+    }
+
     /* 与新建/编辑业务场景 otb-inner 同宽（1500px + 两侧 48px） */
     .tc-content-wrap {
       padding: 0 48px;
@@ -5564,8 +5592,9 @@
     }
 
     @media (max-width: 960px) {
-      .tc-content-wrap {
-        padding: 0 16px;
+      .tc-content-wrap,
+      .tc-list-panel .tc-content-wrap {
+        padding: 12px 16px 16px;
       }
 
       .tc-inner {
@@ -5573,9 +5602,13 @@
       }
     }
 
+    .tc-top-panel .tc-guide {
+      margin: 0 14px 12px;
+    }
+
     .tc-guide {
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       padding: 16px 18px 14px;
       border: 1px solid #fff1b8;
       background: linear-gradient(135deg, #fffef9 0%, #fffffe 55%, #fff 100%);
@@ -6300,6 +6333,10 @@
       line-height: 1.4;
     }
 
+    .tc-template-grid-shell:not(.is-expanded) .bp-scene-filter-cards {
+      margin-bottom: 0;
+    }
+
     .tc-template-grid-shell.is-expanded .bp-scene-filter-cards {
       margin-bottom: 8px;
     }
@@ -6307,10 +6344,90 @@
     .tc-template-grid-foot {
       display: flex;
       justify-content: center;
-      padding: 0 14px 2px;
+      padding: 0 14px 4px;
     }
 
-    .tc-template-grid-collapse-btn {
+    .tc-template-grid-foot--expand {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 6px;
+      z-index: 5;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    .tc-template-grid-expand-btn {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-width: auto;
+      padding: 5px 12px;
+      margin: 0;
+      border: none;
+      border-radius: 999px;
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.32);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      color: #2563eb;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: none;
+      pointer-events: auto;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .tc-template-grid-expand-btn:hover {
+      background: rgba(255, 255, 255, 0.52);
+      color: #1d4ed8;
+      box-shadow: none;
+      transform: translateY(1px);
+    }
+
+    .tc-template-grid-expand-btn:focus-visible {
+      outline: 2px solid rgba(37, 99, 235, 0.45);
+      outline-offset: 2px;
+    }
+
+    .tc-template-grid-expand-btn__text {
+      letter-spacing: 0.02em;
+    }
+
+    .tc-template-grid-expand-btn__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      animation: tcTemplateExpandArrowBounce 1.35s ease-in-out infinite;
+    }
+
+    .tc-template-grid-expand-btn__arrow svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes tcTemplateExpandArrowBounce {
+      0%,
+      100% {
+        transform: translateY(-1px);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(2px);
+        opacity: 1;
+      }
+    }
+
+    .tc-template-grid-action-btn {
       height: 32px;
       padding: 0 18px;
       border: 1px solid #1677ff;
@@ -6324,7 +6441,7 @@
       transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .tc-template-grid-collapse-btn:hover {
+    .tc-template-grid-action-btn:hover {
       background: #1677ff;
       color: #fff;
     }
@@ -12439,13 +12556,14 @@
       border-radius: 12px;
       background: #fff;
       box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
-      overflow: hidden;
+      overflow: visible;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-hub > .bp-flow-list-panel-head {
       padding: 12px 14px 10px;
       border-bottom: none;
-      background: transparent;
+      background: #fff;
+      border-radius: 12px 12px 0 0;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel--plain {
@@ -12454,12 +12572,49 @@
       margin: 0;
       box-shadow: none;
       overflow: visible;
+      border-radius: 0 0 12px 12px;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel--plain .bp-filter-panel__body {
       display: block;
-      padding: 0 14px 12px;
+      position: relative;
+      padding: 0 14px 10px;
       border-top: none;
+      overflow: visible;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel__body--has-expand {
+      padding-bottom: 6px;
+    }
+
+    .bp-hub--v3 .bp-scene-template-shell {
+      position: relative;
+      margin-bottom: 0;
+      overflow: visible;
+    }
+
+    .bp-hub--v3 .bp-filter-panel__body .tc-template-grid-foot--expand {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 0;
+      transform: translateY(6px);
+      z-index: 6;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    .bp-hub--v3 .bp-filter-panel__body .tc-template-grid-expand-btn {
+      border: none;
+      background: rgba(255, 255, 255, 0.32);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+    }
+
+    .bp-hub--v3 .bp-filter-panel__body .tc-template-grid-expand-btn:hover {
+      background: rgba(255, 255, 255, 0.52);
+      box-shadow: none;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-hub .bp-scene-filter-cards {
@@ -12613,6 +12768,8 @@
       margin-bottom: 0;
     }
 
+    /* bp-scene-template-shell 展开按钮样式见 .bp-hub--v3 .bp-filter-panel__body 规则 */
+
     @media (max-width: 1400px) {
       .bp-hub--v3 .bp-scene-filter-cards.bp-scene-filter-cards--row6 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -12670,23 +12827,23 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
+      width: 24px;
+      height: 24px;
+      border-radius: 0;
       color: var(--scene-card-icon-color);
-      background: var(--scene-card-icon-bg);
-      opacity: 0.92;
+      background: transparent;
+      opacity: 1;
     }
 
     .bp-hub--v3 .bp-scene-filter-card__icon svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0.88;
+      opacity: 1;
     }
 
     .bp-hub--v3 .bp-scene-filter-card__title {
@@ -12695,7 +12852,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 17px;
+      font-size: 13px;
       font-weight: 700;
       line-height: 1.25;
       color: #000;
@@ -13012,6 +13169,10 @@
       padding: 10px 14px;
       border-bottom: 1px solid #eef2f6;
       background: #fbfdff;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-head .bp-section-panel-title {
+      font-size: 18px;
     }
 
     .bp-hub--v3 .bp-section-panel-title {
@@ -23024,45 +23185,62 @@
     function clearTemplateGridShellExtras(shellEl) {
       if (!shellEl) return;
       shellEl.querySelectorAll(".tc-template-more-guide, .tc-template-grid-foot").forEach((el) => el.remove());
+      const host = shellEl.parentElement;
+      if (host) {
+        host.querySelectorAll(":scope > .tc-template-grid-foot").forEach((el) => el.remove());
+        host.classList.remove("bp-filter-panel__body--has-expand");
+      }
       shellEl.classList.remove("is-expanded");
     }
 
-    function appendTemplateGridCollapseBar(shellEl, onCollapse) {
-      if (!shellEl || typeof onCollapse !== "function") return;
+    function resolveTemplateGridExpandHost(shellEl) {
+      if (!shellEl) return shellEl;
+      const parent = shellEl.parentElement;
+      if (parent && parent.classList.contains("bp-filter-panel__body")) return parent;
+      return shellEl;
+    }
+
+    function appendTemplateGridExpandBar(shellEl, onExpand) {
+      if (!shellEl || typeof onExpand !== "function") return;
+      const host = resolveTemplateGridExpandHost(shellEl);
+      if (host.classList.contains("bp-filter-panel__body")) {
+        host.classList.add("bp-filter-panel__body--has-expand");
+      }
+      const foot = document.createElement("div");
+      foot.className = "tc-template-grid-foot tc-template-grid-foot--expand";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "tc-template-grid-expand-btn";
+      btn.setAttribute("aria-label", "展开全部场景模板");
+      btn.innerHTML =
+        '<span class="tc-template-grid-expand-btn__text">展开</span>' +
+        '<span class="tc-template-grid-expand-btn__arrow" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M6 9l6 6 6-6"/>' +
+        "</svg></span>";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        onExpand();
+      });
+      foot.appendChild(btn);
+      host.appendChild(foot);
+    }
+
+    function appendTemplateGridActionBar(shellEl, label, ariaLabel, onClick) {
+      if (!shellEl || typeof onClick !== "function") return;
       const foot = document.createElement("div");
       foot.className = "tc-template-grid-foot";
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "tc-template-grid-collapse-btn";
-      btn.textContent = "收起";
-      btn.setAttribute("aria-label", "收起场景模板");
+      btn.className = "tc-template-grid-action-btn";
+      btn.textContent = label;
+      btn.setAttribute("aria-label", ariaLabel || label);
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        onCollapse();
+        onClick();
       });
       foot.appendChild(btn);
       shellEl.appendChild(foot);
-    }
-
-    function appendTemplateCardMoreOverlay(card, hiddenCount, onExpand) {
-      if (!card || hiddenCount <= 0) return;
-      card.classList.add("tc-template-card--has-more");
-      const overlay = document.createElement("button");
-      overlay.type = "button";
-      overlay.className = "tc-template-card-more-overlay";
-      overlay.setAttribute("aria-label", "点击查看更多，展开全部场景模板");
-      overlay.innerHTML =
-        '<span class="tc-template-card-more-overlay__title">点击查看更多</span>' +
-        '<span class="tc-template-card-more-overlay__sub">展开全部场景模板</span>' +
-        '<span class="tc-template-card-more-overlay__count">还有 ' +
-        hiddenCount +
-        " 个未展示</span>";
-      overlay.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onExpand();
-      });
-      card.appendChild(overlay);
     }
 
     function resolveOverflowGridClass(gridEl, opts) {
@@ -23086,7 +23264,6 @@
       if (!shellEl || !gridEl || typeof buildCard !== "function") return;
 
       const hasMore = items.length > TC_TEMPLATE_VISIBLE_MAX;
-      const hiddenCount = hasMore ? items.length - TC_TEMPLATE_VISIBLE_MAX : 0;
 
       function mountGrid(expanded) {
         closeTcTemplateGridOverlay(true);
@@ -23111,7 +23288,7 @@
           gridEl.classList.add(gridClass);
           gridEl.style.removeProperty("--scene-card-fit-cols");
           items.forEach((item, index) => gridEl.appendChild(buildCard(item, index)));
-          appendTemplateGridCollapseBar(shellEl, () => mountGrid(false));
+          appendTemplateGridActionBar(shellEl, "收起", "收起场景模板", () => mountGrid(false));
           return;
         }
 
@@ -23130,12 +23307,11 @@
 
         const visibleItems = hasMore ? items.slice(0, TC_TEMPLATE_VISIBLE_MAX) : items;
         visibleItems.forEach((item, index) => {
-          const card = buildCard(item, index);
-          if (hasMore && index === TC_TEMPLATE_VISIBLE_MAX - 1) {
-            appendTemplateCardMoreOverlay(card, hiddenCount, () => mountGrid(true));
-          }
-          gridEl.appendChild(card);
+          gridEl.appendChild(buildCard(item, index));
         });
+        if (hasMore) {
+          appendTemplateGridExpandBar(shellEl, () => mountGrid(true));
+        }
       }
 
       const initiallyExpanded = hasMore && shellEl.dataset.tcTemplateExpanded === "1";
@@ -23621,8 +23797,12 @@
       header.appendChild(searchWrap);
       header.appendChild(backBtn);
 
-      const body = document.createElement("div");
-      body.className = "tc-body";
+      const topPanel = document.createElement("div");
+      topPanel.className = "tc-top-panel";
+      topPanel.appendChild(header);
+
+      const listPanel = document.createElement("div");
+      listPanel.className = "tc-list-panel";
 
       const guide = document.createElement("section");
       guide.className = "tc-guide";
@@ -23671,7 +23851,7 @@
         syncTcSceneGuideVisible();
       });
       guide.appendChild(guideCloseBtn);
-      body.appendChild(guide);
+      topPanel.appendChild(guide);
       syncTcSceneGuideVisible();
 
       const presetSection = document.createElement("section");
@@ -23721,9 +23901,9 @@
       contentInner.appendChild(presetSection);
       contentInner.appendChild(customSection);
       contentWrap.appendChild(contentInner);
-      body.appendChild(contentWrap);
-      root.appendChild(header);
-      root.appendChild(body);
+      listPanel.appendChild(contentWrap);
+      root.appendChild(topPanel);
+      root.appendChild(listPanel);
       canvasEl.appendChild(root);
 
       const tcUserIcon =
