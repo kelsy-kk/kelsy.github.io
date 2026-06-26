@@ -3990,6 +3990,36 @@
       text-align: center;
     }
 
+    .op-flow-section-title-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      max-width: calc(100% - 48px);
+    }
+
+    .op-flow-section-title-wrap .op-flow-view-all-res {
+      margin-left: 0;
+      flex-shrink: 0;
+    }
+
+    .op-flow-view-all-res-count {
+      flex-shrink: 0;
+      font-size: 10px;
+      line-height: 1.2;
+      padding: 1px 5px;
+      border-radius: 10px;
+      background: #f0f5ff;
+      color: #1677ff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .op-flow-view-all-res-count.is-overflow {
+      background: #fff7e6;
+      color: #fa8c16;
+    }
+
     .op-flow-section--active {
       margin: 0 -8px;
       padding: 8px;
@@ -4117,6 +4147,7 @@
     }
 
     .op-flow-node--action .op-flow-node-label {
+      flex-shrink: 0;
       font-size: 13px;
       font-weight: 500;
       color: #1890ff;
@@ -4182,6 +4213,39 @@
     .op-flow-node--nested.op-flow-node--resource .op-flow-node-label {
       font-size: 12px;
       font-weight: 500;
+    }
+
+    .op-flow-node--action {
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .op-flow-view-all-res {
+      flex-shrink: 0;
+      margin-left: 6px;
+      padding: 0;
+      border: none;
+      background: none;
+      color: #1677ff;
+      font-size: 10px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .op-flow-view-all-res:hover {
+      text-decoration: underline;
+    }
+
+    .op-flow-view-all-res.is-highlight {
+      font-weight: 600;
+    }
+
+    .op-flow-res-overflow-tip {
+      flex-shrink: 0;
+      margin-left: 4px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #fa8c16;
     }
 
     .rd-root {
@@ -4753,14 +4817,15 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #4338ca;
-      font-size: 11px;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 3px;
+      border: 1px solid #ffe58f;
+      background: #fffbe6;
+      color: #d48806;
+      font-size: 10px;
       font-weight: 700;
-      line-height: 22px;
+      line-height: 18px;
       z-index: 2;
     }
 
@@ -5400,11 +5465,58 @@
       min-width: 180px;
     }
 
+    .tc-header-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .tc-header-main h1 {
       margin: 0;
       font-size: 18px;
       font-weight: 800;
       color: #1f2937;
+    }
+
+    .tc-guide-toggle {
+      flex-shrink: 0;
+      height: 20px;
+      padding: 0 6px;
+      border: 1px solid #ffe58f;
+      border-radius: 3px;
+      background: #fffbe6;
+      color: #d48806;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .tc-guide-toggle:hover {
+      background: #fff1b8;
+      border-color: #ffd666;
+      color: #ad6800;
+    }
+
+    .tc-guide-toggle.is-active {
+      background: #faad14;
+      border-color: #faad14;
+      color: #fff;
+    }
+
+    .tc-guide-toggle.is-active:hover {
+      background: #d48806;
+      border-color: #d48806;
+      color: #fff;
+    }
+
+    .tc-guide-toggle:focus-visible {
+      outline: 2px solid rgba(250, 173, 20, 0.4);
+      outline-offset: 2px;
     }
 
     .tc-search-wrap {
@@ -5462,11 +5574,43 @@
     }
 
     .tc-guide {
+      position: relative;
       margin-bottom: 20px;
       padding: 16px 18px 14px;
-      border: 1px solid #bae0ff;
-      background: linear-gradient(135deg, #f0f7ff 0%, #fafbff 55%, #fff 100%);
-      box-shadow: 0 2px 12px rgba(24, 144, 255, 0.08);
+      border: 1px solid #fff1b8;
+      background: linear-gradient(135deg, #fffef9 0%, #fffffe 55%, #fff 100%);
+      box-shadow: 0 2px 10px rgba(250, 173, 20, 0.06);
+    }
+
+    .tc-guide[hidden] {
+      display: none;
+    }
+
+    .tc-guide-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #ad8b00;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .tc-guide-close:hover {
+      background: rgba(250, 173, 20, 0.14);
+      color: #d48806;
+    }
+
+    .tc-guide-close:focus-visible {
+      outline: 2px solid rgba(250, 173, 20, 0.45);
+      outline-offset: 1px;
     }
 
     .tc-guide-head {
@@ -5474,16 +5618,19 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 10px;
+      padding-right: 28px;
     }
 
     .tc-guide-badge {
       display: inline-flex;
       align-items: center;
-      height: 22px;
-      padding: 0 8px;
-      background: #1677ff;
+      height: 20px;
+      padding: 0 7px;
+      border: 1px solid #ffe58f;
+      border-radius: 3px;
+      background: #faad14;
       color: #fff;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.02em;
       flex-shrink: 0;
@@ -5493,14 +5640,19 @@
       margin: 0;
       font-size: 15px;
       font-weight: 800;
-      color: #1f2937;
+      color: #ad6800;
     }
 
     .tc-guide-lead {
       margin: 0 0 12px;
       font-size: 13px;
-      color: #475467;
+      color: #1f1f1f;
       line-height: 1.65;
+    }
+
+    .tc-guide-lead strong {
+      color: #000;
+      font-weight: 700;
     }
 
     .tc-guide-list {
@@ -5514,27 +5666,28 @@
 
     .tc-guide-item {
       padding: 12px 14px;
-      border: 1px solid rgba(22, 119, 255, 0.12);
-      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(250, 173, 20, 0.16);
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 4px;
     }
 
     .tc-guide-item-title {
       margin: 0 0 6px;
       font-size: 13px;
       font-weight: 800;
-      color: #1677ff;
+      color: #d48806;
       line-height: 1.4;
     }
 
     .tc-guide-item-text {
       margin: 0;
       font-size: 12px;
-      color: #667085;
+      color: #1f1f1f;
       line-height: 1.6;
     }
 
     .tc-guide-item-text strong {
-      color: #344054;
+      color: #000;
       font-weight: 700;
     }
 
@@ -5642,6 +5795,14 @@
       margin-bottom: 12px;
     }
 
+    .tc-card-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
     .tc-card-title {
       margin: 0;
       flex: 1;
@@ -5655,17 +5816,22 @@
 
     .tc-badge {
       flex-shrink: 0;
-      height: 22px;
-      padding: 0 8px;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 22px;
+      height: 20px;
+      padding: 0 6px;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 18px;
       white-space: nowrap;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      box-sizing: border-box;
     }
 
-    .tc-badge--preset {
-      background: #eff6ff;
-      color: #1d4ed8;
+    .tc-badge--preset,
+    .tc-badge--custom {
+      border-color: #ffe58f;
+      background: #fffbe6;
+      color: #d48806;
     }
 
     .tc-badge--online {
@@ -6079,70 +6245,63 @@
       position: relative;
     }
 
+    .tc-template-card--has-more {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tc-template-card-more-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px;
+      margin: 0;
+      border: none;
+      border-radius: inherit;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(2px);
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease;
+    }
+
+    .tc-template-card-more-overlay:hover {
+      background: rgba(248, 251, 255, 0.9);
+    }
+
+    .tc-template-card-more-overlay:focus-visible {
+      outline: 2px solid rgba(37, 99, 235, 0.45);
+      outline-offset: -2px;
+    }
+
+    .tc-template-card-more-overlay__title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1d4ed8;
+      line-height: 1.35;
+    }
+
+    .tc-template-card-more-overlay__sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1f1f1f;
+      line-height: 1.45;
+    }
+
+    .tc-template-card-more-overlay__count {
+      font-size: 11px;
+      font-weight: 600;
+      color: #2563eb;
+      line-height: 1.4;
+    }
+
     .tc-template-grid-add {
       margin-top: 12px;
-    }
-
-    .tc-template-more-guide {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 12px;
-      padding: 12px 14px;
-      border: 1px dashed #91caff;
-      background: linear-gradient(90deg, #f0f7ff 0%, #fafcff 100%);
-    }
-
-    .tc-template-more-guide__main {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .tc-template-more-guide__badge {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      height: 22px;
-      padding: 0 8px;
-      background: #1677ff;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .tc-template-more-guide__text {
-      margin: 0;
-      font-size: 13px;
-      color: #475467;
-      line-height: 1.55;
-    }
-
-    .tc-template-more-guide__text strong {
-      color: #1677ff;
-      font-weight: 700;
-    }
-
-    .tc-template-more-guide__btn {
-      flex-shrink: 0;
-      height: 32px;
-      padding: 0 14px;
-      border: 1px solid #1677ff;
-      background: #fff;
-      color: #1677ff;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-
-    .tc-template-more-guide__btn:hover {
-      background: #1677ff;
-      color: #fff;
     }
 
     .tc-template-float-layer {
@@ -6351,11 +6510,6 @@
       .tc-grid--template-row6,
       .ft-grid.ft-grid--template-row6 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .tc-template-more-guide {
-        flex-direction: column;
-        align-items: stretch;
       }
     }
 
@@ -9154,6 +9308,13 @@
       border-top: none;
       background: #fff;
       box-shadow: 0 4px 16px rgba(16, 24, 40, 0.05);
+    }
+
+    main.main--workspace .panel-nav {
+      overflow: visible;
+    }
+
+    main.main--workspace .op-flow-aside {
       overflow: hidden;
     }
 
@@ -9169,28 +9330,88 @@
       padding: 16px 14px 14px;
       background: linear-gradient(180deg, #edf4ff 0%, #ffffff 100%);
       border-bottom: 1px solid rgba(37, 99, 235, 0.12);
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .nav-panel-collapse-btn {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      padding: 0;
-      border: 1px solid rgba(37, 99, 235, 0.18);
-      border-radius: 8px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      width: 22px;
+      height: 56px;
+      padding: 6px 0;
+      border: 1px solid rgba(37, 99, 235, 0.28);
+      border-left: none;
+      border-radius: 0 10px 10px 0;
       background: #fff;
       color: #2563eb;
-      font-size: 16px;
+      font: inherit;
       line-height: 1;
       cursor: pointer;
-      transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+      box-shadow: 2px 0 10px rgba(37, 99, 235, 0.12);
+      transform: translate(50%, -50%);
+      transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .nav-panel-collapse-btn__chev {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .nav-panel-collapse-btn__tip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      line-height: 1;
+      color: #3b82f6;
+    }
+
+    @keyframes nav-panel-collapse-hint {
+      0%,
+      100% {
+        box-shadow: 2px 0 10px rgba(37, 99, 235, 0.12);
+        transform: translate(50%, -50%);
+      }
+      45% {
+        box-shadow:
+          0 0 0 4px rgba(37, 99, 235, 0.1),
+          2px 0 16px rgba(37, 99, 235, 0.28);
+        transform: translate(calc(50% - 4px), -50%);
+      }
+      60% {
+        transform: translate(calc(50% - 2px), -50%);
+      }
+    }
+
+    main.main--workspace .panel-nav:not(.is-collapsed) .nav-panel-collapse-btn {
+      animation: nav-panel-collapse-hint 2.4s ease-in-out infinite;
+    }
+
+    main.main--workspace .panel-nav:not(.is-collapsed) .nav-panel-collapse-btn:hover,
+    main.main--workspace .panel-nav:not(.is-collapsed) .nav-panel-collapse-btn:focus-visible {
+      animation: none;
     }
 
     .nav-panel-collapse-btn:hover {
       background: #eff6ff;
-      border-color: rgba(37, 99, 235, 0.35);
+      border-color: rgba(37, 99, 235, 0.45);
       color: #1d4ed8;
+      box-shadow: 2px 0 14px rgba(37, 99, 235, 0.22);
+    }
+
+    main.main--workspace .panel-nav.is-collapsed .nav-panel-collapse-btn {
+      animation: none;
+      transform: translate(50%, -50%);
+      height: 44px;
     }
 
     .nav-panel-body {
@@ -9721,6 +9942,239 @@
       font-size: 13px;
       line-height: 1.6;
       max-width: 360px;
+    }
+
+    .canvas.canvas--bp-overview {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      padding: 16px 18px 14px;
+      background: #f5f7fb;
+      overflow: hidden;
+    }
+
+    .bp-ws-overview {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      gap: 12px;
+    }
+
+    .bp-ws-overview-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .bp-ws-overview-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #e8ebf0;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+
+    .bp-ws-overview-card:hover {
+      border-color: #91caff;
+    }
+
+    .bp-ws-overview-card.is-active {
+      border-color: #1677ff;
+      background: #f0f7ff;
+      box-shadow: 0 0 0 1px rgba(22, 119, 255, 0.15);
+    }
+
+    .bp-ws-overview-card-name {
+      flex: 1;
+      min-width: 0;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bp-ws-overview-card-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .bp-ws-overview-card-stat-label {
+      color: #52c41a;
+      font-weight: 500;
+    }
+
+    .bp-ws-overview-card-stat-num {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1677d2;
+      line-height: 1;
+    }
+
+    .bp-ws-overview-card-stat-num.is-zero {
+      color: #1677d2;
+      font-size: 15px;
+    }
+
+    .bp-ws-overview-panel {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e8ebf0;
+      border-radius: 4px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .bp-ws-overview-panel-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      flex-shrink: 0;
+    }
+
+    .bp-ws-overview-panel-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .bp-ws-overview-search {
+      width: 220px;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 6px 10px 6px 30px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23bfbfbf' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") 10px center no-repeat;
+    }
+
+    .bp-ws-overview-search:focus {
+      outline: none;
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .bp-ws-overview-table-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .bp-ws-overview-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .bp-ws-overview-table th,
+    .bp-ws-overview-table td {
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      white-space: nowrap;
+    }
+
+    .bp-ws-overview-table th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .bp-ws-overview-table tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .bp-ws-overview-table .col-fail {
+      max-width: 200px;
+      white-space: normal;
+      word-break: break-all;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+    }
+
+    .bp-ws-overview-empty {
+      padding: 48px 16px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 13px;
+    }
+
+    .bp-ws-overview-pager {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 10px 16px;
+      border-top: 1px solid #f0f0f0;
+      flex-shrink: 0;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .bp-ws-overview-pager select {
+      padding: 4px 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 13px;
+      background: #fff;
+    }
+
+    .bp-ws-overview-pager-btns {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .bp-ws-overview-pager-btns button {
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .bp-ws-overview-pager-btns button:hover:not(:disabled) {
+      border-color: #1677ff;
+      color: #1677ff;
+    }
+
+    .bp-ws-overview-pager-btns button.is-active {
+      border-color: #1677ff;
+      color: #1677ff;
+      font-weight: 600;
+    }
+
+    .bp-ws-overview-pager-btns button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
     }
 
     .panel,
@@ -12081,6 +12535,7 @@
       align-items: stretch;
       gap: 12px;
       width: 100%;
+      margin-top: 1px;
       margin-bottom: 12px;
     }
 
@@ -12130,16 +12585,16 @@
     }
 
     .bp-hub--v3 .bp-scene-filter-card {
-      --scene-card-bg: #f8fafc;
-      --scene-card-icon-bg: #eef2f6;
-      --scene-card-icon-color: #94a3b8;
+      --scene-card-bg: #f8fbff;
+      --scene-card-icon-bg: #e6f4ff;
+      --scene-card-icon-color: #2563eb;
       flex: 1 1 0;
       min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
       padding: 14px;
-      border: 1px solid rgba(226, 232, 240, 0.9);
+      border: 1px solid rgba(191, 219, 254, 0.85);
       border-radius: 14px;
       background: var(--scene-card-bg);
       color: #000;
@@ -12147,8 +12602,8 @@
     }
 
     .bp-hub--v3 .bp-scene-filter-card.is-active {
-      border-color: #bfdbfe;
-      box-shadow: 0 0 0 2px rgba(191, 219, 254, 0.45);
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 2px rgba(147, 197, 253, 0.45);
     }
 
     .bp-hub--v3 .bp-scene-filter-card__head {
@@ -14184,10 +14639,11 @@
         class="ws-resource-auto-help"
         id="wsResourceAutoHelp"
         aria-label="资源节点计入说明"
-        data-tip="打开此开关后：① 打开的资源会自动记入流程；② 页面操作（详情、提交等）统一归入「其他操作」，相关资源追加在其下；「新建」类操作仍单独展示。已记入节点支持删除。"
+        data-tip="打开此开关后，列表多选勾选的资源会记入右侧流程，统一归入「相关资源」分组；已记入节点支持删除。页面操作（详情、提交、新建等）不会自动计入。"
       >?</button>
     </div>
     <div class="workspace-toolbar__op">
+      <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarAllResources">全部资源</button>
       <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarNewFlow">新建流程</button>
       <button type="button" class="ws-toolbar-btn ws-toolbar-btn--ghost" id="wsToolbarAllFlows">所有流程</button>
       <span class="op-flow-save-wrap" id="opFlowSaveWrap">
@@ -14202,14 +14658,6 @@
     <aside class="panel panel-nav" id="panelNav" aria-label="操作导航">
       <div class="panel-head">
         <span class="panel-head-label">操作导航</span>
-        <button
-          type="button"
-          class="nav-panel-collapse-btn"
-          id="navPanelCollapseBtn"
-          aria-label="收起操作导航"
-          aria-expanded="true"
-          title="收起操作导航"
-        >‹</button>
       </div>
       <div class="nav-panel-body" id="navPanelBody">
       <div class="nav-search" aria-label="导航搜索">
@@ -14257,6 +14705,17 @@
           </svg>
         </span>
         <span class="nav-panel-collapsed-hint__text">如果需要其他操作或者使用全局搜索，请点击此处</span>
+      </button>
+      <button
+        type="button"
+        class="nav-panel-collapse-btn"
+        id="navPanelCollapseBtn"
+        aria-label="收起操作导航"
+        aria-expanded="true"
+        title="收起操作导航"
+      >
+        <span class="nav-panel-collapse-btn__chev" aria-hidden="true">‹</span>
+        <span class="nav-panel-collapse-btn__tip">收起</span>
       </button>
     </aside>
 
@@ -15041,6 +15500,7 @@
     const workspaceToolbarTitleEl = document.getElementById("workspaceToolbarTitle");
     const navBackToListEl = document.getElementById("navBackToList");
     const wsToolbarNewFlowEl = document.getElementById("wsToolbarNewFlow");
+    const wsToolbarAllResourcesEl = document.getElementById("wsToolbarAllResources");
     const wsToolbarAllFlowsEl = document.getElementById("wsToolbarAllFlows");
     const wsToolbarExitEl = document.getElementById("wsToolbarExit");
 
@@ -15166,6 +15626,14 @@
     /** 工作台顶栏展示的流程/模板标题 */
     let workspaceFlowTitle = "";
     let opFlowBusinessEditing = false;
+    /** 已有流程进入工作台：中间画布展示资源概览（非首模块功能页） */
+    let bpWorkspaceResourceOverview = false;
+    let bpOverviewModuleIndex = 0;
+    let bpOverviewSearchQuery = "";
+    let bpOverviewPage = 1;
+    const BP_OVERVIEW_PAGE_SIZE = 15;
+    /** 右侧操作流程：小操作下最多展示的资源条数，超出则提示查看全部 */
+    const OP_FLOW_SIDEBAR_RESOURCE_MAX = 5;
     /** 资源节点自动计入流程（顶栏开关，默认开启） */
     const OP_FLOW_RESOURCE_AUTO_KEY = "bp_op_flow_resource_auto_include_v1";
     let opFlowResourceAutoInclude = true;
@@ -15244,7 +15712,13 @@
           collapsed ? "展开操作导航" : "收起操作导航"
         );
         navPanelCollapseBtnEl.title = collapsed ? "展开操作导航" : "收起操作导航";
-        navPanelCollapseBtnEl.textContent = collapsed ? "›" : "‹";
+        const chev = navPanelCollapseBtnEl.querySelector(".nav-panel-collapse-btn__chev");
+        const tip = navPanelCollapseBtnEl.querySelector(".nav-panel-collapse-btn__tip");
+        if (chev) chev.textContent = collapsed ? "›" : "‹";
+        if (tip) {
+          tip.textContent = collapsed ? "展开" : "收起";
+          tip.hidden = collapsed;
+        }
       }
     }
 
@@ -16152,21 +16626,10 @@
       devPathFlowState.nodeKinds = nodeKinds ? nodeKinds.slice() : [];
     }
 
-    const OP_FLOW_OTHER_ACTION_LABEL = "其他操作";
+    const OP_FLOW_RELATED_RESOURCE_LABEL = "相关资源";
 
-    function isOpFlowNewActionLabel(label) {
-      const text = normalizeOpFlowActionLabel(String(label || "").trim());
-      if (!text) return false;
-      if (text === "新建" || text === "+") return true;
-      if (/^新建/.test(text) || /^创建/.test(text)) return true;
-      if (text === "DDL新建") return true;
-      return false;
-    }
-
-    function resolveOpFlowPageActionLabel(actionLabel) {
-      const normalized = normalizeOpFlowActionLabel(actionLabel);
-      if (isOpFlowNewActionLabel(normalized)) return normalized;
-      return OP_FLOW_OTHER_ACTION_LABEL;
+    function isOpFlowRelatedResourceLabel(label) {
+      return normalizeOpFlowActionLabel(String(label || "")) === OP_FLOW_RELATED_RESOURCE_LABEL;
     }
 
     function normalizeOpFlowActionLabel(label) {
@@ -16202,41 +16665,14 @@
       return false;
     }
 
-    /**
-     * 统一追加模块流程节点。
-     * 资源节点计入开启时：打开资源会记录 resource；点击操作按钮会追加 action，
-     * 并将当前资源名称作为子节点挂在该操作下。同名操作不重复，资源追加到已有操作下。
-     */
-    function appendLeafFlowNode(leafId, label, kind, options) {
+    /** 列表多选计入：将资源追加到「相关资源」分组下 */
+    function appendRelatedResourceToFlow(leafId, resourceName, options) {
       const opts = options || {};
-      let cleanLabel = String(label || "").trim();
-      if (!cleanLabel || !leafId) return;
+      const attachResource = String(resourceName || "").trim();
+      if (!attachResource || !leafId || !opFlowResourceAutoInclude) return;
+      if (!isProcessDevWorkspace()) return;
 
-      let attachResource = "";
-
-      if (kind === "resource") {
-        if (!opFlowResourceAutoInclude) return;
-        attachResource = cleanLabel;
-        setOpFlowCurrentResource(leafId, cleanLabel);
-      } else {
-        if (opts.resourceName) {
-          attachResource = String(opts.resourceName).trim();
-          if (attachResource) setOpFlowCurrentResource(leafId, attachResource);
-        } else if (opFlowResourceAutoInclude) {
-          const parts = cleanLabel.split(" · ");
-          if (parts.length >= 2) {
-            attachResource = parts.slice(0, -1).join(" · ").trim();
-            if (attachResource) setOpFlowCurrentResource(leafId, attachResource);
-          } else {
-            attachResource = getOpFlowCurrentResource(leafId);
-          }
-        }
-        cleanLabel = normalizeOpFlowActionLabel(cleanLabel);
-        if (!opts.keepActionLabel && !isOpFlowNewActionLabel(cleanLabel)) {
-          cleanLabel = OP_FLOW_OTHER_ACTION_LABEL;
-        }
-      }
-
+      setOpFlowCurrentResource(leafId, attachResource);
       selectedLeafId = leafId;
       centerOverride = null;
       ensureTrailingOpFlowVisit(leafId);
@@ -16245,54 +16681,21 @@
       if (!state.nodes) state.nodes = [];
       if (!state.nodeKinds) state.nodeKinds = [];
 
-      if (kind === "action") {
-        const lastIdx = state.nodes.length - 1;
+      const cleanLabel = OP_FLOW_RELATED_RESOURCE_LABEL;
+      const existingIdx = findOpFlowActionIndexByLabel(state.nodes, state.nodeKinds, cleanLabel);
+
+      if (existingIdx >= 0) {
         if (
-          opFlowResourceAutoInclude &&
-          attachResource &&
-          lastIdx >= 0 &&
-          state.nodeKinds[lastIdx] === "resource" &&
-          state.nodes[lastIdx] === attachResource
+          !opFlowActionHasResource(state.nodes, state.nodeKinds, existingIdx, attachResource)
         ) {
-          state.nodes.pop();
-          state.nodeKinds.pop();
-        }
-
-        const existingIdx = findOpFlowActionIndexByLabel(
-          state.nodes,
-          state.nodeKinds,
-          cleanLabel
-        );
-
-        if (existingIdx >= 0) {
-          if (
-            opFlowResourceAutoInclude &&
-            attachResource &&
-            !opFlowActionHasResource(
-              state.nodes,
-              state.nodeKinds,
-              existingIdx,
-              attachResource
-            )
-          ) {
-            const insertAt = findOpFlowActionGroupEnd(
-              state.nodes,
-              state.nodeKinds,
-              existingIdx
-            );
-            state.nodes.splice(insertAt, 0, attachResource);
-            state.nodeKinds.splice(insertAt, 0, "resource");
-          }
-        } else {
-          state.nodes.push(cleanLabel);
-          state.nodeKinds.push("action");
-          if (opFlowResourceAutoInclude && attachResource) {
-            state.nodes.push(attachResource);
-            state.nodeKinds.push("resource");
-          }
+          const insertAt = findOpFlowActionGroupEnd(state.nodes, state.nodeKinds, existingIdx);
+          state.nodes.splice(insertAt, 0, attachResource);
+          state.nodeKinds.splice(insertAt, 0, "resource");
         }
       } else {
         state.nodes.push(cleanLabel);
+        state.nodeKinds.push("action");
+        state.nodes.push(attachResource);
         state.nodeKinds.push("resource");
       }
 
@@ -16300,43 +16703,28 @@
       if (leafId === "physical-modeling") {
         syncDevPathFlowResourceNodes(leafId, state.nodes, state.nodeKinds);
       }
-
       renderOperationFlow();
-      const prefix = opts.opListPrefix || getNavLeafLabel(leafId) || "模块";
-      const opText = kind === "action" ? cleanLabel : String(label || "").trim();
-      appendOperation({
-        id: (opts.opIdPrefix || "flow-") + Date.now(),
-        label: prefix + " · " + opText,
-      });
     }
 
-    /** 页面操作按钮记入流程：非「新建」类操作统一归入「其他操作」，资源挂在其下 */
-    function recordOpFlowPageAction(leafId, actionLabel, resourceName, options) {
-      if (!isProcessDevWorkspace() || !leafId || !actionLabel) return;
-      const action = resolveOpFlowPageActionLabel(actionLabel);
-      const res = String(resourceName || getOpFlowCurrentResource(leafId) || "").trim();
-      appendLeafFlowNode(leafId, action, "action", {
-        ...(options || {}),
-        resourceName: res || undefined,
-      });
+    function resolveOpFlowTableRowResourceName(tr) {
+      if (!tr) return "";
+      const nameCell = tr.querySelector("td.col-name");
+      if (nameCell) {
+        return String(nameCell.textContent || "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+      const cells = tr.querySelectorAll("td");
+      if (cells.length >= 3) {
+        const text = String(cells[2].textContent || "").trim();
+        if (text && text !== "—") return text;
+      }
+      return "";
     }
 
-    /** 打开/选中资源时记入流程：资源追加到「其他操作」下（仅资源节点计入开启时） */
-    function recordOpFlowResourceOpen(leafId, resourceName, options) {
-      if (!isProcessDevWorkspace() || !leafId || !resourceName) return;
-      if (!opFlowResourceAutoInclude) return;
-      appendLeafFlowNode(leafId, OP_FLOW_OTHER_ACTION_LABEL, "action", {
-        ...(options || {}),
-        resourceName: resourceName,
-      });
-    }
-
-    function appendOfflineInstanceFlowNode(label, kind, options) {
-      appendLeafFlowNode("offline-integration-instance", label, kind, {
-        ...(options || {}),
-        opListPrefix: "离线实例",
-        opIdPrefix: "oii-flow-",
-      });
+    function recordOpFlowTableCheckboxSelection(leafId, resourceName, options) {
+      if (!resourceName) return;
+      appendRelatedResourceToFlow(leafId, resourceName, options);
     }
 
     function mountOiiPagination(pagesEl, totalPages, currentPage, onGo) {
@@ -16436,14 +16824,6 @@
       }));
     }
 
-    function appendRealtimeInstanceFlowNode(label, kind, options) {
-      appendLeafFlowNode("realtime-integration-instance", label, kind, {
-        ...(options || {}),
-        opListPrefix: "实时实例",
-        opIdPrefix: "rii-flow-",
-      });
-    }
-
     const odiInstanceTemplates = [
       { name: "履职保障_项目检查明细", status: "running", owner: "程伟强", runMode: "调度运行", scheduleTime: "2026-06-08 16:13:50", startTime: "2026-06-08 16:13:51", endTime: "-", successCount: "-" },
       { name: "合同签订-劳务人员明细", status: "success", owner: "程伟强", runMode: "调度运行", scheduleTime: "2026-06-08 16:13:00", startTime: "2026-06-08 16:13:01", endTime: "2026-06-08 16:13:18", successCount: 1 },
@@ -16468,14 +16848,6 @@
         ...tpl,
         id: String(5216812 - pageStart - i),
       }));
-    }
-
-    function appendOfflineDevInstanceFlowNode(label, kind, options) {
-      appendLeafFlowNode("offline-dev-instance", label, kind, {
-        ...(options || {}),
-        opListPrefix: "离线实例",
-        opIdPrefix: "odi-flow-",
-      });
     }
 
     const ritTaskTemplates = [
@@ -16512,14 +16884,6 @@
       return ritTaskTemplates.map((tpl) => ({ ...tpl }));
     }
 
-    function appendRealtimeTaskFlowNode(label, kind, options) {
-      appendLeafFlowNode("realtime-integration-task", label, kind, {
-        ...(options || {}),
-        opListPrefix: "实时任务",
-        opIdPrefix: "rit-flow-",
-      });
-    }
-
     const rdtTaskTemplates = [
       {
         name: "劳务_mongo_glm_attendance_result_sync",
@@ -16547,14 +16911,6 @@
 
     function rdtBuildPageRows() {
       return rdtTaskTemplates.map((tpl) => ({ ...tpl }));
-    }
-
-    function appendRealtimeDevTaskFlowNode(label, kind, options) {
-      appendLeafFlowNode("realtime-dev-task", label, kind, {
-        ...(options || {}),
-        opListPrefix: "实时任务",
-        opIdPrefix: "rdt-flow-",
-      });
     }
 
     const rdiInstanceTemplates = [
@@ -16637,14 +16993,6 @@
       }));
     }
 
-    function appendRealtimeDevInstanceFlowNode(label, kind, options) {
-      appendLeafFlowNode("realtime-dev-instance", label, kind, {
-        ...(options || {}),
-        opListPrefix: "实时实例",
-        opIdPrefix: "rdi-flow-",
-      });
-    }
-
     const businessKnowledgeRows = [
       { name: "合同模板类型", type: "域模型" },
       { name: "测试集团对各", type: "业务对象" },
@@ -16685,6 +17033,13 @@
 
     const opFlowIconDb = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.5" fill="#1890ff"/><path d="M5 6v5c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5V6" stroke="#1890ff" stroke-width="1.2" fill="none"/><path d="M5 11v5c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5V11" stroke="#1890ff" stroke-width="1.2" fill="none"/></svg>`;
     const opFlowIconDoc = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z" fill="#1890ff" stroke="#1890ff" stroke-width="0.5"/><path d="M14 2v6h6" fill="none" stroke="#fff" stroke-width="1" opacity="0.9"/></svg>`;
+    const opFlowIconFolder = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2Z" fill="#faad14" stroke="#d48806" stroke-width="0.6"/></svg>`;
+
+    function getOpFlowTimelineIcon(label, kind) {
+      if (kind === "resource") return opFlowIconDoc;
+      if (isOpFlowRelatedResourceLabel(label)) return opFlowIconFolder;
+      return opFlowIconDb;
+    }
 
     function flowStepCount() {
       if (devPathFlowState && devPathFlowState.nodes && devPathFlowState.nodes.length) {
@@ -16764,6 +17119,10 @@
       opFlowBaselineStepCount = 0;
       opFlowSourceProcessItem = null;
       workspaceFlowTitle = "";
+      bpWorkspaceResourceOverview = false;
+      bpOverviewModuleIndex = 0;
+      bpOverviewSearchQuery = "";
+      bpOverviewPage = 1;
     }
 
     function resolveWorkspaceTitle() {
@@ -16780,6 +17139,11 @@
       if (workspaceToolbarEl) workspaceToolbarEl.hidden = !workspace;
       if (workspaceToolbarTitleEl) {
         workspaceToolbarTitleEl.textContent = workspace ? resolveWorkspaceTitle() : "工作台";
+      }
+      if (wsToolbarAllResourcesEl) {
+        const hasModules = workspace && getBpOverviewModules().length > 0;
+        wsToolbarAllResourcesEl.hidden = !workspace;
+        wsToolbarAllResourcesEl.disabled = !hasModules;
       }
     }
 
@@ -16825,12 +17189,30 @@
     }
 
     function enterFlowWithFirstModule(firstLeafId, firstModule) {
+      bpWorkspaceResourceOverview = false;
       const leafId = firstLeafId || "physical-modeling";
       const apply = () => {
         applyNavPanelEntryDefault(false);
         if (firstModule) applyModuleToLiveState(firstModule);
         activeOpFlowSectionTitle = getNavLeafLabel(leafId);
         enterProcessDevMode(leafId);
+      };
+      animateHubToWorkspace(apply);
+    }
+
+    function enterExistingBusinessProcessOverview(item, modules) {
+      bpWorkspaceResourceOverview = true;
+      bpOverviewModuleIndex = 0;
+      bpOverviewSearchQuery = "";
+      bpOverviewPage = 1;
+      const apply = () => {
+        applyNavPanelEntryDefault(false);
+        modules.forEach((m) => applyModuleToLiveState(m));
+        activeOpFlowSectionTitle = null;
+        enterProcessDevMode(null);
+        syncCanvas();
+        renderNav({ skipSyncCanvas: true });
+        renderOperationFlow();
       };
       animateHubToWorkspace(apply);
     }
@@ -16856,9 +17238,7 @@
       setOpFlowModuleList(modules.map((m) => m.leafId));
       physicalCanvasMode = "list";
       reverseModelingStep = 1;
-      const firstModule = modules[0] || null;
-      const firstLeafId = firstModule ? firstModule.leafId : "physical-modeling";
-      enterFlowWithFirstModule(firstLeafId, firstModule);
+      enterExistingBusinessProcessOverview(item, modules);
       appendOperation({ id: "bp-open-" + item.id, label: "业务流程 · " + bpTitle });
     }
 
@@ -17029,6 +17409,7 @@
       const opts = options || {};
       const leaf = getNavLeafById(leafId);
       if (!leaf) return;
+      if (opFlowFromBusinessProcess) bpWorkspaceResourceOverview = false;
       selectOpFlowModule(leafId);
       setActiveGroupsForLeaf(leafId);
       resourceDetailState = null;
@@ -17062,7 +17443,13 @@
       head.tabIndex = 0;
       head.title = "点击进入" + sectionTitle;
       function openSection(e) {
-        if (e && e.target.closest(".op-flow-visit-del, .op-flow-node-del")) return;
+        if (
+          e &&
+          e.target.closest(
+            ".op-flow-visit-del, .op-flow-node-del, .op-flow-view-all-res, .op-flow-view-all-res-count"
+          )
+        )
+          return;
         if (leafId === selectedLeafId) return;
         activeOpFlowSectionTitle = sectionTitle;
         activateNavLeafFromOperationFlow(leafId);
@@ -17089,6 +17476,7 @@
       if (!template) return;
       const modules = flattenTemplateGroups(template);
       if (!modules.length) return;
+      bpWorkspaceResourceOverview = false;
       closeBpNewFlowModal();
       resourceDetailState = null;
       resetAllOpFlowLiveStates();
@@ -17549,7 +17937,7 @@
         "op-flow-node " +
         (isResource ? "op-flow-node--resource" : "op-flow-node--action") +
         (nested ? " op-flow-node--nested" : "");
-      const icon = isResource ? opFlowIconDoc : opFlowIconDb;
+      const icon = getOpFlowTimelineIcon(label, kind);
       row.innerHTML = `<span class="op-flow-node-icon">${icon}</span><span class="op-flow-node-label"></span>`;
       row.querySelector(".op-flow-node-label").textContent = label;
       if (interactive) {
@@ -17594,6 +17982,7 @@
     function appendOpFlowGroupedTimeline(section, nodes, nodeKinds, interactive, timelineOpts) {
       const opts = timelineOpts || {};
       const leafId = opts.leafId;
+      const stackIndex = opts.stackIndex;
       const onDeleteAt = opts.onDeleteAt;
       if (!nodes || !nodes.length) return;
       const timeline = document.createElement("div");
@@ -17620,7 +18009,11 @@
         if (group.resources.length) {
           const resWrap = document.createElement("div");
           resWrap.className = "op-flow-op-group__resources";
-          group.resources.forEach((res) => {
+          const displayResources =
+            group.resources.length > OP_FLOW_SIDEBAR_RESOURCE_MAX
+              ? group.resources.slice(0, OP_FLOW_SIDEBAR_RESOURCE_MAX)
+              : group.resources;
+          displayResources.forEach((res) => {
             resWrap.appendChild(
               createOpFlowTimelineNodeRow(
                 res.label,
@@ -17728,6 +18121,8 @@
         }
         appendOpFlowGroupedTimeline(section, devPath.nodes, devPath.nodeKinds || [], nodeClickable, {
           onDeleteAt: (nodeIndex) => removeOpFlowDevPathNodeAt(nodeIndex),
+          leafId: opts.leafId,
+          stackIndex: opts.stackIndex,
         });
       } else if (physical.reverse || (physical.tables || []).length) {
         const nodes = [];
@@ -17854,156 +18249,40 @@
       appendOperation({ id: "res-detail", label: "资源 · " + resourceDetailState.zhName });
     }
 
-    function appendBusinessModelingFlowNode(label, kind, options) {
-      if (kind === "resource") {
-        appendModuleNewResource(String(label || "").trim(), {
-          leafId: "business-modeling",
-          resourceLabel: String(label || "").trim(),
-        });
-        return;
-      }
-      appendLeafFlowNode("business-modeling", label, kind, {
-        ...(options || {}),
-        opListPrefix: "业务建模",
-        opIdPrefix: "bm-flow-",
-      });
-    }
+    function bindOpFlowTableCheckboxTrack() {
+      if (!canvasEl || canvasEl.dataset.opFlowCheckboxTrack === "1") return;
+      canvasEl.dataset.opFlowCheckboxTrack = "1";
+      canvasEl.addEventListener("change", (e) => {
+        const input = e.target;
+        if (!input || input.type !== "checkbox") return;
+        const cell = input.closest("td.col-check, th.col-check");
+        if (!cell) return;
+        if (!isProcessDevWorkspace() || !selectedLeafId || !opFlowResourceAutoInclude) return;
 
-    function formatOpFlowResourceStamp() {
-      const now = new Date();
-      const p2 = (n) => String(n).padStart(2, "0");
-      return (
-        p2(now.getMonth() + 1) +
-        p2(now.getDate()) +
-        "_" +
-        p2(now.getHours()) +
-        p2(now.getMinutes()) +
-        p2(now.getSeconds())
-      );
-    }
+        const table = input.closest("table");
+        if (!table) return;
+        const leafId = selectedLeafId;
+        const tr = input.closest("tr");
+        const isHeaderRow =
+          tr && tr.parentElement && String(tr.parentElement.tagName).toUpperCase() === "THEAD";
 
-    function buildNewModuleResourceLabel(actionLabel, leafId) {
-      const action = String(actionLabel || "新建")
-        .replace(/\s+/g, " ")
-        .trim()
-        .replace(/\s*▾\s*$/, "");
-      const kindMeta = getResourceKindMeta(getNavResourceKind(leafId));
-      const kindLabel = kindMeta ? kindMeta.label : "资源";
-      const stamp = formatOpFlowResourceStamp();
-      if (!action || action === "+" || action === "新建") {
-        return kindLabel + "_" + stamp;
-      }
-      const normalized = action.replace(/^创建/, "新建");
-      if (/^新建/.test(normalized)) {
-        return normalized + "_" + stamp;
-      }
-      return normalized + "_" + kindLabel + "_" + stamp;
-    }
+        if (isHeaderRow) {
+          const tbody = table.querySelector("tbody");
+          if (!tbody) return;
+          tbody.querySelectorAll("tr").forEach((row) => {
+            const rowCb = row.querySelector('td.col-check input[type="checkbox"]');
+            if (rowCb && rowCb !== input) rowCb.checked = input.checked;
+            if (input.checked) {
+              const name = resolveOpFlowTableRowResourceName(row);
+              recordOpFlowTableCheckboxSelection(leafId, name);
+            }
+          });
+          return;
+        }
 
-    function pushModuleFlowResource(leafId, resourceLabel) {
-      if (!leafId || !resourceLabel) return;
-      if (!opFlowResourceAutoInclude) return;
-      setOpFlowCurrentResource(leafId, resourceLabel);
-      ensureTrailingOpFlowVisit(leafId);
-      const state = getLiveFlowStateForLeaf(leafId);
-      if (!state.nodes) state.nodes = [];
-      if (!state.nodeKinds) state.nodeKinds = [];
-      state.nodes.push(resourceLabel);
-      state.nodeKinds.push("resource");
-      setLiveFlowStateForLeaf(leafId, state);
-      if (
-        leafId === "physical-modeling" &&
-        devPathFlowState &&
-        devPathFlowState.nodes &&
-        !isOpFlowModuleListLocked() &&
-        !opFlowFromBusinessProcess
-      ) {
-        if (!devPathFlowState.nodeKinds) devPathFlowState.nodeKinds = [];
-        devPathFlowState.nodes.push(resourceLabel);
-        devPathFlowState.nodeKinds.push("resource");
-      }
-    }
-
-    function appendModuleNewResource(actionLabel, options) {
-      const opts = options || {};
-      if (!isProcessDevWorkspace()) return null;
-      if (!opFlowResourceAutoInclude) return null;
-      const leafId = opts.leafId || selectedLeafId;
-      if (!leafId) return null;
-      const resourceLabel =
-        opts.resourceLabel || buildNewModuleResourceLabel(actionLabel, leafId);
-      if (!resourceLabel) return null;
-      pushModuleFlowResource(leafId, resourceLabel);
-      renderOperationFlow();
-      const moduleLabel = getNavLeafLabel(leafId) || "模块";
-      appendOperation({
-        id: "mod-res-" + Date.now(),
-        label: moduleLabel + " · 资源 · " + resourceLabel,
-      });
-      return resourceLabel;
-    }
-
-    function resolveModuleNewActionLabel(btn) {
-      const label = String(btn.textContent || "")
-        .replace(/\s+/g, " ")
-        .trim();
-      const aria = String(btn.getAttribute("aria-label") || "").trim();
-      if (btn.id === "btnNewScript") return "新建脚本";
-      if (/^\+$/.test(label) && aria) return aria;
-      return label.replace(/\s*▾\s*$/, "").trim() || aria || "新建";
-    }
-
-    function isModuleNewCreateButton(el) {
-      if (!el || el.disabled || el.dataset.opFlowNewSkip === "1") return false;
-      if (el.tagName !== "BUTTON") return false;
-      if (el.closest(".sf-dialog, .sf-backdrop, .bp-hub, #bpNewFlowBackdrop, .bp-flow-panel-actions")) {
-        return false;
-      }
-      const label = String(el.textContent || "")
-        .replace(/\s+/g, " ")
-        .trim();
-      const aria = String(el.getAttribute("aria-label") || "").trim();
-      const combined = label + " " + aria;
-      if (/批量|取消|确定|保存|清空|编辑|删除|发布|上线|下线|返回|复制/.test(combined) && !/新建|创建/.test(combined)) {
-        return false;
-      }
-      if (/新建流程/.test(combined)) return false;
-      if (el.id === "btnNewScript") return true;
-      if (/^新建\b|^创建/.test(label)) return true;
-      if (/^\+$/.test(label) && /新建/.test(aria)) return true;
-      if (el.classList.contains("pm-dropdown-item") && /建模|导入|同步|DDL|采集|任务流/.test(label)) {
-        return true;
-      }
-      if (
-        (el.classList.contains("oit-btn-primary") ||
-          el.classList.contains("pm-btn-primary") ||
-          el.classList.contains("apm-add-btn")) &&
-        /新建/.test(combined)
-      ) {
-        return true;
-      }
-      return false;
-    }
-
-    function bindModuleNewResourceAutoTrack() {
-      if (!canvasEl || canvasEl.dataset.opFlowNewTrack === "1") return;
-      canvasEl.dataset.opFlowNewTrack = "1";
-      canvasEl.addEventListener("click", (e) => {
-        if (!isProcessDevWorkspace() || !selectedLeafId) return;
-        const btn = e.target.closest("button");
-        if (!btn || !isModuleNewCreateButton(btn)) return;
-        if (btn.dataset.opFlowNewBound === "1") return;
-        const actionLabel = resolveModuleNewActionLabel(btn);
-        if (actionLabel === "逆向建模") return;
-        appendModuleNewResource(actionLabel);
-      });
-    }
-
-    function appendSmartDevFlowNode(label, kind, options) {
-      appendLeafFlowNode("smart-dev", label, kind, {
-        ...(options || {}),
-        opListPrefix: "智能开发",
-        opIdPrefix: "smart-dev-op-",
+        if (!input.checked) return;
+        const name = resolveOpFlowTableRowResourceName(tr);
+        recordOpFlowTableCheckboxSelection(leafId, name);
       });
     }
 
@@ -18076,15 +18355,7 @@
       selectedLeafId = "smart-dev";
       centerOverride = null;
       ensureTrailingOpFlowVisit("smart-dev");
-      if (opFlowResourceAutoInclude) {
-        appendLeafFlowNode("smart-dev", label, "resource", {
-          opListPrefix: "智能开发 · 保存",
-          opIdPrefix: "smart-dev-save-",
-        });
-      } else {
-        appendOperation({ id: "smart-dev-save-" + Date.now(), label: "智能开发 · 保存 · " + label });
-      }
-      showToast("已保存，流程已新增资源：" + label, "success");
+      showToast("已保存：" + label, "success");
     }
 
     /**
@@ -18154,6 +18425,75 @@
       );
     }
 
+    function countOpFlowResourcesInFlow(flowState) {
+      const kinds = (flowState && flowState.nodeKinds) || [];
+      return kinds.filter((k) => k === "resource").length;
+    }
+
+    function resolveOpFlowSectionResourceCount(stackIndex, leafId, flowState) {
+      const modules = getBpOverviewModules();
+      if (typeof stackIndex === "number" && stackIndex >= 0 && modules[stackIndex]) {
+        return (modules[stackIndex].resources || []).length;
+      }
+      if (leafId) {
+        const mod = modules.find((m) => m.leafId === leafId);
+        if (mod) return (mod.resources || []).length;
+      }
+      return countOpFlowResourcesInFlow(flowState);
+    }
+
+    function shouldShowOpFlowViewAllRes() {
+      return isProcessDevWorkspace() && getBpOverviewModules().length > 0;
+    }
+
+    function createOpFlowViewAllResButton(opts) {
+      const resourceCount = opts.resourceCount || 0;
+      const overflow = resourceCount > OP_FLOW_SIDEBAR_RESOURCE_MAX;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "op-flow-view-all-res" + (overflow ? " is-highlight" : "");
+      btn.textContent = "全部资源";
+      if (overflow) {
+        btn.title =
+          "共 " +
+          resourceCount +
+          " 个资源，已超过 " +
+          OP_FLOW_SIDEBAR_RESOURCE_MAX +
+          " 个，请查看全部";
+      }
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openBpResourceOverviewAtModule(opts.stackIndex, opts.leafId);
+      });
+      return btn;
+    }
+
+    function createOpFlowViewAllResCountBadge(resourceCount) {
+      const count = Math.max(0, Number(resourceCount) || 0);
+      const overflow = count > OP_FLOW_SIDEBAR_RESOURCE_MAX;
+      const badge = document.createElement("span");
+      badge.className = "op-flow-view-all-res-count" + (overflow ? " is-overflow" : "");
+      badge.textContent = String(count);
+      badge.title = "共 " + count + " 个资源";
+      return badge;
+    }
+
+    function appendOpFlowSectionTitleHead(head, titleText, viewAllOpts) {
+      const titleWrap = document.createElement("div");
+      titleWrap.className = "op-flow-section-title-wrap";
+      const title = document.createElement("div");
+      title.className = "op-flow-section-title";
+      title.textContent = titleText;
+      titleWrap.appendChild(title);
+      if (viewAllOpts && shouldShowOpFlowViewAllRes()) {
+        const resourceCount = viewAllOpts.resourceCount || 0;
+        titleWrap.appendChild(createOpFlowViewAllResButton(viewAllOpts));
+        titleWrap.appendChild(createOpFlowViewAllResCountBadge(resourceCount));
+      }
+      head.appendChild(titleWrap);
+      return titleWrap;
+    }
+
     function buildPhysicalOpFlowSection(titleText, devPath, physical, interactive, deleteKind, stackIndex, navLeafId) {
       const hasDev = devPath && devPath.nodes && devPath.nodes.length;
       const section = document.createElement("div");
@@ -18162,14 +18502,30 @@
         (hasDev ? " op-flow-section--devpath" : "");
       const head = document.createElement("div");
       head.className = "op-flow-section-head";
-      const title = document.createElement("div");
-      title.className = "op-flow-section-title";
-      title.textContent = titleText || "物理建模";
-      head.appendChild(title);
+      const resolvedLeafId = navLeafId || getNavLeafIdByLabel(titleText || "物理建模");
+      const physicalFlowSnapshot = {
+        nodes: [
+          ...(physical && physical.reverse ? ["逆向建模"] : []),
+          ...((physical && physical.tables) || []),
+        ],
+        nodeKinds: [
+          ...(physical && physical.reverse ? ["action"] : []),
+          ...((physical && physical.tables) || []).map(() => "resource"),
+        ],
+      };
+      const moduleFlowForCount =
+        devPath && devPath.nodes && devPath.nodes.length
+          ? { nodes: devPath.nodes, nodeKinds: devPath.nodeKinds || [] }
+          : physicalFlowSnapshot;
+      appendOpFlowSectionTitleHead(head, titleText || "物理建模", {
+        resourceCount: resolveOpFlowSectionResourceCount(stackIndex, resolvedLeafId, moduleFlowForCount),
+        stackIndex: typeof stackIndex === "number" && stackIndex >= 0 ? stackIndex : undefined,
+        leafId: resolvedLeafId,
+      });
       attachOpFlowSectionNavigation(
         section,
         head,
-        navLeafId || getNavLeafIdByLabel(titleText || "物理建模")
+        resolvedLeafId
       );
       const actions = document.createElement("div");
       actions.className = "op-flow-section-actions";
@@ -18182,8 +18538,10 @@
       attachOpFlowVisitDeleteButton(actions, deleteKind, stackIndex);
       head.appendChild(actions);
       section.appendChild(head);
-      appendPhysicalTimelineFromState(section, devPath, physical, interactive);
-      const resolvedLeafId = navLeafId || getNavLeafIdByLabel(titleText || "物理建模");
+      appendPhysicalTimelineFromState(section, devPath, physical, interactive, {
+        leafId: resolvedLeafId,
+        stackIndex: typeof stackIndex === "number" && stackIndex >= 0 ? stackIndex : undefined,
+      });
       if (resolvedLeafId && resolvedLeafId === selectedLeafId) {
         section.classList.add("op-flow-section--active");
       }
@@ -18227,10 +18585,12 @@
       section.className = "op-flow-section";
       const head = document.createElement("div");
       head.className = "op-flow-section-head";
-      const title = document.createElement("div");
-      title.className = "op-flow-section-title";
-      title.textContent = titleText || getOpFlowSectionTitle(navLeafId);
-      head.appendChild(title);
+      const sectionTitle = titleText || getOpFlowSectionTitle(navLeafId);
+      appendOpFlowSectionTitleHead(head, sectionTitle, {
+        resourceCount: resolveOpFlowSectionResourceCount(stackIndex, navLeafId, flowState),
+        stackIndex: typeof stackIndex === "number" && stackIndex >= 0 ? stackIndex : undefined,
+        leafId: navLeafId,
+      });
       attachOpFlowSectionNavigation(section, head, navLeafId);
       const actions = document.createElement("div");
       actions.className = "op-flow-section-actions";
@@ -18243,7 +18603,10 @@
       attachOpFlowVisitDeleteButton(actions, deleteKind, stackIndex);
       head.appendChild(actions);
       section.appendChild(head);
-      appendModuleFlowTimeline(section, flowState, !!opts.interactive, { leafId: navLeafId });
+      appendModuleFlowTimeline(section, flowState, !!opts.interactive, {
+        leafId: navLeafId,
+        stackIndex: typeof stackIndex === "number" && stackIndex >= 0 ? stackIndex : undefined,
+      });
       if (navLeafId && navLeafId === selectedLeafId) {
         section.classList.add("op-flow-section--active");
       }
@@ -18320,6 +18683,7 @@
       opListEl.innerHTML = "";
       if (isProcessDevWorkspace()) {
         ensureOpFlowModuleListInitialized();
+        syncWorkspaceToolbar();
       }
       if (isOpFlowModuleListLocked()) {
         const hasTemplateStack = opFlowVisitStack.some((v) => v.templateStep && v.snapshot);
@@ -18757,6 +19121,7 @@
       opFlowBaselineStepCount = opFlowTotalStepCount();
       syncOpFlowSaveButton();
       renderOperationFlow();
+      if (shouldShowBpResourceOverview()) syncCanvas();
       appendOperation({
         id: "bp-save-" + id,
         label: "业务流程 · " + (getBpDisplayTitle(savedItem) || "保存操作流程"),
@@ -19782,19 +20147,6 @@
     }
 
     function handleBpResourceAction(item, kind, row, action) {
-      const bpResLeafMap = {
-        models: "physical-modeling",
-        tasks: "offline-integration-task",
-        apis: "api-market",
-        reports: "create-report",
-      };
-      const bpLeafId = bpResLeafMap[kind];
-      if (isProcessDevWorkspace() && bpLeafId) {
-        recordOpFlowPageAction(bpLeafId, action, row.name, {
-          opListPrefix: getNavLeafLabel(bpLeafId) || kind,
-          opIdPrefix: "bp-outcome-act-",
-        });
-      }
       if (action === "血缘") {
         showToast("打开「" + row.name + "」血缘图谱（示意）", "info");
         return;
@@ -22502,6 +22854,27 @@
       shellEl.querySelectorAll(".tc-template-more-guide").forEach((el) => el.remove());
     }
 
+    function appendTemplateCardMoreOverlay(card, hiddenCount, onOpenAll) {
+      if (!card || hiddenCount <= 0) return;
+      card.classList.add("tc-template-card--has-more");
+      const overlay = document.createElement("button");
+      overlay.type = "button";
+      overlay.className = "tc-template-card-more-overlay";
+      overlay.setAttribute("aria-label", "点击查看更多，打开全部场景模板");
+      overlay.innerHTML =
+        '<span class="tc-template-card-more-overlay__title">点击查看更多</span>' +
+        '<span class="tc-template-card-more-overlay__sub">打开全部场景模板</span>' +
+        '<span class="tc-template-card-more-overlay__count">还有 ' +
+        hiddenCount +
+        " 个未展示</span>";
+      overlay.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onOpenAll();
+      });
+      card.appendChild(overlay);
+    }
+
     function resolveOverflowGridClass(gridEl, opts) {
       if (opts && opts.gridClass) return opts.gridClass;
       if (gridEl && gridEl.classList.contains("bp-scene-filter-cards")) {
@@ -22548,27 +22921,7 @@
         return;
       }
 
-      items.slice(0, TC_TEMPLATE_VISIBLE_MAX).forEach((item, index) => {
-        gridEl.appendChild(buildCard(item, index));
-      });
-
-      if (items.length <= TC_TEMPLATE_VISIBLE_MAX) return;
-
-      const hiddenCount = items.length - TC_TEMPLATE_VISIBLE_MAX;
-      const guide = document.createElement("div");
-      guide.className = "tc-template-more-guide";
-      guide.setAttribute("role", "note");
-      guide.innerHTML =
-        '<div class="tc-template-more-guide__main">' +
-        '<span class="tc-template-more-guide__badge">用户引导</span>' +
-        '<p class="tc-template-more-guide__text">当前仅展示前 <strong>' +
-        TC_TEMPLATE_VISIBLE_MAX +
-        "</strong> 个场景模板，还有 <strong>" +
-        hiddenCount +
-        "</strong> 个未展示。如需浏览全部模板，请点击查看更多。</p>" +
-        "</div>" +
-        '<button type="button" class="tc-template-more-guide__btn">查看更多</button>';
-      guide.querySelector(".tc-template-more-guide__btn").addEventListener("click", () => {
+      const openAllTemplatesOverlay = () => {
         openTcTemplateGridOverlay({
           anchorEl: shellEl,
           items: items,
@@ -22579,8 +22932,18 @@
             opts.overlayVariant ||
             (gridEl.classList.contains("bp-scene-filter-cards") ? "scene" : "default"),
         });
+      };
+
+      const hasMore = items.length > TC_TEMPLATE_VISIBLE_MAX;
+      const hiddenCount = hasMore ? items.length - TC_TEMPLATE_VISIBLE_MAX : 0;
+
+      items.slice(0, TC_TEMPLATE_VISIBLE_MAX).forEach((item, index) => {
+        const card = buildCard(item, index);
+        if (hasMore && index === TC_TEMPLATE_VISIBLE_MAX - 1) {
+          appendTemplateCardMoreOverlay(card, hiddenCount, openAllTemplatesOverlay);
+        }
+        gridEl.appendChild(card);
       });
-      shellEl.appendChild(guide);
     }
 
     function openTcTemplateGridOverlay(config) {
@@ -23030,9 +23393,18 @@
       header.className = "tc-header";
       const headerMain = document.createElement("div");
       headerMain.className = "tc-header-main";
+      const titleRow = document.createElement("div");
+      titleRow.className = "tc-header-title-row";
       const h1 = document.createElement("h1");
       h1.textContent = "场景定义";
-      headerMain.appendChild(h1);
+      const guideToggleBtn = document.createElement("button");
+      guideToggleBtn.type = "button";
+      guideToggleBtn.className = "tc-guide-toggle";
+      guideToggleBtn.textContent = "场景说明";
+      guideToggleBtn.setAttribute("aria-controls", "tcSceneGuide");
+      titleRow.appendChild(h1);
+      titleRow.appendChild(guideToggleBtn);
+      headerMain.appendChild(titleRow);
 
       const searchWrap = document.createElement("div");
       searchWrap.className = "tc-search-wrap";
@@ -23058,10 +23430,10 @@
 
       const guide = document.createElement("section");
       guide.className = "tc-guide";
-      guide.setAttribute("aria-label", "场景定义用户引导");
+      guide.id = "tcSceneGuide";
+      guide.setAttribute("aria-label", "场景定义场景说明");
       guide.innerHTML =
         '<div class="tc-guide-head">' +
-        '<span class="tc-guide-badge">用户引导</span>' +
         '<h2 class="tc-guide-title">什么是场景？</h2>' +
         "</div>" +
         '<p class="tc-guide-lead">' +
@@ -23079,6 +23451,32 @@
         "若现有业务场景不能满足需求，可自行组装操作模块，保存为<strong>自定义业务场景</strong>并上线，供团队其他成员共享使用。" +
         "</p></li>" +
         "</ul>";
+      const guideCloseBtn = document.createElement("button");
+      guideCloseBtn.type = "button";
+      guideCloseBtn.className = "tc-guide-close";
+      guideCloseBtn.setAttribute("aria-label", "关闭场景说明");
+      guideCloseBtn.title = "关闭场景说明";
+      guideCloseBtn.innerHTML = '<span aria-hidden="true">×</span>';
+
+      let tcSceneGuideOpen = true;
+
+      function syncTcSceneGuideVisible() {
+        guide.hidden = !tcSceneGuideOpen;
+        guideToggleBtn.classList.toggle("is-active", tcSceneGuideOpen);
+        guideToggleBtn.setAttribute("aria-expanded", tcSceneGuideOpen ? "true" : "false");
+      }
+
+      guideCloseBtn.addEventListener("click", () => {
+        tcSceneGuideOpen = false;
+        syncTcSceneGuideVisible();
+      });
+      guideToggleBtn.addEventListener("click", () => {
+        tcSceneGuideOpen = !tcSceneGuideOpen;
+        syncTcSceneGuideVisible();
+      });
+      guide.appendChild(guideCloseBtn);
+      body.appendChild(guide);
+      syncTcSceneGuideVisible();
 
       const presetSection = document.createElement("section");
       presetSection.className = "tc-section";
@@ -23120,8 +23518,6 @@
       customSection.appendChild(customHead);
       customSection.appendChild(customGrid);
 
-      body.appendChild(guide);
-
       const contentWrap = document.createElement("div");
       contentWrap.className = "tc-content-wrap";
       const contentInner = document.createElement("div");
@@ -23150,12 +23546,19 @@
         const title = document.createElement("h3");
         title.className = "tc-card-title";
         title.textContent = template.name;
-        const badge = document.createElement("span");
-        badge.className =
+        const badges = document.createElement("div");
+        badges.className = "tc-card-badges";
+        const typeBadge = document.createElement("span");
+        typeBadge.className = "tc-badge tc-badge--custom";
+        typeBadge.textContent = "自定义";
+        const statusBadge = document.createElement("span");
+        statusBadge.className =
           "tc-badge " + (template.published ? "tc-badge--online" : "tc-badge--offline");
-        badge.textContent = template.published ? "已上线" : "已下线";
+        statusBadge.textContent = template.published ? "已上线" : "已下线";
+        badges.appendChild(typeBadge);
+        badges.appendChild(statusBadge);
         head.appendChild(title);
-        head.appendChild(badge);
+        head.appendChild(badges);
 
         const creatorRow = document.createElement("div");
         creatorRow.className = "tc-card-row";
@@ -24229,17 +24632,18 @@
       }
 
       function renderSceneFilterCards() {
-        const sceneCardTones = [
-          { bg: "#f8fbff", iconBg: "#eef4ff", iconColor: "#93c5fd", iconKey: "flow" },
-          { bg: "#fffbf7", iconBg: "#fff4e8", iconColor: "#fdba74", iconKey: "tasks" },
-          { bg: "#fffafd", iconBg: "#fceff5", iconColor: "#f9a8d4", iconKey: "reports" },
-          { bg: "#faf9ff", iconBg: "#f1edff", iconColor: "#c4b5fd", iconKey: "apis" },
-          { bg: "#f7fdfb", iconBg: "#e8faf3", iconColor: "#6ee7b7", iconKey: "models" },
-          { bg: "#f8faff", iconBg: "#edf4ff", iconColor: "#93c5fd", iconKey: "boards" },
-        ];
+        const sceneCardIconKeys = ["flow", "tasks", "reports", "apis", "models", "boards"];
+        const sceneCardBlueTone = {
+          bg: "#f8fbff",
+          iconBg: "#e6f4ff",
+          iconColor: "#2563eb",
+        };
 
         function buildSceneFilterCard(board, index) {
-          const tone = sceneCardTones[index % sceneCardTones.length];
+          const tone = {
+            ...sceneCardBlueTone,
+            iconKey: sceneCardIconKeys[index % sceneCardIconKeys.length],
+          };
           const card = document.createElement("article");
           card.className =
             "bp-scene-filter-card" + (filterBoardIds.includes(board.id) ? " is-active" : "");
@@ -25315,8 +25719,7 @@ LIMIT 5;</pre>
       if (btnNewScript) {
         btnNewScript.dataset.opFlowNewBound = "1";
         btnNewScript.addEventListener("click", () => {
-          appendModuleNewResource("新建脚本", { leafId: "smart-dev" });
-          mountScriptEditorCanvas();
+mountScriptEditorCanvas();
         });
       }
     }
@@ -25339,7 +25742,373 @@ LIMIT 5;</pre>
       canvasEl.appendChild(badge);
     }
 
+    function shouldShowBpResourceOverview() {
+      return (
+        isProcessDevWorkspace() &&
+        bpWorkspaceResourceOverview &&
+        !selectedLeafId &&
+        centerOverride == null
+      );
+    }
+
+    function buildOverviewModulesFromVisitStack() {
+      if (!opFlowVisitStack.length) return [];
+      return opFlowVisitStack.map((visit) => {
+        const isLive = isOpFlowVisitLive(visit);
+        const flow = resolveVisitModuleFlowState(visit, isLive);
+        const resources = [];
+        (flow.nodes || []).forEach((name, ni) => {
+          if ((flow.nodeKinds || [])[ni] !== "resource") return;
+          resources.push({
+            id: "live_" + visit.leafId + "_" + ni,
+            kind: getNavResourceKind(visit.leafId) || "models",
+            name,
+            fromNode: visit.operationLabel || getDefaultOperationLabelForLeaf(visit.leafId),
+            leafId: visit.leafId,
+            status: "online",
+          });
+        });
+        if (!resources.length && opFlowSourceProcessItem) {
+          const saved = getBpFlowModules(opFlowSourceProcessItem).find(
+            (m) => m.leafId === visit.leafId
+          );
+          if (saved && saved.resources) return { ...saved };
+        }
+        return {
+          leafId: visit.leafId,
+          label: visit.operationLabel || getModuleOperationLabel({ leafId: visit.leafId }),
+          resources,
+        };
+      });
+    }
+
+    function getBpOverviewModules() {
+      if (opFlowSourceProcessItem) {
+        const saved = getBpFlowModules(opFlowSourceProcessItem);
+        if (saved.length) return saved;
+      }
+      if (devPathFlowState && devPathFlowState.modules && devPathFlowState.modules.length) {
+        return devPathFlowState.modules;
+      }
+      return buildOverviewModulesFromVisitStack();
+    }
+
+    function getBpOverviewModuleTitle(module, index, modules) {
+      if (!module) return "未命名模块";
+      const leafLabel = getNavLeafLabel(module.leafId) || module.leafId || "模块";
+      const dupCount = (modules || []).filter((m) => m.leafId === module.leafId).length;
+      if (dupCount > 1 && module.label && module.label !== leafLabel) {
+        return leafLabel + " · " + module.label;
+      }
+      return getOpFlowSectionTitle(module.leafId) || leafLabel;
+    }
+
+    function summarizeModuleResourceStats(module) {
+      const resources = (module && module.resources) || [];
+      let success = 0;
+      let failed = 0;
+      resources.forEach((r) => {
+        const kind = r.kind || getNavResourceKind(module.leafId);
+        const tone =
+          (BP_RES_STATUS[kind] &&
+            BP_RES_STATUS[kind][r.status] &&
+            BP_RES_STATUS[kind][r.status].tone) ||
+          "default";
+        if (tone === "success") success += 1;
+        else if (tone === "error") failed += 1;
+      });
+      return { total: resources.length, success, failed };
+    }
+
+    function formatBpOverviewModifyTime(resource, item, index) {
+      const base = (item && item.updateTime) || (item && item.createTime) || "2026-06-10";
+      const h = ((bpItemHash(item) + index * 17) % 24).toString().padStart(2, "0");
+      const m = ((bpItemHash(item) + index * 13) % 60).toString().padStart(2, "0");
+      const s = ((bpItemHash(item) + index * 7) % 60).toString().padStart(2, "0");
+      if (String(base).includes(":")) return base;
+      return base + " " + h + ":" + m + ":" + s;
+    }
+
+    function mapResourceToOverviewRow(resource, module, item, index) {
+      const kind = resource.kind || getNavResourceKind(module.leafId) || "models";
+      const kindMeta = getResourceKindMeta(kind);
+      const typeLabel = resource.type || (kindMeta ? kindMeta.label : kind);
+      const code = String(resource.id || resource.name || "res")
+        .replace(/^res_/, "")
+        .slice(0, 32);
+      return {
+        name: resource.name || "—",
+        code,
+        type: typeLabel,
+        modifyTime: formatBpOverviewModifyTime(resource, item, index),
+        status: resource.status,
+        kind,
+        errorMsg: resource.errorMsg || "",
+      };
+    }
+
+    function openBpResourceOverviewAtModule(stackIndex, leafId) {
+      if (!isProcessDevWorkspace()) return;
+      const modules = getBpOverviewModules();
+      if (!modules.length) {
+        showToast("当前流程暂无可查看的资源", "info");
+        return;
+      }
+      bpWorkspaceResourceOverview = true;
+      bpOverviewSearchQuery = "";
+      bpOverviewPage = 1;
+      if (typeof stackIndex === "number" && stackIndex >= 0 && stackIndex < modules.length) {
+        bpOverviewModuleIndex = stackIndex;
+      } else if (leafId) {
+        const idx = modules.findIndex((m) => m.leafId === leafId);
+        bpOverviewModuleIndex = idx >= 0 ? idx : 0;
+      } else {
+        bpOverviewModuleIndex = 0;
+      }
+      selectedLeafId = null;
+      centerOverride = null;
+      activeOpFlowSectionTitle = null;
+      syncMainLayout();
+      collapseNavPanel();
+      renderNav({ skipSyncCanvas: true });
+      syncCanvas();
+      renderOperationFlow();
+    }
+
+    function renderBpOverviewStatusBadge(kind, statusKey) {
+      const def = (BP_RES_STATUS[kind] && BP_RES_STATUS[kind][statusKey]) || {
+        label: statusKey || "—",
+        tone: "default",
+      };
+      let label = def.label;
+      if (def.tone === "success") label = "成功";
+      else if (def.tone === "error") label = "失败";
+      else if (def.tone === "processing") label = "进行中";
+      const span = document.createElement("span");
+      span.className = "bp-res-status bp-res-status--" + def.tone;
+      span.textContent = label;
+      return span;
+    }
+
+    function mountBpResourceOverviewCanvas() {
+      canvasEl.classList.remove("canvas--physical");
+      canvasEl.classList.add("canvas--bp-overview");
+      canvasToolbarEl.textContent = "流程资源概览";
+      canvasEl.innerHTML = "";
+
+      const item = opFlowSourceProcessItem;
+      const modules = getBpOverviewModules();
+      if (!modules.length) {
+        mountWorkspacePlaceholderCanvas();
+        return;
+      }
+
+      if (bpOverviewModuleIndex < 0 || bpOverviewModuleIndex >= modules.length) {
+        bpOverviewModuleIndex = 0;
+      }
+
+      const root = document.createElement("div");
+      root.className = "bp-ws-overview";
+
+      const cards = document.createElement("div");
+      cards.className = "bp-ws-overview-cards";
+      cards.setAttribute("role", "tablist");
+      cards.setAttribute("aria-label", "操作大模块");
+
+      modules.forEach((module, index) => {
+        const stats = summarizeModuleResourceStats(module);
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className =
+          "bp-ws-overview-card" + (index === bpOverviewModuleIndex ? " is-active" : "");
+        card.setAttribute("role", "tab");
+        card.setAttribute("aria-selected", index === bpOverviewModuleIndex ? "true" : "false");
+
+        const name = document.createElement("span");
+        name.className = "bp-ws-overview-card-name";
+        name.textContent = getBpOverviewModuleTitle(module, index, modules);
+        name.title = name.textContent;
+
+        const stat = document.createElement("span");
+        stat.className = "bp-ws-overview-card-stat";
+        if (stats.total > 0 && stats.success > 0) {
+          const label = document.createElement("span");
+          label.className = "bp-ws-overview-card-stat-label";
+          label.textContent = stats.failed > 0 ? "成功" : "成功";
+          const num = document.createElement("span");
+          num.className = "bp-ws-overview-card-stat-num";
+          num.textContent = String(stats.total);
+          stat.appendChild(label);
+          stat.appendChild(num);
+        } else if (stats.total > 0) {
+          const num = document.createElement("span");
+          num.className = "bp-ws-overview-card-stat-num";
+          num.textContent = String(stats.total);
+          stat.appendChild(num);
+        } else {
+          const num = document.createElement("span");
+          num.className = "bp-ws-overview-card-stat-num is-zero";
+          num.textContent = "0";
+          stat.appendChild(num);
+        }
+
+        card.appendChild(name);
+        card.appendChild(stat);
+        card.addEventListener("click", () => {
+          if (bpOverviewModuleIndex === index) return;
+          bpOverviewModuleIndex = index;
+          bpOverviewSearchQuery = "";
+          bpOverviewPage = 1;
+          mountBpResourceOverviewCanvas();
+        });
+        cards.appendChild(card);
+      });
+
+      const panel = document.createElement("section");
+      panel.className = "bp-ws-overview-panel";
+
+      const activeModule = modules[bpOverviewModuleIndex];
+      const panelTitle = getBpOverviewModuleTitle(activeModule, bpOverviewModuleIndex, modules);
+
+      const hd = document.createElement("div");
+      hd.className = "bp-ws-overview-panel-hd";
+      const title = document.createElement("h2");
+      title.className = "bp-ws-overview-panel-title";
+      title.textContent = panelTitle;
+      const search = document.createElement("input");
+      search.type = "search";
+      search.className = "bp-ws-overview-search";
+      search.placeholder = "请输入名称";
+      search.value = bpOverviewSearchQuery;
+      search.setAttribute("aria-label", "搜索资源名称");
+      search.addEventListener("input", () => {
+        bpOverviewSearchQuery = search.value;
+        bpOverviewPage = 1;
+        mountBpResourceOverviewCanvas();
+      });
+      hd.appendChild(title);
+      hd.appendChild(search);
+
+      const allRows = (activeModule.resources || []).map((r, i) =>
+        mapResourceToOverviewRow(r, activeModule, item, i)
+      );
+      const q = bpOverviewSearchQuery.trim().toLowerCase();
+      const filteredRows = q
+        ? allRows.filter(
+            (row) =>
+              row.name.toLowerCase().includes(q) ||
+              row.code.toLowerCase().includes(q) ||
+              row.type.toLowerCase().includes(q)
+          )
+        : allRows;
+
+      const total = filteredRows.length;
+      const totalPages = Math.max(1, Math.ceil(total / BP_OVERVIEW_PAGE_SIZE));
+      if (bpOverviewPage > totalPages) bpOverviewPage = totalPages;
+      if (bpOverviewPage < 1) bpOverviewPage = 1;
+      const pageStart = (bpOverviewPage - 1) * BP_OVERVIEW_PAGE_SIZE;
+      const pageRows = filteredRows.slice(pageStart, pageStart + BP_OVERVIEW_PAGE_SIZE);
+
+      const tableWrap = document.createElement("div");
+      tableWrap.className = "bp-ws-overview-table-wrap";
+
+      if (!pageRows.length) {
+        const empty = document.createElement("div");
+        empty.className = "bp-ws-overview-empty";
+        empty.textContent = q ? "未找到匹配的资源" : "该模块下暂无资源";
+        tableWrap.appendChild(empty);
+      } else {
+        const table = document.createElement("table");
+        table.className = "bp-ws-overview-table";
+        const thead = document.createElement("thead");
+        thead.innerHTML =
+          "<tr><th>名称</th><th>编码</th><th>类型</th><th>修改时间</th><th>状态</th><th>失败原因</th></tr>";
+        const tbody = document.createElement("tbody");
+        pageRows.forEach((row) => {
+          const tr = document.createElement("tr");
+          const tdName = document.createElement("td");
+          tdName.textContent = row.name;
+          const tdCode = document.createElement("td");
+          tdCode.textContent = row.code;
+          const tdType = document.createElement("td");
+          tdType.textContent = row.type;
+          const tdTime = document.createElement("td");
+          tdTime.textContent = row.modifyTime;
+          const tdStatus = document.createElement("td");
+          tdStatus.appendChild(renderBpOverviewStatusBadge(row.kind, row.status));
+          const tdFail = document.createElement("td");
+          tdFail.className = "col-fail";
+          tdFail.textContent = row.errorMsg || "—";
+          tr.appendChild(tdName);
+          tr.appendChild(tdCode);
+          tr.appendChild(tdType);
+          tr.appendChild(tdTime);
+          tr.appendChild(tdStatus);
+          tr.appendChild(tdFail);
+          tbody.appendChild(tr);
+        });
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        tableWrap.appendChild(table);
+      }
+
+      const pager = document.createElement("div");
+      pager.className = "bp-ws-overview-pager";
+      const totalText = document.createElement("span");
+      totalText.textContent = "共 " + total + " 条";
+      const pageSizeSelect = document.createElement("select");
+      pageSizeSelect.setAttribute("aria-label", "每页条数");
+      [15, 30, 50].forEach((n) => {
+        const opt = document.createElement("option");
+        opt.value = String(n);
+        opt.textContent = n + "条/页";
+        if (n === BP_OVERVIEW_PAGE_SIZE) opt.selected = true;
+        pageSizeSelect.appendChild(opt);
+      });
+      pageSizeSelect.disabled = true;
+      const btnWrap = document.createElement("div");
+      btnWrap.className = "bp-ws-overview-pager-btns";
+      const prevBtn = document.createElement("button");
+      prevBtn.type = "button";
+      prevBtn.textContent = "‹";
+      prevBtn.disabled = bpOverviewPage <= 1;
+      prevBtn.addEventListener("click", () => {
+        if (bpOverviewPage > 1) {
+          bpOverviewPage -= 1;
+          mountBpResourceOverviewCanvas();
+        }
+      });
+      const pageBtn = document.createElement("button");
+      pageBtn.type = "button";
+      pageBtn.className = "is-active";
+      pageBtn.textContent = String(bpOverviewPage);
+      const nextBtn = document.createElement("button");
+      nextBtn.type = "button";
+      nextBtn.textContent = "›";
+      nextBtn.disabled = bpOverviewPage >= totalPages;
+      nextBtn.addEventListener("click", () => {
+        if (bpOverviewPage < totalPages) {
+          bpOverviewPage += 1;
+          mountBpResourceOverviewCanvas();
+        }
+      });
+      btnWrap.appendChild(prevBtn);
+      btnWrap.appendChild(pageBtn);
+      btnWrap.appendChild(nextBtn);
+      pager.appendChild(totalText);
+      pager.appendChild(pageSizeSelect);
+      pager.appendChild(btnWrap);
+
+      panel.appendChild(hd);
+      panel.appendChild(tableWrap);
+      panel.appendChild(pager);
+      root.appendChild(cards);
+      root.appendChild(panel);
+      canvasEl.appendChild(root);
+    }
+
     function mountWorkspacePlaceholderCanvas() {
+      canvasEl.classList.remove("canvas--bp-overview");
       physicalCanvasMode = "list";
       reverseModelingStep = 1;
       canvasEl.classList.remove("canvas--physical");
@@ -25508,14 +26277,6 @@ LIMIT 5;</pre>
       return '<span class="' + cls + '"><span aria-hidden="true">' + icon + "</span>" + label + "</span>";
     }
 
-    function appendApiMarketFlowNode(label, kind, options) {
-      appendLeafFlowNode("api-market", label, kind, {
-        ...(options || {}),
-        opListPrefix: "API",
-        opIdPrefix: "apm-flow-",
-      });
-    }
-
     function mountApiMarketCanvas() {
       physicalCanvasMode = "list";
       reverseModelingStep = 1;
@@ -25576,8 +26337,7 @@ LIMIT 5;</pre>
       addBtn.textContent = "+";
       addBtn.dataset.opFlowNewBound = "1";
       addBtn.addEventListener("click", () => {
-        appendModuleNewResource("新建目录", { leafId: "api-market" });
-        showToast("新建目录（示意）", "info");
+showToast("新建目录（示意）", "info");
       });
       sideHead.appendChild(projectSel);
       sideHead.appendChild(addBtn);
@@ -25717,8 +26477,7 @@ LIMIT 5;</pre>
       newBtn.textContent = "新建API";
       newBtn.dataset.opFlowNewBound = "1";
       newBtn.addEventListener("click", () => {
-        appendModuleNewResource("新建API", { leafId: "api-market" });
-        showToast("新建 API（示意）", "info");
+showToast("新建 API（示意）", "info");
       });
       toolbar.appendChild(newBtn);
 
@@ -25787,12 +26546,10 @@ LIMIT 5;</pre>
           ops.className = "col-ops apm-ops";
           [
             ["编辑", () => {
-              appendApiMarketFlowNode(row.name + " · 编辑", "action");
-              showToast("编辑「" + row.name + "」（示意）", "info");
+showToast("编辑「" + row.name + "」（示意）", "info");
             }],
             ["发布", () => {
-              appendApiMarketFlowNode(row.name + " · 发布", "action");
-              showToast("发布「" + row.name + "」（示意）", "info");
+showToast("发布「" + row.name + "」（示意）", "info");
             }],
             ["更多 ▾", () => showToast("更多操作（示意）", "info")],
           ].forEach(([label, handler], i) => {
@@ -25812,10 +26569,7 @@ LIMIT 5;</pre>
           nameCell.style.cursor = "pointer";
           nameCell.style.color = "var(--nav-active)";
           nameCell.addEventListener("click", () => {
-            recordOpFlowResourceOpen("api-market", row.name, {
-              opListPrefix: "API",
-              opIdPrefix: "apm-flow-",
-            });
+
             showToast("打开「" + row.name + "」详情（示意）", "info");
           });
           tbody.appendChild(tr);
@@ -25977,14 +26731,6 @@ LIMIT 5;</pre>
       return '<span class="da-th-sort">' + label + daSortIconSvg + "</span>";
     }
 
-    function appendDataAnalysisFlowNode(label, kind, options) {
-      appendLeafFlowNode("create-report", label, kind, {
-        ...(options || {}),
-        opListPrefix: "数据分析",
-        opIdPrefix: "da-flow-",
-      });
-    }
-
     function mountDataAnalysisCanvas() {
       physicalCanvasMode = "list";
       reverseModelingStep = 1;
@@ -26051,8 +26797,7 @@ LIMIT 5;</pre>
       tabAddBtn.textContent = "+";
       tabAddBtn.dataset.opFlowNewBound = "1";
       tabAddBtn.addEventListener("click", () => {
-        appendModuleNewResource("新建仪表板", { leafId: "create-report" });
-        showToast("新建仪表板（示意）", "info");
+showToast("新建仪表板（示意）", "info");
       });
       tabSide.appendChild(tabSideTitle);
       tabSide.appendChild(tabSearchBtn);
@@ -26146,12 +26891,7 @@ LIMIT 5;</pre>
               }
               const reportMeta = daReportMeta[child.id];
               const reportTitle = reportMeta ? reportMeta.title : child.label;
-              recordOpFlowResourceOpen("create-report", reportTitle, {
-                opListPrefix: "数据分析",
-                opIdPrefix: "da-flow-",
-              });
-              daPage = 1;
-              mountDataAnalysisCanvas();
+
             });
             sectionLi.appendChild(leaf);
           });
@@ -26178,22 +26918,14 @@ LIMIT 5;</pre>
       publishBtn.className = "da-btn da-btn-primary";
       publishBtn.innerHTML = '<span aria-hidden="true">➤</span> 发布';
       publishBtn.addEventListener("click", () => {
-        recordOpFlowPageAction("create-report", "发布", meta.title, {
-          opListPrefix: "数据分析",
-          opIdPrefix: "da-flow-",
-        });
-        showToast("发布「" + meta.title + "」（示意）", "info");
+showToast("发布「" + meta.title + "」（示意）", "info");
       });
       const editBtn = document.createElement("button");
       editBtn.type = "button";
       editBtn.className = "da-btn";
       editBtn.innerHTML = '<span aria-hidden="true">✎</span> 编辑';
       editBtn.addEventListener("click", () => {
-        recordOpFlowPageAction("create-report", "编辑", meta.title, {
-          opListPrefix: "数据分析",
-          opIdPrefix: "da-flow-",
-        });
-        showToast("编辑「" + meta.title + "」（示意）", "info");
+showToast("编辑「" + meta.title + "」（示意）", "info");
       });
       const moreBtn = document.createElement("button");
       moreBtn.type = "button";
@@ -26315,8 +27047,7 @@ LIMIT 5;</pre>
       aiFab.textContent = "AI";
       aiFab.title = "AI 助手";
       aiFab.addEventListener("click", () => {
-        appendDataAnalysisFlowNode("AI 助手", "action");
-        showToast("AI 助手（示意）", "info");
+showToast("AI 助手（示意）", "info");
       });
       root.appendChild(aiFab);
 
@@ -26623,7 +27354,7 @@ LIMIT 5;</pre>
       uploadBtn.className = "bmk-btn bmk-btn-outline";
       uploadBtn.textContent = "上传文档";
       uploadBtn.addEventListener("click", () => {
-        appendBusinessModelingFlowNode("上传文档", "action");
+        showToast("上传文档（示意）", "info");
       });
       actions.appendChild(uploadBtn);
 
@@ -26644,9 +27375,10 @@ LIMIT 5;</pre>
         item.dataset.opFlowNewBound = "1";
         item.addEventListener("click", () => {
           newMenu.hidden = true;
-          const resourceLabel = appendModuleNewResource(label, { leafId: "business-modeling" });
           const now = new Date();
           const p2 = (n) => String(n).padStart(2, "0");
+          const stamp = p2(now.getHours()) + p2(now.getMinutes()) + p2(now.getSeconds());
+          const resourceLabel = label.replace("创建", "新建") + "-" + stamp;
           const time =
             now.getFullYear() +
             "-" +
@@ -26727,10 +27459,7 @@ LIMIT 5;</pre>
         primaryBtn.type = "button";
         primaryBtn.textContent = primaryLabel;
         primaryBtn.addEventListener("click", () => {
-          recordOpFlowPageAction("business-modeling", primaryLabel, row.name, {
-            opListPrefix: "业务建模",
-            opIdPrefix: "bm-flow-",
-          });
+          showToast("打开「" + row.name + "」" + primaryLabel + "（示意）", "info");
         });
         const delBtn = document.createElement("button");
         delBtn.type = "button";
@@ -26741,10 +27470,7 @@ LIMIT 5;</pre>
         if (nameLink) {
           nameLink.addEventListener("click", (e) => {
             e.preventDefault();
-            recordOpFlowResourceOpen("business-modeling", row.name, {
-              opListPrefix: "业务建模",
-              opIdPrefix: "bm-flow-",
-            });
+            showToast("打开「" + row.name + "」（示意）", "info");
           });
         }
         tbody.appendChild(tr);
@@ -26892,7 +27618,7 @@ LIMIT 5;</pre>
             syncCanvas();
             renderOperationFlow();
           } else {
-            appendModuleNewResource(label, { leafId: "physical-modeling" });
+            showToast("已选择「" + label + "」（示意）", "info");
           }
         });
         menu.appendChild(item);
@@ -26998,19 +27724,11 @@ LIMIT 5;</pre>
           b.textContent = t;
           if (t === "详情") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("physical-modeling", "详情", row.zh, {
-                opListPrefix: "物理建模",
-                opIdPrefix: "pm-flow-",
-              });
-              showToast("打开「" + row.zh + "」详情（示意）", "info");
+showToast("打开「" + row.zh + "」详情（示意）", "info");
             });
           } else if (t === "提交") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("physical-modeling", "提交", row.zh, {
-                opListPrefix: "物理建模",
-                opIdPrefix: "pm-flow-",
-              });
-              showToast("提交「" + row.zh + "」（示意）", "info");
+showToast("提交「" + row.zh + "」（示意）", "info");
             });
           }
           ops.appendChild(b);
@@ -27152,8 +27870,7 @@ LIMIT 5;</pre>
           menu.hidden = true;
           ddBtn.setAttribute("aria-expanded", "false");
           showToast("已选择「" + label + "」（示意）", "info");
-          appendModuleNewResource(label, { leafId: "logical-modeling" });
-        });
+});
         menu.appendChild(item);
       });
 
@@ -27259,19 +27976,11 @@ LIMIT 5;</pre>
           b.textContent = t;
           if (t === "详情") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("logical-modeling", "详情", row.zh, {
-                opListPrefix: "逻辑建模",
-                opIdPrefix: "lm-flow-",
-              });
-              showToast("打开「" + row.zh + "」详情（示意）", "info");
+showToast("打开「" + row.zh + "」详情（示意）", "info");
             });
           } else if (t === "提交") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("logical-modeling", "提交", row.zh, {
-                opListPrefix: "逻辑建模",
-                opIdPrefix: "lm-flow-",
-              });
-              showToast("提交「" + row.zh + "」（示意）", "info");
+showToast("提交「" + row.zh + "」（示意）", "info");
             });
           }
           ops.appendChild(b);
@@ -27419,8 +28128,7 @@ LIMIT 5;</pre>
       newBtn.dataset.opFlowNewBound = "1";
       newBtn.addEventListener("click", () => {
         showToast("新建任务流（示意）", "info");
-        appendModuleNewResource("新建任务流");
-      });
+});
       const batchBtn = document.createElement("button");
       batchBtn.type = "button";
       batchBtn.className = "oit-btn";
@@ -27502,19 +28210,11 @@ LIMIT 5;</pre>
           b.textContent = t;
           if (t === "详情") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("offline-integration-task", "详情", row.name, {
-                opListPrefix: "离线任务",
-                opIdPrefix: "oit-flow-",
-              });
-              showToast("打开「" + row.name + "」详情（示意）", "info");
+showToast("打开「" + row.name + "」详情（示意）", "info");
             });
           } else if (t === "调度配置") {
             b.addEventListener("click", () => {
-              recordOpFlowPageAction("offline-integration-task", "调度配置", row.name, {
-                opListPrefix: "离线任务",
-                opIdPrefix: "oit-flow-",
-              });
-              showToast("配置「" + row.name + "」调度（示意）", "info");
+showToast("配置「" + row.name + "」调度（示意）", "info");
             });
           }
           ops.appendChild(b);
@@ -27739,33 +28439,21 @@ LIMIT 5;</pre>
         }
 
         addOp("任务列表", false, () => {
-          recordOpFlowPageAction("offline-integration-instance", "任务列表", row.name, {
-            opListPrefix: "离线实例",
-            opIdPrefix: "oii-flow-",
-          });
-          showToast("打开「" + row.name + "」任务列表（示意）", "info");
+showToast("打开「" + row.name + "」任务列表（示意）", "info");
         });
         const sep1 = document.createElement("span");
         sep1.className = "oii-op-sep";
         sep1.textContent = "|";
         ops.appendChild(sep1);
         addOp("停止", !canStop, canStop ? () => {
-          recordOpFlowPageAction("offline-integration-instance", "停止", row.name, {
-            opListPrefix: "离线实例",
-            opIdPrefix: "oii-flow-",
-          });
-          showToast("停止实例 " + row.id + "（示意）", "info");
+showToast("停止实例 " + row.id + "（示意）", "info");
         } : null);
         const sep2 = document.createElement("span");
         sep2.className = "oii-op-sep";
         sep2.textContent = "|";
         ops.appendChild(sep2);
         addOp("重跑", false, () => {
-          recordOpFlowPageAction("offline-integration-instance", "重跑", row.name, {
-            opListPrefix: "离线实例",
-            opIdPrefix: "oii-flow-",
-          });
-          showToast("重跑实例 " + row.id + "（示意）", "info");
+showToast("重跑实例 " + row.id + "（示意）", "info");
         });
         tbody.appendChild(tr);
       });
@@ -27954,22 +28642,14 @@ LIMIT 5;</pre>
         }
 
         addOp("拓扑视图", () => {
-          recordOpFlowPageAction("offline-dev-instance", "拓扑视图", row.name, {
-            opListPrefix: "离线实例",
-            opIdPrefix: "odi-flow-",
-          });
-          showToast("打开「" + row.name + "」拓扑视图（示意）", "info");
+showToast("打开「" + row.name + "」拓扑视图（示意）", "info");
         });
         const sep1 = document.createElement("span");
         sep1.className = "oii-op-sep";
         sep1.textContent = "|";
         ops.appendChild(sep1);
         addOp("列表视图", () => {
-          recordOpFlowPageAction("offline-dev-instance", "列表视图", row.name, {
-            opListPrefix: "离线实例",
-            opIdPrefix: "odi-flow-",
-          });
-          showToast("打开「" + row.name + "」列表视图（示意）", "info");
+showToast("打开「" + row.name + "」列表视图（示意）", "info");
         });
         const sep2 = document.createElement("span");
         sep2.className = "oii-op-sep";
@@ -28072,8 +28752,7 @@ LIMIT 5;</pre>
       newBtn.textContent = "新建";
       newBtn.dataset.opFlowNewBound = "1";
       newBtn.addEventListener("click", () => {
-        appendModuleNewResource("新建任务", { leafId: "realtime-integration-task" });
-        showToast("新建实时任务（示意）", "info");
+showToast("新建实时任务（示意）", "info");
       });
       const batchBtn = document.createElement("button");
       batchBtn.type = "button";
@@ -28150,11 +28829,7 @@ LIMIT 5;</pre>
         detailBtn.type = "button";
         detailBtn.textContent = "详情";
         detailBtn.addEventListener("click", () => {
-          recordOpFlowPageAction("realtime-integration-task", "详情", row.name, {
-            opListPrefix: "实时任务",
-            opIdPrefix: "rit-flow-",
-          });
-          showToast("打开「" + row.name + "」详情（示意）", "info");
+showToast("打开「" + row.name + "」详情（示意）", "info");
         });
         ops.appendChild(detailBtn);
         const submitBtn = document.createElement("button");
@@ -28164,7 +28839,9 @@ LIMIT 5;</pre>
           submitBtn.className = "is-disabled";
           submitBtn.disabled = true;
         } else {
-          submitBtn.addEventListener("click", () => appendRealtimeTaskFlowNode(row.name + " · 提交", "action"));
+          submitBtn.addEventListener("click", () => {
+            showToast("提交「" + row.name + "」（示意）", "info");
+          });
         }
         ops.appendChild(submitBtn);
         const moreBtn = document.createElement("button");
@@ -28265,8 +28942,7 @@ LIMIT 5;</pre>
       newBtn.textContent = "新建";
       newBtn.dataset.opFlowNewBound = "1";
       newBtn.addEventListener("click", () => {
-        appendModuleNewResource("新建任务", { leafId: "realtime-dev-task" });
-        showToast("新建实时开发任务（示意）", "info");
+showToast("新建实时开发任务（示意）", "info");
       });
       const batchBtn = document.createElement("button");
       batchBtn.type = "button";
@@ -28336,11 +29012,7 @@ LIMIT 5;</pre>
         detailBtn.type = "button";
         detailBtn.textContent = "详情";
         detailBtn.addEventListener("click", () => {
-          recordOpFlowPageAction("realtime-dev-task", "详情", row.name, {
-            opListPrefix: "实时任务",
-            opIdPrefix: "rdt-flow-",
-          });
-          showToast("打开「" + row.name + "」详情（示意）", "info");
+showToast("打开「" + row.name + "」详情（示意）", "info");
         });
         ops.appendChild(detailBtn);
         const submitBtn = document.createElement("button");
@@ -28351,7 +29023,6 @@ LIMIT 5;</pre>
           submitBtn.disabled = true;
         } else {
           submitBtn.addEventListener("click", () => {
-            appendRealtimeDevTaskFlowNode(row.name + " · 提交", "action");
             showToast("提交「" + row.name + "」（示意）", "info");
           });
         }
@@ -28538,11 +29209,7 @@ LIMIT 5;</pre>
         }
 
         addOp("详情", false, () => {
-          recordOpFlowPageAction("realtime-dev-instance", "详情", row.name, {
-            opListPrefix: "实时实例",
-            opIdPrefix: "rdi-flow-",
-          });
-          showToast("打开实例「" + row.id + "」详情（示意）", "info");
+showToast("打开实例「" + row.id + "」详情（示意）", "info");
         });
         const sep1 = document.createElement("span");
         sep1.className = "oii-op-sep";
@@ -28741,11 +29408,7 @@ LIMIT 5;</pre>
         }
 
         addOp("详情", false, () => {
-          recordOpFlowPageAction("realtime-integration-instance", "详情", row.name, {
-            opListPrefix: "实时实例",
-            opIdPrefix: "rii-flow-",
-          });
-          showToast("打开实例「" + row.id + "」详情（示意）", "info");
+showToast("打开实例「" + row.id + "」详情（示意）", "info");
         });
         const sep1 = document.createElement("span");
         sep1.className = "oii-op-sep";
@@ -28753,11 +29416,7 @@ LIMIT 5;</pre>
         ops.appendChild(sep1);
         const toggleLabel = isRunning ? "停止" : "启动";
         addOp(toggleLabel, false, () => {
-          recordOpFlowPageAction("realtime-integration-instance", toggleLabel, row.name, {
-            opListPrefix: "实时实例",
-            opIdPrefix: "rii-flow-",
-          });
-          showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
+showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         });
         const sep2 = document.createElement("span");
         sep2.className = "oii-op-sep";
@@ -29182,6 +29841,8 @@ LIMIT 5;</pre>
       const flowViewMode = isOpFlowFlowViewMode();
       if (!opts.keepBpMode && !flowViewMode) {
         resetOpFlowBusinessProcessContext();
+      } else if (opFlowFromBusinessProcess) {
+        bpWorkspaceResourceOverview = false;
       }
       if (!flowViewMode && !opts.skipStateReset) {
         resetStateForNavLeaf(leafId);
@@ -29274,10 +29935,16 @@ LIMIT 5;</pre>
         return;
       }
       if (selectedLeafId) {
+        canvasEl.classList.remove("canvas--bp-overview");
         mountCanvasForLeaf(selectedLeafId);
         return;
       }
+      if (shouldShowBpResourceOverview()) {
+        mountBpResourceOverviewCanvas();
+        return;
+      }
       if (isProcessDevWorkspace()) {
+        canvasEl.classList.remove("canvas--bp-overview");
         mountWorkspacePlaceholderCanvas();
         return;
       }
@@ -29689,7 +30356,7 @@ LIMIT 5;</pre>
     }
 
     function bindAppEvents() {
-      bindModuleNewResourceAutoTrack();
+      bindOpFlowTableCheckboxTrack();
       if (opFlowClearEl) {
         opFlowClearEl.addEventListener("click", () => {
           if (opFlowClearEl.disabled) return;
@@ -29701,12 +30368,6 @@ LIMIT 5;</pre>
       window.addEventListener("message", (event) => {
         const data = event.data || {};
         if (data.source !== "business-modeling-prototype") return;
-        if (data.type === "business-modeling:create" || data.type === "business-modeling:save") {
-          appendModuleNewResource(data.label, {
-            leafId: "business-modeling",
-            resourceLabel: data.label,
-          });
-        }
       });
 
       if (opFlowSaveEl) {
@@ -29731,6 +30392,10 @@ LIMIT 5;</pre>
         navBackToListEl.addEventListener("click", () => goToBusinessProcesses());
       }
 
+      if (wsToolbarAllResourcesEl) {
+        wsToolbarAllResourcesEl.addEventListener("click", () => openBpResourceOverviewAtModule());
+      }
+
       if (wsToolbarNewFlowEl) {
         wsToolbarNewFlowEl.addEventListener("click", () => openBpNewFlowModal());
       }
@@ -29751,8 +30416,8 @@ LIMIT 5;</pre>
           writeOpFlowResourceAutoInclude(wsResourceAutoIncludeEl.checked);
           showToast(
             wsResourceAutoIncludeEl.checked
-              ? "已开启：资源与页面操作将自动记入流程"
-              : "已关闭：资源与操作不再自动记入流程",
+              ? "已开启：列表多选勾选的资源将记入流程"
+              : "已关闭：列表多选勾选的资源不再记入流程",
             "info"
           );
         });
