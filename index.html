@@ -12400,12 +12400,46 @@
       display: flex !important;
     }
 
-    .bp-hub--v3 .bp-drilldown-top {
+    .bp-hub--v3 .bp-flow-list-panel-hub {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
       flex-shrink: 0;
-      margin-bottom: 4px;
+      margin-bottom: 10px;
+      border: 1px solid var(--bp-v3-line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+      overflow: hidden;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub > .bp-flow-list-panel-head {
+      padding: 12px 14px 10px;
+      border-bottom: none;
+      background: transparent;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel--plain {
+      border: none;
+      background: transparent;
+      margin: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel--plain .bp-filter-panel__body {
+      display: block;
+      padding: 0 14px 12px;
+      border-top: none;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-scene-filter-cards {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-panel {
+      width: 100%;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-head {
@@ -12485,22 +12519,6 @@
       outline: none;
       border-color: #91caff;
       box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.12);
-    }
-
-    .bp-hub--v3 .bp-drilldown-top .bp-filter-panel {
-      width: 100%;
-    }
-
-    .bp-hub--v3 .bp-drilldown-top .bp-filter-panel--plain {
-      border: none;
-      background: transparent;
-      margin-bottom: 0;
-      overflow: visible;
-    }
-
-    .bp-hub--v3 .bp-drilldown-top .bp-filter-panel--plain .bp-filter-panel__body {
-      display: block;
-      padding: 0;
     }
 
     .bp-hub--v3 .bp-flow-list-panel-head-right .bp-flow-head-filter {
@@ -12699,30 +12717,30 @@
       font-weight: 500;
     }
 
-    .bp-hub--v3 .bp-drilldown-top .bp-cascade-row {
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-cascade-row {
       flex-direction: row;
       align-items: flex-start;
       gap: 12px;
       margin-bottom: 12px;
     }
 
-    .bp-hub--v3 .bp-drilldown-top .bp-cascade-row__label {
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-cascade-row__label {
       width: auto;
       min-width: 108px;
       flex-shrink: 0;
       padding-top: 6px;
     }
 
-    .bp-hub--v3 .bp-drilldown-top .bp-cascade-row__options {
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-cascade-row__options {
       flex: 1;
     }
 
-    .bp-hub--v3 .bp-drilldown-top .bp-cascade-row__options .bp-filter-chip {
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-cascade-row__options .bp-filter-chip {
       flex: 0 1 auto;
       min-width: 72px;
     }
 
-    .bp-hub--v3 .bp-drilldown-top .bp-filter-block {
+    .bp-hub--v3 .bp-flow-list-panel-hub .bp-filter-block {
       padding: 12px 14px 0;
       border: none;
       border-radius: 0;
@@ -13373,6 +13391,8 @@
         "foot flow";
       column-gap: 10px;
       align-items: stretch;
+      position: relative;
+      isolation: isolate;
       border: 1px solid var(--bp-v3-line);
       border-radius: 12px;
       background: #fff;
@@ -13381,19 +13401,48 @@
       transition: border-color 0.16s ease, box-shadow 0.16s ease;
     }
 
+    .bp-hub--v3 .bp-card::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / 4;
+      z-index: 0;
+      pointer-events: none;
+      border-right: 1px solid rgba(191, 219, 254, 0.55);
+      background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 42%, #f8fbff 78%, #ffffff 100%);
+      box-shadow: inset 3px 0 0 #3b82f6;
+      transition: background 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
     .bp-hub--v3 .bp-card:hover {
       transform: none;
       border-color: #bdd8ff;
       box-shadow: 0 8px 22px rgba(16, 24, 40, 0.08);
     }
 
+    .bp-hub--v3 .bp-card:hover::before {
+      background: linear-gradient(135deg, #dfefff 0%, #ebf4ff 42%, #f3f8ff 78%, #ffffff 100%);
+      border-right-color: rgba(147, 197, 253, 0.75);
+      box-shadow: inset 3px 0 0 #2563eb;
+    }
+
     .bp-hub--v3 .bp-card--template {
       border-color: #c9d7ff;
-      background: linear-gradient(90deg, #fbfcff 0%, #fff 34%);
+    }
+
+    .bp-hub--v3 .bp-card--template::before {
+      background: linear-gradient(135deg, #e0ebff 0%, #eef4ff 42%, #f5f8ff 78%, #ffffff 100%);
+      box-shadow: inset 3px 0 0 #2f54eb;
+    }
+
+    .bp-hub--v3 .bp-card--template:hover::before {
+      background: linear-gradient(135deg, #d6e4ff 0%, #e6efff 42%, #f0f5ff 78%, #ffffff 100%);
+      box-shadow: inset 3px 0 0 #1d4ed8;
     }
 
     .bp-hub--v3 .bp-card-head {
       grid-area: head;
+      position: relative;
+      z-index: 1;
       min-width: 0;
       padding: 12px 0 4px 14px;
       align-items: flex-start;
@@ -13420,33 +13469,54 @@
 
     .bp-hub--v3 .bp-card-main {
       grid-area: main;
+      position: relative;
+      z-index: 1;
       min-width: 0;
       padding: 0 0 12px 14px;
     }
 
     .bp-hub--v3 .bp-flow-section {
       grid-area: flow;
+      position: relative;
+      z-index: 1;
       min-width: 0;
       min-height: 0;
       height: 100%;
       display: flex;
       flex-direction: column;
       border-top: none;
-      border-left: 1px solid #eef2f6;
-      border-right: 1px solid #eef2f6;
-      background: #fcfdff;
+      border-left: 1px solid rgba(191, 219, 254, 0.45);
+      border-right: 1px solid rgba(191, 219, 254, 0.45);
+      background: linear-gradient(90deg, #fcfdff 0%, #f8fbff 52%, #f0f7ff 82%, #e8f2ff 100%);
       overflow: hidden;
+      transition: background 0.16s ease, border-color 0.16s ease;
+    }
+
+    .bp-hub--v3 .bp-card:hover .bp-flow-section {
+      border-left-color: rgba(147, 197, 253, 0.55);
+      border-right-color: rgba(147, 197, 253, 0.75);
+      background: linear-gradient(90deg, #fcfdff 0%, #f3f8ff 52%, #ebf4ff 82%, #dfefff 100%);
+    }
+
+    .bp-hub--v3 .bp-card--template .bp-flow-section {
+      background: linear-gradient(90deg, #fcfdff 0%, #f5f8ff 52%, #eef4ff 82%, #e0ebff 100%);
+    }
+
+    .bp-hub--v3 .bp-card--template:hover .bp-flow-section {
+      background: linear-gradient(90deg, #fcfdff 0%, #f0f5ff 52%, #e6efff 82%, #d6e4ff 100%);
     }
 
     .bp-hub--v3 .bp-card-footer {
       grid-area: foot;
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-end;
       gap: 6px;
       padding: 8px 14px 12px;
-      border-top: 1px solid #eef2f6;
+      border-top: 1px solid rgba(191, 219, 254, 0.45);
       background: transparent;
     }
 
@@ -14314,6 +14384,32 @@
           "main"
           "flow"
           "foot";
+      }
+
+      .bp-hub--v3 .bp-card::before {
+        display: none;
+      }
+
+      .bp-hub--v3 .bp-card-head {
+        background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%);
+        box-shadow: inset 3px 0 0 #3b82f6;
+      }
+
+      .bp-hub--v3 .bp-card-main {
+        background: linear-gradient(180deg, #f0f7ff 0%, #f8fbff 100%);
+        box-shadow: inset 3px 0 0 #3b82f6;
+      }
+
+      .bp-hub--v3 .bp-card-footer {
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+        box-shadow: inset 3px 0 0 #3b82f6;
+      }
+
+      .bp-hub--v3 .bp-card--template .bp-card-head,
+      .bp-hub--v3 .bp-card--template .bp-card-main,
+      .bp-hub--v3 .bp-card--template .bp-card-footer {
+        background: linear-gradient(180deg, #e0ebff 0%, #f5f8ff 100%);
+        box-shadow: inset 3px 0 0 #2f54eb;
       }
 
       .bp-hub--v3 .bp-card-head,
@@ -24351,8 +24447,8 @@
       const layout = document.createElement("div");
       layout.className = "bp-hub-layout";
 
-      const drilldownTop = document.createElement("div");
-      drilldownTop.className = "bp-drilldown-top";
+      const flowPanelHub = document.createElement("div");
+      flowPanelHub.className = "bp-flow-list-panel-hub";
       const search = document.createElement("input");
       search.type = "search";
       search.className = "bp-search";
@@ -24477,9 +24573,9 @@
       flowPanelBody.appendChild(sourceTplBanner);
       flowPanelBody.appendChild(bulkBar);
       flowPanelBody.appendChild(cardsWrap);
-      flowPanel.appendChild(flowPanelHead);
-      drilldownTop.appendChild(catPanel);
-      flowPanel.appendChild(drilldownTop);
+      flowPanelHub.appendChild(flowPanelHead);
+      flowPanelHub.appendChild(catPanel);
+      flowPanel.appendChild(flowPanelHub);
       flowPanel.appendChild(flowPanelBody);
 
       let bulkPickMode = false;
