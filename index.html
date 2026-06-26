@@ -6300,6 +6300,35 @@
       line-height: 1.4;
     }
 
+    .tc-template-grid-shell.is-expanded .bp-scene-filter-cards {
+      margin-bottom: 8px;
+    }
+
+    .tc-template-grid-foot {
+      display: flex;
+      justify-content: center;
+      padding: 0 14px 2px;
+    }
+
+    .tc-template-grid-collapse-btn {
+      height: 32px;
+      padding: 0 18px;
+      border: 1px solid #1677ff;
+      background: #fff;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .tc-template-grid-collapse-btn:hover {
+      background: #1677ff;
+      color: #fff;
+    }
+
     .tc-template-grid-add {
       margin-top: 12px;
     }
@@ -12393,6 +12422,7 @@
       flex: 1;
       min-height: 0;
       flex-direction: column;
+      gap: 10px;
       overflow: hidden;
     }
 
@@ -12405,7 +12435,6 @@
       flex-direction: column;
       gap: 0;
       flex-shrink: 0;
-      margin-bottom: 10px;
       border: 1px solid var(--bp-v3-line);
       border-radius: 12px;
       background: #fff;
@@ -12810,7 +12839,11 @@
       min-height: 0;
       overflow-x: hidden;
       overflow-y: auto;
-      padding: 8px 0 12px;
+      padding: 12px 14px 14px;
+      border: 1px solid var(--bp-v3-line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
     }
 
     .bp-hub--v3.is-board-drilldown .bp-flow-list-panel-body .bp-cards,
@@ -12999,7 +13032,11 @@
     }
 
     .bp-hub--v3 .bp-flow-list-panel-body {
-      padding: 10px 12px 12px;
+      padding: 12px 14px 14px;
+      border: 1px solid var(--bp-v3-line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
     }
 
     .bp-hub--v3 .bp-stat-tab {
@@ -17506,6 +17543,7 @@
       const leaf = getNavLeafById(leafId);
       if (!leaf) return;
       if (opFlowFromBusinessProcess) bpWorkspaceResourceOverview = false;
+      if (isProcessDevWorkspace()) ensureOpFlowVisitForNavLeaf(leafId);
       selectOpFlowModule(leafId);
       setActiveGroupsForLeaf(leafId);
       resourceDetailState = null;
@@ -17513,6 +17551,9 @@
       selectedLeafId = leafId;
       syncMainLayout();
       renderNav({ skipSyncCanvas: !!opts.skipSyncCanvas });
+      if (!opts.skipSyncCanvas && isProcessDevWorkspace() && opFlowResourceAutoInclude) {
+        syncOpFlowCheckedTableResources(leafId);
+      }
       if (!opts.skipAppendOp) {
         appendOperation({ id: leafId, label: getNavLeafLabel(leafId) });
       }
@@ -17830,6 +17871,41 @@
       return opFlowVisitStack.find((v) => v.leafId === leafId) || null;
     }
 
+    function ensureOpFlowVisitForNavLeaf(leafId) {
+      if (!leafId) return null;
+      const existing = findOpFlowVisit(leafId);
+      if (existing) return existing;
+
+      const visit = {
+        leafId,
+        label: getNavLeafLabel(leafId),
+        snapshot: null,
+        fromBusinessProcess: opFlowFromBusinessProcess,
+      };
+      opFlowVisitStack.push(visit);
+
+      if (isOpFlowModuleListLocked() || opFlowModuleLeafIds.length > 0) {
+        if (!opFlowModuleLeafIds.includes(leafId)) {
+          opFlowModuleLeafIds.push(leafId);
+        }
+      }
+
+      dedupeOpFlowVisitStack();
+      return visit;
+    }
+
+    function syncOpFlowCheckedTableResources(leafId) {
+      if (!leafId || !isProcessDevWorkspace() || !opFlowResourceAutoInclude || !canvasEl) return;
+      const table = canvasEl.querySelector("table");
+      if (!table) return;
+      table.querySelectorAll("tbody tr").forEach((row) => {
+        const cb = row.querySelector('td.col-check input[type="checkbox"]');
+        if (!cb || !cb.checked) return;
+        const name = resolveOpFlowTableRowResourceName(row);
+        recordOpFlowTableCheckboxSelection(leafId, name);
+      });
+    }
+
     function dedupeOpFlowVisitStack() {
       const seen = new Set();
       opFlowVisitStack = opFlowVisitStack.filter((visit) => {
@@ -17865,7 +17941,7 @@
 
     function ensureTrailingOpFlowVisit(leafId) {
       if (!leafId) return null;
-      if (isProcessDevWorkspace()) return findOpFlowVisit(leafId);
+      if (isProcessDevWorkspace()) return ensureOpFlowVisitForNavLeaf(leafId);
       return ensureUniqueOpFlowVisit(leafId);
     }
 
@@ -22947,26 +23023,44 @@
 
     function clearTemplateGridShellExtras(shellEl) {
       if (!shellEl) return;
-      shellEl.querySelectorAll(".tc-template-more-guide").forEach((el) => el.remove());
+      shellEl.querySelectorAll(".tc-template-more-guide, .tc-template-grid-foot").forEach((el) => el.remove());
+      shellEl.classList.remove("is-expanded");
     }
 
-    function appendTemplateCardMoreOverlay(card, hiddenCount, onOpenAll) {
+    function appendTemplateGridCollapseBar(shellEl, onCollapse) {
+      if (!shellEl || typeof onCollapse !== "function") return;
+      const foot = document.createElement("div");
+      foot.className = "tc-template-grid-foot";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "tc-template-grid-collapse-btn";
+      btn.textContent = "收起";
+      btn.setAttribute("aria-label", "收起场景模板");
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        onCollapse();
+      });
+      foot.appendChild(btn);
+      shellEl.appendChild(foot);
+    }
+
+    function appendTemplateCardMoreOverlay(card, hiddenCount, onExpand) {
       if (!card || hiddenCount <= 0) return;
       card.classList.add("tc-template-card--has-more");
       const overlay = document.createElement("button");
       overlay.type = "button";
       overlay.className = "tc-template-card-more-overlay";
-      overlay.setAttribute("aria-label", "点击查看更多，打开全部场景模板");
+      overlay.setAttribute("aria-label", "点击查看更多，展开全部场景模板");
       overlay.innerHTML =
         '<span class="tc-template-card-more-overlay__title">点击查看更多</span>' +
-        '<span class="tc-template-card-more-overlay__sub">打开全部场景模板</span>' +
+        '<span class="tc-template-card-more-overlay__sub">展开全部场景模板</span>' +
         '<span class="tc-template-card-more-overlay__count">还有 ' +
         hiddenCount +
         " 个未展示</span>";
       overlay.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        onOpenAll();
+        onExpand();
       });
       card.appendChild(overlay);
     }
@@ -22986,60 +23080,66 @@
       const gridEl = opts.gridEl;
       const items = opts.items || [];
       const buildCard = opts.buildCard;
-      const overlayTitle = opts.overlayTitle || "全部场景模板";
       const emptyText = opts.emptyText;
       const gridClass = resolveOverflowGridClass(gridEl, opts);
 
       if (!shellEl || !gridEl || typeof buildCard !== "function") return;
 
-      clearTemplateGridShellExtras(shellEl);
-      gridEl.innerHTML = "";
-      gridEl.classList.remove("bp-scene-filter-cards--row6", "bp-scene-filter-cards--fit");
-      if (
-        gridEl.classList.contains("bp-scene-filter-cards") &&
-        items.length > 0 &&
-        items.length <= TC_TEMPLATE_VISIBLE_MAX
-      ) {
-        gridEl.classList.add("bp-scene-filter-cards--fit");
-        gridEl.style.setProperty("--scene-card-fit-cols", String(items.length));
-      } else {
-        gridEl.classList.add(gridClass);
-        gridEl.style.removeProperty("--scene-card-fit-cols");
-      }
-
-      if (!items.length) {
-        if (emptyText) {
-          const empty = document.createElement("div");
-          empty.className = "tc-empty";
-          empty.textContent = emptyText;
-          gridEl.appendChild(empty);
-        }
-        return;
-      }
-
-      const openAllTemplatesOverlay = () => {
-        openTcTemplateGridOverlay({
-          anchorEl: shellEl,
-          items: items,
-          buildCard: buildCard,
-          title: overlayTitle,
-          gridClass: gridClass,
-          variant:
-            opts.overlayVariant ||
-            (gridEl.classList.contains("bp-scene-filter-cards") ? "scene" : "default"),
-        });
-      };
-
       const hasMore = items.length > TC_TEMPLATE_VISIBLE_MAX;
       const hiddenCount = hasMore ? items.length - TC_TEMPLATE_VISIBLE_MAX : 0;
 
-      items.slice(0, TC_TEMPLATE_VISIBLE_MAX).forEach((item, index) => {
-        const card = buildCard(item, index);
-        if (hasMore && index === TC_TEMPLATE_VISIBLE_MAX - 1) {
-          appendTemplateCardMoreOverlay(card, hiddenCount, openAllTemplatesOverlay);
+      function mountGrid(expanded) {
+        closeTcTemplateGridOverlay(true);
+        clearTemplateGridShellExtras(shellEl);
+        gridEl.innerHTML = "";
+        gridEl.classList.remove("bp-scene-filter-cards--row6", "bp-scene-filter-cards--fit");
+
+        if (!items.length) {
+          if (emptyText) {
+            const empty = document.createElement("div");
+            empty.className = "tc-empty";
+            empty.textContent = emptyText;
+            gridEl.appendChild(empty);
+          }
+          shellEl.dataset.tcTemplateExpanded = "0";
+          return;
         }
-        gridEl.appendChild(card);
-      });
+
+        if (expanded) {
+          shellEl.classList.add("is-expanded");
+          shellEl.dataset.tcTemplateExpanded = "1";
+          gridEl.classList.add(gridClass);
+          gridEl.style.removeProperty("--scene-card-fit-cols");
+          items.forEach((item, index) => gridEl.appendChild(buildCard(item, index)));
+          appendTemplateGridCollapseBar(shellEl, () => mountGrid(false));
+          return;
+        }
+
+        shellEl.dataset.tcTemplateExpanded = "0";
+        if (
+          gridEl.classList.contains("bp-scene-filter-cards") &&
+          items.length > 0 &&
+          items.length <= TC_TEMPLATE_VISIBLE_MAX
+        ) {
+          gridEl.classList.add("bp-scene-filter-cards--fit");
+          gridEl.style.setProperty("--scene-card-fit-cols", String(items.length));
+        } else {
+          gridEl.classList.add(gridClass);
+          gridEl.style.removeProperty("--scene-card-fit-cols");
+        }
+
+        const visibleItems = hasMore ? items.slice(0, TC_TEMPLATE_VISIBLE_MAX) : items;
+        visibleItems.forEach((item, index) => {
+          const card = buildCard(item, index);
+          if (hasMore && index === TC_TEMPLATE_VISIBLE_MAX - 1) {
+            appendTemplateCardMoreOverlay(card, hiddenCount, () => mountGrid(true));
+          }
+          gridEl.appendChild(card);
+        });
+      }
+
+      const initiallyExpanded = hasMore && shellEl.dataset.tcTemplateExpanded === "1";
+      mountGrid(initiallyExpanded);
     }
 
     function openTcTemplateGridOverlay(config) {
