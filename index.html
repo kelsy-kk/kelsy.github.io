@@ -265,6 +265,12 @@
       position: relative;
     }
 
+    /* 覆盖 .sub-nav-item 的 display，确保 hidden / 场景全景菜单真正不可见 */
+    .sub-nav-item[hidden],
+    .sub-nav-item[data-hub-scene] {
+      display: none !important;
+    }
+
     .sub-nav-item:hover {
       color: #1677d2;
     }
@@ -283,6 +289,1053 @@
       height: 2px;
       background: #1677d2;
       border-radius: 2px 2px 0 0;
+    }
+
+    body.main--system-mode .sub-nav {
+      display: none;
+    }
+
+    /* —— 系统管理 · 资源授权 —— */
+    .sys-auth-root {
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      background: #f0f2f5;
+      overflow: hidden;
+    }
+
+    .sys-auth-root.is-nav-collapsed {
+      grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .sys-auth-sidebar {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: #fff;
+      border-right: 1px solid #e8e8e8;
+      overflow: hidden;
+    }
+
+    .sys-auth-sidebar-title {
+      flex-shrink: 0;
+      padding: 16px 20px 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sys-auth-root.is-nav-collapsed .sys-auth-sidebar-title {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    .sys-auth-menu {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 8px 16px;
+    }
+
+    .sys-auth-menu-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.85);
+      font: inherit;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sys-auth-menu-item:hover {
+      background: #f5f5f5;
+    }
+
+    .sys-auth-menu-item.is-active {
+      background: #e6f4ff;
+      color: #1677ff;
+      font-weight: 600;
+    }
+
+    .sys-auth-root.is-nav-collapsed .sys-auth-menu-item {
+      justify-content: center;
+      padding: 0;
+      font-size: 0;
+    }
+
+    .sys-auth-root.is-nav-collapsed .sys-auth-menu-item::before {
+      content: "授";
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sys-auth-collapse {
+      position: absolute;
+      top: 50%;
+      right: -11px;
+      z-index: 2;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid #e8e8e8;
+      border-radius: 0 4px 4px 0;
+      background: #fff;
+      color: #8c8c8c;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .sys-auth-collapse:hover {
+      color: #1677ff;
+      border-color: #91caff;
+    }
+
+    .sys-auth-main {
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .sys-auth-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+      margin-bottom: 16px;
+    }
+
+    .sys-auth-app-select {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .sys-auth-app-label {
+      flex-shrink: 0;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 14px;
+    }
+
+    .sys-auth-app-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 360px;
+      height: 32px;
+      padding: 0 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-app-trigger:hover {
+      border-color: #4096ff;
+    }
+
+    .sys-auth-app-trigger__text {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sys-auth-app-trigger__chev {
+      flex-shrink: 0;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .sys-auth-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .sys-auth-search {
+      width: 220px;
+      height: 32px;
+      padding: 0 12px 0 32px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background:
+        url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23bfbfbf' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 10px center,
+        #fff;
+      font: inherit;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-search:focus {
+      outline: none;
+      border-color: #4096ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .sys-auth-add-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: #1677ff;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .sys-auth-add-btn:hover {
+      background: #4096ff;
+    }
+
+    .sys-auth-grid {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      align-content: start;
+      padding-bottom: 8px;
+    }
+
+    .sys-auth-card {
+      position: relative;
+      min-height: 148px;
+      padding: 16px 16px 40px;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .sys-auth-card__title {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .sys-auth-card__tenant {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .sys-auth-card__tenant-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      color: #1677ff;
+      flex-shrink: 0;
+    }
+
+    .sys-auth-card__tenant-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sys-auth-card__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .sys-auth-card__more {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .sys-auth-card__more:hover {
+      background: #f5f5f5;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .sys-auth-card--add {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 148px;
+      padding: 16px;
+      border: 1px dashed #d9d9d9;
+      border-radius: 8px;
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.45);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .sys-auth-card--add:hover {
+      border-color: #1677ff;
+      color: #1677ff;
+      background: #f0f7ff;
+    }
+
+    .sys-auth-card--add__plus {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .sys-auth-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 12040;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .sys-auth-modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .sys-auth-modal {
+      width: min(520px, 100%);
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+    }
+
+    .sys-auth-modal__hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sys-auth-modal__title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .sys-auth-modal__close {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .sys-auth-modal__close:hover {
+      background: #f5f5f5;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .sys-auth-modal__body {
+      padding: 24px 28px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sys-auth-modal__field {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sys-auth-modal__label {
+      justify-self: end;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 14px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .sys-auth-modal__req {
+      margin-right: 2px;
+      color: #ff4d4f;
+    }
+
+    .sys-auth-modal__control {
+      position: relative;
+      min-width: 0;
+    }
+
+    .sys-auth-modal__input {
+      width: 100%;
+      box-sizing: border-box;
+      height: 36px;
+      padding: 0 52px 0 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      font: inherit;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-modal__input:hover {
+      border-color: #4096ff;
+    }
+
+    .sys-auth-modal__input:focus {
+      outline: none;
+      border-color: #4096ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .sys-auth-modal__count {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      color: rgba(0, 0, 0, 0.25);
+      font-size: 12px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .sys-auth-modal__ft {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 12px 20px 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .sys-auth-modal__btn {
+      height: 32px;
+      padding: 0 16px;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-modal__btn--primary {
+      border: 1px solid #69b1ff;
+      background: #69b1ff;
+      color: #fff;
+    }
+
+    .sys-auth-modal__btn--primary:hover {
+      border-color: #4096ff;
+      background: #4096ff;
+    }
+
+    .sys-auth-modal__btn--ghost {
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-modal__btn--ghost:hover {
+      border-color: #4096ff;
+      color: #1677ff;
+    }
+
+    .sys-auth-modal--wide {
+      width: min(1120px, calc(100vw - 48px));
+      max-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sys-auth-modal--wide .sys-auth-modal__body {
+      flex: 1;
+      min-height: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 240px minmax(280px, 1.1fr) minmax(360px, 1.4fr);
+      gap: 0;
+    }
+
+    .sys-auth-pick-col {
+      min-width: 0;
+      min-height: 420px;
+      max-height: min(62vh, 560px);
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #f0f0f0;
+      overflow: hidden;
+    }
+
+    .sys-auth-pick-col:last-child {
+      border-right: none;
+    }
+
+    .sys-auth-pick-col__hd {
+      flex-shrink: 0;
+      padding: 12px 14px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .sys-auth-pick-col__hd span {
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+    }
+
+    .sys-auth-pick-col__hd-plus {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      margin: 0 2px;
+      border-radius: 50%;
+      background: #52c41a !important;
+      color: #fff !important;
+      font-size: 11px !important;
+      line-height: 1;
+      vertical-align: -1px;
+      font-weight: 700 !important;
+    }
+
+    .sys-auth-pick-col__search {
+      flex-shrink: 0;
+      margin: 0 14px 10px;
+      height: 32px;
+      padding: 0 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-pick-col__search:focus {
+      outline: none;
+      border-color: #4096ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .sys-auth-pick-col__list {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 8px 12px;
+    }
+
+    .sys-auth-pick-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 36px;
+      padding: 4px 8px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .sys-auth-pick-item:hover {
+      background: #f5f5f5;
+    }
+
+    .sys-auth-pick-item.is-active {
+      background: #e6f4ff;
+    }
+
+    .sys-auth-pick-item input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      flex-shrink: 0;
+      accent-color: #1677ff;
+    }
+
+    .sys-auth-pick-item__label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sys-auth-org-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 34px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .sys-auth-org-row:hover {
+      background: #f5f5f5;
+    }
+
+    .sys-auth-org-row.is-active {
+      background: #e6f4ff;
+    }
+
+    .sys-auth-org-row__toggle {
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 10px;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .sys-auth-org-row__toggle.is-leaf {
+      visibility: hidden;
+    }
+
+    .sys-auth-org-row__check {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      flex-shrink: 0;
+      accent-color: #1677ff;
+    }
+
+    .sys-auth-org-row__name {
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-org-row.is-disabled .sys-auth-org-row__name {
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+    .sys-auth-org-row__icon {
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #8c8c8c;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sys-auth-org-row__icon:hover {
+      background: #73d13d;
+    }
+
+    .sys-auth-org-row__icon.is-on {
+      background: #52c41a;
+    }
+
+    .sys-auth-org-row.is-disabled .sys-auth-org-row__icon {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .sys-auth-pick-item input[type="checkbox"].is-indeterminate {
+      accent-color: #1677ff;
+    }
+
+    .sys-auth-selected-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .sys-auth-selected-table th,
+    .sys-auth-selected-table td {
+      padding: 8px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 12px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .sys-auth-selected-table th {
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 600;
+      background: #fafafa;
+      white-space: nowrap;
+    }
+
+    .sys-auth-selected-table td {
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .sys-auth-selected-table .is-link {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #1677ff;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .sys-auth-selected-table .is-link:hover {
+      color: #4096ff;
+    }
+
+    .sys-auth-selected-empty {
+      padding: 40px 12px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.35);
+      font-size: 13px;
+    }
+
+    .sys-auth-include-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #52c41a;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .sys-auth-main--detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 16px;
+      padding: 16px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .sys-auth-detail {
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .sys-auth-detail__hd {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 14px 16px 10px;
+    }
+
+    .sys-auth-detail__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      height: 28px;
+      padding: 0 6px 0 2px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.65);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-detail__back:hover {
+      color: #1677ff;
+      background: #f5f5f5;
+    }
+
+    .sys-auth-detail__back svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sys-auth-detail__title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .sys-auth-detail__toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      padding: 0 16px 12px;
+    }
+
+    .sys-auth-detail__search {
+      width: 240px;
+      height: 32px;
+      padding: 0 12px 0 32px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background:
+        url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23bfbfbf' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 10px center,
+        #fff;
+      font: inherit;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-detail__search:focus {
+      outline: none;
+      border-color: #4096ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .sys-auth-detail__add-org {
+      height: 32px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 4px;
+      background: #1677ff;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-detail__add-org:hover {
+      background: #4096ff;
+    }
+
+    .sys-auth-detail__table-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 16px 16px;
+    }
+
+    .sys-auth-detail__table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .sys-auth-detail__table th {
+      height: 40px;
+      padding: 0 12px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .sys-auth-detail__table td {
+      height: 48px;
+      padding: 0 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 13px;
+    }
+
+    .sys-auth-detail__empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 280px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 14px;
+    }
+
+    .sys-auth-detail__empty-icon {
+      width: 72px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    .sys-auth-detail__empty-icon svg {
+      width: 64px;
+      height: 48px;
+    }
+
+    .sys-auth-detail__empty a,
+    .sys-auth-detail__empty button.linkish {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #1677ff;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-detail__empty a:hover,
+    .sys-auth-detail__empty button.linkish:hover {
+      color: #4096ff;
+    }
+
+    .sys-auth-sidepanel {
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      background: #fff;
+      border-radius: 4px;
+      overflow: auto;
+    }
+
+    .sys-auth-sidepanel__title {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .sys-auth-sidepanel__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sys-auth-sidepanel__btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .sys-auth-sidepanel__btn--primary {
+      border: 0;
+      background: #1677ff;
+      color: #fff;
+    }
+
+    .sys-auth-sidepanel__btn--primary:hover {
+      background: #4096ff;
+    }
+
+    .sys-auth-sidepanel__btn--ghost {
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .sys-auth-sidepanel__btn--ghost:hover {
+      border-color: #4096ff;
+      color: #1677ff;
+    }
+
+    @media (max-width: 900px) {
+      .sys-auth-root {
+        grid-template-columns: 1fr;
+      }
+
+      .sys-auth-main--detail {
+        grid-template-columns: 1fr;
+      }
+
+      .sys-auth-sidebar {
+        display: none;
+      }
+
+      .sys-auth-toolbar {
+        flex-wrap: wrap;
+      }
+
+      .sys-auth-search {
+        width: 160px;
+      }
     }
 
     main {
@@ -14865,9 +15918,9 @@
       <a class="header-nav-item" href="javascript:void(0)">开发中心</a>
       <a class="header-nav-item" href="javascript:void(0)">治理中心</a>
       <a class="header-nav-item" href="javascript:void(0)">资产中心</a>
-      <a class="header-nav-item active" href="javascript:void(0)" aria-current="page">场景中心</a>
+      <a class="header-nav-item active" href="javascript:void(0)" data-hub-center="scene" aria-current="page">场景中心</a>
       <a class="header-nav-item" href="javascript:void(0)">应用中心</a>
-      <a class="header-nav-item" href="javascript:void(0)">系统管理</a>
+      <a class="header-nav-item" href="javascript:void(0)" data-hub-center="system">系统管理</a>
     </nav>
 
     <div class="main-header-right">
@@ -14907,8 +15960,9 @@
   </header>
 
   <nav class="sub-nav" aria-label="二级导航">
-    <a class="sub-nav-item active" href="javascript:void(0)" data-hub-scene="1">场景全景</a>
-    <a class="sub-nav-item" href="javascript:void(0)" data-hub-template="1">场景定义</a>
+    <!-- 场景全景二级菜单暂隐藏，代码保留便于恢复 -->
+    <a class="sub-nav-item" href="javascript:void(0)" data-hub-scene="1" hidden>场景全景</a>
+    <a class="sub-nav-item active" href="javascript:void(0)" data-hub-template="1">流程定义</a>
     <a class="sub-nav-item" href="javascript:void(0)" data-hub-bp="1">场景流程</a>
   </nav>
 
@@ -15898,8 +16952,10 @@
     let physicalCanvasMode = "list";
     /** 逆向建模向导步：1 映射选择 → 2 信息填写 → 3 表提取 */
     let reverseModelingStep = 1;
-    /** 画布覆盖：null 跟随导航（流程开发）；scene-panorama 场景全景；business-processes 业务流程；template-center 场景定义；resource-detail 资源详情 */
-    let centerOverride = "scene-panorama";
+    /** 画布覆盖：null 跟随导航（流程开发）；scene-panorama 场景全景；business-processes 业务流程；template-center 场景定义；system-resource-auth 系统管理·资源授权；resource-detail 资源详情 */
+    /** 场景全景菜单/页面暂不展示：false 时入口落到流程定义；改 true 并去掉二级菜单 hidden 即可恢复 */
+    const SCENE_PANORAMA_ENABLED = false;
+    let centerOverride = "template-center";
     /** 从场景全景「查看」进入业务流程时预置的场景筛选 */
     let bpFlowListInitialBoardId = null;
     let templateEditorId = null;
@@ -19509,7 +20565,8 @@
         centerOverride === "scene-panorama" ||
         centerOverride === "business-processes" ||
         centerOverride === "template-center" ||
-        centerOverride === "template-editor"
+        centerOverride === "template-editor" ||
+        centerOverride === "system-resource-auth"
       );
     }
 
@@ -19529,6 +20586,10 @@
       return centerOverride === "template-editor";
     }
 
+    function isSystemResourceAuthMode() {
+      return centerOverride === "system-resource-auth";
+    }
+
     function isProcessDevWorkspace() {
       return centerOverride === null;
     }
@@ -19536,11 +20597,13 @@
     function syncMainLayout() {
       const hub = isFullPageHubMode();
       const workspace = isProcessDevWorkspace();
+      const systemMode = isSystemResourceAuthMode();
       if (mainLayoutEl) {
         mainLayoutEl.classList.toggle("main--hub", hub);
         mainLayoutEl.classList.toggle("main--workspace", workspace);
       }
       document.body.classList.toggle("main--workspace-mode", workspace);
+      document.body.classList.toggle("main--system-mode", systemMode);
       syncWorkspaceToolbar();
       syncNavPanelCollapsed();
     }
@@ -19603,6 +20666,15 @@
       }
     }
 
+    function syncHeaderCenterActive(center) {
+      document.querySelectorAll(".header-nav-item[data-hub-center]").forEach((el) => {
+        const on = el.getAttribute("data-hub-center") === center;
+        el.classList.toggle("active", on);
+        if (on) el.setAttribute("aria-current", "page");
+        else el.removeAttribute("aria-current");
+      });
+    }
+
     function resetHubWorkspaceState() {
       selectedLeafId = null;
       resetOpFlowBusinessProcessContext();
@@ -19616,6 +20688,11 @@
     }
 
     function goToScenePanorama(options) {
+      /* 场景全景暂隐藏：不删逻辑，入口统一转到流程定义 */
+      if (!SCENE_PANORAMA_ENABLED) {
+        goToTemplateCenter(options);
+        return;
+      }
       const opts = options || {};
       const apply = () => {
         resourceDetailState = null;
@@ -19623,6 +20700,7 @@
         centerOverride = "scene-panorama";
         bpFlowListInitialBoardId = null;
         resetHubWorkspaceState();
+        syncHeaderCenterActive("scene");
         syncHubSubNavActive("panorama");
         syncMainLayout();
         syncCanvas();
@@ -19637,6 +20715,10 @@
     }
 
     function goToAllProcessesCanvas(options) {
+      if (!SCENE_PANORAMA_ENABLED) {
+        goToBusinessProcesses(options);
+        return;
+      }
       goToScenePanorama(options);
     }
 
@@ -19648,6 +20730,7 @@
         centerOverride = "business-processes";
         bpFlowListInitialBoardId = opts.boardId || null;
         resetHubWorkspaceState();
+        syncHeaderCenterActive("scene");
         syncHubSubNavActive("business");
         syncMainLayout();
         syncCanvas();
@@ -19672,7 +20755,34 @@
         resourceDetailState = null;
         centerOverride = "template-center";
         resetHubWorkspaceState();
+        syncHeaderCenterActive("scene");
         syncHubSubNavActive("template");
+        syncMainLayout();
+        syncCanvas();
+        renderNav({ skipSyncCanvas: true });
+        renderOperationFlow();
+      };
+      if (opts.skipAnimation) {
+        apply();
+        return;
+      }
+      if (isProcessDevWorkspace()) {
+        animateWorkspaceToHub(apply);
+        return;
+      }
+      apply();
+    }
+
+    function goToSystemManagement(options) {
+      const opts = options || {};
+      const apply = () => {
+        resourceDetailState = null;
+        templateEditorId = null;
+        centerOverride = "system-resource-auth";
+        bpFlowListInitialBoardId = null;
+        resetHubWorkspaceState();
+        syncHeaderCenterActive("system");
+        document.querySelectorAll(".sub-nav-item").forEach((x) => x.classList.remove("active"));
         syncMainLayout();
         syncCanvas();
         renderNav({ skipSyncCanvas: true });
@@ -19696,6 +20806,7 @@
         resourceDetailState = null;
         centerOverride = "template-editor";
         resetHubWorkspaceState();
+        syncHeaderCenterActive("scene");
         syncHubSubNavActive("template");
         syncMainLayout();
         syncCanvas();
@@ -23610,7 +24721,7 @@
       const useBtn = document.createElement("button");
       useBtn.type = "button";
       useBtn.className = "otb-btn otb-btn-primary tc-preset-use-btn";
-      useBtn.textContent = "场景流程开发";
+      useBtn.textContent = "流程开发";
       useBtn.addEventListener("click", () => {
         startNewFlowFromModuleTemplate(preset);
       });
@@ -23751,6 +24862,1062 @@
       canvasEl.appendChild(root);
     }
 
+    function closeSysAuthNewGroupModal() {
+      const bd = document.getElementById("sysAuthNewGroupBackdrop");
+      if (bd) bd.hidden = true;
+    }
+
+    function ensureSysAuthNewGroupModal(onConfirm) {
+      let backdrop = document.getElementById("sysAuthNewGroupBackdrop");
+      if (!backdrop) {
+        backdrop = document.createElement("div");
+        backdrop.id = "sysAuthNewGroupBackdrop";
+        backdrop.className = "sys-auth-modal-backdrop";
+        backdrop.hidden = true;
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSysAuthNewGroupModal();
+        });
+
+        const dialog = document.createElement("div");
+        dialog.className = "sys-auth-modal";
+        dialog.setAttribute("role", "dialog");
+        dialog.setAttribute("aria-modal", "true");
+        dialog.setAttribute("aria-labelledby", "sysAuthNewGroupTitle");
+        dialog.addEventListener("click", (e) => e.stopPropagation());
+
+        const hd = document.createElement("div");
+        hd.className = "sys-auth-modal__hd";
+        const title = document.createElement("h2");
+        title.id = "sysAuthNewGroupTitle";
+        title.className = "sys-auth-modal__title";
+        title.textContent = "新增分组";
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "sys-auth-modal__close";
+        closeBtn.setAttribute("aria-label", "关闭");
+        closeBtn.textContent = "×";
+        closeBtn.addEventListener("click", () => closeSysAuthNewGroupModal());
+        hd.appendChild(title);
+        hd.appendChild(closeBtn);
+
+        const body = document.createElement("div");
+        body.className = "sys-auth-modal__body";
+
+        function buildCountedField(opts) {
+          const field = document.createElement("div");
+          field.className = "sys-auth-modal__field";
+          const label = document.createElement("label");
+          label.className = "sys-auth-modal__label";
+          label.setAttribute("for", opts.id);
+          if (opts.required) {
+            label.innerHTML =
+              '<span class="sys-auth-modal__req">*</span>' + opts.label + "：";
+          } else {
+            label.textContent = opts.label + "：";
+          }
+          const control = document.createElement("div");
+          control.className = "sys-auth-modal__control";
+          const input = document.createElement("input");
+          input.type = "text";
+          input.id = opts.id;
+          input.className = "sys-auth-modal__input";
+          input.maxLength = 50;
+          input.autocomplete = "off";
+          const count = document.createElement("span");
+          count.className = "sys-auth-modal__count";
+          count.id = opts.id + "Count";
+          count.textContent = "0/50";
+          input.addEventListener("input", () => {
+            count.textContent = String(input.value.length) + "/50";
+          });
+          control.appendChild(input);
+          control.appendChild(count);
+          field.appendChild(label);
+          field.appendChild(control);
+          return { field, input, count };
+        }
+
+        const nameField = buildCountedField({
+          id: "sysAuthGroupName",
+          label: "分组名称",
+          required: true,
+        });
+        const descField = buildCountedField({
+          id: "sysAuthGroupDesc",
+          label: "添加描述",
+          required: false,
+        });
+        body.appendChild(nameField.field);
+        body.appendChild(descField.field);
+
+        const ft = document.createElement("div");
+        ft.className = "sys-auth-modal__ft";
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "sys-auth-modal__btn sys-auth-modal__btn--primary";
+        okBtn.textContent = "确定";
+        okBtn.addEventListener("click", () => {
+          const nameInp = document.getElementById("sysAuthGroupName");
+          const descInp = document.getElementById("sysAuthGroupDesc");
+          const name = ((nameInp && nameInp.value) || "").trim();
+          const desc = ((descInp && descInp.value) || "").trim();
+          if (!name) {
+            showToast("请填写分组名称", "warn");
+            if (nameInp) nameInp.focus();
+            return;
+          }
+          const handler = backdrop._onConfirm;
+          closeSysAuthNewGroupModal();
+          if (typeof handler === "function") handler({ name, description: desc });
+        });
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "sys-auth-modal__btn sys-auth-modal__btn--ghost";
+        cancelBtn.textContent = "取消";
+        cancelBtn.addEventListener("click", () => closeSysAuthNewGroupModal());
+        ft.appendChild(okBtn);
+        ft.appendChild(cancelBtn);
+
+        dialog.appendChild(hd);
+        dialog.appendChild(body);
+        dialog.appendChild(ft);
+        backdrop.appendChild(dialog);
+        document.body.appendChild(backdrop);
+      }
+      backdrop._onConfirm = onConfirm;
+      return backdrop;
+    }
+
+    function openSysAuthNewGroupModal(onConfirm) {
+      const backdrop = ensureSysAuthNewGroupModal(onConfirm);
+      const nameInp = document.getElementById("sysAuthGroupName");
+      const descInp = document.getElementById("sysAuthGroupDesc");
+      const nameCount = document.getElementById("sysAuthGroupNameCount");
+      const descCount = document.getElementById("sysAuthGroupDescCount");
+      if (nameInp) nameInp.value = "";
+      if (descInp) descInp.value = "";
+      if (nameCount) nameCount.textContent = "0/50";
+      if (descCount) descCount.textContent = "0/50";
+      backdrop.hidden = false;
+      window.setTimeout(() => {
+        if (nameInp) nameInp.focus();
+      }, 0);
+    }
+
+    const SYS_AUTH_TENANTS = [
+      { id: "t2", name: "广联达科技股份有限公司11" },
+      { id: "t1", name: "广联达科技股份有限公司" },
+      { id: "t3", name: "施工客群解决方案部" },
+      { id: "t4", name: "广联达科技股份有限公司1" },
+      { id: "t5", name: "企业BI" },
+      { id: "t6", name: "杨雪租户" },
+      { id: "t7", name: "liudh-ae" },
+      { id: "t8", name: "智慧报表_华为云" },
+      { id: "t9", name: "广西建工数据仓库测试租户" },
+      { id: "t10", name: "北京建工系统测试租户" },
+      { id: "t11", name: "宋楠的aecloud测试账号" },
+      { id: "t12", name: "主数据业务测试" },
+    ];
+
+    const SYS_AUTH_ORG_TREE = {
+      t1: [
+        {
+          id: "o-root",
+          name: "广梦-广联达科技股份有限公司",
+          children: [
+            { id: "o-sd", name: "山东总承包项目A", children: [] },
+            { id: "o-zf", name: "周峰测试", children: [] },
+            {
+              id: "o-qy17",
+              name: "qianyi-17",
+              children: [
+                {
+                  id: "o-xmb",
+                  name: "项目部",
+                  children: [
+                    { id: "o-zz", name: "郑州市郑东新区龙子湖街道项目", children: [] },
+                    { id: "o-gg", name: "规则设置-金桂园一期", children: [] },
+                    { id: "o-zf2", name: "周峰项目", children: [] },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: "o-cby",
+          name: "陈丙昱",
+          children: [
+            {
+              id: "o-ahy",
+              name: "安徽一建",
+              children: [{ id: "o-hhy", name: "荷花园孙亚测试", children: [] }],
+            },
+          ],
+        },
+        {
+          id: "o-zr",
+          name: "张锐测试",
+          children: [],
+        },
+      ],
+      t2: [{ id: "t2-o1", name: "测试组织A", children: [] }],
+      t3: [{ id: "t3-o1", name: "解决方案一组", children: [{ id: "t3-o2", name: "交付组", children: [] }] }],
+      t4: [{ id: "t4-o1", name: "默认组织", children: [] }],
+      t5: [{ id: "t5-o1", name: "分析中心", children: [] }],
+      t6: [{ id: "t6-o1", name: "杨雪组织", children: [] }],
+      t7: [{ id: "t7-o1", name: "ae组织", children: [] }],
+      t8: [{ id: "t8-o1", name: "华为云组织", children: [] }],
+      t9: [{ id: "t9-o1", name: "广西建工组织", children: [] }],
+      t10: [{ id: "t10-o1", name: "北京建工组织", children: [] }],
+      t11: [{ id: "t11-o1", name: "宋楠测试组织", children: [] }],
+      t12: [{ id: "t12-o1", name: "主数据组织", children: [] }],
+    };
+
+    function closeSysAuthAddOrgModal() {
+      const bd = document.getElementById("sysAuthAddOrgBackdrop");
+      if (bd) bd.hidden = true;
+    }
+
+    function findSysAuthOrgPath(nodes, targetId, trail) {
+      const path = trail || [];
+      for (let i = 0; i < (nodes || []).length; i += 1) {
+        const node = nodes[i];
+        const next = path.concat(node);
+        if (node.id === targetId) return next;
+        const found = findSysAuthOrgPath(node.children || [], targetId, next);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    function collectSysAuthOrgIds(nodes, acc) {
+      (nodes || []).forEach((n) => {
+        acc.add(n.id);
+        collectSysAuthOrgIds(n.children || [], acc);
+      });
+      return acc;
+    }
+
+    function openSysAuthAddOrgModal(onConfirm) {
+      let backdrop = document.getElementById("sysAuthAddOrgBackdrop");
+      if (backdrop) backdrop.remove();
+
+      let activeTenantId = "t1";
+      let tenantQuery = "";
+      let orgQuery = "";
+      const expandedIds = new Set(["o-root", "o-qy17", "o-xmb", "o-cby", "o-ahy"]);
+      const selectedMap = new Map();
+      // 默认态对齐截图：已选「项目部」（包含本下级）
+      selectedMap.set("o-xmb", {
+        id: "o-xmb",
+        name: "项目部",
+        parentName: "qianyi-17",
+        tenantId: "t1",
+        tenantName: "广梦-广联达科技股份有限公司",
+        includeChildren: true,
+      });
+
+      backdrop = document.createElement("div");
+      backdrop.id = "sysAuthAddOrgBackdrop";
+      backdrop.className = "sys-auth-modal-backdrop";
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeSysAuthAddOrgModal();
+      });
+
+      const dialog = document.createElement("div");
+      dialog.className = "sys-auth-modal sys-auth-modal--wide";
+      dialog.setAttribute("role", "dialog");
+      dialog.setAttribute("aria-modal", "true");
+      dialog.setAttribute("aria-labelledby", "sysAuthAddOrgTitle");
+      dialog.addEventListener("click", (e) => e.stopPropagation());
+
+      const hd = document.createElement("div");
+      hd.className = "sys-auth-modal__hd";
+      const title = document.createElement("h2");
+      title.id = "sysAuthAddOrgTitle";
+      title.className = "sys-auth-modal__title";
+      title.textContent = "添加组织";
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "sys-auth-modal__close";
+      closeBtn.setAttribute("aria-label", "关闭");
+      closeBtn.textContent = "×";
+      closeBtn.addEventListener("click", () => closeSysAuthAddOrgModal());
+      hd.appendChild(title);
+      hd.appendChild(closeBtn);
+
+      const body = document.createElement("div");
+      body.className = "sys-auth-modal__body";
+
+      const tenantCol = document.createElement("div");
+      tenantCol.className = "sys-auth-pick-col";
+      tenantCol.innerHTML =
+        '<div class="sys-auth-pick-col__hd">租户列表</div>' +
+        '<input class="sys-auth-pick-col__search" type="search" placeholder="请输入你需要搜索的租户" aria-label="搜索租户" />' +
+        '<div class="sys-auth-pick-col__list" data-role="tenant-list"></div>';
+
+      const orgCol = document.createElement("div");
+      orgCol.className = "sys-auth-pick-col";
+      const orgHd = document.createElement("div");
+      orgHd.className = "sys-auth-pick-col__hd";
+      orgHd.innerHTML =
+        '组织列表<span>( 点击 <span class="sys-auth-pick-col__hd-plus" aria-hidden="true">+</span> 选择本下级 )</span>';
+      const orgSearch = document.createElement("input");
+      orgSearch.className = "sys-auth-pick-col__search";
+      orgSearch.type = "search";
+      orgSearch.placeholder = "请输入你需要搜索的组织";
+      orgSearch.setAttribute("aria-label", "搜索组织");
+      const orgListEl = document.createElement("div");
+      orgListEl.className = "sys-auth-pick-col__list";
+      orgListEl.setAttribute("data-role", "org-list");
+      orgCol.appendChild(orgHd);
+      orgCol.appendChild(orgSearch);
+      orgCol.appendChild(orgListEl);
+
+      const selectedCol = document.createElement("div");
+      selectedCol.className = "sys-auth-pick-col";
+      selectedCol.innerHTML =
+        '<div class="sys-auth-pick-col__hd">已选列表</div>' +
+        '<div class="sys-auth-pick-col__list" data-role="selected-list"></div>';
+
+      const tenantListEl = tenantCol.querySelector('[data-role="tenant-list"]');
+      const selectedListEl = selectedCol.querySelector('[data-role="selected-list"]');
+      const tenantSearch = tenantCol.querySelector(".sys-auth-pick-col__search");
+
+      function getTenantName(id) {
+        const t = SYS_AUTH_TENANTS.find((x) => x.id === id);
+        return t ? t.name : "—";
+      }
+
+      function getTenantDisplayForSelection(tenantId) {
+        if (tenantId === "t1") return "广梦-广联达科技股份有限公司";
+        return getTenantName(tenantId);
+      }
+
+      function collectMatchingOrgIds(nodes, q, acc) {
+        (nodes || []).forEach((n) => {
+          if (!q || String(n.name).toLowerCase().includes(q)) acc.add(n.id);
+          collectMatchingOrgIds(n.children || [], q, acc);
+        });
+        return acc;
+      }
+
+      function findAncestorSelected(orgId) {
+        const tree = SYS_AUTH_ORG_TREE[activeTenantId] || [];
+        const path = findSysAuthOrgPath(tree, orgId) || [];
+        for (let i = 0; i < path.length - 1; i += 1) {
+          const anc = selectedMap.get(path[i].id);
+          if (anc && anc.includeChildren) return anc;
+        }
+        return null;
+      }
+
+      function isCoveredByAncestor(orgId) {
+        return !!findAncestorSelected(orgId);
+      }
+
+      function renderSelected() {
+        selectedListEl.innerHTML = "";
+        const table = document.createElement("table");
+        table.className = "sys-auth-selected-table";
+        table.innerHTML =
+          "<thead><tr>" +
+          "<th style='width:44px'>序号</th>" +
+          "<th>组织名称</th>" +
+          "<th>上级组织</th>" +
+          "<th>所属租户</th>" +
+          "<th style='width:84px'>包含本下级</th>" +
+          "<th style='width:52px'>操作</th>" +
+          "</tr></thead>";
+        const tbody = document.createElement("tbody");
+        const rows = Array.from(selectedMap.values());
+        if (!rows.length) {
+          const emptyTr = document.createElement("tr");
+          emptyTr.innerHTML =
+            '<td colspan="6"><div class="sys-auth-selected-empty">暂无已选组织</div></td>';
+          tbody.appendChild(emptyTr);
+        } else {
+          rows.forEach((row, index) => {
+            const tr = document.createElement("tr");
+            const tenantShort =
+              row.tenantName.length > 8 ? row.tenantName.slice(0, 8) + "…" : row.tenantName;
+            tr.innerHTML =
+              "<td>" +
+              (index + 1) +
+              '</td><td title="' +
+              row.name +
+              '">' +
+              row.name +
+              '</td><td title="' +
+              row.parentName +
+              '">' +
+              row.parentName +
+              '</td><td title="' +
+              row.tenantName +
+              '">' +
+              tenantShort +
+              '</td><td><span class="sys-auth-include-mark" aria-label="包含本下级">✓</span></td><td></td>';
+            const del = document.createElement("button");
+            del.type = "button";
+            del.className = "is-link";
+            del.textContent = "删除";
+            del.addEventListener("click", () => {
+              selectedMap.delete(row.id);
+              renderSelected();
+              renderTenants();
+              renderOrgTree();
+            });
+            tr.lastChild.appendChild(del);
+            tbody.appendChild(tr);
+          });
+        }
+        table.appendChild(tbody);
+        selectedListEl.appendChild(table);
+      }
+
+      function addOrgSelection(orgId) {
+        if (isCoveredByAncestor(orgId)) return;
+        const tree = SYS_AUTH_ORG_TREE[activeTenantId] || [];
+        const path = findSysAuthOrgPath(tree, orgId);
+        if (!path || !path.length) return;
+        const node = path[path.length - 1];
+        const parent = path.length > 1 ? path[path.length - 2] : null;
+        // 选择本下级时，去掉已被覆盖的子孙已选项
+        const covered = collectSysAuthOrgIds(node.children || [], new Set());
+        covered.forEach((cid) => selectedMap.delete(cid));
+        selectedMap.set(node.id, {
+          id: node.id,
+          name: node.name,
+          parentName: parent ? parent.name : "—",
+          tenantId: activeTenantId,
+          tenantName: getTenantDisplayForSelection(activeTenantId),
+          includeChildren: true,
+        });
+        renderSelected();
+        renderTenants();
+        renderOrgTree();
+      }
+
+      function renderOrgNode(node, depth) {
+        const q = orgQuery.trim().toLowerCase();
+        const matchIds = q
+          ? collectMatchingOrgIds(SYS_AUTH_ORG_TREE[activeTenantId] || [], q, new Set())
+          : null;
+        if (matchIds && !matchIds.has(node.id)) {
+          const hasMatchChild = (function walk(list) {
+            return (list || []).some((c) => matchIds.has(c.id) || walk(c.children || []));
+          })(node.children || []);
+          if (!hasMatchChild) return null;
+        }
+
+        const wrap = document.createElement("div");
+        const selected = selectedMap.has(node.id);
+        const covered = isCoveredByAncestor(node.id);
+        const row = document.createElement("div");
+        row.className =
+          "sys-auth-org-row" +
+          (selected ? " is-active" : "") +
+          (covered ? " is-disabled" : "");
+        row.style.paddingLeft = 6 + depth * 14 + "px";
+
+        const hasChildren = !!(node.children && node.children.length);
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "sys-auth-org-row__toggle" + (hasChildren ? "" : " is-leaf");
+        const isOpen = expandedIds.has(node.id) || !!q;
+        toggle.textContent = isOpen ? "▾" : "▸";
+        toggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (!hasChildren) return;
+          if (expandedIds.has(node.id)) expandedIds.delete(node.id);
+          else expandedIds.add(node.id);
+          renderOrgTree();
+        });
+
+        const check = document.createElement("input");
+        check.type = "checkbox";
+        check.className = "sys-auth-org-row__check";
+        check.checked = selected || covered;
+        check.disabled = covered;
+        check.addEventListener("click", (e) => e.stopPropagation());
+        check.addEventListener("change", () => {
+          if (covered) return;
+          if (check.checked) addOrgSelection(node.id);
+          else {
+            selectedMap.delete(node.id);
+            renderSelected();
+            renderTenants();
+            renderOrgTree();
+          }
+        });
+
+        const icon = document.createElement("button");
+        icon.type = "button";
+        icon.className = "sys-auth-org-row__icon" + (selected ? " is-on" : "");
+        icon.setAttribute("aria-label", "选择本下级");
+        icon.title = "选择本下级";
+        icon.textContent = "+";
+        icon.disabled = covered;
+        icon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (covered) return;
+          if (selected) {
+            selectedMap.delete(node.id);
+            renderSelected();
+            renderTenants();
+            renderOrgTree();
+          } else {
+            addOrgSelection(node.id);
+          }
+        });
+
+        const name = document.createElement("span");
+        name.className = "sys-auth-org-row__name";
+        name.textContent = node.name;
+        name.title = node.name;
+
+        row.appendChild(toggle);
+        row.appendChild(check);
+        row.appendChild(icon);
+        row.appendChild(name);
+        wrap.appendChild(row);
+
+        if (hasChildren && isOpen) {
+          (node.children || []).forEach((child) => {
+            const childEl = renderOrgNode(child, depth + 1);
+            if (childEl) wrap.appendChild(childEl);
+          });
+        }
+        return wrap;
+      }
+
+      function renderOrgTree() {
+        orgListEl.innerHTML = "";
+        const tree = SYS_AUTH_ORG_TREE[activeTenantId] || [];
+        if (!tree.length) {
+          const empty = document.createElement("div");
+          empty.className = "sys-auth-selected-empty";
+          empty.textContent = "该租户暂无组织";
+          orgListEl.appendChild(empty);
+          return;
+        }
+        tree.forEach((node) => {
+          const el = renderOrgNode(node, 0);
+          if (el) orgListEl.appendChild(el);
+        });
+      }
+
+      function renderTenants() {
+        tenantListEl.innerHTML = "";
+        const q = tenantQuery.trim().toLowerCase();
+        const list = SYS_AUTH_TENANTS.filter((t) => !q || t.name.toLowerCase().includes(q));
+        list.forEach((tenant) => {
+          const item = document.createElement("button");
+          item.type = "button";
+          item.className =
+            "sys-auth-pick-item" + (tenant.id === activeTenantId ? " is-active" : "");
+          const treeIds = collectSysAuthOrgIds(SYS_AUTH_ORG_TREE[tenant.id] || [], new Set());
+          const selectedUnder = Array.from(selectedMap.values()).filter((r) => r.tenantId === tenant.id);
+          const hasPartial = selectedUnder.length > 0 && selectedUnder.length < treeIds.size;
+          const hasAll = treeIds.size > 0 && selectedUnder.length >= treeIds.size;
+          item.innerHTML =
+            '<input type="checkbox" tabindex="-1" /><span class="sys-auth-pick-item__label"></span>';
+          const cb = item.querySelector('input[type="checkbox"]');
+          cb.checked = hasAll;
+          cb.indeterminate = hasPartial || (selectedUnder.length > 0 && !hasAll);
+          if (cb.indeterminate) cb.classList.add("is-indeterminate");
+          item.querySelector(".sys-auth-pick-item__label").textContent = tenant.name;
+          cb.addEventListener("click", (e) => e.stopPropagation());
+          item.addEventListener("click", () => {
+            activeTenantId = tenant.id;
+            renderTenants();
+            renderOrgTree();
+          });
+          tenantListEl.appendChild(item);
+        });
+      }
+
+      tenantSearch.addEventListener("input", () => {
+        tenantQuery = tenantSearch.value || "";
+        renderTenants();
+      });
+      orgSearch.addEventListener("input", () => {
+        orgQuery = orgSearch.value || "";
+        renderOrgTree();
+      });
+
+      body.appendChild(tenantCol);
+      body.appendChild(orgCol);
+      body.appendChild(selectedCol);
+
+      const ft = document.createElement("div");
+      ft.className = "sys-auth-modal__ft";
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className = "sys-auth-modal__btn sys-auth-modal__btn--ghost";
+      cancelBtn.textContent = "取消";
+      cancelBtn.addEventListener("click", () => closeSysAuthAddOrgModal());
+      const okBtn = document.createElement("button");
+      okBtn.type = "button";
+      okBtn.className = "sys-auth-modal__btn sys-auth-modal__btn--primary";
+      okBtn.textContent = "确定";
+      okBtn.addEventListener("click", () => {
+        const rows = Array.from(selectedMap.values());
+        if (!rows.length) {
+          showToast("请至少选择一个组织", "warn");
+          return;
+        }
+        closeSysAuthAddOrgModal();
+        if (typeof onConfirm === "function") onConfirm(rows);
+      });
+      ft.appendChild(cancelBtn);
+      ft.appendChild(okBtn);
+
+      dialog.appendChild(hd);
+      dialog.appendChild(body);
+      dialog.appendChild(ft);
+      backdrop.appendChild(dialog);
+      document.body.appendChild(backdrop);
+
+      renderTenants();
+      renderOrgTree();
+      renderSelected();
+      window.setTimeout(() => tenantSearch.focus(), 0);
+    }
+
+    function mountSystemResourceAuthPage() {
+      canvasEl.innerHTML = "";
+      canvasEl.classList.remove("canvas--physical");
+      canvasEl.classList.add("canvas--bp-hub-v3");
+
+      const groups = [
+        {
+          id: "all-tenants",
+          title: "全部租户",
+          tenantCount: 42,
+          updatedAt: "2025-02-27 14:11:23",
+          description: "无",
+          orgs: [],
+        },
+        {
+          id: "test-org",
+          title: "测试租户与组织",
+          tenantCount: 2,
+          updatedAt: "2025-09-16 15:15:55",
+          description: "业务流程授权",
+          orgs: [],
+        },
+      ];
+
+      let navCollapsed = false;
+      let searchQuery = "";
+      let activeGroup = null;
+      let orgSearchQuery = "";
+
+      const root = document.createElement("div");
+      root.className = "sys-auth-root";
+      root.setAttribute("aria-label", "资源授权");
+
+      const sidebar = document.createElement("aside");
+      sidebar.className = "sys-auth-sidebar";
+      const sidebarTitle = document.createElement("div");
+      sidebarTitle.className = "sys-auth-sidebar-title";
+      sidebarTitle.textContent = "系统设置";
+      const menu = document.createElement("div");
+      menu.className = "sys-auth-menu";
+      const menuItem = document.createElement("button");
+      menuItem.type = "button";
+      menuItem.className = "sys-auth-menu-item is-active";
+      menuItem.textContent = "资源授权";
+      menuItem.setAttribute("aria-current", "page");
+      menuItem.addEventListener("click", () => showGroupList());
+      menu.appendChild(menuItem);
+      const collapseBtn = document.createElement("button");
+      collapseBtn.type = "button";
+      collapseBtn.className = "sys-auth-collapse";
+      collapseBtn.textContent = "‹";
+      collapseBtn.setAttribute("aria-label", "收起侧栏");
+      collapseBtn.addEventListener("click", () => {
+        navCollapsed = !navCollapsed;
+        root.classList.toggle("is-nav-collapsed", navCollapsed);
+        collapseBtn.textContent = navCollapsed ? "›" : "‹";
+        collapseBtn.setAttribute("aria-label", navCollapsed ? "展开侧栏" : "收起侧栏");
+      });
+      sidebar.appendChild(sidebarTitle);
+      sidebar.appendChild(menu);
+      sidebar.appendChild(collapseBtn);
+
+      const main = document.createElement("div");
+      main.className = "sys-auth-main";
+
+      const tenantIconSvg =
+        '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+        '<circle cx="8" cy="5.5" r="2.4" stroke="currentColor" stroke-width="1.3"/>' +
+        '<path d="M3.5 13c.8-2.4 2.5-3.6 4.5-3.6s3.7 1.2 4.5 3.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>' +
+        "</svg>";
+
+      function formatNowStamp() {
+        const now = new Date();
+        const p2 = (n) => String(n).padStart(2, "0");
+        return (
+          now.getFullYear() +
+          "-" +
+          p2(now.getMonth() + 1) +
+          "-" +
+          p2(now.getDate()) +
+          " " +
+          p2(now.getHours()) +
+          ":" +
+          p2(now.getMinutes()) +
+          ":" +
+          p2(now.getSeconds())
+        );
+      }
+
+      function showGroupList() {
+        activeGroup = null;
+        orgSearchQuery = "";
+        main.className = "sys-auth-main";
+        main.innerHTML = "";
+
+        const toolbar = document.createElement("div");
+        toolbar.className = "sys-auth-toolbar";
+        const appSelect = document.createElement("div");
+        appSelect.className = "sys-auth-app-select";
+        const appLabel = document.createElement("span");
+        appLabel.className = "sys-auth-app-label";
+        appLabel.textContent = "应用:";
+        const appTrigger = document.createElement("button");
+        appTrigger.type = "button";
+        appTrigger.className = "sys-auth-app-trigger";
+        appTrigger.setAttribute("aria-label", "选择应用");
+        appTrigger.innerHTML =
+          '<span class="sys-auth-app-trigger__text">大数据开发平台应用(gdmp)</span>' +
+          '<span class="sys-auth-app-trigger__chev" aria-hidden="true">▾</span>';
+        appTrigger.addEventListener("click", () => {
+          showToast("示例原型：切换应用（示意）", "info");
+        });
+        appSelect.appendChild(appLabel);
+        appSelect.appendChild(appTrigger);
+
+        const toolbarRight = document.createElement("div");
+        toolbarRight.className = "sys-auth-toolbar-right";
+        const searchInput = document.createElement("input");
+        searchInput.type = "search";
+        searchInput.className = "sys-auth-search";
+        searchInput.placeholder = "请搜索";
+        searchInput.setAttribute("aria-label", "搜索授权分组");
+        searchInput.value = searchQuery;
+        const addBtn = document.createElement("button");
+        addBtn.type = "button";
+        addBtn.className = "sys-auth-add-btn";
+        addBtn.setAttribute("aria-label", "新增分组");
+        addBtn.textContent = "+";
+        addBtn.addEventListener("click", openNewGroupDialog);
+        toolbarRight.appendChild(searchInput);
+        toolbarRight.appendChild(addBtn);
+        toolbar.appendChild(appSelect);
+        toolbar.appendChild(toolbarRight);
+
+        const grid = document.createElement("div");
+        grid.className = "sys-auth-grid";
+        grid.setAttribute("role", "list");
+
+        function buildGroupCard(group) {
+          const card = document.createElement("article");
+          card.className = "sys-auth-card";
+          card.setAttribute("role", "listitem");
+          card.style.cursor = "pointer";
+          const title = document.createElement("h3");
+          title.className = "sys-auth-card__title";
+          title.textContent = group.title;
+          const tenant = document.createElement("div");
+          tenant.className = "sys-auth-card__tenant";
+          tenant.innerHTML =
+            '<span class="sys-auth-card__tenant-icon">' +
+            tenantIconSvg +
+            "</span><span>租户：" +
+            group.tenantCount +
+            "</span>";
+          const meta = document.createElement("div");
+          meta.className = "sys-auth-card__meta";
+          meta.innerHTML =
+            "<div>更新时间：" +
+            group.updatedAt +
+            "</div><div>描述：" +
+            group.description +
+            "</div>";
+          const more = document.createElement("button");
+          more.type = "button";
+          more.className = "sys-auth-card__more";
+          more.setAttribute("aria-label", "更多操作");
+          more.textContent = "···";
+          more.addEventListener("click", (e) => {
+            e.stopPropagation();
+            showToast("示例原型：分组操作（示意）", "info");
+          });
+          card.appendChild(title);
+          card.appendChild(tenant);
+          card.appendChild(meta);
+          card.appendChild(more);
+          card.addEventListener("click", () => showGroupDetail(group));
+          return card;
+        }
+
+        function buildAddCard() {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "sys-auth-card--add";
+          btn.setAttribute("role", "listitem");
+          btn.innerHTML =
+            '<span class="sys-auth-card--add__plus" aria-hidden="true">+</span><span>新增分组</span>';
+          btn.addEventListener("click", openNewGroupDialog);
+          return btn;
+        }
+
+        function renderCards() {
+          const q = searchQuery.trim().toLowerCase();
+          const filtered = groups.filter((g) => {
+            if (!q) return true;
+            return (
+              String(g.title).toLowerCase().includes(q) ||
+              String(g.description).toLowerCase().includes(q)
+            );
+          });
+          grid.innerHTML = "";
+          filtered.forEach((g) => grid.appendChild(buildGroupCard(g)));
+          grid.appendChild(buildAddCard());
+        }
+
+        searchInput.addEventListener("input", () => {
+          searchQuery = searchInput.value || "";
+          renderCards();
+        });
+
+        main.appendChild(toolbar);
+        main.appendChild(grid);
+        renderCards();
+      }
+
+      function showGroupDetail(group) {
+        if (!group.orgs) group.orgs = [];
+        activeGroup = group;
+        orgSearchQuery = "";
+        main.className = "sys-auth-main sys-auth-main--detail";
+        main.innerHTML = "";
+
+        const detail = document.createElement("section");
+        detail.className = "sys-auth-detail";
+
+        const hd = document.createElement("div");
+        hd.className = "sys-auth-detail__hd";
+        const backBtn = document.createElement("button");
+        backBtn.type = "button";
+        backBtn.className = "sys-auth-detail__back";
+        backBtn.innerHTML =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>返回</span>';
+        backBtn.addEventListener("click", showGroupList);
+        const title = document.createElement("h2");
+        title.className = "sys-auth-detail__title";
+        title.textContent = group.title;
+        hd.appendChild(backBtn);
+        hd.appendChild(title);
+
+        const toolbar = document.createElement("div");
+        toolbar.className = "sys-auth-detail__toolbar";
+        const searchInput = document.createElement("input");
+        searchInput.type = "search";
+        searchInput.className = "sys-auth-detail__search";
+        searchInput.placeholder = "请输入";
+        searchInput.setAttribute("aria-label", "搜索组织");
+        const addOrgBtn = document.createElement("button");
+        addOrgBtn.type = "button";
+        addOrgBtn.className = "sys-auth-detail__add-org";
+        addOrgBtn.textContent = "+ 添加组织";
+
+        function openAddOrgDialog() {
+          openSysAuthAddOrgModal((rows) => {
+            const stamp = formatNowStamp();
+            rows.forEach((row) => {
+              if (group.orgs.some((x) => x.id === row.id)) return;
+              group.orgs.push({
+                id: row.id,
+                name: row.name,
+                parentName: row.parentName,
+                tenantName: row.tenantName,
+                includeChildren: true,
+                addedAt: stamp,
+              });
+            });
+            group.tenantCount = group.orgs.length;
+            group.updatedAt = stamp;
+            renderOrgTable();
+            showToast("已添加 " + rows.length + " 个组织", "success");
+          });
+        }
+
+        addOrgBtn.addEventListener("click", openAddOrgDialog);
+        toolbar.appendChild(searchInput);
+        toolbar.appendChild(addOrgBtn);
+
+        const tableWrap = document.createElement("div");
+        tableWrap.className = "sys-auth-detail__table-wrap";
+        const table = document.createElement("table");
+        table.className = "sys-auth-detail__table";
+        table.innerHTML =
+          "<thead><tr>" +
+          "<th style='width:64px'>序号</th>" +
+          "<th>组织名称</th>" +
+          "<th>上级组织</th>" +
+          "<th>所属租户</th>" +
+          "<th>添加时间</th>" +
+          "<th style='width:100px'>包含本下级</th>" +
+          "<th style='width:80px'>操作</th>" +
+          "</tr></thead><tbody></tbody>";
+        const tbody = table.querySelector("tbody");
+
+        function renderOrgTable() {
+          tbody.innerHTML = "";
+          const q = orgSearchQuery.trim().toLowerCase();
+          const rows = (group.orgs || []).filter((r) => {
+            if (!q) return true;
+            return (
+              String(r.name).toLowerCase().includes(q) ||
+              String(r.parentName).toLowerCase().includes(q) ||
+              String(r.tenantName).toLowerCase().includes(q)
+            );
+          });
+          if (!rows.length) {
+            const emptyRow = document.createElement("tr");
+            const emptyTd = document.createElement("td");
+            emptyTd.colSpan = 7;
+            const empty = document.createElement("div");
+            empty.className = "sys-auth-detail__empty";
+            empty.innerHTML =
+              '<div class="sys-auth-detail__empty-icon" aria-hidden="true">' +
+              '<svg viewBox="0 0 64 48" fill="none">' +
+              '<rect x="10" y="14" width="36" height="26" rx="3" fill="#e6f4ff" stroke="#91caff" stroke-width="1.5"/>' +
+              '<path d="M10 20h36" stroke="#91caff" stroke-width="1.5"/>' +
+              '<circle cx="46" cy="34" r="10" fill="#fff" stroke="#69b1ff" stroke-width="1.5"/>' +
+              '<path d="M46 29v10M41 34h10" stroke="#1677ff" stroke-width="1.6" stroke-linecap="round"/>' +
+              "</svg></div>" +
+              '<div>暂无数据, 快去 <button type="button" class="linkish">新建</button> 吧~</div>';
+            empty.querySelector("button.linkish").addEventListener("click", openAddOrgDialog);
+            emptyTd.appendChild(empty);
+            emptyRow.appendChild(emptyTd);
+            tbody.appendChild(emptyRow);
+            return;
+          }
+          rows.forEach((row, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML =
+              "<td>" +
+              (index + 1) +
+              "</td><td>" +
+              row.name +
+              "</td><td>" +
+              (row.parentName || "—") +
+              "</td><td>" +
+              (row.tenantName || "—") +
+              "</td><td>" +
+              (row.addedAt || "—") +
+              '</td><td><span class="sys-auth-include-mark" aria-label="包含本下级">✓</span></td><td></td>';
+            const del = document.createElement("button");
+            del.type = "button";
+            del.className = "is-link";
+            del.style.border = "0";
+            del.style.background = "transparent";
+            del.style.color = "#1677ff";
+            del.style.cursor = "pointer";
+            del.style.font = "inherit";
+            del.style.fontSize = "13px";
+            del.textContent = "删除";
+            del.addEventListener("click", () => {
+              group.orgs = group.orgs.filter((x) => x.id !== row.id);
+              group.tenantCount = group.orgs.length;
+              renderOrgTable();
+              showToast("已移除组织「" + row.name + "」", "success");
+            });
+            tr.lastChild.appendChild(del);
+            tbody.appendChild(tr);
+          });
+        }
+
+        searchInput.addEventListener("input", () => {
+          orgSearchQuery = searchInput.value || "";
+          renderOrgTable();
+        });
+
+        tableWrap.appendChild(table);
+        detail.appendChild(hd);
+        detail.appendChild(toolbar);
+        detail.appendChild(tableWrap);
+        renderOrgTable();
+
+        const side = document.createElement("aside");
+        side.className = "sys-auth-sidepanel";
+        const sideTitle = document.createElement("h3");
+        sideTitle.className = "sys-auth-sidepanel__title";
+        sideTitle.textContent = "对该组织分组进行操作";
+        side.appendChild(sideTitle);
+
+        function addSideBtn(label, primary, svg, onClick) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className =
+            "sys-auth-sidepanel__btn " +
+            (primary ? "sys-auth-sidepanel__btn--primary" : "sys-auth-sidepanel__btn--ghost");
+          btn.innerHTML = svg + "<span>" + label + "</span>";
+          btn.addEventListener("click", onClick);
+          side.appendChild(btn);
+        }
+
+        addSideBtn(
+          "配置资源",
+          true,
+          '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.8v1.6M8 12.6v1.6M1.8 8h1.6M12.6 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M12.6 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
+          () => showToast("示例原型：配置资源（示意）", "info")
+        );
+        addSideBtn(
+          "修改名称",
+          false,
+          '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 3.2 12.8 6.5 6 13.3H2.7V10Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8.2 4.5 11.5 7.8" stroke="currentColor" stroke-width="1.3"/></svg>',
+          () => showToast("示例原型：修改名称（示意）", "info")
+        );
+        addSideBtn(
+          "添加描述",
+          false,
+          '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
+          () => showToast("示例原型：添加描述（示意）", "info")
+        );
+
+        main.appendChild(detail);
+        main.appendChild(side);
+      }
+
+      function openNewGroupDialog() {
+        openSysAuthNewGroupModal(({ name, description }) => {
+          const group = {
+            id: "group-" + Date.now(),
+            title: name,
+            tenantCount: 0,
+            updatedAt: formatNowStamp(),
+            description: description || "无",
+            orgs: [],
+          };
+          groups.push(group);
+          showGroupDetail(group);
+          showToast("已新增分组「" + name + "」", "success");
+        });
+      }
+
+      root.appendChild(sidebar);
+      root.appendChild(main);
+      canvasEl.appendChild(root);
+      showGroupList();
+    }
+
     function mountTemplateCenterPage() {
       canvasEl.innerHTML = "";
       canvasEl.classList.remove("canvas--physical");
@@ -23768,11 +25935,11 @@
       const titleRow = document.createElement("div");
       titleRow.className = "tc-header-title-row";
       const h1 = document.createElement("h1");
-      h1.textContent = "场景定义";
+      h1.textContent = "流程定义";
       const guideToggleBtn = document.createElement("button");
       guideToggleBtn.type = "button";
       guideToggleBtn.className = "tc-guide-toggle";
-      guideToggleBtn.textContent = "场景说明";
+      guideToggleBtn.textContent = "流程说明";
       guideToggleBtn.setAttribute("aria-controls", "tcSceneGuide");
       titleRow.appendChild(h1);
       titleRow.appendChild(guideToggleBtn);
@@ -23791,6 +25958,7 @@
       backBtn.type = "button";
       backBtn.className = "otb-btn";
       backBtn.textContent = "返回场景全景";
+      backBtn.hidden = true;
       backBtn.addEventListener("click", () => goToScenePanorama());
 
       header.appendChild(headerMain);
@@ -23807,31 +25975,31 @@
       const guide = document.createElement("section");
       guide.className = "tc-guide";
       guide.id = "tcSceneGuide";
-      guide.setAttribute("aria-label", "场景定义场景说明");
+      guide.setAttribute("aria-label", "流程说明");
       guide.innerHTML =
         '<div class="tc-guide-head">' +
-        '<h2 class="tc-guide-title">什么是场景？</h2>' +
+        '<h2 class="tc-guide-title">开发流程</h2>' +
         "</div>" +
         '<p class="tc-guide-lead">' +
-        "场景指的是一类<strong>数据开发场景</strong>：针对具体业务目标，组合工具链中的不同操作模块（如建模、开发、报告等），形成可复用、可共享的开发路径。" +
+        "开发流程指的是一组<strong>数据开发操作的聚类</strong>，针对具体的业务目标，结合工具链中的不同操作模块（如建模、开发、报告等），形成可复用的开发路径。" +
         "</p>" +
         '<ul class="tc-guide-list">' +
         '<li class="tc-guide-item">' +
-        '<p class="tc-guide-item-title">业务场景 · 快速上手</p>' +
+        '<p class="tc-guide-item-title">开发流程 · 快速上手</p>' +
         '<p class="tc-guide-item-text">' +
-        "系统预置的<strong>业务场景</strong>已为你精简操作路径，生成快速开发路径。选择合适场景后，点击<strong>场景流程开发</strong>，即可按指引快速完成该场景下的数据开发工作。" +
+        "系统预置的<strong>开发流程</strong>已为您精简操作路径。选择合适场景后，点击<strong>流程开发</strong>，即可按照指引快速完成该开发流程下的数据开发工作。" +
         "</p></li>" +
         '<li class="tc-guide-item">' +
-        '<p class="tc-guide-item-title">自定义业务场景 · 团队共享</p>' +
+        '<p class="tc-guide-item-title">自定义开发流程 · 团队共享</p>' +
         '<p class="tc-guide-item-text">' +
-        "若现有业务场景不能满足需求，可自行组装操作模块，保存为<strong>自定义业务场景</strong>并上线，供团队其他成员共享使用。" +
+        "若现有的开发流程不能满足需求，可自行组装操作模块，保存为<strong>自定义开发流程</strong>并上线，供团队其他成员共享使用。" +
         "</p></li>" +
         "</ul>";
       const guideCloseBtn = document.createElement("button");
       guideCloseBtn.type = "button";
       guideCloseBtn.className = "tc-guide-close";
-      guideCloseBtn.setAttribute("aria-label", "关闭场景说明");
-      guideCloseBtn.title = "关闭场景说明";
+      guideCloseBtn.setAttribute("aria-label", "关闭流程说明");
+      guideCloseBtn.title = "关闭流程说明";
       guideCloseBtn.innerHTML = '<span aria-hidden="true">×</span>';
 
       let tcSceneGuideOpen = true;
@@ -23861,7 +26029,7 @@
       const presetTitleWrap = document.createElement("div");
       presetTitleWrap.className = "tc-section-title-wrap";
       const presetTitle = document.createElement("h2");
-      presetTitle.textContent = "业务场景";
+      presetTitle.textContent = "开发流程";
       const presetCount = document.createElement("span");
       presetCount.className = "tc-count";
       presetCount.id = "tcPresetCount";
@@ -23881,7 +26049,7 @@
       const customTitleWrap = document.createElement("div");
       customTitleWrap.className = "tc-section-title-wrap";
       const customTitle = document.createElement("h2");
-      customTitle.textContent = "自定义业务场景";
+      customTitle.textContent = "自定义开发流程";
       const customCount = document.createElement("span");
       customCount.className = "tc-count";
       customCount.id = "tcCustomCount";
@@ -23988,7 +26156,7 @@
           }
         );
         if (template.published) {
-          addAction("场景流程开发", "tc-link-btn", () => startNewFlowFromCustomTemplate(template));
+          addAction("流程开发", "tc-link-btn", () => startNewFlowFromCustomTemplate(template));
         }
         addAction("删除", "tc-link-btn tc-link-btn--danger", () => {
           openTcTemplateDeleteConfirmModal(template, () => renderGrids());
@@ -24007,7 +26175,7 @@
         const card = document.createElement("button");
         card.type = "button";
         card.className = "tc-card tc-card--add";
-        card.textContent = "+ 新增业务场景";
+        card.textContent = "+ 新增开发流程";
         card.addEventListener("click", () => goToTemplateEditor());
         return card;
       }
@@ -24081,7 +26249,7 @@
       h1.textContent = editing ? "编辑自定义业务场景" : "新建自定义业务场景";
       const headerDesc = document.createElement("p");
       headerDesc.textContent =
-        "从左侧选择操作模块组装流程；保存后可在场景定义管理上下线，已上线场景将出现在「新建流程」中。";
+        "从左侧选择操作模块组装流程；保存后可在流程定义管理上下线，已上线场景将出现在「新建流程」中。";
       headerMain.appendChild(h1);
       headerMain.appendChild(headerDesc);
 
@@ -24090,7 +26258,7 @@
       const backBtn = document.createElement("button");
       backBtn.type = "button";
       backBtn.className = "otb-btn";
-      backBtn.textContent = "返回场景定义";
+      backBtn.textContent = "返回流程定义";
       backBtn.addEventListener("click", () => goToTemplateCenter());
       headerActions.appendChild(backBtn);
       if (editing) {
@@ -24551,7 +26719,7 @@
         showToast(
           template.published
             ? "模板已保存并上线，可在「新建流程」中选择"
-            : "场景已保存（未上线），可在场景定义继续编辑或上线",
+            : "场景已保存（未上线），可在流程定义继续编辑或上线",
           "success"
         );
         goToTemplateCenter();
@@ -25256,7 +27424,7 @@
             const emptyDesc = document.createElement("p");
             emptyDesc.className = "bp-hub-empty-desc";
             emptyDesc.textContent =
-              "进入场景定义创建业务场景，或在流程开发完成后保存到列表";
+              "进入流程定义创建业务场景，或在流程开发完成后保存到列表";
             empty.appendChild(emptyTitle);
             empty.appendChild(emptyDesc);
             boardCardsWrap.appendChild(empty);
@@ -30280,6 +32448,16 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
       }
 
       if (centerOverride === "scene-panorama") {
+        /* 场景全景页面暂不挂载，落到流程定义 */
+        if (!SCENE_PANORAMA_ENABLED) {
+          centerOverride = "template-center";
+          if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
+          canvasToolbarEl.textContent = "流程定义";
+          canvasEl.classList.remove("canvas--physical");
+          syncHubSubNavActive("template");
+          mountTemplateCenterPage();
+          return;
+        }
         if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
         canvasToolbarEl.textContent = "场景全景";
         canvasEl.classList.remove("canvas--physical");
@@ -30297,7 +32475,7 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
 
       if (centerOverride === "template-center") {
         if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
-        canvasToolbarEl.textContent = "场景定义";
+        canvasToolbarEl.textContent = "流程定义";
         canvasEl.classList.remove("canvas--physical");
         mountTemplateCenterPage();
         return;
@@ -30308,6 +32486,14 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         canvasToolbarEl.textContent = "模板编辑";
         canvasEl.classList.remove("canvas--physical");
         mountTemplateEditorPage();
+        return;
+      }
+
+      if (centerOverride === "system-resource-auth") {
+        if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
+        canvasToolbarEl.textContent = "资源授权";
+        canvasEl.classList.remove("canvas--physical");
+        mountSystemResourceAuthPage();
         return;
       }
       if (selectedLeafId) {
@@ -30843,17 +33029,31 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
           goToBusinessProcesses();
         });
       });
+
+      document.querySelectorAll(".header-nav-item[data-hub-center]").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          const center = el.getAttribute("data-hub-center");
+          if (center === "system") {
+            goToSystemManagement();
+            return;
+          }
+          if (center === "scene") {
+            goToTemplateCenter();
+          }
+        });
+      });
     }
 
     function bootstrapApp() {
       try {
         bindAppEvents();
-        goToScenePanorama({ skipAnimation: true });
+        goToTemplateCenter({ skipAnimation: true });
       } catch (err) {
         console.error("bootstrapApp failed", err);
-        centerOverride = "scene-panorama";
+        centerOverride = "template-center";
         syncMainLayout();
-        syncHubSubNavActive("panorama");
+        syncHubSubNavActive("template");
         try {
           mountBusinessProcessListPage();
         } catch (innerErr) {
