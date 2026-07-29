@@ -1,0 +1,40 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e6f4ff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#91caff', 'lineColor': '#667085', 'secondaryColor': '#f5f7fa', 'tertiaryColor': '#fff'}}}%%
+flowchart TD
+    Start(["开始"]) --> S1["找到自定义场景卡片"]
+    S1 --> R1["展示徽标 / 创建人 / 开发思路"]
+    R1 --> StateBrowse(("浏览态"))
+
+    StateBrowse --> Branch{"用户操作"}
+
+    Branch -->|编辑| S2["点击「编辑」"]
+    S2 --> R2["回填并进入编辑页"]
+    R2 --> StateEdit(("编辑态"))
+    StateEdit --> SaveOrCancel{"保存或取消"}
+    SaveOrCancel -->|保存| R2b["写 localStorage"]
+    SaveOrCancel -->|取消| R2c["不保存返回"]
+    R2b --> StateBrowse
+    R2c --> StateBrowse
+
+    Branch -->|下线| S3["点击「下线」"]
+    S3 --> R3["published = false"]
+    R3 --> StateOff(("已下线"))
+    StateOff --> StateBrowse
+
+    Branch -->|上线| S4["点击「上线」"]
+    S4 --> R4["published = true"]
+    R4 --> StateOn(("已上线"))
+
+    Branch -->|复制| SCopy["点击「复制」"]
+    SCopy --> RCopy["生成副本场景"]
+    RCopy --> StateBrowse
+
+    StateOn --> S5{"场景流程开发?"}
+    S5 -->|是| R5["进入工作台"]
+    R5 --> StateDev(("流程开发态"))
+    S5 -->|否| StateBrowse
+
+    style StateBrowse fill:#f5f7fa,stroke:#667085
+    style StateEdit fill:#fff7e6,stroke:#d48806
+    style StateOff fill:#fff7e6,stroke:#d48806
+    style StateOn fill:#e6f7ff,stroke:#1677ff
+    style StateDev fill:#e6f7ff,stroke:#1677ff

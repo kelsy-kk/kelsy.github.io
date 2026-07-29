@@ -1,0 +1,36 @@
+flowchart TD
+    Start(["开始"]) --> S1["点击「新建业务场景」"]
+    S1 --> R1["系统：进入空白编辑页"]
+    R1 --> StateEdit(("编辑态"))
+
+    StateEdit --> S2["左栏点击操作 chip"]
+    S2 --> R2{"同 leafId 已存在?"}
+    R2 -->|是| ToastDup["Toast：不可重复添加"]
+    ToastDup --> StateEdit
+    R2 -->|否| R2ok["系统：右侧追加操作"]
+    R2ok --> StateEdit
+
+    StateEdit --> Opt1{"调整顺序?"}
+    Opt1 -->|大模块 ↑↓| R3["系统：整组换位"]
+    R3 --> StateEdit
+    Opt1 -->|小操作 ×| R4["系统：移除单条"]
+    R4 --> StateEdit
+    Opt1 -->|否| S5
+
+    S5["填写名称/描述<br/>选择上线或下线"]
+    S5 --> S6["点击「保存模板」"]
+    S6 --> V1{"校验通过?"}
+    V1 -->|否| ToastErr["Toast 错误提示"]
+    ToastErr --> StateEdit
+    V1 -->|是| R6["写 localStorage 回列表"]
+    R6 --> StateList(("列表态"))
+
+    StateList --> Opt2{"是否上线?"}
+    Opt2 -->|是| R7["published = true"]
+    R7 --> StateShare(("可共享态"))
+    Opt2 -->|否| StateList
+
+    style StateEdit fill:#fff7e6,stroke:#d48806
+    style StateList fill:#f5f7fa,stroke:#667085
+    style StateShare fill:#e6f7ff,stroke:#1677ff
+    style S6 fill:#2563eb,color:#fff

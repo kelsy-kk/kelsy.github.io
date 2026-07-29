@@ -1,0 +1,13 @@
+序号,模块层级,模块/页面名称,路由/标识,职责说明,是否本文档范围
+1,场景中心·二级导航,场景全景,centerOverride=scene-panorama,统计看板、引导跳转,关联模块（上游入口）
+2,场景中心·二级导航,场景定义·列表页,centerOverride=template-center,预置/自定义场景浏览、搜索、上下线,是（主页面）
+3,场景中心·二级导航,场景定义·编辑页,centerOverride=template-editor,自定义场景组装、保存,是（主页面）
+4,场景中心·二级导航,场景流程,centerOverride=business-processes,业务流程实例 CRUD,关联模块（下游）
+5,弹窗,新建流程·选择模板,#bpNewFlowBackdrop,展示预置+已上线自定义场景,关联模块（下游消费）
+6,工作台,流程开发工作台,isProcessDevWorkspace(),按场景初始化操作导航与操作流程,关联模块（下游执行）
+7,左侧面板,操作导航 navTree,selectedLeafId,工具链叶子菜单,关联模块
+8,右侧面板,操作流程 op-flow,opFlowVisitStack,大模块分段+小操作步骤,关联模块
+9,常量,预置场景,BP_PRESET_TEMPLATES,3个内置业务场景,是（只读数据源）
+10,常量,操作模块目录,OP_TEMPLATE_MODULE_CATALOG,编辑页左侧可选操作,是（只读数据源）
+11,存储,自定义场景,localStorage: bp_custom_flow_templates_v1,用户保存的自定义场景,是（读写数据源）
+12,存储,业务流程实例,localStorage: pm_business_processes_v2,工作台保存的流程,不在本模块

@@ -1,0 +1,23 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e6f4ff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#91caff', 'lineColor': '#667085', 'secondaryColor': '#f5f7fa', 'tertiaryColor': '#fff'}}}%%
+flowchart TD
+    Start(["开始"]) --> S1["点击二级导航「场景定义」"]
+    S1 --> R1["系统：打开列表页<br/>展示引导区 + 预置 + 自定义"]
+    R1 --> StateBrowse1(("浏览态"))
+
+    StateBrowse1 --> S2{"是否搜索?"}
+    S2 -->|是| S2a["输入搜索词"]
+    S2a --> R2a["系统：实时过滤卡片"]
+    R2a --> StateBrowse1
+    S2 -->|否| S3
+
+    S3["点击预置卡片「场景流程开发」"]
+    S3 --> R3["系统：startNewFlowFromModuleTemplate<br/>进入工作台"]
+    R3 --> StateDev(("流程开发态"))
+
+    StateDev --> S4["在工作台按场景路径操作"]
+    S4 --> R4["系统：左侧首模块选中<br/>右侧展示操作流程分段"]
+    R4 --> StateDev
+
+    style StateBrowse1 fill:#f5f7fa,stroke:#667085
+    style StateDev fill:#e6f7ff,stroke:#1677ff
+    style S3 fill:#2563eb,color:#fff

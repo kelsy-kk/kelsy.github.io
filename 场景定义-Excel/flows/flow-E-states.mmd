@@ -1,0 +1,22 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e6f4ff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#91caff', 'lineColor': '#667085', 'secondaryColor': '#f5f7fa', 'tertiaryColor': '#fff'}}}%%
+stateDiagram-v2
+    [*] --> 浏览态: 进入场景定义
+
+    浏览态 --> 编辑态: 新建/编辑
+    浏览态 --> 弹窗态: Hub新建流程
+    浏览态 --> 流程开发态: 预置场景流程开发
+
+    编辑态 --> 列表态: 保存模板
+    编辑态 --> 浏览态: 取消返回
+
+    列表态 --> 可共享态: 上线
+    可共享态 --> 浏览态: 下线
+
+    浏览态 --> 已下线: 下线
+    浏览态 --> 已上线: 上线
+    已下线 --> 已上线: 上线
+    已上线 --> 已下线: 下线
+    已上线 --> 流程开发态: 场景流程开发
+
+    弹窗态 --> 流程开发态: 选择模板
+    流程开发态 --> [*]

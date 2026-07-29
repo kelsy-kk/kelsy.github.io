@@ -1,0 +1,17 @@
+flowchart TD
+    Start(["开始 · Hub"]) --> S1["点击「新建流程」"]
+    S1 --> R1["打开「选择模板」弹窗"]
+    R1 --> StateModal(("弹窗态"))
+
+    StateModal --> R1b["展示：预置 + 已上线自定义"]
+    R1b --> S2["选择场景卡片"]
+    S2 --> R2["startNewFlowFromModuleTemplate"]
+    R2 --> StateDev(("流程开发态"))
+
+    StateDev --> S3["在工作台操作"]
+    S3 --> R3["操作流程按大模块分段展示<br/>可跳跃 / 不强制顺序"]
+    R3 --> StateDev
+
+    style StateModal fill:#f9f0ff,stroke:#722ed1
+    style StateDev fill:#e6f7ff,stroke:#1677ff
+    style S1 fill:#2563eb,color:#fff

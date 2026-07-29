@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>场景中心 · 产品白皮书</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 14mm 18mm;
+    }
+
+    :root {
+      --ink: #0f1c2e;
+      --muted: #5b6b7c;
+      --line: #d7e0ea;
+      --blue: #1677ff;
+      --blue-deep: #0b4db8;
+      --blue-soft: #e8f3ff;
+      --surface: #f4f7fb;
+      --white: #ffffff;
+      --accent: #12b886;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      background: #e9eef5;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      font-size: 11.5pt;
+      line-height: 1.65;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 18px;
+      background: var(--white);
+      box-shadow: 0 10px 40px rgba(15, 28, 46, 0.12);
+      overflow: hidden;
+      position: relative;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+      .page:last-child { page-break-after: auto; }
+      .no-print { display: none !important; }
+    }
+
+    /* Cover */
+    .cover {
+      min-height: 297mm;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(120% 70% at 100% 0%, rgba(22, 119, 255, 0.22), transparent 55%),
+        linear-gradient(160deg, #071525 0%, #0d2a4a 42%, #123a66 100%);
+      color: #fff;
+      padding: 28mm 18mm 16mm;
+    }
+
+    .cover-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12pt;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .cover-brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #69b1ff, #1677ff);
+      box-shadow: 0 6px 18px rgba(22, 119, 255, 0.45);
+    }
+
+    .cover-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24mm 0 18mm;
+    }
+
+    .cover-eyebrow {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      font-size: 10pt;
+      letter-spacing: 0.12em;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .cover h1 {
+      margin: 0 0 16px;
+      font-size: 34pt;
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: 0.02em;
+    }
+
+    .cover-sub {
+      max-width: 150mm;
+      margin: 0;
+      font-size: 13.5pt;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .cover-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .cover-point {
+      padding: 14px 14px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(8px);
+    }
+
+    .cover-point strong {
+      display: block;
+      font-size: 12pt;
+      margin-bottom: 4px;
+    }
+
+    .cover-point span {
+      font-size: 9.5pt;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.45;
+    }
+
+    .cover-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding-top: 14px;
+      font-size: 9.5pt;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Inner pages */
+    .inner {
+      padding: 16mm 16mm 14mm;
+      min-height: 297mm;
+    }
+
+    .section-kicker {
+      color: var(--blue);
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      margin: 0 0 8px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20pt;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 13.5pt;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .lead {
+      font-size: 12.5pt;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      background: var(--white);
+    }
+
+    .card.soft {
+      background: var(--surface);
+    }
+
+    .card.blue {
+      background: linear-gradient(180deg, #f5f9ff 0%, #eef5ff 100%);
+      border-color: #cfe2ff;
+    }
+
+    .card h4 {
+      margin: 0 0 6px;
+      font-size: 12pt;
+      color: var(--ink);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 10pt;
+      line-height: 1.55;
+    }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-size: 10pt;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      margin: 16px 0 8px;
+    }
+
+    .flow-step {
+      flex: 1;
+      padding: 12px 10px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      border: 1px solid #cfe2ff;
+      text-align: center;
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 11pt;
+      margin-bottom: 4px;
+      color: var(--blue-deep);
+    }
+
+    .flow-step span {
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .flow-arrow {
+      align-self: center;
+      color: var(--blue);
+      font-size: 16pt;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10pt;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f5fb;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    ul {
+      margin: 6px 0 12px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li { margin: 4px 0; }
+
+    .quote {
+      margin: 16px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--blue);
+      background: var(--blue-soft);
+      border-radius: 0 10px 10px 0;
+      color: #1e3a5f;
+      font-size: 11.5pt;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 9pt;
+      color: #94a3b8;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #dde5ef;
+    }
+
+    .toolbar button {
+      height: 36px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .toolbar button.secondary {
+      background: #fff;
+      color: var(--blue-deep);
+      border: 1px solid #91caff;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e6fffb;
+      color: #0f766e;
+      font-size: 9pt;
+      font-weight: 650;
+      margin-left: 6px;
+    }
+
+    .value-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin: 10px 0;
+    }
+
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #e6f4ff, #fff);
+      border: 1px solid #d6e8ff;
+      color: var(--blue);
+      font-size: 18pt;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">打印 / 另存为 PDF</button>
+    <button type="button" class="secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到顶部</button>
+  </div>
+
+  <!-- Cover -->
+  <section class="page cover">
+    <div class="cover-brand">
+      <div class="cover-brand-mark" aria-hidden="true"></div>
+      <span>广联达 · 数据中台 / 场景中心</span>
+    </div>
+    <div class="cover-hero">
+      <div class="cover-eyebrow">PRODUCT WHITE PAPER</div>
+      <h1>场景中心<br />业务场景流程资产化白皮书</h1>
+      <p class="cover-sub">
+        以「场景 → 业务域 → 流程」组织业务链路，沉淀可管理、可复用、可迁移的场景流程资产，
+        帮助组织更快完成从业务定义到跨环境交付的闭环。
+      </p>
+      <div class="cover-points">
+        <div class="cover-point">
+          <strong>场景化治理</strong>
+          <span>按场景与业务域沉淀流程，资产边界更清晰</span>
+        </div>
+        <div class="cover-point">
+          <strong>模板化复用</strong>
+          <span>流程定义上线后，新建即可一键启用标准模板</span>
+        </div>
+        <div class="cover-point">
+          <strong>可迁移交付</strong>
+          <span>场景一键导出，迁移助手支撑跨环境流转</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <div>面向业务、实施、平台与项目管理团队</div>
+      <div>基于产品原型整理 · 2026</div>
+    </div>
+  </section>
+
+  <!-- Page 2: Why -->
+  <section class="page inner">
+    <p class="section-kicker">01 / WHY</p>
+    <h2>为什么需要场景中心</h2>
+    <p class="lead">
+      在数据中台与业务系统建设中，流程往往散落在项目、人员与环境之间：
+      缺少统一归属、难以复用、跨环境迁移成本高。场景中心正是为解决这些问题而生。
+    </p>
+
+    <div class="grid-3">
+      <div class="card soft">
+        <h4>痛点一：流程散乱</h4>
+        <p>流程按人、按项目临时堆积，缺少场景与业务域视角，后期难检索、难交接。</p>
+      </div>
+      <div class="card soft">
+        <h4>痛点二：经验难复用</h4>
+        <p>优秀链路无法沉淀为标准模板，新建时反复从零配置，效率低下。</p>
+      </div>
+      <div class="card soft">
+        <h4>痛点三：迁移成本高</h4>
+        <p>多环境、多系统、多项目之间缺乏统一的导出导入机制，交付周期被拉长。</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      场景中心的目标：把「能跑通一次」的业务链路，变成「可复制、可协作、可迁移」的组织资产。
+    </div>
+
+    <h3>适用对象</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>角色</th>
+          <th>核心诉求</th>
+          <th>在场景中心获得什么</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>业务 / 产品</td>
+          <td>按业务场景看清流程全貌</td>
+          <td>场景列表、业务域分组、价值描述</td>
+        </tr>
+        <tr>
+          <td>实施 / 项目</td>
+          <td>快速新建、落地、交接</td>
+          <td>新建流程、工作台配置、协作与收藏</td>
+        </tr>
+        <tr>
+          <td>平台 / 架构</td>
+          <td>标准能力沉淀与治理</td>
+          <td>流程定义、模板上下线</td>
+        </tr>
+        <tr>
+          <td>运维 / 交付</td>
+          <td>跨环境资产流转</td>
+          <td>导出此场景、迁移助手</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-note">场景中心产品白皮书 · 第 2 页</div>
+  </section>
+
+  <!-- Page 3: Product Architecture -->
+  <section class="page inner">
+    <p class="section-kicker">02 / PRODUCT</p>
+    <h2>产品架构与能力版图</h2>
+    <p class="lead">
+      场景中心由三大能力模块构成，形成「建设 → 治理 → 流转」闭环。
+    </p>
+
+    <div class="grid-3">
+      <div class="card blue">
+        <h4>场景流程</h4>
+        <p>默认入口。按场景管理流程实例：新建、浏览、进入工作台、收藏协作、批量管理。</p>
+      </div>
+      <div class="card blue">
+        <h4>流程定义</h4>
+        <p>沉淀预置与自定义开发流程模板，支持上下线，供新建时一键选用。</p>
+      </div>
+      <div class="card blue">
+        <h4>迁移助手</h4>
+        <p>支持资产迁出与迁入。可从场景一键导出，生成迁移记录并继续交付。</p>
+      </div>
+    </div>
+
+    <h3>资产组织模型</h3>
+    <div class="flow">
+      <div class="flow-step">
+        <strong>场景</strong>
+        <span>业务归属大类</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <strong>业务域</strong>
+        <span>场景内业务切分</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <strong>场景流程</strong>
+        <span>可执行流程实例</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <strong>工作台</strong>
+        <span>组装开发链路</span>
+      </div>
+    </div>
+
+    <h3>关键能力一览</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>模块</th>
+          <th>关键能力</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>场景流程</td>
+          <td>场景列表、价值描述、新建流程、自定义场景/业务域、全部流程分组、展开收起、筛选搜索、收藏协作、批量删除、进入工作台保存</td>
+        </tr>
+        <tr>
+          <td>流程定义</td>
+          <td>预置开发流程、自定义模板新建/编辑、上线/下线、操作模块组装、模板复用入口</td>
+        </tr>
+        <tr>
+          <td>迁移助手</td>
+          <td>导出此场景、迁出列表、新建迁出、新建迁入、详情查看、跨助手能力扩展位</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-note">场景中心产品白皮书 · 第 3 页</div>
+  </section>
+
+  <!-- Page 4: Value & Journey -->
+  <section class="page inner">
+    <p class="section-kicker">03 / VALUE</p>
+    <h2>核心价值与典型旅程</h2>
+
+    <div class="value-row">
+      <div class="value-icon">1</div>
+      <div>
+        <h3 style="margin-top:0">可见：场景即入口</h3>
+        <p>只有场景下已有流程时才展示场景卡片，列表始终聚焦「有资产的场景」。价值描述帮助团队说明方案意义。</p>
+      </div>
+    </div>
+    <div class="value-row">
+      <div class="value-icon">2</div>
+      <div>
+        <h3 style="margin-top:0">可建：新建即闭环</h3>
+        <p>新建流程时先定所属场景，再填名称与创建方式；支持自定义添加场景与业务域，降低冷启动门槛。</p>
+      </div>
+    </div>
+    <div class="value-row">
+      <div class="value-icon">3</div>
+      <div>
+        <h3 style="margin-top:0">可复用：定义驱动标准</h3>
+        <p>在流程定义中沉淀标准开发流程并上线后，新建时可直接「使用操作模板」，减少重复配置。</p>
+      </div>
+    </div>
+    <div class="value-row">
+      <div class="value-icon">4</div>
+      <div>
+        <h3 style="margin-top:0">可迁移：场景级导出</h3>
+        <p>在场景卡片点击「导出此场景」，即可写入迁移助手导出记录，支撑多环境、多项目流转。</p>
+      </div>
+    </div>
+
+    <h3>四条典型业务旅程</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>旅程 A · 从零建设</h4>
+        <p>缺省页 → 新建流程 → 选择/添加场景与业务域 → 进入工作台 → 保存回场景列表</p>
+      </div>
+      <div class="card">
+        <h4>旅程 B · 场景运营</h4>
+        <p>场景列表 → 查看全部流程 → 按业务域分组管理 → 收藏/协作/批量维护</p>
+      </div>
+      <div class="card">
+        <h4>旅程 C · 模板提效</h4>
+        <p>流程定义上线模板 → 新建流程选用模板 → 快速进入标准开发链路</p>
+      </div>
+      <div class="card">
+        <h4>旅程 D · 跨环境交付</h4>
+        <p>导出此场景 → 迁移助手查看记录 → 新建迁出/迁入 → 完成资产流转</p>
+      </div>
+    </div>
+
+    <div class="footer-note">场景中心产品白皮书 · 第 4 页</div>
+  </section>
+
+  <!-- Page 5: Highlights -->
+  <section class="page inner">
+    <p class="section-kicker">04 / HIGHLIGHTS</p>
+    <h2>产品亮点拆解</h2>
+
+    <h3>亮点 1：场景列表即资产门户</h3>
+    <ul>
+      <li>场景卡片聚合业务域、流程数量与价值描述</li>
+      <li>「查看全部流程」「导出此场景」一站完成运营与交付动作</li>
+      <li>业务域小卡支持直达域内流程，缩短查找路径</li>
+    </ul>
+
+    <h3>亮点 2：新建流程以场景为第一归属</h3>
+    <ul>
+      <li>表单优先填写所属场景，避免「先建后归类」</li>
+      <li>支持自定义添加场景与业务域，边建边扩展目录</li>
+      <li>创建方式支持空白开工或模板启动，兼顾灵活与标准</li>
+    </ul>
+
+    <h3>亮点 3：全部流程页的高效浏览</h3>
+    <ul>
+      <li>面包屑清晰回退：场景流程 / 场景 / 全部流程或业务域</li>
+      <li>按业务域分组，顶栏「全部展开 / 全部收起」一键切换</li>
+      <li>全部、收藏、协作筛选 + 名称搜索，快速定位目标流程</li>
+    </ul>
+
+    <h3>亮点 4：定义与实例分层治理</h3>
+    <ul>
+      <li>流程定义负责「标准母版」</li>
+      <li>场景流程负责「落地实例」</li>
+      <li>上线模板自动进入新建可选范围，形成治理闭环</li>
+    </ul>
+
+    <div class="card soft" style="margin-top:18px">
+      <h4>品宣一句话</h4>
+      <p style="font-size:12pt;color:#1f2937">
+        <strong>场景中心，让每一次业务流建设，都成为可复用的组织能力。</strong>
+      </p>
+    </div>
+
+    <div class="footer-note">场景中心产品白皮书 · 第 5 页</div>
+  </section>
+
+  <!-- Page 6: Closing -->
+  <section class="page inner">
+    <p class="section-kicker">05 / NEXT</p>
+    <h2>落地建议与下一步</h2>
+    <p class="lead">建议各部门按「先看清、再建通、再沉淀、再迁移」的节奏推进场景中心落地。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>阶段</th>
+          <th>动作建议</th>
+          <th>产出</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第 1 周</td>
+          <td>梳理关键业务场景与业务域目录；试用新建与场景列表</td>
+          <td>场景目录初稿、样例流程 2–3 条</td>
+        </tr>
+        <tr>
+          <td>第 2–3 周</td>
+          <td>将高频链路沉淀为流程定义模板并上线</td>
+          <td>可复用模板清单</td>
+        </tr>
+        <tr>
+          <td>第 4 周</td>
+          <td>完成一次「导出此场景 → 迁移助手」演练</td>
+          <td>迁移演练记录与问题清单</td>
+        </tr>
+        <tr>
+          <td>持续</td>
+          <td>建立收藏、协作与责任人机制，定期复盘场景价值描述</td>
+          <td>场景运营规范</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>配套材料</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>操作手册</h4>
+        <p>《场景中心-操作手册.md》——逐步操作说明，适合培训与日常查询。</p>
+      </div>
+      <div class="card">
+        <h4>产品原型</h4>
+        <p>`index.html`——可交互演示场景流程、流程定义与迁移助手完整路径。</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      如需针对某部门定制培训脚本、验收清单或演示剧本，可在本白皮书结构上继续裁剪。
+    </div>
+
+    <div style="margin-top:28px;padding:18px;border-radius:14px;background:linear-gradient(135deg,#0d2a4a,#1677ff);color:#fff">
+      <div style="font-size:10pt;opacity:.8;letter-spacing:.12em;margin-bottom:8px">CONTACT / DEMO</div>
+      <div style="font-size:16pt;font-weight:700;margin-bottom:6px">开启你的场景流程资产化</div>
+      <div style="font-size:11pt;opacity:.9;line-height:1.6">
+        打开产品原型，从「场景中心 → 场景流程」开始：新建第一条流程，看见第一张场景卡片，完成第一次导出。
+      </div>
+    </div>
+
+    <div class="footer-note">
+      场景中心产品白皮书 · 第 6 页 · 基于当前产品原型整理，界面文案与能力以最新原型为准。
+    </div>
+  </section>
+</body>
+</html>

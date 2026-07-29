@@ -1,0 +1,26 @@
+数据对象,来源类型,存储Key/常量名,读写,字段/结构摘要,使用页面
+预置业务场景,前端常量,BP_PRESET_TEMPLATES,只读,"id,name,description,intro,devApproach,tags[],groups[]",列表页、新建流程弹窗
+预置场景分组,前端常量,groups[].title/leafId/operations,只读,大模块标题+leafId+操作列表,卡片示意图、进入工作台
+预置卡片元数据,前端常量,PRESET_CARD_META,只读,"sketchCap,groupIcons,bullets,illu",列表预置卡片
+操作模块目录,前端常量,OP_TEMPLATE_MODULE_CATALOG,只读,l1中心→l2大目录→operations[],编辑页左栏
+导航树,前端常量,navTree,只读,与leafId对齐的菜单结构,分组标题、工作台跳转
+自定义场景,浏览器本地,bp_custom_flow_templates_v1,读写,CustomTemplate[],列表、编辑、新建流程
+当前用户（原型）,硬编码,getCurrentTemplateUser()→刘工程师,只读,creator字段默认值,保存自定义场景
+业务流程,浏览器本地,pm_business_processes_v2,独立,与场景定义无关,场景流程菜单
+
+字段,类型,必填,长度/格式,说明
+id,string,是,新建cft_{timestamp},唯一标识
+name,string,是,max 60,场景名称
+description,string,否,max 240,场景描述
+published,boolean,是,默认true,是否上线
+modules,array,是,≥1项,有序操作列表
+creator,string,是,-,创建人
+createdAt,number,是,时间戳,创建时间
+updatedAt,number,是,时间戳,更新时间
+
+一级中心,大目录(l2),操作,leafId
+开发中心,离线集成,离线任务,offline-integration-task
+开发中心,实时集成,实时任务,realtime-integration-task
+开发中心,离线开发,"离线任务、轻任务",offline-dev-task
+开发中心,实时开发,实时任务,realtime-dev-task
+开发中心,智能开发,"新建文件夹、新建脚本",smart-dev

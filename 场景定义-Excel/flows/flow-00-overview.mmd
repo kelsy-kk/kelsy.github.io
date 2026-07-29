@@ -1,0 +1,41 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e6f4ff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#91caff', 'lineColor': '#667085', 'secondaryColor': '#f5f7fa', 'tertiaryColor': '#fff'}}}%%
+flowchart TB
+    subgraph entry ["入口"]
+        E1["二级导航 · 场景定义"]
+        E2["Hub · 新建流程"]
+    end
+
+    subgraph pathA ["路径 A · 浏览与选用预置场景"]
+        A1["场景定义列表页"]
+        A2["场景流程开发"]
+        A3["流程开发工作台"]
+    end
+
+    subgraph pathB ["路径 B · 创建自定义场景"]
+        B1["新建业务场景"]
+        B2["编辑页组装模块"]
+        B3["保存模板"]
+        B4["列表页 / 可共享态"]
+    end
+
+    subgraph pathC ["路径 C · 管理已有自定义场景"]
+        C1["自定义场景卡片"]
+        C2["编辑 / 上下线"]
+        C3["场景流程开发"]
+    end
+
+    subgraph pathD ["路径 D · 从新建流程选用场景"]
+        D1["选择模板弹窗"]
+        D2["流程开发工作台"]
+    end
+
+    E1 --> A1
+    E1 --> B1
+    E1 --> C1
+    E2 --> D1
+
+    A1 --> A2 --> A3
+    B1 --> B2 --> B3 --> B4
+    C1 --> C2
+    C2 --> C3 --> A3
+    D1 --> D2

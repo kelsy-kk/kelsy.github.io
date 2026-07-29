@@ -16751,119 +16751,6 @@
       border-radius: 0 0 8px 8px;
     }
 
-    .bp-scheme-browse__body.is-empty-guide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 24px;
-    }
-
-    .bp-scheme-browse__body.is-empty-guide .bp-scheme-grid {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-height: min(520px, 100%);
-    }
-
-    .bp-scheme-empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: min(440px, 100%);
-      margin: 0 auto;
-      padding: 48px 40px 44px;
-      text-align: center;
-      border: 1px solid #e8eef6;
-      border-radius: 16px;
-      background:
-        radial-gradient(120% 80% at 50% 0%, #f0f7ff 0%, transparent 55%),
-        #fff;
-      box-shadow: 0 12px 32px rgba(16, 24, 40, 0.06);
-    }
-
-    .bp-scheme-empty__visual {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin-bottom: 22px;
-    }
-
-    .bp-scheme-empty__visual-ring {
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #e6f4ff 0%, #f5f9ff 55%, #fff 100%);
-      border: 1px solid #d6e8ff;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-
-    .bp-scheme-empty__visual-icon {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #1677ff;
-    }
-
-    .bp-scheme-empty__visual-icon svg {
-      width: 52px;
-      height: 52px;
-    }
-
-    .bp-scheme-empty__title {
-      margin: 0 0 10px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #101828;
-      line-height: 1.4;
-    }
-
-    .bp-scheme-empty__desc {
-      margin: 0 0 24px;
-      max-width: 320px;
-      font-size: 14px;
-      color: #667085;
-      line-height: 1.65;
-    }
-
-    .bp-scheme-empty__desc strong {
-      color: #1677ff;
-      font-weight: 600;
-    }
-
-    .bp-scheme-empty__cta {
-      height: 36px;
-      padding: 0 20px;
-      border: none;
-      border-radius: 8px;
-      background: #1677ff;
-      color: #fff;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 6px 16px rgba(22, 119, 255, 0.28);
-      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-    }
-
-    .bp-scheme-empty__cta:hover {
-      background: #0958d9;
-      box-shadow: 0 8px 18px rgba(22, 119, 255, 0.34);
-      transform: translateY(-1px);
-    }
-
-    .bp-scheme-empty__cta:active {
-      transform: translateY(0);
-    }
-
-    .bp-scheme-empty--search {
-      background: #fff;
-      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
-    }
-
     .bp-scheme-browse__hd {
       display: none;
     }
@@ -16923,7 +16810,6 @@
     }
 
     .bp-scheme-card {
-      position: relative;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -16931,84 +16817,18 @@
       min-height: 0;
       max-height: none;
       padding: 16px 16px 14px;
-      border: 1px solid #dbe3f0;
+      border: 1px solid #e4e7ec;
       border-radius: 14px;
-      background:
-        linear-gradient(165deg, #ffffff 0%, #f8fbff 48%, #eef4ff 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        inset 0 -1px 0 rgba(22, 119, 255, 0.04),
-        0 1px 2px rgba(16, 24, 40, 0.04),
-        0 10px 24px rgba(16, 24, 40, 0.08),
-        0 22px 40px rgba(22, 119, 255, 0.06);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
       text-align: left;
       overflow: hidden;
-      transform: scale(1);
-      transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.18s ease;
-    }
-
-    .bp-scheme-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(
-        125deg,
-        rgba(255, 255, 255, 0.55) 0%,
-        rgba(255, 255, 255, 0.08) 38%,
-        transparent 58%
-      );
-      opacity: 0.9;
-    }
-
-    .bp-scheme-card::after {
-      content: "";
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 0;
-      height: 3px;
-      border-radius: 3px 3px 0 0;
-      background: linear-gradient(90deg, #69b1ff, #1677ff 55%, #95de64);
-      opacity: 0;
-      transform: scaleX(0.72);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .bp-scheme-card > * {
-      position: relative;
-      z-index: 1;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .bp-scheme-card:hover {
-      border-color: #b7d4ff;
-      transform: scale(1.02);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        inset 0 -1px 0 rgba(22, 119, 255, 0.06),
-        0 2px 4px rgba(16, 24, 40, 0.05),
-        0 16px 32px rgba(16, 24, 40, 0.1),
-        0 28px 48px rgba(22, 119, 255, 0.12);
-    }
-
-    .bp-scheme-card:hover::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .bp-scheme-card {
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
-        transform: none;
-      }
-
-      .bp-scheme-card:hover {
-        transform: none;
-      }
+      border-color: #c5d8f5;
+      box-shadow: 0 10px 26px rgba(22, 119, 255, 0.08);
     }
 
     .bp-scheme-card__top {
@@ -17164,14 +16984,11 @@
 
     .bp-scheme-card__domains-scroll {
       flex: 0 0 auto;
-      /* 固定为两行业务域卡片高度，不足也占位，超出可滚动 */
-      height: calc(2 * 50px + 6px);
-      min-height: calc(2 * 50px + 6px);
+      /* 约两行业务域卡片高度，超出可滚动 */
       max-height: calc(2 * 50px + 6px);
       overflow-x: hidden;
       overflow-y: auto;
       padding-right: 2px;
-      box-sizing: border-box;
     }
 
     .bp-scheme-card__domains-scroll::-webkit-scrollbar {
@@ -17267,10 +17084,6 @@
 
     .bp-scheme-card__domains-empty {
       margin: 0;
-      height: 100%;
-      min-height: calc(2 * 50px + 6px);
-      display: flex;
-      align-items: center;
       font-size: 12px;
       color: #98a2b3;
     }
@@ -17911,10 +17724,6 @@
       height: 38px;
     }
 
-    .bp-hub--v3 .bp-flow-list-panel-head .bp-section-panel-title[hidden] {
-      display: none !important;
-    }
-
     .bp-hub--v3 .bp-scene-filter-cards {
       display: flex;
       flex-direction: row;
@@ -18463,37 +18272,6 @@
 
     .bp-hub--v3 .bp-group {
       margin-bottom: 12px;
-    }
-
-    .bp-hub--v3 .bp-group-fold-bar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 8px;
-      margin: 0 0 10px;
-      padding: 0 2px;
-    }
-
-    .bp-hub--v3 .bp-group-fold-bar[hidden] {
-      display: none !important;
-    }
-
-    .bp-hub--v3 .bp-group-fold-bar .bp-group-fold-btn {
-      height: 30px;
-      padding: 0 12px;
-      border: 1px solid #d8e0ea;
-      border-radius: 6px;
-      background: #fff;
-      color: #344054;
-      font: inherit;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .bp-hub--v3 .bp-group-fold-bar .bp-group-fold-btn:hover {
-      border-color: #91caff;
-      color: #1677ff;
-      background: #f5f9ff;
     }
 
     .bp-hub--v3 .bp-group-head {
@@ -20163,9 +19941,9 @@
     <!-- 场景中心二级菜单 -->
     <!-- 场景全景二级菜单暂隐藏，代码保留便于恢复 -->
     <a class="sub-nav-item sub-nav-item--scene" href="javascript:void(0)" data-hub-scene="1" hidden>场景全景</a>
-    <a class="sub-nav-item sub-nav-item--scene active" href="javascript:void(0)" data-hub-bp="1">场景流程</a>
-    <a class="sub-nav-item sub-nav-item--scene" href="javascript:void(0)" data-hub-template="1">流程定义</a>
+    <a class="sub-nav-item sub-nav-item--scene" href="javascript:void(0)" data-hub-bp="1">场景流程</a>
     <a class="sub-nav-item sub-nav-item--scene" href="javascript:void(0)" data-hub-scene-mig="1">迁移助手</a>
+    <a class="sub-nav-item sub-nav-item--scene active" href="javascript:void(0)" data-hub-template="1">流程定义</a>
     <!-- 资产中心二级菜单 -->
     <a class="sub-nav-item sub-nav-item--asset" href="javascript:void(0)" data-hub-asset="overview">资产概览</a>
     <a class="sub-nav-item sub-nav-item--asset" href="javascript:void(0)" data-hub-asset="map">数据地图</a>
@@ -21539,17 +21317,6 @@
       "数据预览",
     ];
     const BP_STORAGE_KEY = "pm_business_processes_v2";
-    /** 一次性清空历史流程数据，确保进入缺省页（新建流程仍会正常持久化） */
-    const BP_FLOW_DATA_RESET_FLAG = "bp_flow_data_reset_empty_v1";
-    function resetBpFlowDataIfNeeded() {
-      try {
-        if (localStorage.getItem(BP_FLOW_DATA_RESET_FLAG) === "1") return;
-        localStorage.setItem(BP_STORAGE_KEY, "[]");
-        localStorage.setItem(BP_FLOW_DATA_RESET_FLAG, "1");
-      } catch (_) {
-        /* ignore */
-      }
-    }
     /** 演示卡片收藏状态（首条默认已收藏，贴近参考图） */
     const demoFavoriteIds = new Set(["demo_pmlead_contract"]);
     /** 演示卡片「设为模板」状态（一条默认可筛「模板」） */
@@ -22258,8 +22025,15 @@
     let bpDemoPresetsCache = null;
 
     function getBpDemoPresets() {
-      /* 原型默认无预置流程，直接展示场景列表缺省页；需要演示数据时再恢复 buildBpDemoPresets */
-      return [];
+      if (!window.__bpDemoPresetsCache) {
+        try {
+          window.__bpDemoPresetsCache = buildBpDemoPresets();
+        } catch (err) {
+          console.error("buildBpDemoPresets failed", err);
+          window.__bpDemoPresetsCache = [];
+        }
+      }
+      return window.__bpDemoPresetsCache;
     }
 
     function buildBpDemoPresets() {
@@ -27778,17 +27552,13 @@
       return (rows || []).slice().sort((a, b) => getBpItemRecency(b) - getBpItemRecency(a));
     }
 
-    function groupBpRowsByCategory(rows, options) {
-      const domainOnly = !!(options && options.domainOnly);
+    function groupBpRowsByCategory(rows) {
       const map = new Map();
       rows.forEach((item) => {
         const bd = resolveBpBoardDomain(item);
-        const key = domainOnly
-          ? String(bd.domain || "_")
-          : (bd.boardId || "_") + "::" + (bd.domain || "_");
-        const label = domainOnly
-          ? bd.domain || "未指定业务域"
-          : (getBpBoardLabel(bd.boardId) || "未分类") + " · " + (bd.domain || "未指定业务域");
+        const key = (bd.boardId || "_") + "::" + (bd.domain || "_");
+        const label =
+          (getBpBoardLabel(bd.boardId) || "未分类") + " · " + (bd.domain || "未指定业务域");
         if (!map.has(key)) map.set(key, { label, rows: [] });
         map.get(key).rows.push(item);
       });
@@ -30467,9 +30237,9 @@
       tplHost.className = "bp-newflow-tpl-wrap";
       tplPanel.appendChild(tplHost);
 
-      basicSection.appendChild(fScene);
       basicSection.appendChild(f1);
       basicSection.appendChild(fDesc);
+      basicSection.appendChild(fScene);
       basicSection.appendChild(fMode);
       basicSection.appendChild(tplPanel);
 
@@ -34839,7 +34609,7 @@
     }
 
     const BP_SCHEME_VALUE_KEY = "bp_scheme_value_desc_v1";
-    const BP_SCHEME_VALUE_PLACEHOLDER = "请输入该场景的价值描述";
+    const BP_SCHEME_VALUE_PLACEHOLDER = "请输入该方案的价值描述";
 
     function readSchemeValueDescs() {
       try {
@@ -34883,50 +34653,34 @@
         byBoard[bd.boardId].push(item);
       });
 
-      // 仅展示其下已有流程的场景；无流程的场景不出现在场景列表
-      return getBpCascadeData()
-        .map((board) => {
-          const rows = byBoard[board.id] || [];
-          if (!rows.length) return null;
-
-          const domainCountMap = Object.create(null);
-          (board.domains || []).forEach((d) => {
-            domainCountMap[d] = 0;
-          });
-          rows.forEach((item) => {
-            const domain = resolveBpBoardDomain(item).domain;
-            if (!domain) return;
-            domainCountMap[domain] = (domainCountMap[domain] || 0) + 1;
-          });
-          const domainStats = Object.keys(domainCountMap)
-            .filter((domain) => domainCountMap[domain] > 0)
-            .map((domain) => ({
-              domain,
-              flowCount: domainCountMap[domain],
-            }));
-          const catalogOrdered = (board.domains || [])
-            .filter((domain) => domainCountMap[domain] > 0)
-            .map((domain) => ({
-              domain,
-              flowCount: domainCountMap[domain],
-            }));
-          const extraDomains = domainStats.filter(
-            (d) => !(board.domains || []).includes(d.domain)
-          );
-          const visibleDomainStats = catalogOrdered.concat(extraDomains);
-          return {
-            boardId: board.id,
-            boardLabel: board.label,
-            domains: visibleDomainStats.map((d) => d.domain),
-            domainStats: visibleDomainStats,
-            flowCount: rows.length,
-            activeDomainCount: visibleDomainStats.length,
-            catalogDomainCount: visibleDomainStats.length,
-            hint: getBpSchemeValueHint(board.id),
-            updateTime: rows.length ? rows[0].updateTime || rows[0].createTime || "" : "",
-          };
-        })
-        .filter(Boolean);
+      return getBpCascadeData().map((board) => {
+        const rows = byBoard[board.id] || [];
+        const domainCountMap = Object.create(null);
+        (board.domains || []).forEach((d) => {
+          domainCountMap[d] = 0;
+        });
+        rows.forEach((item) => {
+          const domain = resolveBpBoardDomain(item).domain;
+          if (!domain) return;
+          domainCountMap[domain] = (domainCountMap[domain] || 0) + 1;
+        });
+        const domainStats = (board.domains || []).map((domain) => ({
+          domain,
+          flowCount: domainCountMap[domain] || 0,
+        }));
+        const activeDomainCount = domainStats.filter((d) => d.flowCount > 0).length;
+        return {
+          boardId: board.id,
+          boardLabel: board.label,
+          domains: board.domains || [],
+          domainStats,
+          flowCount: rows.length,
+          activeDomainCount,
+          catalogDomainCount: (board.domains || []).length,
+          hint: getBpSchemeValueHint(board.id),
+          updateTime: rows.length ? rows[0].updateTime || rows[0].createTime || "" : "",
+        };
+      });
     }
 
     function mountBpSceneBrowseCanvas() {
@@ -34955,7 +34709,7 @@
       toolbarLeft.className = "bp-scheme-browse__toolbar-left";
       const title = document.createElement("h1");
       title.className = "bp-scheme-browse__title";
-      title.textContent = "场景列表";
+      title.textContent = "场景方案列表";
       toolbarLeft.appendChild(title);
 
       const toolbarRight = document.createElement("div");
@@ -34986,65 +34740,9 @@
       grid.className = "bp-scheme-grid";
       body.appendChild(grid);
 
-      function buildBpSchemeEmptyGuide(options) {
-        const opts = options || {};
-        const wrap = document.createElement("div");
-        wrap.className = "bp-scheme-empty" + (opts.searchMiss ? " bp-scheme-empty--search" : "");
-
-        const visual = document.createElement("div");
-        visual.className = "bp-scheme-empty__visual";
-        visual.setAttribute("aria-hidden", "true");
-        visual.innerHTML =
-          '<div class="bp-scheme-empty__visual-ring"></div>' +
-          '<div class="bp-scheme-empty__visual-icon">' +
-          (opts.searchMiss
-            ? '<svg viewBox="0 0 48 48" fill="none">' +
-              '<circle cx="22" cy="22" r="12" stroke="currentColor" stroke-width="2.5"/>' +
-              '<path d="M31 31l8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' +
-              '<path d="M17 22h10M22 17v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/>' +
-              "</svg>"
-            : '<svg viewBox="0 0 48 48" fill="none">' +
-              '<rect x="8" y="10" width="32" height="28" rx="4" stroke="currentColor" stroke-width="2.5"/>' +
-              '<path d="M8 18h32" stroke="currentColor" stroke-width="2.5"/>' +
-              '<path d="M16 26h16M16 32h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-              '<circle cx="36" cy="36" r="9" fill="#fff" stroke="currentColor" stroke-width="2.5"/>' +
-              '<path d="M36 32v8M32 36h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-              "</svg>") +
-          "</div>";
-
-        const titleEl = document.createElement("h2");
-        titleEl.className = "bp-scheme-empty__title";
-        titleEl.textContent = opts.searchMiss ? "未找到匹配场景" : "当前暂无场景流程";
-
-        const desc = document.createElement("p");
-        desc.className = "bp-scheme-empty__desc";
-        if (opts.searchMiss) {
-          desc.textContent = "试试其他关键词，或清空搜索后重新浏览场景列表";
-        } else {
-          desc.innerHTML =
-            "还没有创建任何场景流程。<br/>点击下方按钮，开始<strong>新建流程</strong>，搭建你的第一个业务场景。";
-        }
-
-        wrap.appendChild(visual);
-        wrap.appendChild(titleEl);
-        wrap.appendChild(desc);
-
-        if (!opts.searchMiss) {
-          const cta = document.createElement("button");
-          cta.type = "button";
-          cta.className = "bp-scheme-empty__cta";
-          cta.textContent = "新建流程";
-          cta.addEventListener("click", () => openBpNewFlowModal());
-          wrap.appendChild(cta);
-        }
-
-        return wrap;
-      }
-
       function renderSchemeGrid() {
         grid.innerHTML = "";
         const q = schemeSearchQuery.trim().toLowerCase();
-        // allSummaries 已排除无流程场景
         const summaries = !q
           ? allSummaries
           : allSummaries.filter((s) => {
@@ -35058,17 +34756,13 @@
               return hay.includes(q);
             });
 
-        if (!q && !allSummaries.length) {
-          body.classList.add("is-empty-guide");
-          grid.appendChild(buildBpSchemeEmptyGuide());
-          return;
-        }
-
-        body.classList.remove("is-empty-guide");
-
         if (!summaries.length) {
-          body.classList.add("is-empty-guide");
-          grid.appendChild(buildBpSchemeEmptyGuide({ searchMiss: true }));
+          const empty = document.createElement("div");
+          empty.className = "bp-hub-empty";
+          empty.innerHTML = q
+            ? '<p class="bp-hub-empty-title">未找到匹配方案</p><p class="bp-hub-empty-desc">试试其他关键词，或清空搜索</p>'
+            : '<p class="bp-hub-empty-title">暂无大方案</p><p class="bp-hub-empty-desc">请先在流程定义中配置业务板块</p>';
+          grid.appendChild(empty);
           return;
         }
 
@@ -35131,7 +34825,7 @@
           const downloadBtn = document.createElement("button");
           downloadBtn.type = "button";
           downloadBtn.className = "bp-scheme-card__cta bp-scheme-card__cta--ghost";
-          downloadBtn.textContent = "导出此场景";
+          downloadBtn.textContent = "下载此方案";
           downloadBtn.title = "默认选择该方案下全部业务逻辑，并生成迁移助手导出记录";
           downloadBtn.addEventListener("click", () => enqueueSchemeDownloadToMigration(scheme));
           foot.appendChild(allLink);
@@ -35541,14 +35235,17 @@
         renderCards();
       });
 
-      const btnFoldToggle = document.createElement("button");
-      btnFoldToggle.type = "button";
-      btnFoldToggle.className = "bp-group-fold-btn";
-      btnFoldToggle.hidden = true;
-      btnFoldToggle.addEventListener("click", () => {
-        if (btnFoldToggle.dataset.mode === "collapse") collapseAllBpGroups();
-        else expandAllBpGroups();
-      });
+      const btnExpandAll = document.createElement("button");
+      btnExpandAll.type = "button";
+      btnExpandAll.className = "bp-group-fold-btn";
+      btnExpandAll.textContent = "全部展开";
+      btnExpandAll.addEventListener("click", () => expandAllBpGroups());
+
+      const btnCollapseAll = document.createElement("button");
+      btnCollapseAll.type = "button";
+      btnCollapseAll.className = "bp-group-fold-btn";
+      btnCollapseAll.textContent = "全部收起";
+      btnCollapseAll.addEventListener("click", () => collapseAllBpGroups());
 
       const btnNew = document.createElement("button");
       btnNew.type = "button";
@@ -35559,6 +35256,8 @@
       const flowPanelActions = document.createElement("div");
       flowPanelActions.className = "bp-flow-panel-actions";
       flowPanelActions.hidden = true;
+      flowPanelActions.appendChild(btnExpandAll);
+      flowPanelActions.appendChild(btnCollapseAll);
       flowPanelActions.appendChild(bulkDd);
       flowPanelActions.appendChild(bulkCancelInline);
       flowPanelActions.appendChild(btnNew);
@@ -35567,7 +35266,6 @@
       flowPanelHeadRight.className = "bp-flow-list-panel-head-right";
       flowPanelHeadRight.appendChild(flowPanelCount);
       flowPanelHeadRight.appendChild(filterBlock);
-      flowPanelHeadRight.appendChild(btnFoldToggle);
       flowPanelHeadRight.appendChild(search);
       flowPanelHeadRight.appendChild(flowPanelActions);
 
@@ -35614,14 +35312,8 @@
         const boardLabel = bpSceneBrowseBoardId
           ? getBpBoardLabel(bpSceneBrowseBoardId) || "大方案"
           : "";
-        const isAllFlowsPage = !!(isFlowListMode && bpSceneBrowseBoardId && !bpSceneBrowseDomain);
-        btnFoldToggle.hidden = !isAllFlowsPage;
-        if (isAllFlowsPage) syncFoldToggleBtn();
-
         if (isFlowListMode && boardLabel) {
           flowBrowseCrumb.hidden = false;
-          flowPanelTitle.hidden = true;
-          flowPanelTitle.textContent = "";
           flowBrowseCrumb.innerHTML = "";
           const home = document.createElement("button");
           home.type = "button";
@@ -35651,6 +35343,7 @@
             domainCur.textContent = bpSceneBrowseDomain;
             flowBrowseCrumb.appendChild(sep2);
             flowBrowseCrumb.appendChild(domainCur);
+            flowPanelTitle.textContent = bpSceneBrowseDomain + " · 流程";
           } else {
             const sep2 = document.createElement("span");
             sep2.textContent = "/";
@@ -35659,26 +35352,17 @@
             allCur.textContent = "全部流程";
             flowBrowseCrumb.appendChild(sep2);
             flowBrowseCrumb.appendChild(allCur);
+            flowPanelTitle.textContent = boardLabel + " · 全部流程";
           }
           flowPanelShell.classList.add("bp-flow-list-shell--no-sidebar");
           catPanel.hidden = true;
         } else {
           flowBrowseCrumb.hidden = true;
           flowBrowseCrumb.innerHTML = "";
-          flowPanelTitle.hidden = false;
           flowPanelTitle.textContent = "场景流程";
           flowPanelShell.classList.remove("bp-flow-list-shell--no-sidebar");
           catPanel.hidden = false;
-          btnFoldToggle.hidden = true;
         }
-      }
-
-      function getBpProcessListGroupOptions() {
-        // 方案下「全部流程」：按业务域分组，便于整域展开/收起
-        if (isFlowListMode && bpSceneBrowseBoardId && !bpSceneBrowseDomain) {
-          return { domainOnly: true };
-        }
-        return { domainOnly: false };
       }
 
       function exitBulkPick() {
@@ -36130,43 +35814,10 @@
 
       function collapseAllBpGroups() {
         collapsedBpGroups.clear();
-        groupBpRowsByCategory(
-          getMergedRows().filter(matchesFilters),
-          getBpProcessListGroupOptions()
-        ).forEach((group) => {
+        groupBpRowsByCategory(getMergedRows().filter(matchesFilters)).forEach((group) => {
           if (group.label) collapsedBpGroups.add(group.label);
         });
         renderCards();
-      }
-
-      function syncFoldToggleBtn(groups) {
-        const isAllFlowsPage = !!(isFlowListMode && bpSceneBrowseBoardId && !bpSceneBrowseDomain);
-        if (!isAllFlowsPage) {
-          btnFoldToggle.hidden = true;
-          return;
-        }
-        const list =
-          groups ||
-          groupBpRowsByCategory(
-            getMergedRows().filter(matchesFilters),
-            getBpProcessListGroupOptions()
-          );
-        const labeled = list.filter((g) => g.label);
-        if (!labeled.length) {
-          btnFoldToggle.hidden = true;
-          return;
-        }
-        btnFoldToggle.hidden = false;
-        const allExpanded = labeled.every((g) => !collapsedBpGroups.has(g.label));
-        if (allExpanded) {
-          btnFoldToggle.dataset.mode = "collapse";
-          btnFoldToggle.textContent = "全部收起";
-          btnFoldToggle.title = "按业务域收起全部流程";
-        } else {
-          btnFoldToggle.dataset.mode = "expand";
-          btnFoldToggle.textContent = "全部展开";
-          btnFoldToggle.title = "展开全部业务域下的流程";
-        }
       }
 
       function renderProcessList(rows) {
@@ -36181,8 +35832,7 @@
             renderCards();
           },
         };
-        const groups = groupBpRowsByCategory(rows, getBpProcessListGroupOptions());
-        syncFoldToggleBtn(groups);
+        const groups = groupBpRowsByCategory(rows);
         groups.forEach((group) => {
           if (group.label) {
             const groupKey = group.label;
@@ -36285,7 +35935,6 @@
           empty.appendChild(emptyDesc);
           empty.appendChild(emptyActions);
           cardsWrap.appendChild(empty);
-          btnFoldToggle.hidden = true;
           updateBulkBar();
           updateSourceTemplateBanner();
           return;
@@ -43884,7 +43533,7 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
             return;
           }
           if (center === "scene") {
-            goToBusinessProcesses();
+            goToTemplateCenter();
           }
         });
       });
@@ -43903,14 +43552,13 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
 
     function bootstrapApp() {
       try {
-        resetBpFlowDataIfNeeded();
         bindAppEvents();
-        goToBusinessProcesses({ skipAnimation: true });
+        goToTemplateCenter({ skipAnimation: true });
       } catch (err) {
         console.error("bootstrapApp failed", err);
-        centerOverride = "business-processes";
+        centerOverride = "template-center";
         syncMainLayout();
-        syncHubSubNavActive("business");
+        syncHubSubNavActive("template");
         try {
           mountBusinessProcessListPage();
         } catch (innerErr) {

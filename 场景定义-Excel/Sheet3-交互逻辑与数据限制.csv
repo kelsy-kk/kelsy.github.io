@@ -1,0 +1,34 @@
+规则ID,页面,交互点,触发条件,系统行为,数据限制/校验
+TC-R01,列表页,进入页面,点击「场景定义」,goToTemplateCenter() Hub全屏,-
+TC-R02,列表页,全局搜索,输入关键词,实时过滤预置+自定义卡片,匹配name/description/intro/devApproach/tags
+TC-R03,列表页,预置·场景流程开发,点击按钮,startNewFlowFromModuleTemplate(preset),预置只读不可编辑删除
+TC-R04,列表页,自定义·编辑,点击「编辑」,goToTemplateEditor({ templateId }),仅自定义场景
+TC-R05,列表页,自定义·上线/下线,点击切换,setCustomTemplatePublished,即时写localStorage
+TC-R06,列表页,自定义·场景流程开发,点击按钮,startNewFlowFromCustomTemplate,仅published=true时显示
+TC-R07,列表页,新增场景,点击「+ 新增业务场景」,进入空白编辑页,-
+TC-R08,列表页,返回,点击「返回场景全景」,goToScenePanorama(),-
+TE-R01,编辑页,追加操作,点击左侧chip,addOpModule追加,同leafId下相同op.id不可重复
+TE-R02,编辑页,目录搜索,输入关键词,过滤左栏操作,匹配label/path/一级中心/大目录名
+TE-R03,编辑页,大模块上移/下移,分组标题栏↑↓,moveGroup整组换位,首组不可上移末组不可下移
+TE-R04,编辑页,大模块删除,分组标题栏×,removeGroup删除该leafId全部操作,-
+TE-R05,编辑页,小操作删除,操作行×,splice删除单条,-
+TE-R06,编辑页,上线开关,点击下线/上线胶囊,syncPublishCapsule,默认上线
+TE-R07,编辑页,保存,点击「保存模板」,saveCustomTemplate→回列表,见校验表
+TE-R08,编辑页,取消/返回,取消或顶栏返回,goToTemplateCenter()不保存,-
+
+校验项,规则,失败提示
+场景名称,trim后非空,请填写场景名称
+操作模块,modules.length≥1,请至少选择一个操作模块
+名称长度,HTML maxlength=60,浏览器截断
+描述长度,HTML maxlength=240,浏览器截断
+重复操作,同leafId+同op.id,已在「{大模块}」中添加不可重复添加
+
+published,列表徽标,新建流程弹窗,场景流程开发按钮,可编辑
+true,已上线,展示,展示,是
+false,已下线,不展示,隐藏,是
+
+分组项,规则
+大模块分组键,leafId
+大模块标题,getTemplateModuleGroupTitle(mod)：path第二段或navTree父级名
+小操作展示,时间线节点显示label
+步数统计,已选modules总数
