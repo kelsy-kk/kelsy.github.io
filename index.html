@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
@@ -295,15 +295,16 @@
       border-radius: 2px 2px 0 0;
     }
 
-    body.main--system-mode .sub-nav {
-      display: none;
-    }
-
-    body.main--asset-mode .sub-nav-item--scene {
+    body.main--asset-mode .sub-nav-item--scene,
+    body.main--system-mode .sub-nav-item--scene {
       display: none !important;
     }
 
     body:not(.main--asset-mode) .sub-nav-item--asset {
+      display: none !important;
+    }
+
+    body:not(.main--system-mode) .sub-nav-item--system {
       display: none !important;
     }
 
@@ -2950,6 +2951,673 @@
       .sys-auth-search {
         width: 160px;
       }
+    }
+
+    /* —— 系统管理 · 模型注册 —— */
+    .smr-root {
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .smr-toolbar {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 16px 20px 12px;
+    }
+
+    .smr-btn-primary {
+      height: 32px;
+      padding: 0 16px;
+      border: 1px solid #1677ff;
+      border-radius: 4px;
+      background: #1677ff;
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-btn-primary:hover {
+      background: #4096ff;
+      border-color: #4096ff;
+    }
+
+    .smr-btn-ghost {
+      height: 32px;
+      padding: 0 16px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-btn-ghost:hover {
+      border-color: #1677ff;
+      color: #1677ff;
+    }
+
+    .smr-table-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 20px;
+    }
+
+    .smr-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      table-layout: fixed;
+    }
+
+    .smr-table th,
+    .smr-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: left;
+      vertical-align: middle;
+      color: rgba(0, 0, 0, 0.88);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .smr-table th {
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.65);
+      background: #fafafa;
+    }
+
+    .smr-table .col-key { width: 24%; }
+    .smr-table .col-provider { width: 10%; }
+    .smr-table .col-model { width: 14%; }
+    .smr-table .col-scope { width: 22%; }
+    .smr-table .col-time { width: 14%; }
+    .smr-table .col-actions { width: 16%; }
+
+    .smr-link {
+      border: 0;
+      padding: 0;
+      background: none;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-link:hover { color: #4096ff; }
+
+    .smr-link-sep {
+      margin: 0 8px;
+      color: #d9d9d9;
+    }
+
+    .smr-scope-tag {
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 22px;
+      background: #f5f5f5;
+      color: rgba(0, 0, 0, 0.65);
+      max-width: 100%;
+    }
+
+    .smr-scope-tag.is-editable {
+      cursor: pointer;
+      border: 1px dashed transparent;
+      font: inherit;
+      font-size: 12px;
+      line-height: 22px;
+    }
+
+    .smr-scope-tag.is-editable:hover {
+      border-color: #91caff;
+      background: #e6f4ff;
+    }
+
+    .smr-scope-tag.is-tenant {
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .smr-scope-tag.is-org {
+      background: #f6ffed;
+      color: #52c41a;
+    }
+
+    .smr-scope-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .smr-scope-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .smr-scope-summary__text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .smr-scope-more {
+      flex-shrink: 0;
+      height: 22px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      color: #1677ff;
+      font: inherit;
+      font-size: 12px;
+      line-height: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .smr-scope-more:hover,
+    .smr-scope-more.is-open {
+      border-color: #1677ff;
+      background: #e6f4ff;
+    }
+
+    .smr-scope-pop {
+      position: fixed;
+      z-index: 1300;
+      width: 280px;
+      max-height: 240px;
+      overflow: auto;
+      padding: 10px 12px;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .smr-scope-pop__title {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .smr-scope-pop__list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .smr-scope-pop__item {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+      word-break: break-all;
+    }
+
+    .smr-scope-pop__item em {
+      font-style: normal;
+      color: rgba(0, 0, 0, 0.45);
+      margin-left: 4px;
+    }
+
+    .smr-scope-editor {
+      position: fixed;
+      z-index: 1300;
+      width: 360px;
+      max-height: min(70vh, 520px);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+      overflow: hidden;
+    }
+
+    .smr-scope-editor__hd {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .smr-scope-editor__body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 12px 14px;
+    }
+
+    .smr-scope-editor__ft {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .smr-edit-page {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .smr-edit-page__hd {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .smr-edit-page__back {
+      border: 0;
+      padding: 0;
+      background: none;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-edit-page__title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .smr-edit-page__body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 24px 20px;
+    }
+
+    .smr-edit-page__ft {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 12px 20px;
+      border-top: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+
+    .smr-edit-page__body .smr-form {
+      max-width: 560px;
+    }
+
+    .smr-edit-page__hint {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .smr-pagination {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 12px 20px;
+      border-top: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .smr-pagination select {
+      height: 28px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .smr-pages {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .smr-pages button {
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-pages button.is-current {
+      border-color: #1677ff;
+      color: #1677ff;
+    }
+
+    .smr-pages button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .smr-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .smr-dialog {
+      width: min(560px, 100%);
+      max-height: min(86vh, 720px);
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .smr-dialog__hd {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .smr-dialog__title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .smr-dialog__close {
+      border: 0;
+      background: none;
+      font-size: 18px;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+    }
+
+    .smr-dialog__body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 20px;
+    }
+
+    .smr-form {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 16px 12px;
+      align-items: start;
+    }
+
+    .smr-label {
+      padding-top: 6px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      text-align: right;
+    }
+
+    .smr-label.is-required::before {
+      content: "*";
+      color: #ff4d4f;
+      margin-right: 4px;
+    }
+
+    .smr-input,
+    .smr-select {
+      width: 100%;
+      height: 32px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 0 11px;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      outline: none;
+      background: #fff;
+    }
+
+    .smr-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M2.5 4.5L6 8l3.5-3.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+      cursor: pointer;
+    }
+
+    .smr-input:focus,
+    .smr-select:focus {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .smr-input-with-tip {
+      position: relative;
+      width: 100%;
+    }
+
+    .smr-input-with-tip .smr-input {
+      padding-right: 36px;
+    }
+
+    .smr-input-tip {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border: 0;
+      padding: 0;
+      border-radius: 50%;
+      background: #1677ff;
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      text-align: center;
+      cursor: help;
+    }
+
+    .smr-input-tip:hover {
+      background: #4096ff;
+    }
+
+    .smr-form-row-hidden {
+      display: none !important;
+    }
+
+    .smr-radios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      min-height: 32px;
+      align-items: center;
+    }
+
+    .smr-radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-radio input {
+      margin: 0;
+      accent-color: #1677ff;
+    }
+
+    .smr-hint {
+      margin: 6px 0 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .smr-tree {
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      background: #fafafa;
+      max-height: 220px;
+      overflow: auto;
+      padding: 8px;
+    }
+
+    .smr-tree__tenant {
+      margin: 4px 0;
+    }
+
+    .smr-tree__tenant-hd {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      font-weight: 600;
+    }
+
+    .smr-tree__tenant-hd:hover,
+    .smr-tree__org:hover {
+      background: #f0f7ff;
+    }
+
+    .smr-tree__tenant-hd.is-selected,
+    .smr-tree__org.is-selected {
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .smr-tree__orgs {
+      padding-left: 22px;
+    }
+
+    .smr-tree__org {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .smr-tree__chev {
+      width: 14px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 10px;
+    }
+
+    .smr-tree__check {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      accent-color: #1677ff;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .smr-tree__tenant-hd.is-disabled,
+    .smr-tree__org.is-disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .smr-tree__badge {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .smr-tree__tenant-hd.is-selected .smr-tree__badge,
+    .smr-tree__org.is-selected .smr-tree__badge {
+      color: #1677ff;
+    }
+
+    .smr-advanced {
+      margin-top: 8px;
+      grid-column: 1 / -1;
+    }
+
+    .smr-advanced__toggle {
+      border: 0;
+      background: none;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .smr-advanced__body {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .smr-dialog__ft {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 12px 20px 16px;
+      border-top: 1px solid #f0f0f0;
     }
 
     main {
@@ -20172,6 +20840,9 @@
     <a class="sub-nav-item sub-nav-item--asset" href="javascript:void(0)" data-hub-asset="catalog">数据目录</a>
     <a class="sub-nav-item sub-nav-item--asset" href="javascript:void(0)" data-hub-asset="compile">数据编目</a>
     <a class="sub-nav-item sub-nav-item--asset" href="javascript:void(0)" data-hub-asset="metadata">元数据管理</a>
+    <!-- 系统管理二级菜单 -->
+    <a class="sub-nav-item sub-nav-item--system" href="javascript:void(0)" data-hub-system="resource-auth">资源授权</a>
+    <a class="sub-nav-item sub-nav-item--system" href="javascript:void(0)" data-hub-system="model-registry">模型注册</a>
   </nav>
 
   <div class="workspace-toolbar" id="workspaceToolbar" hidden aria-label="工作台功能栏">
@@ -21385,7 +22056,7 @@
     let physicalCanvasMode = "list";
     /** 逆向建模向导步：1 映射选择 → 2 信息填写 → 3 表提取 */
     let reverseModelingStep = 1;
-    /** 画布覆盖：null 跟随导航（流程开发）；scene-panorama 场景全景；business-processes 场景流程；template-center 场景定义；system-resource-auth 系统管理·资源授权；scene-flow-migration 场景中心·迁移助手；resource-detail 资源详情 */
+    /** 画布覆盖：null 跟随导航（流程开发）；scene-panorama 场景全景；business-processes 场景流程；template-center 场景定义；system-resource-auth 系统管理·资源授权；system-model-registry 系统管理·模型注册；scene-flow-migration 场景中心·迁移助手；resource-detail 资源详情 */
     /** 场景全景菜单/页面暂不展示：false 时入口落到流程定义；改 true 并去掉二级菜单 hidden 即可恢复 */
     const SCENE_PANORAMA_ENABLED = false;
     let centerOverride = "template-center";
@@ -25622,6 +26293,7 @@
         centerOverride === "template-center" ||
         centerOverride === "template-editor" ||
         centerOverride === "system-resource-auth" ||
+        centerOverride === "system-model-registry" ||
         centerOverride === "scene-flow-migration" ||
         centerOverride === "asset-migration"
       );
@@ -25647,6 +26319,14 @@
       return centerOverride === "system-resource-auth";
     }
 
+    function isSystemModelRegistryMode() {
+      return centerOverride === "system-model-registry";
+    }
+
+    function isSystemManagementMode() {
+      return isSystemResourceAuthMode() || isSystemModelRegistryMode();
+    }
+
     function isAssetMigrationMode() {
       return centerOverride === "asset-migration";
     }
@@ -25662,7 +26342,7 @@
     function syncMainLayout() {
       const hub = isFullPageHubMode();
       const workspace = isProcessDevWorkspace();
-      const systemMode = isSystemResourceAuthMode();
+      const systemMode = isSystemManagementMode();
       const assetMode = isAssetMigrationMode();
       if (mainLayoutEl) {
         mainLayoutEl.classList.toggle("main--hub", hub);
@@ -25877,6 +26557,16 @@
       apply();
     }
 
+    function syncSystemSubNavActive(key) {
+      document.querySelectorAll(".sub-nav-item--system").forEach((el) => {
+        const on = el.getAttribute("data-hub-system") === key;
+        el.classList.toggle("active", on);
+      });
+      document.querySelectorAll(".sub-nav-item--scene, .sub-nav-item--asset").forEach((el) => {
+        el.classList.remove("active");
+      });
+    }
+
     function goToSystemManagement(options) {
       const opts = options || {};
       const apply = () => {
@@ -25886,7 +26576,35 @@
         bpFlowListInitialBoardId = null;
         resetHubWorkspaceState();
         syncHeaderCenterActive("system");
-        document.querySelectorAll(".sub-nav-item").forEach((x) => x.classList.remove("active"));
+        syncSystemSubNavActive("resource-auth");
+        syncMainLayout();
+        syncCanvas();
+        renderNav({ skipSyncCanvas: true });
+        renderOperationFlow();
+      };
+      if (opts.skipAnimation) {
+        apply();
+        return;
+      }
+      if (isProcessDevWorkspace()) {
+        animateWorkspaceToHub(apply);
+        return;
+      }
+      apply();
+    }
+
+    function goToSystemModelRegistry(options) {
+      const opts = options || {};
+      const apply = () => {
+        resourceDetailState = null;
+        templateEditorId = null;
+        centerOverride = "system-model-registry";
+        smrViewMode = "list";
+        smrEditingId = null;
+        bpFlowListInitialBoardId = null;
+        resetHubWorkspaceState();
+        syncHeaderCenterActive("system");
+        syncSystemSubNavActive("model-registry");
         syncMainLayout();
         syncCanvas();
         renderNav({ skipSyncCanvas: true });
@@ -33393,6 +34111,1503 @@
       canvasEl.appendChild(root);
     }
 
+    let smrPage = 1;
+    const smrPageSize = 15;
+    let smrViewMode = "list"; // list | edit
+    let smrEditingId = null;
+    const smrOrgTree = [
+      {
+        id: "tenant-glodon",
+        name: "广联达科技",
+        orgs: [
+          { id: "org-consult", name: "工程咨询事业部" },
+          { id: "org-huiguo", name: "慧果产品部" },
+          { id: "org-data", name: "数据中台组" },
+        ],
+      },
+      {
+        id: "tenant-demo",
+        name: "演示租户",
+        orgs: [
+          { id: "org-demo-a", name: "经营分析组" },
+          { id: "org-demo-b", name: "履约决策组" },
+        ],
+      },
+    ];
+    let smrRows = [
+      {
+        id: "smr-1",
+        apiKeyMasked: "sk-w****************************************************eNaJ",
+        apiKeyRaw: "sk-wdemo************************************************eNaJ",
+        provider: "智谱",
+        modelId: "glm-5.1",
+        createdAt: "2026/4/24 11:21:37",
+        scope: "USER",
+        tenantId: "",
+        tenantName: "",
+        orgId: "",
+        orgName: "",
+        ownerUserId: "u-current",
+      },
+      {
+        id: "smr-2",
+        apiKeyMasked: "02f3******************************bGZr",
+        apiKeyRaw: "02f3demo**************************bGZr",
+        provider: "自定义",
+        modelId: "deepseek-v4-pro",
+        baseUrl: "https://api.deepseek.com",
+        createdAt: "2026/4/24 11:21:09",
+        scope: "ORG",
+        tenantId: "tenant-glodon",
+        tenantName: "广联达科技",
+        orgId: "org-huiguo",
+        orgName: "慧果产品部",
+        orgIds: [
+          {
+            id: "org-huiguo",
+            name: "慧果产品部",
+            tenantId: "tenant-glodon",
+            tenantName: "广联达科技",
+          },
+          {
+            id: "org-consult",
+            name: "工程咨询事业部",
+            tenantId: "tenant-glodon",
+            tenantName: "广联达科技",
+          },
+          {
+            id: "org-data",
+            name: "数据中台组",
+            tenantId: "tenant-glodon",
+            tenantName: "广联达科技",
+          },
+          {
+            id: "org-demo-a",
+            name: "经营分析组",
+            tenantId: "tenant-demo",
+            tenantName: "演示租户",
+          },
+          {
+            id: "org-demo-b",
+            name: "履约决策组",
+            tenantId: "tenant-demo",
+            tenantName: "演示租户",
+          },
+        ],
+        ownerUserId: "u-current",
+      },
+      {
+        id: "smr-3",
+        apiKeyMasked: "e2b1******************************9kQm",
+        apiKeyRaw: "e2b1demo**************************9kQm",
+        provider: "MiniMax",
+        modelId: "MiniMax-M2.7",
+        createdAt: "2026/4/24 11:20:31",
+        scope: "TENANT",
+        tenantId: "tenant-glodon",
+        tenantName: "广联达科技",
+        orgId: "",
+        orgName: "",
+        ownerUserId: "u-current",
+      },
+    ];
+
+    function maskSmrApiKey(key) {
+      const s = String(key || "");
+      if (s.length <= 8) return s;
+      return s.slice(0, 4) + "*".repeat(Math.min(36, Math.max(8, s.length - 8))) + s.slice(-4);
+    }
+
+    function createSmrBaseUrlField(initialValue) {
+      const label = document.createElement("label");
+      label.className = "smr-label is-required";
+      label.textContent = "Base URL";
+      const wrap = document.createElement("div");
+      wrap.className = "smr-input-with-tip";
+      const input = document.createElement("input");
+      input.className = "smr-input";
+      input.type = "text";
+      input.placeholder = "请输入模型API基础URL";
+      input.value = initialValue || "";
+      const tip = document.createElement("button");
+      tip.type = "button";
+      tip.className = "smr-input-tip";
+      tip.textContent = "?";
+      tip.title = "自定义服务商时需填写模型 API 的基础地址，例如 https://api.example.com/v1";
+      tip.setAttribute("aria-label", tip.title);
+      wrap.appendChild(input);
+      wrap.appendChild(tip);
+      return { label, wrap, input };
+    }
+
+    function setSmrBaseUrlVisible(label, wrap, visible) {
+      label.classList.toggle("smr-form-row-hidden", !visible);
+      wrap.classList.toggle("smr-form-row-hidden", !visible);
+    }
+
+    function getSmrScopeItems(row) {
+      if (row.scope === "TENANT") {
+        return [
+          {
+            label: row.tenantName || row.tenantId || "—",
+            sub: row.tenantId || "",
+          },
+        ];
+      }
+      if (row.scope === "ORG") {
+        const orgs =
+          Array.isArray(row.orgIds) && row.orgIds.length
+            ? row.orgIds
+            : row.orgId
+              ? [{ id: row.orgId, name: row.orgName || row.orgId, tenantName: row.tenantName }]
+              : [];
+        return orgs.map((o) => ({
+          label: o.name || o.id,
+          sub: o.tenantName || o.tenantId || "",
+        }));
+      }
+      return [];
+    }
+
+    function formatSmrScope(row) {
+      if (row.scope === "TENANT") {
+        const name = row.tenantName || row.tenantId || "—";
+        return {
+          kind: "tenant",
+          cls: "is-tenant",
+          summary: "租户 · " + name,
+          count: 1,
+          items: getSmrScopeItems(row),
+          overflow: false,
+        };
+      }
+      if (row.scope === "ORG") {
+        const items = getSmrScopeItems(row);
+        const count = items.length;
+        if (!count) {
+          return { kind: "org", cls: "is-org", summary: "组织", count: 0, items: [], overflow: false };
+        }
+        if (count === 1) {
+          return {
+            kind: "org",
+            cls: "is-org",
+            summary: "组织 · " + items[0].label,
+            count: 1,
+            items,
+            overflow: false,
+          };
+        }
+        // 多组织：摘要只露前 1 个 + 数量，详情进气泡
+        return {
+          kind: "org",
+          cls: "is-org",
+          summary: "组织 · " + items[0].label,
+          count,
+          items,
+          overflow: true,
+          moreText: "+" + (count - 1),
+        };
+      }
+      return {
+        kind: "user",
+        cls: "",
+        summary: "仅自己",
+        count: 0,
+        items: [],
+        overflow: false,
+      };
+    }
+
+    function closeAllSmrScopePops() {
+      document.querySelectorAll(".smr-scope-pop").forEach((el) => el.remove());
+      document.querySelectorAll(".smr-scope-more.is-open").forEach((el) => {
+        el.classList.remove("is-open");
+        el.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    function closeSmrScopeEditor() {
+      const el = document.getElementById("smrScopeEditor");
+      if (el) el.remove();
+      document.removeEventListener("click", smrScopeEditorDocCloser, true);
+    }
+
+    let smrScopeEditorDocCloser = null;
+
+    function rowToSmrShareState(row) {
+      if (!row || row.scope === "USER" || !row.scope) {
+        return { shareMode: "private", selectedTenantId: "", selectedTenantName: "", selectedOrgs: [] };
+      }
+      if (row.scope === "TENANT") {
+        return {
+          shareMode: "share",
+          selectedTenantId: row.tenantId || "",
+          selectedTenantName: row.tenantName || "",
+          selectedOrgs: [],
+        };
+      }
+      const orgs =
+        Array.isArray(row.orgIds) && row.orgIds.length
+          ? row.orgIds.map((o) => ({
+              id: o.id,
+              name: o.name || o.id,
+              tenantId: o.tenantId || row.tenantId || "",
+              tenantName: o.tenantName || row.tenantName || "",
+            }))
+          : row.orgId
+            ? [
+                {
+                  id: row.orgId,
+                  name: row.orgName || row.orgId,
+                  tenantId: row.tenantId || "",
+                  tenantName: row.tenantName || "",
+                },
+              ]
+            : [];
+      return {
+        shareMode: "share",
+        selectedTenantId: "",
+        selectedTenantName: "",
+        selectedOrgs: orgs,
+      };
+    }
+
+    function buildSmrScopePayload(shareMode, selectedTenantId, selectedTenantName, selectedOrgs) {
+      if (shareMode === "private") {
+        return {
+          scope: "USER",
+          tenantId: "",
+          tenantName: "",
+          orgId: "",
+          orgName: "",
+          orgIds: [],
+        };
+      }
+      if (selectedTenantId) {
+        return {
+          scope: "TENANT",
+          tenantId: selectedTenantId,
+          tenantName: selectedTenantName || selectedTenantId,
+          orgId: "",
+          orgName: "",
+          orgIds: [],
+        };
+      }
+      if (selectedOrgs && selectedOrgs.length) {
+        return {
+          scope: "ORG",
+          tenantId: selectedOrgs[0].tenantId || "",
+          tenantName: selectedOrgs[0].tenantName || "",
+          orgId: selectedOrgs[0].id,
+          orgName: selectedOrgs[0].name,
+          orgIds: selectedOrgs.slice(),
+        };
+      }
+      return null;
+    }
+
+    function applySmrScopePayload(row, payload) {
+      row.scope = payload.scope;
+      row.tenantId = payload.tenantId || "";
+      row.tenantName = payload.tenantName || "";
+      row.orgId = payload.orgId || "";
+      row.orgName = payload.orgName || "";
+      row.orgIds = Array.isArray(payload.orgIds) ? payload.orgIds.slice() : [];
+    }
+
+    /** 构建可见范围选择器（仅自己 / 共享树），供行内编辑与表单复用 */
+    function mountSmrShareScopeControls(host, initialState, radioName) {
+      const treeData = fetchSmrTenantOrgTree();
+      let shareMode = initialState.shareMode || "private";
+      let selectedTenantId = initialState.selectedTenantId || "";
+      let selectedTenantName = initialState.selectedTenantName || "";
+      let selectedOrgs = (initialState.selectedOrgs || []).slice();
+      const expandedTenants = new Set(treeData.map((t) => t.id));
+
+      const radios = document.createElement("div");
+      radios.className = "smr-radios";
+      [
+        { value: "private", label: "仅自己" },
+        { value: "share", label: "共享给租户/组织" },
+      ].forEach((opt) => {
+        const lab = document.createElement("label");
+        lab.className = "smr-radio";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = radioName || "smrShareModeInline";
+        input.value = opt.value;
+        input.checked = shareMode === opt.value;
+        input.addEventListener("change", () => {
+          if (!input.checked) return;
+          shareMode = opt.value;
+          if (shareMode === "private") {
+            selectedTenantId = "";
+            selectedTenantName = "";
+            selectedOrgs = [];
+          }
+          renderTree();
+        });
+        const span = document.createElement("span");
+        span.textContent = opt.label;
+        lab.appendChild(input);
+        lab.appendChild(span);
+        radios.appendChild(lab);
+      });
+
+      const hint = document.createElement("p");
+      hint.className = "smr-hint";
+      hint.textContent = "共享时二选一：勾选租户，或勾选一个/多个组织。";
+
+      const treeWrap = document.createElement("div");
+
+      function isOrgSelected(orgId) {
+        return selectedOrgs.some((o) => o.id === orgId);
+      }
+
+      function renderTree() {
+        treeWrap.innerHTML = "";
+        if (shareMode === "private") return;
+        const tree = document.createElement("div");
+        tree.className = "smr-tree";
+        const hasTenant = !!selectedTenantId;
+        const hasOrgs = selectedOrgs.length > 0;
+        treeData.forEach((tenant) => {
+          const block = document.createElement("div");
+          block.className = "smr-tree__tenant";
+          const hdRow = document.createElement("div");
+          const tenantOn = selectedTenantId === tenant.id;
+          hdRow.className =
+            "smr-tree__tenant-hd" +
+            (tenantOn ? " is-selected" : "") +
+            (hasOrgs ? " is-disabled" : "");
+          const chev = document.createElement("span");
+          chev.className = "smr-tree__chev";
+          chev.textContent = expandedTenants.has(tenant.id) ? "▾" : "▸";
+          chev.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (expandedTenants.has(tenant.id)) expandedTenants.delete(tenant.id);
+            else expandedTenants.add(tenant.id);
+            renderTree();
+          });
+          const tenantCheck = document.createElement("input");
+          tenantCheck.type = "checkbox";
+          tenantCheck.className = "smr-tree__check";
+          tenantCheck.checked = tenantOn;
+          tenantCheck.disabled = hasOrgs;
+          tenantCheck.addEventListener("click", (e) => e.stopPropagation());
+          tenantCheck.addEventListener("change", () => {
+            if (hasOrgs) return;
+            if (tenantCheck.checked) {
+              selectedTenantId = tenant.id;
+              selectedTenantName = tenant.name;
+              selectedOrgs = [];
+            } else {
+              selectedTenantId = "";
+              selectedTenantName = "";
+            }
+            renderTree();
+          });
+          const name = document.createElement("span");
+          name.textContent = tenant.name;
+          const badge = document.createElement("span");
+          badge.className = "smr-tree__badge";
+          badge.textContent = tenantOn ? "整租户" : "租户";
+          hdRow.appendChild(chev);
+          hdRow.appendChild(tenantCheck);
+          hdRow.appendChild(name);
+          hdRow.appendChild(badge);
+          if (!hasOrgs) {
+            hdRow.addEventListener("click", (e) => {
+              if (e.target === chev || e.target === tenantCheck) return;
+              if (tenantOn) {
+                selectedTenantId = "";
+                selectedTenantName = "";
+              } else {
+                selectedTenantId = tenant.id;
+                selectedTenantName = tenant.name;
+                selectedOrgs = [];
+              }
+              renderTree();
+            });
+          }
+          block.appendChild(hdRow);
+          if (expandedTenants.has(tenant.id)) {
+            const orgs = document.createElement("div");
+            orgs.className = "smr-tree__orgs";
+            tenant.orgs.forEach((org) => {
+              const rowEl = document.createElement("div");
+              const orgOn = isOrgSelected(org.id);
+              rowEl.className =
+                "smr-tree__org" +
+                (orgOn ? " is-selected" : "") +
+                (hasTenant ? " is-disabled" : "");
+              const orgCheck = document.createElement("input");
+              orgCheck.type = "checkbox";
+              orgCheck.className = "smr-tree__check";
+              orgCheck.checked = orgOn;
+              orgCheck.disabled = hasTenant;
+              orgCheck.addEventListener("click", (e) => e.stopPropagation());
+              orgCheck.addEventListener("change", () => {
+                if (hasTenant) return;
+                selectedTenantId = "";
+                selectedTenantName = "";
+                if (orgOn) selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
+                else
+                  selectedOrgs = selectedOrgs.concat([
+                    {
+                      id: org.id,
+                      name: org.name,
+                      tenantId: tenant.id,
+                      tenantName: tenant.name,
+                    },
+                  ]);
+                renderTree();
+              });
+              const orgName = document.createElement("span");
+              orgName.textContent = org.name;
+              const orgBadge = document.createElement("span");
+              orgBadge.className = "smr-tree__badge";
+              orgBadge.textContent = "组织";
+              rowEl.appendChild(orgCheck);
+              rowEl.appendChild(orgName);
+              rowEl.appendChild(orgBadge);
+              if (!hasTenant) {
+                rowEl.addEventListener("click", (e) => {
+                  if (e.target === orgCheck) return;
+                  selectedTenantId = "";
+                  selectedTenantName = "";
+                  if (orgOn) selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
+                  else
+                    selectedOrgs = selectedOrgs.concat([
+                      {
+                        id: org.id,
+                        name: org.name,
+                        tenantId: tenant.id,
+                        tenantName: tenant.name,
+                      },
+                    ]);
+                  renderTree();
+                });
+              }
+              orgs.appendChild(rowEl);
+            });
+            block.appendChild(orgs);
+          }
+          tree.appendChild(block);
+        });
+        const tip = document.createElement("p");
+        tip.className = "smr-hint";
+        if (selectedTenantId) tip.textContent = "已选租户：" + selectedTenantName;
+        else if (selectedOrgs.length)
+          tip.textContent =
+            "已选组织：" + selectedOrgs.map((o) => o.name).join("、") + "（" + selectedOrgs.length + "）";
+        else tip.textContent = "请选择租户或组织";
+        treeWrap.appendChild(tree);
+        treeWrap.appendChild(tip);
+      }
+
+      host.appendChild(radios);
+      host.appendChild(hint);
+      host.appendChild(treeWrap);
+      renderTree();
+
+      return {
+        getPayload() {
+          return buildSmrScopePayload(shareMode, selectedTenantId, selectedTenantName, selectedOrgs);
+        },
+        validate() {
+          if (shareMode === "share" && !selectedTenantId && !selectedOrgs.length) {
+            showToast("请选择租户或组织", "info");
+            return false;
+          }
+          return true;
+        },
+      };
+    }
+
+    function openSmrInlineScopeEditor(row, anchorEl, onSaved) {
+      closeSmrScopeEditor();
+      closeAllSmrScopePops();
+      const editor = document.createElement("div");
+      editor.id = "smrScopeEditor";
+      editor.className = "smr-scope-editor";
+      editor.addEventListener("click", (e) => e.stopPropagation());
+
+      const hd = document.createElement("div");
+      hd.className = "smr-scope-editor__hd";
+      const hdTitle = document.createElement("span");
+      hdTitle.textContent = "修改可见范围";
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "smr-dialog__close";
+      closeBtn.textContent = "×";
+      closeBtn.addEventListener("click", closeSmrScopeEditor);
+      hd.appendChild(hdTitle);
+      hd.appendChild(closeBtn);
+
+      const body = document.createElement("div");
+      body.className = "smr-scope-editor__body";
+      const controls = mountSmrShareScopeControls(body, rowToSmrShareState(row), "smrInlineShare-" + row.id);
+
+      const ft = document.createElement("div");
+      ft.className = "smr-scope-editor__ft";
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className = "smr-btn-ghost";
+      cancelBtn.textContent = "取消";
+      cancelBtn.addEventListener("click", closeSmrScopeEditor);
+      const okBtn = document.createElement("button");
+      okBtn.type = "button";
+      okBtn.className = "smr-btn-primary";
+      okBtn.textContent = "保存";
+      okBtn.addEventListener("click", () => {
+        if (!controls.validate()) return;
+        const payload = controls.getPayload();
+        if (!payload) {
+          showToast("请选择租户或组织", "info");
+          return;
+        }
+        applySmrScopePayload(row, payload);
+        showToast("可见范围已更新", "success");
+        closeSmrScopeEditor();
+        if (typeof onSaved === "function") onSaved();
+      });
+      ft.appendChild(cancelBtn);
+      ft.appendChild(okBtn);
+
+      editor.appendChild(hd);
+      editor.appendChild(body);
+      editor.appendChild(ft);
+      document.body.appendChild(editor);
+
+      const rect = anchorEl.getBoundingClientRect();
+      const w = 360;
+      const h = Math.min(520, window.innerHeight * 0.7);
+      let left = rect.left;
+      let top = rect.bottom + 6;
+      if (left + w > window.innerWidth - 8) left = Math.max(8, window.innerWidth - w - 8);
+      if (top + 280 > window.innerHeight - 8) top = Math.max(8, rect.top - Math.min(h, 360) - 6);
+      editor.style.left = left + "px";
+      editor.style.top = top + "px";
+
+      smrScopeEditorDocCloser = (e) => {
+        if (!editor.contains(e.target) && !anchorEl.contains(e.target)) closeSmrScopeEditor();
+      };
+      setTimeout(() => document.addEventListener("click", smrScopeEditorDocCloser, true), 0);
+    }
+
+    function buildSmrScopeCell(row, onScopeChanged) {
+      const meta = formatSmrScope(row);
+      const cell = document.createElement("div");
+      cell.className = "smr-scope-cell";
+
+      const tag = document.createElement("button");
+      tag.type = "button";
+      tag.className = "smr-scope-tag is-editable" + (meta.cls ? " " + meta.cls : "");
+      tag.title = "点击修改可见范围";
+      const summary = document.createElement("span");
+      summary.className = "smr-scope-summary";
+      const text = document.createElement("span");
+      text.className = "smr-scope-summary__text";
+      text.textContent = meta.summary;
+      summary.appendChild(text);
+      tag.appendChild(summary);
+      tag.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openSmrInlineScopeEditor(row, tag, onScopeChanged);
+      });
+      cell.appendChild(tag);
+
+      if (!meta.overflow) return cell;
+
+      const moreBtn = document.createElement("button");
+      moreBtn.type = "button";
+      moreBtn.className = "smr-scope-more";
+      moreBtn.textContent = meta.moreText || "+" + Math.max(0, meta.count - 1);
+      moreBtn.title = "查看全部 " + meta.count + " 个组织";
+      moreBtn.setAttribute("aria-expanded", "false");
+
+      function positionPop(pop) {
+        const rect = moreBtn.getBoundingClientRect();
+        const popW = 280;
+        const popH = Math.min(240, 40 + meta.items.length * 28);
+        let left = rect.left;
+        let top = rect.bottom + 6;
+        if (left + popW > window.innerWidth - 8) left = Math.max(8, window.innerWidth - popW - 8);
+        if (top + popH > window.innerHeight - 8) top = Math.max(8, rect.top - popH - 6);
+        pop.style.left = left + "px";
+        pop.style.top = top + "px";
+      }
+
+      function openPop() {
+        closeAllSmrScopePops();
+        closeSmrScopeEditor();
+        const pop = document.createElement("div");
+        pop.className = "smr-scope-pop";
+        const popTitle = document.createElement("p");
+        popTitle.className = "smr-scope-pop__title";
+        popTitle.textContent = "已共享组织（" + meta.count + "）";
+        const list = document.createElement("div");
+        list.className = "smr-scope-pop__list";
+        meta.items.forEach((item) => {
+          const rowEl = document.createElement("div");
+          rowEl.className = "smr-scope-pop__item";
+          rowEl.textContent = item.label;
+          if (item.sub) {
+            const em = document.createElement("em");
+            em.textContent = item.sub;
+            rowEl.appendChild(em);
+          }
+          list.appendChild(rowEl);
+        });
+        pop.appendChild(popTitle);
+        pop.appendChild(list);
+        document.body.appendChild(pop);
+        positionPop(pop);
+        moreBtn.classList.add("is-open");
+
+        function onDocClick(e) {
+          if (pop.contains(e.target) || moreBtn.contains(e.target)) return;
+          closePop();
+        }
+        function onScrollOrResize() {
+          if (!document.body.contains(pop)) return;
+          positionPop(pop);
+        }
+        function closePop() {
+          pop.remove();
+          moreBtn.classList.remove("is-open");
+          document.removeEventListener("click", onDocClick, true);
+          window.removeEventListener("scroll", onScrollOrResize, true);
+          window.removeEventListener("resize", onScrollOrResize);
+        }
+        document.addEventListener("click", onDocClick, true);
+        window.addEventListener("scroll", onScrollOrResize, true);
+        window.addEventListener("resize", onScrollOrResize);
+      }
+
+      moreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (moreBtn.classList.contains("is-open")) {
+          closeAllSmrScopePops();
+          return;
+        }
+        openPop();
+      });
+
+      cell.appendChild(moreBtn);
+      return cell;
+    }
+
+    function formatSmrNow() {
+      const d = new Date();
+      const p = (n) => String(n).padStart(2, "0");
+      return (
+        d.getFullYear() +
+        "/" +
+        (d.getMonth() + 1) +
+        "/" +
+        d.getDate() +
+        " " +
+        p(d.getHours()) +
+        ":" +
+        p(d.getMinutes()) +
+        ":" +
+        p(d.getSeconds())
+      );
+    }
+
+    function closeSmrRegisterModal() {
+      const el = document.getElementById("smrRegisterBackdrop");
+      if (el) el.remove();
+    }
+
+    /** 模拟「租户-组织」同一接口返回：一级租户，二级组织 */
+    function fetchSmrTenantOrgTree() {
+      return smrOrgTree.slice();
+    }
+
+    function openSmrRegisterModal(onSaved) {
+      closeSmrRegisterModal();
+      const treeData = fetchSmrTenantOrgTree();
+      const backdrop = document.createElement("div");
+      backdrop.id = "smrRegisterBackdrop";
+      backdrop.className = "smr-backdrop";
+      backdrop.setAttribute("role", "presentation");
+
+      const dialog = document.createElement("div");
+      dialog.className = "smr-dialog";
+      dialog.setAttribute("role", "dialog");
+      dialog.setAttribute("aria-modal", "true");
+      dialog.setAttribute("aria-labelledby", "smrRegisterTitle");
+      dialog.addEventListener("click", (e) => e.stopPropagation());
+
+      const hd = document.createElement("div");
+      hd.className = "smr-dialog__hd";
+      const title = document.createElement("h2");
+      title.id = "smrRegisterTitle";
+      title.className = "smr-dialog__title";
+      title.textContent = "注册模型";
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "smr-dialog__close";
+      closeBtn.setAttribute("aria-label", "关闭");
+      closeBtn.textContent = "×";
+      closeBtn.addEventListener("click", closeSmrRegisterModal);
+      hd.appendChild(title);
+      hd.appendChild(closeBtn);
+
+      const body = document.createElement("div");
+      body.className = "smr-dialog__body";
+      const form = document.createElement("div");
+      form.className = "smr-form";
+
+      /** shareMode: private | share；sharePick: tenant | orgs（互斥） */
+      let shareMode = "private";
+      let selectedTenantId = "";
+      let selectedTenantName = "";
+      /** @type {Array<{id:string,name:string,tenantId:string,tenantName:string}>} */
+      let selectedOrgs = [];
+      let advancedOpen = false;
+      const expandedTenants = new Set(treeData.map((t) => t.id));
+
+      function addField(labelText, required, fieldNode) {
+        const lab = document.createElement("label");
+        lab.className = "smr-label" + (required ? " is-required" : "");
+        lab.textContent = labelText;
+        form.appendChild(lab);
+        form.appendChild(fieldNode);
+      }
+
+      const apiInput = document.createElement("input");
+      apiInput.className = "smr-input";
+      apiInput.type = "password";
+      apiInput.placeholder = "请输入 API 密钥";
+      apiInput.autocomplete = "off";
+      addField("API密钥", true, apiInput);
+
+      const providerSelect = document.createElement("select");
+      providerSelect.className = "smr-select";
+      ["智谱", "自定义", "MiniMax", "OpenAI", "通义千问"].forEach((name) => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        providerSelect.appendChild(opt);
+      });
+      addField("模型服务商", true, providerSelect);
+
+      const baseUrlField = createSmrBaseUrlField("");
+      form.appendChild(baseUrlField.label);
+      form.appendChild(baseUrlField.wrap);
+      function syncRegisterBaseUrl() {
+        const show = providerSelect.value === "自定义";
+        setSmrBaseUrlVisible(baseUrlField.label, baseUrlField.wrap, show);
+        if (!show) baseUrlField.input.value = "";
+      }
+      providerSelect.addEventListener("change", syncRegisterBaseUrl);
+      syncRegisterBaseUrl();
+
+      const modelInput = document.createElement("input");
+      modelInput.className = "smr-input";
+      modelInput.type = "text";
+      modelInput.placeholder = "例如 glm-5.1";
+      addField("模型ID", true, modelInput);
+
+      const scopeField = document.createElement("div");
+      const radios = document.createElement("div");
+      radios.className = "smr-radios";
+      [
+        { value: "private", label: "仅自己" },
+        { value: "share", label: "共享给租户/组织" },
+      ].forEach((opt) => {
+        const lab = document.createElement("label");
+        lab.className = "smr-radio";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "smrShareMode";
+        input.value = opt.value;
+        input.checked = shareMode === opt.value;
+        input.addEventListener("change", () => {
+          if (!input.checked) return;
+          shareMode = opt.value;
+          if (shareMode === "private") {
+            selectedTenantId = "";
+            selectedTenantName = "";
+            selectedOrgs = [];
+          }
+          renderShareTree();
+        });
+        const span = document.createElement("span");
+        span.textContent = opt.label;
+        lab.appendChild(input);
+        lab.appendChild(span);
+        radios.appendChild(lab);
+      });
+      const scopeHint = document.createElement("p");
+      scopeHint.className = "smr-hint";
+      scopeHint.textContent =
+        "租户与组织来自同一接口（一级租户 / 二级组织）。共享时在树中二选一：勾选租户，或勾选一个或多个组织。";
+      scopeField.appendChild(radios);
+      scopeField.appendChild(scopeHint);
+      addField("可见范围", true, scopeField);
+
+      const treeLabel = document.createElement("div");
+      treeLabel.className = "smr-label is-required";
+      treeLabel.textContent = "租户/组织";
+      const treeField = document.createElement("div");
+      form.appendChild(treeLabel);
+      form.appendChild(treeField);
+
+      function isOrgSelected(orgId) {
+        return selectedOrgs.some((o) => o.id === orgId);
+      }
+
+      function selectTenant(tenant) {
+        selectedTenantId = tenant.id;
+        selectedTenantName = tenant.name;
+        selectedOrgs = [];
+        renderShareTree();
+      }
+
+      function toggleOrg(tenant, org) {
+        selectedTenantId = "";
+        selectedTenantName = "";
+        if (isOrgSelected(org.id)) {
+          selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
+        } else {
+          selectedOrgs = selectedOrgs.concat([
+            {
+              id: org.id,
+              name: org.name,
+              tenantId: tenant.id,
+              tenantName: tenant.name,
+            },
+          ]);
+        }
+        renderShareTree();
+      }
+
+      function renderShareTree() {
+        treeField.innerHTML = "";
+        if (shareMode === "private") {
+          treeLabel.style.visibility = "hidden";
+          treeField.style.visibility = "hidden";
+          treeField.style.height = "0";
+          treeField.style.overflow = "hidden";
+          return;
+        }
+        treeLabel.style.visibility = "visible";
+        treeField.style.visibility = "visible";
+        treeField.style.height = "";
+        treeField.style.overflow = "";
+
+        const tree = document.createElement("div");
+        tree.className = "smr-tree";
+        tree.setAttribute("aria-label", "租户组织树");
+
+        const hasTenant = !!selectedTenantId;
+        const hasOrgs = selectedOrgs.length > 0;
+
+        treeData.forEach((tenant) => {
+          const block = document.createElement("div");
+          block.className = "smr-tree__tenant";
+
+          const hdRow = document.createElement("div");
+          const tenantOn = selectedTenantId === tenant.id;
+          hdRow.className =
+            "smr-tree__tenant-hd" +
+            (tenantOn ? " is-selected" : "") +
+            (hasOrgs ? " is-disabled" : "");
+
+          const chev = document.createElement("span");
+          chev.className = "smr-tree__chev";
+          chev.textContent = expandedTenants.has(tenant.id) ? "▾" : "▸";
+          chev.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (expandedTenants.has(tenant.id)) expandedTenants.delete(tenant.id);
+            else expandedTenants.add(tenant.id);
+            renderShareTree();
+          });
+
+          const tenantCheck = document.createElement("input");
+          tenantCheck.type = "checkbox";
+          tenantCheck.className = "smr-tree__check";
+          tenantCheck.checked = tenantOn;
+          tenantCheck.disabled = hasOrgs;
+          tenantCheck.title = hasOrgs ? "已选择组织时不可再选租户" : "选择整个租户";
+          tenantCheck.addEventListener("click", (e) => e.stopPropagation());
+          tenantCheck.addEventListener("change", () => {
+            if (hasOrgs) return;
+            if (tenantCheck.checked) selectTenant(tenant);
+            else {
+              selectedTenantId = "";
+              selectedTenantName = "";
+              renderShareTree();
+            }
+          });
+
+          const name = document.createElement("span");
+          name.textContent = tenant.name;
+          const badge = document.createElement("span");
+          badge.className = "smr-tree__badge";
+          badge.textContent = tenantOn ? "整租户" : "租户";
+
+          hdRow.appendChild(chev);
+          hdRow.appendChild(tenantCheck);
+          hdRow.appendChild(name);
+          hdRow.appendChild(badge);
+          if (!hasOrgs) {
+            hdRow.addEventListener("click", (e) => {
+              if (e.target === chev || e.target === tenantCheck) return;
+              if (tenantOn) {
+                selectedTenantId = "";
+                selectedTenantName = "";
+                renderShareTree();
+              } else selectTenant(tenant);
+            });
+          }
+          block.appendChild(hdRow);
+
+          if (expandedTenants.has(tenant.id)) {
+            const orgs = document.createElement("div");
+            orgs.className = "smr-tree__orgs";
+            tenant.orgs.forEach((org) => {
+              const row = document.createElement("div");
+              const orgOn = isOrgSelected(org.id);
+              row.className =
+                "smr-tree__org" +
+                (orgOn ? " is-selected" : "") +
+                (hasTenant ? " is-disabled" : "");
+              const orgCheck = document.createElement("input");
+              orgCheck.type = "checkbox";
+              orgCheck.className = "smr-tree__check";
+              orgCheck.checked = orgOn;
+              orgCheck.disabled = hasTenant;
+              orgCheck.title = hasTenant ? "已选择租户时不可再选组织" : "选择组织";
+              orgCheck.addEventListener("click", (e) => e.stopPropagation());
+              orgCheck.addEventListener("change", () => {
+                if (hasTenant) return;
+                toggleOrg(tenant, org);
+              });
+              const orgName = document.createElement("span");
+              orgName.textContent = org.name;
+              const orgBadge = document.createElement("span");
+              orgBadge.className = "smr-tree__badge";
+              orgBadge.textContent = "组织";
+              row.appendChild(orgCheck);
+              row.appendChild(orgName);
+              row.appendChild(orgBadge);
+              if (!hasTenant) {
+                row.addEventListener("click", (e) => {
+                  if (e.target === orgCheck) return;
+                  toggleOrg(tenant, org);
+                });
+              }
+              orgs.appendChild(row);
+            });
+            block.appendChild(orgs);
+          }
+          tree.appendChild(block);
+        });
+
+        const tip = document.createElement("p");
+        tip.className = "smr-hint";
+        if (hasTenant) {
+          tip.textContent = "已选租户：" + selectedTenantName + "（整租户可用）";
+        } else if (hasOrgs) {
+          tip.textContent =
+            "已选组织：" +
+            selectedOrgs.map((o) => o.name).join("、") +
+            "（共 " +
+            selectedOrgs.length +
+            " 个）";
+        } else {
+          tip.textContent = "请选择一个租户，或勾选一个/多个组织（二者互斥）";
+        }
+
+        treeField.appendChild(tree);
+        treeField.appendChild(tip);
+      }
+      renderShareTree();
+
+      const advanced = document.createElement("div");
+      advanced.className = "smr-advanced";
+      const advToggle = document.createElement("button");
+      advToggle.type = "button";
+      advToggle.className = "smr-advanced__toggle";
+      advToggle.textContent = "高级：手动填写 ID ▾";
+      const advBody = document.createElement("div");
+      advBody.className = "smr-advanced__body";
+      advBody.hidden = true;
+      const manualTenantLabel = document.createElement("label");
+      manualTenantLabel.className = "smr-label";
+      manualTenantLabel.textContent = "租户ID";
+      const manualTenantInput = document.createElement("input");
+      manualTenantInput.className = "smr-input";
+      manualTenantInput.placeholder = "整租户时填写，例如 tenant-glodon";
+      const manualOrgLabel = document.createElement("label");
+      manualOrgLabel.className = "smr-label";
+      manualOrgLabel.textContent = "组织ID";
+      const manualOrgInput = document.createElement("input");
+      manualOrgInput.className = "smr-input";
+      manualOrgInput.placeholder = "多个组织用英文逗号分隔";
+      advBody.appendChild(manualTenantLabel);
+      advBody.appendChild(manualTenantInput);
+      advBody.appendChild(manualOrgLabel);
+      advBody.appendChild(manualOrgInput);
+      advToggle.addEventListener("click", () => {
+        advancedOpen = !advancedOpen;
+        advBody.hidden = !advancedOpen;
+        advToggle.textContent = advancedOpen ? "高级：手动填写 ID ▴" : "高级：手动填写 ID ▾";
+      });
+      advanced.appendChild(advToggle);
+      advanced.appendChild(advBody);
+      form.appendChild(document.createElement("div"));
+      form.appendChild(advanced);
+
+      body.appendChild(form);
+
+      const ft = document.createElement("div");
+      ft.className = "smr-dialog__ft";
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className = "smr-btn-ghost";
+      cancelBtn.textContent = "取消";
+      cancelBtn.addEventListener("click", closeSmrRegisterModal);
+      const okBtn = document.createElement("button");
+      okBtn.type = "button";
+      okBtn.className = "smr-btn-primary";
+      okBtn.textContent = "确定";
+      okBtn.addEventListener("click", () => {
+        const apiKey = (apiInput.value || "").trim();
+        const provider = providerSelect.value;
+        const modelId = (modelInput.value || "").trim();
+        const baseUrl = (baseUrlField.input.value || "").trim();
+        if (!apiKey) {
+          showToast("请填写 API 密钥", "info");
+          apiInput.focus();
+          return;
+        }
+        if (provider === "自定义" && !baseUrl) {
+          showToast("请填写 Base URL", "info");
+          baseUrlField.input.focus();
+          return;
+        }
+        if (!modelId) {
+          showToast("请填写模型 ID", "info");
+          modelInput.focus();
+          return;
+        }
+
+        let scope = "USER";
+        let tenantId = "";
+        let tenantName = "";
+        let orgIds = [];
+        let orgId = "";
+        let orgName = "";
+
+        if (shareMode === "share") {
+          const manualTenant = (manualTenantInput.value || "").trim();
+          const manualOrgs = (manualOrgInput.value || "")
+            .split(/[,，]/)
+            .map((s) => s.trim())
+            .filter(Boolean);
+
+          if (advancedOpen && manualOrgs.length) {
+            scope = "ORG";
+            orgIds = manualOrgs.map((id) => ({
+              id,
+              name: id,
+              tenantId: manualTenant || "",
+              tenantName: manualTenant || "",
+            }));
+            tenantId = manualTenant;
+            tenantName = manualTenant;
+            orgId = orgIds[0].id;
+            orgName = orgIds[0].name;
+          } else if (advancedOpen && manualTenant) {
+            scope = "TENANT";
+            tenantId = manualTenant;
+            tenantName = manualTenant;
+          } else if (selectedTenantId) {
+            scope = "TENANT";
+            tenantId = selectedTenantId;
+            tenantName = selectedTenantName;
+          } else if (selectedOrgs.length) {
+            scope = "ORG";
+            orgIds = selectedOrgs.slice();
+            tenantId = orgIds[0].tenantId || "";
+            tenantName = orgIds[0].tenantName || "";
+            orgId = orgIds[0].id;
+            orgName = orgIds[0].name;
+          } else {
+            showToast("请在树中选择租户，或选择一个/多个组织", "info");
+            return;
+          }
+        }
+
+        smrRows.unshift({
+          id: "smr-" + Date.now(),
+          apiKeyMasked: maskSmrApiKey(apiKey),
+          apiKeyRaw: apiKey,
+          provider,
+          modelId,
+          baseUrl: provider === "自定义" ? baseUrl : "",
+          createdAt: formatSmrNow(),
+          scope,
+          tenantId,
+          tenantName,
+          orgId,
+          orgName,
+          orgIds,
+          ownerUserId: "u-current",
+        });
+        smrPage = 1;
+        showToast("模型注册成功", "success");
+        closeSmrRegisterModal();
+        if (typeof onSaved === "function") onSaved();
+      });
+      ft.appendChild(cancelBtn);
+      ft.appendChild(okBtn);
+
+      dialog.appendChild(hd);
+      dialog.appendChild(body);
+      dialog.appendChild(ft);
+      backdrop.appendChild(dialog);
+      backdrop.addEventListener("click", closeSmrRegisterModal);
+      document.body.appendChild(backdrop);
+      requestAnimationFrame(() => apiInput.focus());
+    }
+
+    function mountSystemModelRegistryPage() {
+      canvasEl.innerHTML = "";
+      canvasEl.classList.remove("canvas--physical");
+      canvasEl.classList.add("canvas--bp-hub-v3");
+      closeSmrScopeEditor();
+      closeAllSmrScopePops();
+
+      const root = document.createElement("div");
+      root.className = "smr-root";
+      root.setAttribute("aria-label", "模型注册");
+
+      function goList() {
+        smrViewMode = "list";
+        smrEditingId = null;
+        closeSmrScopeEditor();
+        render();
+      }
+
+      function goEdit(row) {
+        smrViewMode = "edit";
+        smrEditingId = row.id;
+        closeSmrScopeEditor();
+        closeAllSmrScopePops();
+        render();
+      }
+
+      function renderEditPage() {
+        const row = smrRows.find((r) => r.id === smrEditingId);
+        if (!row) {
+          showToast("记录不存在或已删除", "info");
+          goList();
+          return;
+        }
+
+        const page = document.createElement("div");
+        page.className = "smr-edit-page";
+
+        const hd = document.createElement("div");
+        hd.className = "smr-edit-page__hd";
+        const back = document.createElement("button");
+        back.type = "button";
+        back.className = "smr-edit-page__back";
+        back.textContent = "← 返回列表";
+        back.addEventListener("click", goList);
+        const title = document.createElement("h2");
+        title.className = "smr-edit-page__title";
+        title.textContent = "编辑模型";
+        hd.appendChild(back);
+        hd.appendChild(title);
+
+        const body = document.createElement("div");
+        body.className = "smr-edit-page__body";
+        const hint = document.createElement("p");
+        hint.className = "smr-edit-page__hint";
+        hint.textContent = "可修改密钥、服务商、模型 ID 与可见范围。列表中也可直接点击可见范围快速调整。";
+        const form = document.createElement("div");
+        form.className = "smr-form";
+
+        function addField(labelText, required, fieldNode) {
+          const lab = document.createElement("label");
+          lab.className = "smr-label" + (required ? " is-required" : "");
+          lab.textContent = labelText;
+          form.appendChild(lab);
+          form.appendChild(fieldNode);
+        }
+
+        const apiInput = document.createElement("input");
+        apiInput.className = "smr-input";
+        apiInput.type = "password";
+        apiInput.placeholder = "不修改请留空；填写则更新密钥";
+        apiInput.autocomplete = "off";
+        apiInput.value = "";
+        addField("API密钥", false, apiInput);
+
+        const apiHint = document.createElement("p");
+        apiHint.className = "smr-hint";
+        apiHint.textContent = "当前密钥：" + (row.apiKeyMasked || "—");
+        form.appendChild(document.createElement("div"));
+        form.appendChild(apiHint);
+
+        const providerSelect = document.createElement("select");
+        providerSelect.className = "smr-select";
+        ["智谱", "自定义", "MiniMax", "OpenAI", "通义千问"].forEach((name) => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          opt.textContent = name;
+          if (name === row.provider) opt.selected = true;
+          providerSelect.appendChild(opt);
+        });
+        addField("模型服务商", true, providerSelect);
+
+        const baseUrlField = createSmrBaseUrlField(row.baseUrl || "");
+        form.appendChild(baseUrlField.label);
+        form.appendChild(baseUrlField.wrap);
+        function syncEditBaseUrl() {
+          setSmrBaseUrlVisible(baseUrlField.label, baseUrlField.wrap, providerSelect.value === "自定义");
+        }
+        providerSelect.addEventListener("change", syncEditBaseUrl);
+        syncEditBaseUrl();
+
+        const modelInput = document.createElement("input");
+        modelInput.className = "smr-input";
+        modelInput.type = "text";
+        modelInput.placeholder = "例如 glm-5.1";
+        modelInput.value = row.modelId || "";
+        addField("模型ID", true, modelInput);
+
+        const scopeHost = document.createElement("div");
+        const scopeControls = mountSmrShareScopeControls(
+          scopeHost,
+          rowToSmrShareState(row),
+          "smrEditShare-" + row.id
+        );
+        addField("可见范围", true, scopeHost);
+
+        body.appendChild(hint);
+        body.appendChild(form);
+
+        const ft = document.createElement("div");
+        ft.className = "smr-edit-page__ft";
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "smr-btn-ghost";
+        cancelBtn.textContent = "取消";
+        cancelBtn.addEventListener("click", goList);
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "smr-btn-primary";
+        okBtn.textContent = "保存";
+        okBtn.addEventListener("click", () => {
+          const modelId = (modelInput.value || "").trim();
+          const provider = providerSelect.value;
+          const baseUrl = (baseUrlField.input.value || "").trim();
+          if (!modelId) {
+            showToast("请填写模型 ID", "info");
+            modelInput.focus();
+            return;
+          }
+          if (provider === "自定义" && !baseUrl) {
+            showToast("请填写 Base URL", "info");
+            baseUrlField.input.focus();
+            return;
+          }
+          if (!scopeControls.validate()) return;
+          const payload = scopeControls.getPayload();
+          if (!payload) {
+            showToast("请选择租户或组织", "info");
+            return;
+          }
+          const newKey = (apiInput.value || "").trim();
+          if (newKey) {
+            row.apiKeyRaw = newKey;
+            row.apiKeyMasked = maskSmrApiKey(newKey);
+          }
+          row.provider = provider;
+          row.modelId = modelId;
+          row.baseUrl = provider === "自定义" ? baseUrl : "";
+          applySmrScopePayload(row, payload);
+          showToast("模型已更新", "success");
+          goList();
+        });
+        ft.appendChild(cancelBtn);
+        ft.appendChild(okBtn);
+
+        page.appendChild(hd);
+        page.appendChild(body);
+        page.appendChild(ft);
+        root.appendChild(page);
+      }
+
+      function renderList() {
+        const toolbar = document.createElement("div");
+        toolbar.className = "smr-toolbar";
+        const regBtn = document.createElement("button");
+        regBtn.type = "button";
+        regBtn.className = "smr-btn-primary";
+        regBtn.textContent = "注册";
+        regBtn.addEventListener("click", () => openSmrRegisterModal(render));
+        toolbar.appendChild(regBtn);
+
+        const total = smrRows.length;
+        const totalPages = Math.max(1, Math.ceil(total / smrPageSize) || 1);
+        if (smrPage > totalPages) smrPage = totalPages;
+        const start = (smrPage - 1) * smrPageSize;
+        const pageRows = smrRows.slice(start, start + smrPageSize);
+
+        const wrap = document.createElement("div");
+        wrap.className = "smr-table-wrap";
+        const table = document.createElement("table");
+        table.className = "smr-table";
+        const thead = document.createElement("thead");
+        thead.innerHTML =
+          "<tr>" +
+          '<th class="col-key">API密钥</th>' +
+          '<th class="col-provider">模型服务商</th>' +
+          '<th class="col-model">模型ID</th>' +
+          '<th class="col-scope">可见范围</th>' +
+          '<th class="col-time">注册时间</th>' +
+          '<th class="col-actions">操作</th>' +
+          "</tr>";
+        const tbody = document.createElement("tbody");
+        if (!pageRows.length) {
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.colSpan = 6;
+          td.style.textAlign = "center";
+          td.style.padding = "48px 10px";
+          td.style.color = "rgba(0,0,0,0.45)";
+          td.textContent = "暂无已注册模型";
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+        } else {
+          pageRows.forEach((row) => {
+            const tr = document.createElement("tr");
+            const tdKey = document.createElement("td");
+            tdKey.className = "col-key";
+            tdKey.textContent = row.apiKeyMasked;
+            tdKey.title = row.apiKeyMasked;
+            const tdProvider = document.createElement("td");
+            tdProvider.className = "col-provider";
+            tdProvider.textContent = row.provider;
+            const tdModel = document.createElement("td");
+            tdModel.className = "col-model";
+            tdModel.textContent = row.modelId;
+            const tdScope = document.createElement("td");
+            tdScope.className = "col-scope";
+            tdScope.appendChild(buildSmrScopeCell(row, render));
+            const tdTime = document.createElement("td");
+            tdTime.className = "col-time";
+            tdTime.textContent = row.createdAt;
+            const tdAct = document.createElement("td");
+            tdAct.className = "col-actions";
+            const editBtn = document.createElement("button");
+            editBtn.type = "button";
+            editBtn.className = "smr-link";
+            editBtn.textContent = "编辑";
+            editBtn.addEventListener("click", () => goEdit(row));
+            const sep = document.createElement("span");
+            sep.className = "smr-link-sep";
+            sep.textContent = "|";
+            const delBtn = document.createElement("button");
+            delBtn.type = "button";
+            delBtn.className = "smr-link";
+            delBtn.textContent = "删除";
+            delBtn.addEventListener("click", () => {
+              closeSmrScopeEditor();
+              smrRows = smrRows.filter((item) => item.id !== row.id);
+              showToast("已删除「" + row.modelId + "」", "success");
+              render();
+            });
+            tdAct.appendChild(editBtn);
+            tdAct.appendChild(sep);
+            tdAct.appendChild(delBtn);
+            tr.appendChild(tdKey);
+            tr.appendChild(tdProvider);
+            tr.appendChild(tdModel);
+            tr.appendChild(tdScope);
+            tr.appendChild(tdTime);
+            tr.appendChild(tdAct);
+            tbody.appendChild(tr);
+          });
+        }
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        wrap.appendChild(table);
+
+        const pag = document.createElement("div");
+        pag.className = "smr-pagination";
+        const totalText = document.createElement("span");
+        totalText.textContent = "共 " + total + " 条";
+        const sizeSel = document.createElement("select");
+        sizeSel.setAttribute("aria-label", "每页条数");
+        sizeSel.innerHTML = "<option>15条/页</option><option>30条/页</option>";
+        const pages = document.createElement("div");
+        pages.className = "smr-pages";
+        const prev = document.createElement("button");
+        prev.type = "button";
+        prev.textContent = "‹";
+        prev.disabled = smrPage <= 1;
+        prev.addEventListener("click", () => {
+          if (smrPage > 1) {
+            smrPage -= 1;
+            render();
+          }
+        });
+        pages.appendChild(prev);
+        for (let p = 1; p <= totalPages; p += 1) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = String(p);
+          if (p === smrPage) btn.classList.add("is-current");
+          btn.addEventListener("click", () => {
+            smrPage = p;
+            render();
+          });
+          pages.appendChild(btn);
+        }
+        const next = document.createElement("button");
+        next.type = "button";
+        next.textContent = "›";
+        next.disabled = smrPage >= totalPages;
+        next.addEventListener("click", () => {
+          if (smrPage < totalPages) {
+            smrPage += 1;
+            render();
+          }
+        });
+        pages.appendChild(next);
+        pag.appendChild(totalText);
+        pag.appendChild(sizeSel);
+        pag.appendChild(pages);
+
+        root.appendChild(toolbar);
+        root.appendChild(wrap);
+        root.appendChild(pag);
+      }
+
+      function render() {
+        root.innerHTML = "";
+        closeSmrScopeEditor();
+        closeAllSmrScopePops();
+        if (smrViewMode === "edit") renderEditPage();
+        else renderList();
+      }
+
+      render();
+      canvasEl.appendChild(root);
+    }
+
     function mountSystemResourceAuthPage() {
       canvasEl.innerHTML = "";
       canvasEl.classList.remove("canvas--physical");
@@ -33501,6 +35716,12 @@
       menuItem.setAttribute("aria-current", "page");
       menuItem.addEventListener("click", () => showGroupList());
       menu.appendChild(menuItem);
+      const menuModel = document.createElement("button");
+      menuModel.type = "button";
+      menuModel.className = "sys-auth-menu-item";
+      menuModel.textContent = "模型注册";
+      menuModel.addEventListener("click", () => goToSystemModelRegistry());
+      menu.appendChild(menuModel);
       const collapseBtn = document.createElement("button");
       collapseBtn.type = "button";
       collapseBtn.className = "sys-auth-collapse";
@@ -43317,6 +45538,14 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         return;
       }
 
+      if (centerOverride === "system-model-registry") {
+        if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
+        canvasToolbarEl.textContent = "模型注册";
+        canvasEl.classList.remove("canvas--physical");
+        mountSystemModelRegistryPage();
+        return;
+      }
+
       if (
         centerOverride === "scene-flow-migration" ||
         centerOverride === "asset-migration"
@@ -43865,6 +46094,15 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         el.addEventListener("click", (e) => {
           e.preventDefault();
           goToSceneFlowMigration();
+        });
+      });
+
+      document.querySelectorAll(".sub-nav-item[data-hub-system]").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          const key = el.getAttribute("data-hub-system");
+          if (key === "model-registry") goToSystemModelRegistry();
+          else goToSystemManagement();
         });
       });
 
