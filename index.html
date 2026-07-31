@@ -17414,7 +17414,7 @@
       flex: 1;
       min-height: 0;
       overflow: auto;
-      padding: 16px 20px 20px;
+      padding: 20px 24px 24px;
       background: #f5f6f8;
       border-radius: 0 0 8px 8px;
     }
@@ -17586,7 +17586,7 @@
     .bp-scheme-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      gap: 28px;
       align-content: start;
     }
 
@@ -17594,21 +17594,21 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       height: auto;
       min-height: 0;
       max-height: none;
-      padding: 16px 16px 14px;
+      padding: 12px 12px 10px;
       border: 1px solid #dbe3f0;
-      border-radius: 14px;
+      border-radius: 12px;
       background:
         linear-gradient(165deg, #ffffff 0%, #f8fbff 48%, #eef4ff 100%);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.95),
         inset 0 -1px 0 rgba(22, 119, 255, 0.04),
         0 1px 2px rgba(16, 24, 40, 0.04),
-        0 10px 24px rgba(16, 24, 40, 0.08),
-        0 22px 40px rgba(22, 119, 255, 0.06);
+        0 8px 18px rgba(16, 24, 40, 0.07),
+        0 16px 28px rgba(22, 119, 255, 0.05);
       text-align: left;
       overflow: hidden;
       transform: scale(1);
@@ -17654,7 +17654,7 @@
 
     .bp-scheme-card:hover {
       border-color: #b7d4ff;
-      transform: scale(1.02);
+      transform: scale(1.015);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 1),
         inset 0 -1px 0 rgba(22, 119, 255, 0.06),
@@ -17689,7 +17689,7 @@
 
     .bp-scheme-card__name {
       margin: 0;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       color: #101828;
       line-height: 1.35;
@@ -17722,12 +17722,12 @@
       resize: none;
       background: transparent;
       font: inherit;
-      font-size: 13px;
+      font-size: 12px;
       color: #667085;
-      line-height: 1.45;
+      line-height: 1.4;
       flex-shrink: 0;
-      min-height: calc(1.45em * 2);
-      max-height: calc(1.45em * 3);
+      min-height: calc(1.4em * 2);
+      max-height: calc(1.4em * 2);
       overflow-y: auto;
       cursor: text;
       box-sizing: border-box;
@@ -17751,8 +17751,8 @@
     .bp-scheme-card__meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 14px;
-      font-size: 12px;
+      gap: 6px 12px;
+      font-size: 11px;
       color: #475467;
       flex-shrink: 0;
     }
@@ -17766,19 +17766,19 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      padding-top: 2px;
+      gap: 6px;
+      padding-top: 0;
       flex-shrink: 0;
     }
 
     .bp-scheme-card__cta {
-      height: 30px;
-      padding: 0 12px;
-      border-radius: 7px;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 6px;
       border: none;
       background: #1677ff;
       color: #fff;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
     }
 
@@ -17813,8 +17813,8 @@
     }
 
     .bp-scheme-card__domains {
-      margin-top: 2px;
-      padding-top: 12px;
+      margin-top: 0;
+      padding-top: 10px;
       border-top: 1px solid #f0f2f5;
       flex: 0 0 auto;
       display: flex;
@@ -17823,8 +17823,8 @@
     }
 
     .bp-scheme-card__domains-label {
-      margin: 0 0 8px;
-      font-size: 12px;
+      margin: 0 0 6px;
+      font-size: 11px;
       font-weight: 600;
       color: #667085;
       flex-shrink: 0;
@@ -17833,9 +17833,9 @@
     .bp-scheme-card__domains-scroll {
       flex: 0 0 auto;
       /* 固定为两行业务域卡片高度，不足也占位，超出可滚动 */
-      height: calc(2 * 50px + 6px);
-      min-height: calc(2 * 50px + 6px);
-      max-height: calc(2 * 50px + 6px);
+      height: calc(2 * 42px + 4px);
+      min-height: calc(2 * 42px + 4px);
+      max-height: calc(2 * 42px + 4px);
       overflow-x: hidden;
       overflow-y: auto;
       padding-right: 2px;
@@ -17854,7 +17854,7 @@
     .bp-domain-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 6px;
+      gap: 4px;
       align-content: start;
     }
 
@@ -17862,15 +17862,15 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 2px;
-      height: 50px;
-      min-height: 50px;
-      max-height: 50px;
+      gap: 1px;
+      height: 42px;
+      min-height: 42px;
+      max-height: 42px;
       box-sizing: border-box;
-      padding: 6px 8px 5px;
+      padding: 4px 6px;
       border: 1px solid #eef0f3;
       border-bottom: 2px solid transparent;
-      border-radius: 8px;
+      border-radius: 6px;
       background: #f8fafc;
       text-align: left;
       cursor: pointer;
@@ -17936,7 +17936,7 @@
     .bp-scheme-card__domains-empty {
       margin: 0;
       height: 100%;
-      min-height: calc(2 * 50px + 6px);
+      min-height: calc(2 * 42px + 4px);
       display: flex;
       align-items: center;
       font-size: 12px;
