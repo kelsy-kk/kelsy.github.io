@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>产品原型 · 三栏布局</title>
+  <title>场景中心</title>
   <style>
     :root {
       --bg: #f0f2f5;
@@ -3039,12 +3039,81 @@
       background: #fafafa;
     }
 
-    .smr-table .col-key { width: 24%; }
-    .smr-table .col-provider { width: 10%; }
-    .smr-table .col-model { width: 14%; }
-    .smr-table .col-scope { width: 22%; }
+    .smr-table .col-key { width: 22%; }
+    .smr-table .col-provider { width: 12%; }
+    .smr-table .col-model { width: 18%; }
+    .smr-table .col-scope { width: 24%; }
     .smr-table .col-time { width: 14%; }
-    .smr-table .col-actions { width: 16%; }
+    .smr-table .col-actions { width: 10%; }
+
+    .smr-project-multi,
+    .smr-check-multi {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      padding: 10px 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      background: #fff;
+      min-height: 32px;
+      box-sizing: border-box;
+    }
+
+    .smr-project-multi__item,
+    .smr-check-multi__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .smr-project-multi__item input,
+    .smr-check-multi__item input {
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      accent-color: #1677ff;
+      cursor: pointer;
+    }
+
+    .smr-project-tags,
+    .smr-app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      max-width: 100%;
+    }
+
+    .smr-project-tag,
+    .smr-app-tag {
+      display: inline-block;
+      max-width: 100%;
+      padding: 0 6px;
+      height: 22px;
+      line-height: 20px;
+      border: 1px solid #d6e4ff;
+      border-radius: 4px;
+      background: #f0f5ff;
+      color: #1677ff;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .smr-app-tag {
+      border-color: #d3adf7;
+      background: #f9f0ff;
+      color: #722ed1;
+    }
+
+    .smr-project-empty,
+    .smr-app-empty {
+      color: rgba(0, 0, 0, 0.25);
+    }
 
     .smr-link {
       border: 0;
@@ -3097,6 +3166,11 @@
     .smr-scope-tag.is-org {
       background: #f6ffed;
       color: #52c41a;
+    }
+
+    .smr-scope-tag.is-project {
+      background: #fff7e6;
+      color: #d46b08;
     }
 
     .smr-scope-cell {
@@ -3186,8 +3260,9 @@
     .smr-scope-editor {
       position: fixed;
       z-index: 1300;
-      width: 360px;
-      max-height: min(70vh, 520px);
+      width: 720px;
+      max-width: calc(100vw - 16px);
+      max-height: min(78vh, 640px);
       display: flex;
       flex-direction: column;
       border: 1px solid #e8e8e8;
@@ -3214,6 +3289,16 @@
       min-height: 0;
       overflow: auto;
       padding: 12px 14px;
+    }
+
+    .smr-scope-editor .smr-radios {
+      flex-wrap: nowrap;
+      gap: 12px 18px;
+    }
+
+    .smr-scope-editor .smr-radio {
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .smr-scope-editor__ft {
@@ -3355,6 +3440,34 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+    }
+
+    .smr-dialog.smr-dialog--wide {
+      width: min(760px, 100%);
+    }
+
+    .smr-tenant-org-picker {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) minmax(240px, 1.25fr);
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      min-height: 300px;
+      max-height: 380px;
+    }
+
+    .smr-tenant-org-picker .sys-auth-pick-col {
+      min-height: 0;
+      max-height: none;
+      height: 100%;
+    }
+
+    .smr-tenant-org-picker__tip {
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
     }
 
     .smr-dialog__hd {
@@ -3513,6 +3626,33 @@
       padding: 8px;
     }
 
+    .smr-tree-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .smr-tree-search {
+      width: 100%;
+      height: 32px;
+      box-sizing: border-box;
+    }
+
+    .smr-tree-empty {
+      padding: 16px 8px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .smr-scope-project-wrap .smr-tree,
+    .smr-tenant-tree-panel .smr-tree {
+      max-height: 180px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
     .smr-tree__tenant {
       margin: 4px 0;
     }
@@ -3588,27 +3728,8 @@
       color: #1677ff;
     }
 
-    .smr-advanced {
-      margin-top: 8px;
-      grid-column: 1 / -1;
-    }
-
-    .smr-advanced__toggle {
-      border: 0;
-      background: none;
-      color: #1677ff;
-      font: inherit;
-      font-size: 13px;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .smr-advanced__body {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: 96px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
+    .smr-scope-project-wrap {
+      margin-bottom: 8px;
     }
 
     .smr-dialog__ft {
@@ -34120,20 +34241,61 @@
         id: "tenant-glodon",
         name: "广联达科技",
         orgs: [
-          { id: "org-consult", name: "工程咨询事业部" },
-          { id: "org-huiguo", name: "慧果产品部" },
-          { id: "org-data", name: "数据中台组" },
+          {
+            id: "org-root-glodon",
+            name: "广联达科技股份有限公司",
+            children: [
+              { id: "org-consult", name: "工程咨询事业部", children: [] },
+              {
+                id: "org-huiguo",
+                name: "慧果产品部",
+                children: [{ id: "org-huiguo-a", name: "产品一组", children: [] }],
+              },
+              {
+                id: "org-data",
+                name: "数据中台组",
+                children: [
+                  {
+                    id: "org-data-plat",
+                    name: "应用平台",
+                    children: [{ id: "org-data-p1", name: "项目0009", children: [] }],
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
       {
         id: "tenant-demo",
         name: "演示租户",
         orgs: [
-          { id: "org-demo-a", name: "经营分析组" },
-          { id: "org-demo-b", name: "履约决策组" },
+          {
+            id: "org-root-demo",
+            name: "演示租户总部",
+            children: [
+              { id: "org-demo-a", name: "经营分析组", children: [] },
+              { id: "org-demo-b", name: "履约决策组", children: [] },
+            ],
+          },
         ],
       },
     ];
+    /** 模型注册 · 可选工程（预置演示数据，支持多选） */
+    const SMR_PROJECT_PRESETS = [
+      { id: "proj-a", name: "工程A" },
+      { id: "proj-b", name: "工程B" },
+      { id: "proj-c", name: "工程C" },
+      { id: "proj-d", name: "工程D" },
+      { id: "proj-e", name: "工程E" },
+    ];
+
+    /** 模型注册 · 可选应用（支持多选） */
+    const SMR_APP_PRESETS = [
+      { id: "app-smart-dev", name: "智能开发" },
+      { id: "app-smart-qa", name: "智能问数" },
+    ];
+
     let smrRows = [
       {
         id: "smr-1",
@@ -34147,6 +34309,10 @@
         tenantName: "",
         orgId: "",
         orgName: "",
+        projectIds: ["proj-a"],
+        projects: [{ id: "proj-a", name: "工程A" }],
+        appIds: ["app-smart-dev"],
+        apps: [{ id: "app-smart-dev", name: "智能开发" }],
         ownerUserId: "u-current",
       },
       {
@@ -34162,6 +34328,17 @@
         tenantName: "广联达科技",
         orgId: "org-huiguo",
         orgName: "慧果产品部",
+        projectIds: ["proj-a", "proj-b", "proj-c"],
+        projects: [
+          { id: "proj-a", name: "工程A" },
+          { id: "proj-b", name: "工程B" },
+          { id: "proj-c", name: "工程C" },
+        ],
+        appIds: ["app-smart-dev", "app-smart-qa"],
+        apps: [
+          { id: "app-smart-dev", name: "智能开发" },
+          { id: "app-smart-qa", name: "智能问数" },
+        ],
         orgIds: [
           {
             id: "org-huiguo",
@@ -34206,11 +34383,732 @@
         scope: "TENANT",
         tenantId: "tenant-glodon",
         tenantName: "广联达科技",
+        tenantIds: [{ id: "tenant-glodon", name: "广联达科技" }],
         orgId: "",
         orgName: "",
+        projectIds: ["proj-b", "proj-d"],
+        projects: [
+          { id: "proj-b", name: "工程B" },
+          { id: "proj-d", name: "工程D" },
+        ],
+        appIds: ["app-smart-qa"],
+        apps: [{ id: "app-smart-qa", name: "智能问数" }],
         ownerUserId: "u-current",
       },
     ];
+
+    function resolveSmrPresetItems(presets, ids) {
+      const idSet = new Set((ids || []).map(String));
+      return (presets || [])
+        .filter((p) => idSet.has(p.id))
+        .map((p) => ({ id: p.id, name: p.name }));
+    }
+
+    function resolveSmrProjects(projectIds) {
+      return resolveSmrPresetItems(SMR_PROJECT_PRESETS, projectIds);
+    }
+
+    function resolveSmrApps(appIds) {
+      return resolveSmrPresetItems(SMR_APP_PRESETS, appIds);
+    }
+
+    function formatSmrProjectsLabel(row) {
+      const list =
+        (row && row.projects && row.projects.length
+          ? row.projects
+          : resolveSmrProjects(row && row.projectIds)) || [];
+      if (!list.length) return "—";
+      return list.map((p) => p.name).join("、");
+    }
+
+    function createSmrCheckboxMultiSelect(presets, initialIds, ariaLabel) {
+      const selected = new Set((initialIds || []).map(String));
+      const wrap = document.createElement("div");
+      wrap.className = "smr-check-multi";
+      wrap.setAttribute("role", "group");
+      wrap.setAttribute("aria-label", ariaLabel || "多选");
+
+      (presets || []).forEach((item) => {
+        const lab = document.createElement("label");
+        lab.className = "smr-check-multi__item";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.value = item.id;
+        input.checked = selected.has(item.id);
+        input.addEventListener("change", () => {
+          if (input.checked) selected.add(item.id);
+          else selected.delete(item.id);
+        });
+        const span = document.createElement("span");
+        span.textContent = item.name;
+        lab.appendChild(input);
+        lab.appendChild(span);
+        wrap.appendChild(lab);
+      });
+
+      return {
+        wrap,
+        getSelectedIds: () =>
+          (presets || []).map((p) => p.id).filter((id) => selected.has(id)),
+        getSelectedItems: () => resolveSmrPresetItems(presets, [...selected]),
+      };
+    }
+
+    function createSmrProjectMultiSelect(initialIds) {
+      const ctl = createSmrCheckboxMultiSelect(
+        SMR_PROJECT_PRESETS,
+        initialIds,
+        "工程多选"
+      );
+      return {
+        wrap: ctl.wrap,
+        getSelectedIds: ctl.getSelectedIds,
+        getSelectedProjects: ctl.getSelectedItems,
+      };
+    }
+
+    function createSmrAppMultiSelect(initialIds) {
+      const ctl = createSmrCheckboxMultiSelect(
+        SMR_APP_PRESETS,
+        initialIds,
+        "应用多选"
+      );
+      return {
+        wrap: ctl.wrap,
+        getSelectedIds: ctl.getSelectedIds,
+        getSelectedApps: ctl.getSelectedItems,
+      };
+    }
+
+    /** 创建工程树形选择（参考租户/组织树样式；默认多选，可传 { single: true }；支持搜索） */
+    function createSmrProjectTreeSelect(initialIds, options) {
+      const single = !!(options && options.single);
+      const selected = new Set((initialIds || []).map(String));
+      if (single && selected.size > 1) {
+        const first = [...selected][0];
+        selected.clear();
+        if (first) selected.add(first);
+      }
+
+      const root = document.createElement("div");
+      root.className = "smr-tree-panel";
+
+      let searchKw = "";
+      const search = document.createElement("input");
+      search.className = "smr-input smr-tree-search";
+      search.type = "search";
+      search.placeholder = "搜索工程";
+      search.setAttribute("aria-label", "搜索工程");
+
+      const wrap = document.createElement("div");
+      wrap.className = "smr-tree";
+      wrap.setAttribute("role", "group");
+      wrap.setAttribute("aria-label", single ? "工程单选" : "工程多选");
+
+      const emptyEl = document.createElement("div");
+      emptyEl.className = "smr-tree-empty";
+      emptyEl.textContent = "无匹配工程";
+      emptyEl.hidden = true;
+
+      const rows = [];
+
+      function syncRowUi(itemId) {
+        const entry = rows.find((r) => r.id === itemId);
+        if (!entry) return;
+        const on = selected.has(itemId);
+        entry.check.checked = on;
+        entry.row.classList.toggle("is-selected", on);
+        entry.row.setAttribute("aria-checked", on ? "true" : "false");
+      }
+
+      function syncAllUi() {
+        rows.forEach((r) => syncRowUi(r.id));
+      }
+
+      function applyFilter() {
+        const q = searchKw.trim().toLowerCase();
+        let visible = 0;
+        rows.forEach((r) => {
+          const show = !q || (r.name || "").toLowerCase().includes(q);
+          r.row.style.display = show ? "" : "none";
+          if (show) visible += 1;
+        });
+        emptyEl.hidden = visible > 0;
+      }
+
+      search.addEventListener("input", () => {
+        searchKw = search.value || "";
+        applyFilter();
+      });
+
+      (SMR_PROJECT_PRESETS || []).forEach((item) => {
+        const row = document.createElement("div");
+        const isSelected = selected.has(item.id);
+        row.className = "smr-tree__tenant-hd" + (isSelected ? " is-selected" : "");
+        row.setAttribute("role", single ? "radio" : "checkbox");
+        row.setAttribute("aria-checked", isSelected ? "true" : "false");
+
+        const check = document.createElement("input");
+        check.type = single ? "radio" : "checkbox";
+        check.name = single
+          ? (options && options.radioName) || "smrProjectTreeSingle"
+          : undefined;
+        check.className = "smr-tree__check";
+        check.checked = isSelected;
+        check.addEventListener("change", () => {
+          if (single) {
+            if (check.checked) {
+              selected.clear();
+              selected.add(item.id);
+            } else {
+              selected.delete(item.id);
+            }
+            syncAllUi();
+            return;
+          }
+          if (check.checked) {
+            selected.add(item.id);
+            row.classList.add("is-selected");
+          } else {
+            selected.delete(item.id);
+            row.classList.remove("is-selected");
+          }
+          row.setAttribute("aria-checked", check.checked ? "true" : "false");
+        });
+
+        const name = document.createElement("span");
+        name.textContent = item.name;
+
+        const badge = document.createElement("span");
+        badge.className = "smr-tree__badge";
+        badge.textContent = "工程";
+
+        row.addEventListener("click", (e) => {
+          if (e.target === check) return;
+          if (single) {
+            check.checked = true;
+            check.dispatchEvent(new Event("change"));
+          } else {
+            check.checked = !check.checked;
+            check.dispatchEvent(new Event("change"));
+          }
+        });
+
+        row.appendChild(check);
+        row.appendChild(name);
+        row.appendChild(badge);
+        wrap.appendChild(row);
+        rows.push({ id: item.id, name: item.name || "", row, check });
+      });
+
+      wrap.appendChild(emptyEl);
+      root.appendChild(search);
+      root.appendChild(wrap);
+
+      return {
+        wrap: root,
+        clear() {
+          selected.clear();
+          syncAllUi();
+          search.value = "";
+          searchKw = "";
+          applyFilter();
+        },
+        getSelectedIds: () => (SMR_PROJECT_PRESETS || []).map((p) => p.id).filter((id) => selected.has(id)),
+        getSelectedItems: () => resolveSmrPresetItems(SMR_PROJECT_PRESETS, [...selected]),
+      };
+    }
+
+    /** 按关键字过滤租户/组织树（租户名或组织名命中） */
+    function filterSmrTenantOrgTree(treeData, keyword) {
+      const q = String(keyword || "").trim().toLowerCase();
+      if (!q) {
+        return (treeData || []).map((t) => ({
+          id: t.id,
+          name: t.name,
+          orgs: (t.orgs || []).slice(),
+          autoExpand: false,
+        }));
+      }
+      const out = [];
+      (treeData || []).forEach((t) => {
+        const tenantMatch = String(t.name || "")
+          .toLowerCase()
+          .includes(q);
+        const matchedOrgs = (t.orgs || []).filter((o) =>
+          String(o.name || "")
+            .toLowerCase()
+            .includes(q)
+        );
+        if (tenantMatch) {
+          out.push({
+            id: t.id,
+            name: t.name,
+            orgs: (t.orgs || []).slice(),
+            autoExpand: true,
+          });
+        } else if (matchedOrgs.length) {
+          out.push({
+            id: t.id,
+            name: t.name,
+            orgs: matchedOrgs,
+            autoExpand: true,
+          });
+        }
+      });
+      return out;
+    }
+
+    function createSmrTreeSearchInput(placeholder, getValue, setValueAndRefresh) {
+      const search = document.createElement("input");
+      search.className = "smr-input smr-tree-search";
+      search.type = "search";
+      search.placeholder = placeholder || "搜索";
+      search.setAttribute("aria-label", placeholder || "搜索");
+      search.value = typeof getValue === "function" ? getValue() || "" : "";
+      search.addEventListener("input", () => {
+        if (typeof setValueAndRefresh === "function") setValueAndRefresh(search.value || "");
+      });
+      search.addEventListener("click", (e) => e.stopPropagation());
+      return search;
+    }
+
+    function collectSmrOrgNodes(nodes, acc) {
+      const list = acc || [];
+      (nodes || []).forEach((n) => {
+        list.push(n);
+        collectSmrOrgNodes(n.children || [], list);
+      });
+      return list;
+    }
+
+    function collectSmrOrgIds(nodes, set) {
+      const out = set || new Set();
+      (nodes || []).forEach((n) => {
+        out.add(n.id);
+        collectSmrOrgIds(n.children || [], out);
+      });
+      return out;
+    }
+
+    function collectSmrMatchingOrgIds(nodes, q, acc) {
+      const out = acc || new Set();
+      (nodes || []).forEach((n) => {
+        if (!q || String(n.name || "").toLowerCase().includes(q)) out.add(n.id);
+        collectSmrMatchingOrgIds(n.children || [], q, out);
+      });
+      return out;
+    }
+
+    function findSmrOrgPath(nodes, orgId, path) {
+      const cur = path || [];
+      for (let i = 0; i < (nodes || []).length; i += 1) {
+        const n = nodes[i];
+        const next = cur.concat([n]);
+        if (n.id === orgId) return next;
+        const found = findSmrOrgPath(n.children || [], orgId, next);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    /**
+     * 租户/组织双栏选择（对齐「添加组织」样式）
+     * - 勾选租户复选框：选择整个租户（可多选多个租户）
+     * - 点击租户名称：右侧加载该租户组织树
+     * - 组织勾选：选中当前节点；点 + ：选中本级及下级（可跨多个租户多选）
+     * - 同一租户下：整租户与组织选择互斥
+     */
+    function createSmrTenantOrgPicker(initialState) {
+      const treeData = fetchSmrTenantOrgTree();
+      let selectedTenants = [];
+      if (initialState && Array.isArray(initialState.selectedTenants) && initialState.selectedTenants.length) {
+        selectedTenants = initialState.selectedTenants
+          .map((t) => ({ id: t.id, name: t.name || t.id }))
+          .filter((t) => t.id);
+      } else if (initialState && initialState.selectedTenantId) {
+        selectedTenants = [
+          {
+            id: initialState.selectedTenantId,
+            name: initialState.selectedTenantName || initialState.selectedTenantId,
+          },
+        ];
+      }
+      let selectedOrgs = ((initialState && initialState.selectedOrgs) || []).slice();
+      let activeTenantId =
+        (selectedTenants[0] && selectedTenants[0].id) ||
+        (selectedOrgs[0] && selectedOrgs[0].tenantId) ||
+        (treeData[0] && treeData[0].id) ||
+        "";
+      let tenantQuery = "";
+      let orgQuery = "";
+      const expandedIds = new Set();
+
+      const root = document.createElement("div");
+      const picker = document.createElement("div");
+      picker.className = "smr-tenant-org-picker";
+
+      const tenantCol = document.createElement("div");
+      tenantCol.className = "sys-auth-pick-col";
+      tenantCol.innerHTML =
+        '<div class="sys-auth-pick-col__hd">租户列表</div>' +
+        '<input class="sys-auth-pick-col__search" type="search" placeholder="请输入你需要搜索的租户" aria-label="搜索租户" />' +
+        '<div class="sys-auth-pick-col__list" data-role="tenant-list"></div>';
+
+      const orgCol = document.createElement("div");
+      orgCol.className = "sys-auth-pick-col";
+      const orgHd = document.createElement("div");
+      orgHd.className = "sys-auth-pick-col__hd";
+      orgHd.innerHTML =
+        '组织列表<span>( 点击 <span class="sys-auth-pick-col__hd-plus" aria-hidden="true">+</span> 选择本下级 )</span>';
+      const orgSearch = document.createElement("input");
+      orgSearch.className = "sys-auth-pick-col__search";
+      orgSearch.type = "search";
+      orgSearch.placeholder = "请输入你需要搜索的组织";
+      orgSearch.setAttribute("aria-label", "搜索组织");
+      const orgListEl = document.createElement("div");
+      orgListEl.className = "sys-auth-pick-col__list";
+      orgCol.appendChild(orgHd);
+      orgCol.appendChild(orgSearch);
+      orgCol.appendChild(orgListEl);
+
+      const tenantListEl = tenantCol.querySelector('[data-role="tenant-list"]');
+      const tenantSearch = tenantCol.querySelector(".sys-auth-pick-col__search");
+      const tip = document.createElement("p");
+      tip.className = "smr-tenant-org-picker__tip";
+
+      picker.appendChild(tenantCol);
+      picker.appendChild(orgCol);
+      root.appendChild(picker);
+      root.appendChild(tip);
+
+      function getTenantById(id) {
+        return treeData.find((t) => t.id === id) || null;
+      }
+
+      function isWholeTenant(tenantId) {
+        return selectedTenants.some((t) => t.id === tenantId);
+      }
+
+      function isOrgSelected(orgId) {
+        return selectedOrgs.some((o) => o.id === orgId);
+      }
+
+      function findAncestorSelected(tenant, orgId) {
+        const path = findSmrOrgPath(tenant.orgs || [], orgId) || [];
+        for (let i = 0; i < path.length - 1; i += 1) {
+          if (isOrgSelected(path[i].id)) return path[i];
+        }
+        return null;
+      }
+
+      function isCoveredByAncestor(tenant, orgId) {
+        return !!findAncestorSelected(tenant, orgId);
+      }
+
+      function updateTip() {
+        const parts = [];
+        if (selectedTenants.length) {
+          parts.push(
+            "已选租户：" +
+              selectedTenants.map((t) => t.name).join("、") +
+              "（" +
+              selectedTenants.length +
+              " 个整租户）"
+          );
+        }
+        if (selectedOrgs.length) {
+          parts.push(
+            "已选组织：" +
+              selectedOrgs.map((o) => o.name).join("、") +
+              "（共 " +
+              selectedOrgs.length +
+              " 个）"
+          );
+        }
+        tip.textContent = parts.length
+          ? parts.join("；")
+          : "可多选整租户，也可分别选择多个租户下的组织（同一租户下整租户与组织互斥）";
+      }
+
+      function selectWholeTenant(tenant) {
+        if (!isWholeTenant(tenant.id)) {
+          selectedTenants = selectedTenants.concat([{ id: tenant.id, name: tenant.name }]);
+        }
+        selectedOrgs = selectedOrgs.filter((o) => o.tenantId !== tenant.id);
+        activeTenantId = tenant.id;
+        renderAll();
+      }
+
+      function clearWholeTenant(tenantId) {
+        selectedTenants = selectedTenants.filter((t) => t.id !== tenantId);
+        renderAll();
+      }
+
+      function addOrgNode(tenant, node, withChildren) {
+        selectedTenants = selectedTenants.filter((t) => t.id !== tenant.id);
+        const targets = withChildren ? collectSmrOrgNodes([node], []) : [node];
+        const idSet = new Set(targets.map((n) => n.id));
+        selectedOrgs = selectedOrgs.filter((o) => !idSet.has(o.id));
+        if (withChildren) {
+          const allUnder = collectSmrOrgIds([node], new Set());
+          selectedOrgs = selectedOrgs.filter((o) => !allUnder.has(o.id));
+        }
+        targets.forEach((n) => {
+          selectedOrgs.push({
+            id: n.id,
+            name: n.name,
+            tenantId: tenant.id,
+            tenantName: tenant.name,
+          });
+        });
+        renderAll();
+      }
+
+      function removeOrgNode(node, withChildren) {
+        const ids = withChildren ? collectSmrOrgIds([node], new Set()) : new Set([node.id]);
+        selectedOrgs = selectedOrgs.filter((o) => !ids.has(o.id));
+        renderAll();
+      }
+
+      function renderOrgNode(tenant, node, depth) {
+        const q = orgQuery.trim().toLowerCase();
+        const matchIds = q ? collectSmrMatchingOrgIds(tenant.orgs || [], q, new Set()) : null;
+        if (matchIds && !matchIds.has(node.id)) {
+          const hasMatchChild = (function walk(list) {
+            return (list || []).some((c) => matchIds.has(c.id) || walk(c.children || []));
+          })(node.children || []);
+          if (!hasMatchChild) return null;
+        }
+
+        const wrap = document.createElement("div");
+        const selected = isOrgSelected(node.id);
+        const tenantWholly = isWholeTenant(tenant.id);
+        const covered = tenantWholly || isCoveredByAncestor(tenant, node.id);
+        const row = document.createElement("div");
+        row.className =
+          "sys-auth-org-row" +
+          (selected || tenantWholly ? " is-active" : "") +
+          (covered && !selected ? " is-disabled" : "");
+        row.style.paddingLeft = 6 + depth * 14 + "px";
+
+        const hasChildren = !!(node.children && node.children.length);
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "sys-auth-org-row__toggle" + (hasChildren ? "" : " is-leaf");
+        const isOpen = expandedIds.has(node.id) || !!q;
+        toggle.textContent = isOpen ? "▾" : "▸";
+        toggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (!hasChildren) return;
+          if (expandedIds.has(node.id)) expandedIds.delete(node.id);
+          else expandedIds.add(node.id);
+          renderOrgTree();
+          updateTip();
+        });
+
+        const check = document.createElement("input");
+        check.type = "checkbox";
+        check.className = "sys-auth-org-row__check";
+        check.checked = selected || tenantWholly;
+        check.disabled = tenantWholly || (covered && !selected);
+        check.addEventListener("click", (e) => e.stopPropagation());
+        check.addEventListener("change", () => {
+          if (tenantWholly) return;
+          if (check.checked) addOrgNode(tenant, node, false);
+          else removeOrgNode(node, false);
+        });
+
+        const icon = document.createElement("button");
+        icon.type = "button";
+        icon.className = "sys-auth-org-row__icon" + (selected || tenantWholly ? " is-on" : "");
+        icon.setAttribute("aria-label", "选择本下级");
+        icon.title = "选择本下级";
+        icon.textContent = "+";
+        icon.disabled = tenantWholly || (covered && !selected);
+        icon.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (tenantWholly) return;
+          if (selected) removeOrgNode(node, true);
+          else addOrgNode(tenant, node, true);
+        });
+
+        const name = document.createElement("span");
+        name.className = "sys-auth-org-row__name";
+        name.textContent = node.name;
+        name.title = node.name;
+
+        row.appendChild(toggle);
+        row.appendChild(check);
+        row.appendChild(icon);
+        row.appendChild(name);
+        wrap.appendChild(row);
+
+        if (hasChildren && isOpen) {
+          (node.children || []).forEach((child) => {
+            const childEl = renderOrgNode(tenant, child, depth + 1);
+            if (childEl) wrap.appendChild(childEl);
+          });
+        }
+        return wrap;
+      }
+
+      function renderOrgTree() {
+        orgListEl.innerHTML = "";
+        const tenant = getTenantById(activeTenantId);
+        if (!tenant) {
+          const empty = document.createElement("div");
+          empty.className = "sys-auth-selected-empty";
+          empty.textContent = "请选择左侧租户";
+          empty.style.padding = "24px 8px";
+          empty.style.textAlign = "center";
+          empty.style.color = "rgba(0,0,0,0.45)";
+          empty.style.fontSize = "13px";
+          orgListEl.appendChild(empty);
+          return;
+        }
+        const tree = tenant.orgs || [];
+        if (!tree.length) {
+          const empty = document.createElement("div");
+          empty.className = "sys-auth-selected-empty";
+          empty.textContent = "该租户暂无组织";
+          empty.style.padding = "24px 8px";
+          empty.style.textAlign = "center";
+          empty.style.color = "rgba(0,0,0,0.45)";
+          empty.style.fontSize = "13px";
+          orgListEl.appendChild(empty);
+          return;
+        }
+        if (!expandedIds.size) {
+          tree.forEach((n) => expandedIds.add(n.id));
+        }
+        tree.forEach((node) => {
+          const el = renderOrgNode(tenant, node, 0);
+          if (el) orgListEl.appendChild(el);
+        });
+      }
+
+      function renderTenants() {
+        tenantListEl.innerHTML = "";
+        const q = tenantQuery.trim().toLowerCase();
+        const list = treeData.filter((t) => !q || String(t.name).toLowerCase().includes(q));
+        list.forEach((tenant) => {
+          const item = document.createElement("button");
+          item.type = "button";
+          item.className =
+            "sys-auth-pick-item" + (tenant.id === activeTenantId ? " is-active" : "");
+          item.innerHTML =
+            '<input type="checkbox" tabindex="-1" /><span class="sys-auth-pick-item__label"></span>';
+          const cb = item.querySelector('input[type="checkbox"]');
+          const wholly = isWholeTenant(tenant.id);
+          const hasOrgsUnder = selectedOrgs.some((o) => o.tenantId === tenant.id);
+          cb.checked = wholly;
+          cb.indeterminate = !wholly && hasOrgsUnder;
+          if (cb.indeterminate) cb.classList.add("is-indeterminate");
+          item.querySelector(".sys-auth-pick-item__label").textContent = tenant.name;
+          cb.addEventListener("click", (e) => e.stopPropagation());
+          cb.addEventListener("change", () => {
+            if (cb.checked) selectWholeTenant(tenant);
+            else if (wholly) clearWholeTenant(tenant.id);
+            else {
+              selectedOrgs = selectedOrgs.filter((o) => o.tenantId !== tenant.id);
+              renderAll();
+            }
+          });
+          item.addEventListener("click", () => {
+            activeTenantId = tenant.id;
+            renderAll();
+          });
+          tenantListEl.appendChild(item);
+        });
+      }
+
+      function renderAll() {
+        renderTenants();
+        renderOrgTree();
+        updateTip();
+      }
+
+      tenantSearch.addEventListener("input", () => {
+        tenantQuery = tenantSearch.value || "";
+        renderTenants();
+      });
+      orgSearch.addEventListener("input", () => {
+        orgQuery = orgSearch.value || "";
+        renderOrgTree();
+      });
+
+      renderAll();
+
+      return {
+        wrap: root,
+        clear() {
+          selectedTenants = [];
+          selectedOrgs = [];
+          tenantQuery = "";
+          orgQuery = "";
+          tenantSearch.value = "";
+          orgSearch.value = "";
+          activeTenantId = (treeData[0] && treeData[0].id) || "";
+          expandedIds.clear();
+          renderAll();
+        },
+        getState() {
+          return {
+            selectedTenants: selectedTenants.slice(),
+            selectedTenantId: selectedTenants[0] ? selectedTenants[0].id : "",
+            selectedTenantName: selectedTenants[0] ? selectedTenants[0].name : "",
+            selectedOrgs: selectedOrgs.slice(),
+          };
+        },
+        validate() {
+          if (!selectedTenants.length && !selectedOrgs.length) {
+            showToast("请至少选择一个租户或组织", "info");
+            return false;
+          }
+          return true;
+        },
+      };
+    }
+
+    function buildSmrTaggedCell(list, emptyClass, tagsClass, tagClass) {
+      const cell = document.createElement("div");
+      if (!list || !list.length) {
+        cell.className = emptyClass;
+        cell.textContent = "—";
+        return cell;
+      }
+      cell.className = tagsClass;
+      cell.title = list.map((p) => p.name).join("、");
+      list.forEach((p) => {
+        const tag = document.createElement("span");
+        tag.className = tagClass;
+        tag.textContent = p.name;
+        cell.appendChild(tag);
+      });
+      return cell;
+    }
+
+    function buildSmrProjectCell(row) {
+      const list =
+        (row && row.projects && row.projects.length
+          ? row.projects
+          : resolveSmrProjects(row && row.projectIds)) || [];
+      return buildSmrTaggedCell(
+        list,
+        "smr-project-empty",
+        "smr-project-tags",
+        "smr-project-tag"
+      );
+    }
+
+    function buildSmrAppCell(row) {
+      const list =
+        (row && row.apps && row.apps.length
+          ? row.apps
+          : resolveSmrApps(row && row.appIds)) || [];
+      return buildSmrTaggedCell(list, "smr-app-empty", "smr-app-tags", "smr-app-tag");
+    }
 
     function maskSmrApiKey(key) {
       const s = String(key || "");
@@ -34245,14 +35143,40 @@
       wrap.classList.toggle("smr-form-row-hidden", !visible);
     }
 
+    function getSmrScopeTenantList(row) {
+      if (row && Array.isArray(row.tenantIds) && row.tenantIds.length) {
+        return row.tenantIds.map((t) => ({
+          id: t.id,
+          name: t.name || t.id,
+        }));
+      }
+      if (row && row.tenantId) {
+        return [{ id: row.tenantId, name: row.tenantName || row.tenantId }];
+      }
+      return [];
+    }
+
     function getSmrScopeItems(row) {
-      if (row.scope === "TENANT") {
-        return [
-          {
-            label: row.tenantName || row.tenantId || "—",
-            sub: row.tenantId || "",
-          },
-        ];
+      if (row.scope === "TENANT" || row.scope === "MIXED") {
+        const tenants = getSmrScopeTenantList(row).map((t) => ({
+          label: t.name || t.id || "—",
+          sub: t.id || "",
+          kind: "tenant",
+        }));
+        if (row.scope === "TENANT") return tenants;
+        const orgs =
+          Array.isArray(row.orgIds) && row.orgIds.length
+            ? row.orgIds
+            : row.orgId
+              ? [{ id: row.orgId, name: row.orgName || row.orgId, tenantName: row.tenantName }]
+              : [];
+        return tenants.concat(
+          orgs.map((o) => ({
+            label: o.name || o.id,
+            sub: o.tenantName || o.tenantId || "",
+            kind: "org",
+          }))
+        );
       }
       if (row.scope === "ORG") {
         const orgs =
@@ -34264,49 +35188,78 @@
         return orgs.map((o) => ({
           label: o.name || o.id,
           sub: o.tenantName || o.tenantId || "",
+          kind: "org",
+        }));
+      }
+      if (row.scope === "PROJECT") {
+        const list =
+          (row.scopeProjects && row.scopeProjects.length
+            ? row.scopeProjects
+            : resolveSmrPresetItems(SMR_PROJECT_PRESETS, row.scopeProjectIds || [])) || [];
+        return list.map((p) => ({
+          label: p.name || p.id,
+          sub: "",
+          kind: "project",
         }));
       }
       return [];
     }
 
-    function formatSmrScope(row) {
-      if (row.scope === "TENANT") {
-        const name = row.tenantName || row.tenantId || "—";
+    function formatSmrScopeOverflow(kind, cls, prefix, items) {
+      const count = items.length;
+      if (!count) {
+        return { kind, cls, summary: prefix, count: 0, items: [], overflow: false };
+      }
+      if (count === 1) {
         return {
-          kind: "tenant",
-          cls: "is-tenant",
-          summary: "租户 · " + name,
+          kind,
+          cls,
+          summary: prefix + " · " + items[0].label,
           count: 1,
-          items: getSmrScopeItems(row),
+          items,
           overflow: false,
         };
       }
+      return {
+        kind,
+        cls,
+        summary: prefix + " · " + items[0].label,
+        count,
+        items,
+        overflow: true,
+        moreText: "+" + (count - 1),
+      };
+    }
+
+    function formatSmrScope(row) {
+      if (row.scope === "TENANT") {
+        return formatSmrScopeOverflow("tenant", "is-tenant", "租户", getSmrScopeItems(row));
+      }
       if (row.scope === "ORG") {
+        return formatSmrScopeOverflow("org", "is-org", "组织", getSmrScopeItems(row));
+      }
+      if (row.scope === "MIXED") {
         const items = getSmrScopeItems(row);
-        const count = items.length;
-        if (!count) {
-          return { kind: "org", cls: "is-org", summary: "组织", count: 0, items: [], overflow: false };
-        }
-        if (count === 1) {
-          return {
-            kind: "org",
-            cls: "is-org",
-            summary: "组织 · " + items[0].label,
-            count: 1,
-            items,
-            overflow: false,
-          };
-        }
-        // 多组织：摘要只露前 1 个 + 数量，详情进气泡
+        const tenantCount = getSmrScopeTenantList(row).length;
+        const orgCount = Array.isArray(row.orgIds) ? row.orgIds.length : row.orgId ? 1 : 0;
+        const summary =
+          "租户 " +
+          tenantCount +
+          " · 组织 " +
+          orgCount +
+          (items[0] ? " · " + items[0].label : "");
         return {
-          kind: "org",
-          cls: "is-org",
-          summary: "组织 · " + items[0].label,
-          count,
+          kind: "mixed",
+          cls: "is-tenant",
+          summary,
+          count: items.length,
           items,
-          overflow: true,
-          moreText: "+" + (count - 1),
+          overflow: items.length > 1,
+          moreText: items.length > 1 ? "+" + (items.length - 1) : "",
         };
+      }
+      if (row.scope === "PROJECT") {
+        return formatSmrScopeOverflow("project", "is-project", "工程", getSmrScopeItems(row));
       }
       return {
         kind: "user",
@@ -34335,72 +35288,140 @@
     let smrScopeEditorDocCloser = null;
 
     function rowToSmrShareState(row) {
-      if (!row || row.scope === "USER" || !row.scope) {
-        return { shareMode: "private", selectedTenantId: "", selectedTenantName: "", selectedOrgs: [] };
-      }
-      if (row.scope === "TENANT") {
-        return {
-          shareMode: "share",
-          selectedTenantId: row.tenantId || "",
-          selectedTenantName: row.tenantName || "",
-          selectedOrgs: [],
-        };
-      }
-      const orgs =
-        Array.isArray(row.orgIds) && row.orgIds.length
-          ? row.orgIds.map((o) => ({
-              id: o.id,
-              name: o.name || o.id,
-              tenantId: o.tenantId || row.tenantId || "",
-              tenantName: o.tenantName || row.tenantName || "",
-            }))
-          : row.orgId
-            ? [
-                {
-                  id: row.orgId,
-                  name: row.orgName || row.orgId,
-                  tenantId: row.tenantId || "",
-                  tenantName: row.tenantName || "",
-                },
-              ]
-            : [];
-      return {
-        shareMode: "share",
+      const empty = {
+        shareMode: "private",
+        selectedTenants: [],
         selectedTenantId: "",
         selectedTenantName: "",
-        selectedOrgs: orgs,
+        selectedOrgs: [],
+        scopeProjectIds: [],
       };
+      if (!row) return empty;
+
+      const projectIds =
+        Array.isArray(row.scopeProjectIds) && row.scopeProjectIds.length
+          ? row.scopeProjectIds.slice()
+          : (row.scopeProjects || []).map((p) => p.id).filter(Boolean);
+
+      if (row.scope === "PROJECT" || (!row.scope && projectIds.length) || (row.scope === "USER" && projectIds.length)) {
+        return {
+          shareMode: "project",
+          selectedTenants: [],
+          selectedTenantId: "",
+          selectedTenantName: "",
+          selectedOrgs: [],
+          scopeProjectIds: projectIds,
+        };
+      }
+
+      const selectedTenants =
+        row.scope === "TENANT" || row.scope === "MIXED" ? getSmrScopeTenantList(row) : [];
+      const selectedOrgs =
+        row.scope === "ORG" || row.scope === "MIXED"
+          ? Array.isArray(row.orgIds) && row.orgIds.length
+            ? row.orgIds.map((o) => ({
+                id: o.id,
+                name: o.name || o.id,
+                tenantId: o.tenantId || row.tenantId || "",
+                tenantName: o.tenantName || row.tenantName || "",
+              }))
+            : row.orgId
+              ? [
+                  {
+                    id: row.orgId,
+                    name: row.orgName || row.orgId,
+                    tenantId: row.tenantId || "",
+                    tenantName: row.tenantName || "",
+                  },
+                ]
+              : []
+          : [];
+
+      if (row.scope === "TENANT" || row.scope === "ORG" || row.scope === "MIXED") {
+        return {
+          shareMode: "tenant",
+          selectedTenants,
+          selectedTenantId: selectedTenants[0] ? selectedTenants[0].id : "",
+          selectedTenantName: selectedTenants[0] ? selectedTenants[0].name : "",
+          selectedOrgs,
+          scopeProjectIds: [],
+        };
+      }
+      return empty;
     }
 
-    function buildSmrScopePayload(shareMode, selectedTenantId, selectedTenantName, selectedOrgs) {
+    function buildSmrScopePayload(shareMode, options) {
+      const opts = options || {};
+      const selectedTenants = Array.isArray(opts.selectedTenants) ? opts.selectedTenants.slice() : [];
+      const selectedOrgs = Array.isArray(opts.selectedOrgs) ? opts.selectedOrgs.slice() : [];
+      const scopeProjectIds = Array.isArray(opts.scopeProjectIds) ? opts.scopeProjectIds.slice() : [];
+      const scopeProjects = Array.isArray(opts.scopeProjects) ? opts.scopeProjects.slice() : [];
+
       if (shareMode === "private") {
         return {
           scope: "USER",
           tenantId: "",
           tenantName: "",
+          tenantIds: [],
           orgId: "",
           orgName: "",
           orgIds: [],
+          scopeProjectIds: [],
+          scopeProjects: [],
         };
       }
-      if (selectedTenantId) {
+      if (shareMode === "project") {
+        if (!scopeProjectIds.length) return null;
         return {
-          scope: "TENANT",
-          tenantId: selectedTenantId,
-          tenantName: selectedTenantName || selectedTenantId,
+          scope: "PROJECT",
+          tenantId: "",
+          tenantName: "",
+          tenantIds: [],
           orgId: "",
           orgName: "",
           orgIds: [],
+          scopeProjectIds,
+          scopeProjects,
         };
       }
-      if (selectedOrgs && selectedOrgs.length) {
+      if (shareMode === "tenant" || shareMode === "share") {
+        if (!selectedTenants.length && !selectedOrgs.length) return null;
+        if (selectedTenants.length && !selectedOrgs.length) {
+          return {
+            scope: "TENANT",
+            tenantId: selectedTenants[0].id,
+            tenantName: selectedTenants[0].name || selectedTenants[0].id,
+            tenantIds: selectedTenants,
+            orgId: "",
+            orgName: "",
+            orgIds: [],
+            scopeProjectIds: [],
+            scopeProjects: [],
+          };
+        }
+        if (!selectedTenants.length && selectedOrgs.length) {
+          return {
+            scope: "ORG",
+            tenantId: selectedOrgs[0].tenantId || "",
+            tenantName: selectedOrgs[0].tenantName || "",
+            tenantIds: [],
+            orgId: selectedOrgs[0].id,
+            orgName: selectedOrgs[0].name,
+            orgIds: selectedOrgs,
+            scopeProjectIds: [],
+            scopeProjects: [],
+          };
+        }
         return {
-          scope: "ORG",
-          tenantId: selectedOrgs[0].tenantId || "",
-          tenantName: selectedOrgs[0].tenantName || "",
+          scope: "MIXED",
+          tenantId: selectedTenants[0].id,
+          tenantName: selectedTenants[0].name || selectedTenants[0].id,
+          tenantIds: selectedTenants,
           orgId: selectedOrgs[0].id,
           orgName: selectedOrgs[0].name,
-          orgIds: selectedOrgs.slice(),
+          orgIds: selectedOrgs,
+          scopeProjectIds: [],
+          scopeProjects: [],
         };
       }
       return null;
@@ -34410,25 +35431,32 @@
       row.scope = payload.scope;
       row.tenantId = payload.tenantId || "";
       row.tenantName = payload.tenantName || "";
+      row.tenantIds = Array.isArray(payload.tenantIds) ? payload.tenantIds.slice() : [];
       row.orgId = payload.orgId || "";
       row.orgName = payload.orgName || "";
       row.orgIds = Array.isArray(payload.orgIds) ? payload.orgIds.slice() : [];
+      row.scopeProjectIds = Array.isArray(payload.scopeProjectIds) ? payload.scopeProjectIds.slice() : [];
+      row.scopeProjects = Array.isArray(payload.scopeProjects) ? payload.scopeProjects.slice() : [];
     }
 
-    /** 构建可见范围选择器（仅自己 / 共享树），供行内编辑与表单复用 */
+    /** 构建可见范围选择器（仅自己 / 工程 / 租户组织），与新建弹窗一致 */
     function mountSmrShareScopeControls(host, initialState, radioName) {
-      const treeData = fetchSmrTenantOrgTree();
       let shareMode = initialState.shareMode || "private";
-      let selectedTenantId = initialState.selectedTenantId || "";
-      let selectedTenantName = initialState.selectedTenantName || "";
-      let selectedOrgs = (initialState.selectedOrgs || []).slice();
-      const expandedTenants = new Set(treeData.map((t) => t.id));
+      if (shareMode === "share") shareMode = "tenant";
+      const projectSelect = createSmrProjectTreeSelect(initialState.scopeProjectIds || []);
+      const tenantPicker = createSmrTenantOrgPicker({
+        selectedTenants: (initialState.selectedTenants || []).slice(),
+        selectedTenantId: initialState.selectedTenantId || "",
+        selectedTenantName: initialState.selectedTenantName || "",
+        selectedOrgs: (initialState.selectedOrgs || []).slice(),
+      });
 
       const radios = document.createElement("div");
       radios.className = "smr-radios";
       [
         { value: "private", label: "仅自己" },
-        { value: "share", label: "共享给租户/组织" },
+        { value: "project", label: "工程" },
+        { value: "tenant", label: "租户/组织（仅支持智能问数）" },
       ].forEach((opt) => {
         const lab = document.createElement("label");
         lab.className = "smr-radio";
@@ -34440,12 +35468,9 @@
         input.addEventListener("change", () => {
           if (!input.checked) return;
           shareMode = opt.value;
-          if (shareMode === "private") {
-            selectedTenantId = "";
-            selectedTenantName = "";
-            selectedOrgs = [];
-          }
-          renderTree();
+          projectSelect.clear();
+          tenantPicker.clear();
+          renderScopePanels();
         });
         const span = document.createElement("span");
         span.textContent = opt.label;
@@ -34454,172 +35479,45 @@
         radios.appendChild(lab);
       });
 
-      const hint = document.createElement("p");
-      hint.className = "smr-hint";
-      hint.textContent = "共享时二选一：勾选租户，或勾选一个/多个组织。";
+      const projectWrap = document.createElement("div");
+      projectWrap.className = "smr-scope-project-wrap";
+      const projectHint = document.createElement("p");
+      projectHint.className = "smr-hint";
+      projectHint.textContent = "可多选工程；切换可见范围时将清空已选内容。";
+      projectWrap.appendChild(projectSelect.wrap);
+      projectWrap.appendChild(projectHint);
 
       const treeWrap = document.createElement("div");
+      treeWrap.appendChild(tenantPicker.wrap);
 
-      function isOrgSelected(orgId) {
-        return selectedOrgs.some((o) => o.id === orgId);
-      }
-
-      function renderTree() {
-        treeWrap.innerHTML = "";
-        if (shareMode === "private") return;
-        const tree = document.createElement("div");
-        tree.className = "smr-tree";
-        const hasTenant = !!selectedTenantId;
-        const hasOrgs = selectedOrgs.length > 0;
-        treeData.forEach((tenant) => {
-          const block = document.createElement("div");
-          block.className = "smr-tree__tenant";
-          const hdRow = document.createElement("div");
-          const tenantOn = selectedTenantId === tenant.id;
-          hdRow.className =
-            "smr-tree__tenant-hd" +
-            (tenantOn ? " is-selected" : "") +
-            (hasOrgs ? " is-disabled" : "");
-          const chev = document.createElement("span");
-          chev.className = "smr-tree__chev";
-          chev.textContent = expandedTenants.has(tenant.id) ? "▾" : "▸";
-          chev.addEventListener("click", (e) => {
-            e.stopPropagation();
-            if (expandedTenants.has(tenant.id)) expandedTenants.delete(tenant.id);
-            else expandedTenants.add(tenant.id);
-            renderTree();
-          });
-          const tenantCheck = document.createElement("input");
-          tenantCheck.type = "checkbox";
-          tenantCheck.className = "smr-tree__check";
-          tenantCheck.checked = tenantOn;
-          tenantCheck.disabled = hasOrgs;
-          tenantCheck.addEventListener("click", (e) => e.stopPropagation());
-          tenantCheck.addEventListener("change", () => {
-            if (hasOrgs) return;
-            if (tenantCheck.checked) {
-              selectedTenantId = tenant.id;
-              selectedTenantName = tenant.name;
-              selectedOrgs = [];
-            } else {
-              selectedTenantId = "";
-              selectedTenantName = "";
-            }
-            renderTree();
-          });
-          const name = document.createElement("span");
-          name.textContent = tenant.name;
-          const badge = document.createElement("span");
-          badge.className = "smr-tree__badge";
-          badge.textContent = tenantOn ? "整租户" : "租户";
-          hdRow.appendChild(chev);
-          hdRow.appendChild(tenantCheck);
-          hdRow.appendChild(name);
-          hdRow.appendChild(badge);
-          if (!hasOrgs) {
-            hdRow.addEventListener("click", (e) => {
-              if (e.target === chev || e.target === tenantCheck) return;
-              if (tenantOn) {
-                selectedTenantId = "";
-                selectedTenantName = "";
-              } else {
-                selectedTenantId = tenant.id;
-                selectedTenantName = tenant.name;
-                selectedOrgs = [];
-              }
-              renderTree();
-            });
-          }
-          block.appendChild(hdRow);
-          if (expandedTenants.has(tenant.id)) {
-            const orgs = document.createElement("div");
-            orgs.className = "smr-tree__orgs";
-            tenant.orgs.forEach((org) => {
-              const rowEl = document.createElement("div");
-              const orgOn = isOrgSelected(org.id);
-              rowEl.className =
-                "smr-tree__org" +
-                (orgOn ? " is-selected" : "") +
-                (hasTenant ? " is-disabled" : "");
-              const orgCheck = document.createElement("input");
-              orgCheck.type = "checkbox";
-              orgCheck.className = "smr-tree__check";
-              orgCheck.checked = orgOn;
-              orgCheck.disabled = hasTenant;
-              orgCheck.addEventListener("click", (e) => e.stopPropagation());
-              orgCheck.addEventListener("change", () => {
-                if (hasTenant) return;
-                selectedTenantId = "";
-                selectedTenantName = "";
-                if (orgOn) selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
-                else
-                  selectedOrgs = selectedOrgs.concat([
-                    {
-                      id: org.id,
-                      name: org.name,
-                      tenantId: tenant.id,
-                      tenantName: tenant.name,
-                    },
-                  ]);
-                renderTree();
-              });
-              const orgName = document.createElement("span");
-              orgName.textContent = org.name;
-              const orgBadge = document.createElement("span");
-              orgBadge.className = "smr-tree__badge";
-              orgBadge.textContent = "组织";
-              rowEl.appendChild(orgCheck);
-              rowEl.appendChild(orgName);
-              rowEl.appendChild(orgBadge);
-              if (!hasTenant) {
-                rowEl.addEventListener("click", (e) => {
-                  if (e.target === orgCheck) return;
-                  selectedTenantId = "";
-                  selectedTenantName = "";
-                  if (orgOn) selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
-                  else
-                    selectedOrgs = selectedOrgs.concat([
-                      {
-                        id: org.id,
-                        name: org.name,
-                        tenantId: tenant.id,
-                        tenantName: tenant.name,
-                      },
-                    ]);
-                  renderTree();
-                });
-              }
-              orgs.appendChild(rowEl);
-            });
-            block.appendChild(orgs);
-          }
-          tree.appendChild(block);
-        });
-        const tip = document.createElement("p");
-        tip.className = "smr-hint";
-        if (selectedTenantId) tip.textContent = "已选租户：" + selectedTenantName;
-        else if (selectedOrgs.length)
-          tip.textContent =
-            "已选组织：" + selectedOrgs.map((o) => o.name).join("、") + "（" + selectedOrgs.length + "）";
-        else tip.textContent = "请选择租户或组织";
-        treeWrap.appendChild(tree);
-        treeWrap.appendChild(tip);
+      function renderScopePanels() {
+        const showProject = shareMode === "project";
+        const showTenant = shareMode === "tenant";
+        projectWrap.style.display = showProject ? "" : "none";
+        treeWrap.style.display = showTenant ? "" : "none";
       }
 
       host.appendChild(radios);
-      host.appendChild(hint);
+      host.appendChild(projectWrap);
       host.appendChild(treeWrap);
-      renderTree();
+      renderScopePanels();
 
       return {
         getPayload() {
-          return buildSmrScopePayload(shareMode, selectedTenantId, selectedTenantName, selectedOrgs);
+          const st = tenantPicker.getState();
+          return buildSmrScopePayload(shareMode, {
+            selectedTenants: st.selectedTenants,
+            selectedOrgs: st.selectedOrgs,
+            scopeProjectIds: projectSelect.getSelectedIds(),
+            scopeProjects: projectSelect.getSelectedItems(),
+          });
         },
         validate() {
-          if (shareMode === "share" && !selectedTenantId && !selectedOrgs.length) {
-            showToast("请选择租户或组织", "info");
+          if (shareMode === "project" && !projectSelect.getSelectedIds().length) {
+            showToast("请至少选择一个工程", "info");
             return false;
           }
+          if (shareMode === "tenant" && !tenantPicker.validate()) return false;
           return true;
         },
       };
@@ -34664,7 +35562,7 @@
         if (!controls.validate()) return;
         const payload = controls.getPayload();
         if (!payload) {
-          showToast("请选择租户或组织", "info");
+          showToast("请完善可见范围选择", "info");
           return;
         }
         applySmrScopePayload(row, payload);
@@ -34681,14 +35579,15 @@
       document.body.appendChild(editor);
 
       const rect = anchorEl.getBoundingClientRect();
-      const w = 360;
-      const h = Math.min(520, window.innerHeight * 0.7);
+      const w = Math.min(720, window.innerWidth - 16);
+      const h = Math.min(640, window.innerHeight * 0.8);
       let left = rect.left;
       let top = rect.bottom + 6;
       if (left + w > window.innerWidth - 8) left = Math.max(8, window.innerWidth - w - 8);
-      if (top + 280 > window.innerHeight - 8) top = Math.max(8, rect.top - Math.min(h, 360) - 6);
+      if (top + 320 > window.innerHeight - 8) top = Math.max(8, rect.top - Math.min(h, 480) - 6);
       editor.style.left = left + "px";
       editor.style.top = top + "px";
+      editor.style.width = w + "px";
 
       smrScopeEditorDocCloser = (e) => {
         if (!editor.contains(e.target) && !anchorEl.contains(e.target)) closeSmrScopeEditor();
@@ -34724,7 +35623,14 @@
       moreBtn.type = "button";
       moreBtn.className = "smr-scope-more";
       moreBtn.textContent = meta.moreText || "+" + Math.max(0, meta.count - 1);
-      moreBtn.title = "查看全部 " + meta.count + " 个组织";
+      moreBtn.title =
+        meta.kind === "project"
+          ? "查看全部 " + meta.count + " 个工程"
+          : meta.kind === "tenant"
+            ? "查看全部 " + meta.count + " 个租户"
+            : meta.kind === "mixed"
+              ? "查看全部 " + meta.count + " 项范围"
+              : "查看全部 " + meta.count + " 个组织";
       moreBtn.setAttribute("aria-expanded", "false");
 
       function positionPop(pop) {
@@ -34746,7 +35652,14 @@
         pop.className = "smr-scope-pop";
         const popTitle = document.createElement("p");
         popTitle.className = "smr-scope-pop__title";
-        popTitle.textContent = "已共享组织（" + meta.count + "）";
+        popTitle.textContent =
+          meta.kind === "project"
+            ? "已选工程（" + meta.count + "）"
+            : meta.kind === "tenant"
+              ? "已选租户（" + meta.count + "）"
+              : meta.kind === "mixed"
+                ? "已选范围（" + meta.count + "）"
+                : "已共享组织（" + meta.count + "）";
         const list = document.createElement("div");
         list.className = "smr-scope-pop__list";
         meta.items.forEach((item) => {
@@ -34829,7 +35742,6 @@
 
     function openSmrRegisterModal(onSaved) {
       closeSmrRegisterModal();
-      const treeData = fetchSmrTenantOrgTree();
       const backdrop = document.createElement("div");
       backdrop.id = "smrRegisterBackdrop";
       backdrop.className = "smr-backdrop";
@@ -34862,14 +35774,8 @@
       const form = document.createElement("div");
       form.className = "smr-form";
 
-      /** shareMode: private | share；sharePick: tenant | orgs（互斥） */
+      /** shareMode: private | project | tenant */
       let shareMode = "private";
-      let selectedTenantId = "";
-      let selectedTenantName = "";
-      /** @type {Array<{id:string,name:string,tenantId:string,tenantName:string}>} */
-      let selectedOrgs = [];
-      let advancedOpen = false;
-      const expandedTenants = new Set(treeData.map((t) => t.id));
 
       function addField(labelText, required, fieldNode) {
         const lab = document.createElement("label");
@@ -34913,12 +35819,16 @@
       modelInput.placeholder = "例如 glm-5.1";
       addField("模型ID", true, modelInput);
 
+      const projectSelectForScope = createSmrProjectTreeSelect([]);
+      const tenantPicker = createSmrTenantOrgPicker({});
+
       const scopeField = document.createElement("div");
       const radios = document.createElement("div");
       radios.className = "smr-radios";
       [
         { value: "private", label: "仅自己" },
-        { value: "share", label: "共享给租户/组织" },
+        { value: "project", label: "工程" },
+        { value: "tenant", label: "租户/组织（仅支持智能问数）" },
       ].forEach((opt) => {
         const lab = document.createElement("label");
         lab.className = "smr-radio";
@@ -34930,12 +35840,9 @@
         input.addEventListener("change", () => {
           if (!input.checked) return;
           shareMode = opt.value;
-          if (shareMode === "private") {
-            selectedTenantId = "";
-            selectedTenantName = "";
-            selectedOrgs = [];
-          }
-          renderShareTree();
+          projectSelectForScope.clear();
+          tenantPicker.clear();
+          renderScopePanels();
         });
         const span = document.createElement("span");
         span.textContent = opt.label;
@@ -34943,227 +35850,44 @@
         lab.appendChild(span);
         radios.appendChild(lab);
       });
-      const scopeHint = document.createElement("p");
-      scopeHint.className = "smr-hint";
-      scopeHint.textContent =
-        "租户与组织来自同一接口（一级租户 / 二级组织）。共享时在树中二选一：勾选租户，或勾选一个或多个组织。";
       scopeField.appendChild(radios);
-      scopeField.appendChild(scopeHint);
       addField("可见范围", true, scopeField);
 
-      const treeLabel = document.createElement("div");
+      // 工程多选区域（仅在选择"工程"时显示）
+      const projectScopeField = document.createElement("div");
+      projectScopeField.className = "smr-scope-project-wrap";
+      const projectScopeHint = document.createElement("p");
+      projectScopeHint.className = "smr-hint";
+      projectScopeHint.textContent = "可多选工程；切换可见范围时将清空已选内容。";
+      projectScopeField.appendChild(projectSelectForScope.wrap);
+      projectScopeField.appendChild(projectScopeHint);
+      const projectScopeLabel = document.createElement("label");
+      projectScopeLabel.className = "smr-label is-required";
+      projectScopeLabel.textContent = "工程";
+      const projectScopeContainer = document.createElement("div");
+      projectScopeContainer.appendChild(projectScopeField);
+      form.appendChild(projectScopeLabel);
+      form.appendChild(projectScopeContainer);
+
+      // 租户/组织双栏（仅在选择"租户/组织"时显示）
+      const treeLabel = document.createElement("label");
       treeLabel.className = "smr-label is-required";
       treeLabel.textContent = "租户/组织";
-      const treeField = document.createElement("div");
+      const treeContainer = document.createElement("div");
+      treeContainer.appendChild(tenantPicker.wrap);
       form.appendChild(treeLabel);
-      form.appendChild(treeField);
+      form.appendChild(treeContainer);
 
-      function isOrgSelected(orgId) {
-        return selectedOrgs.some((o) => o.id === orgId);
+      function renderScopePanels() {
+        const showProject = shareMode === "project";
+        const showTenant = shareMode === "tenant";
+        projectScopeLabel.style.display = showProject ? "" : "none";
+        projectScopeContainer.style.display = showProject ? "" : "none";
+        treeLabel.style.display = showTenant ? "" : "none";
+        treeContainer.style.display = showTenant ? "" : "none";
+        dialog.classList.toggle("smr-dialog--wide", showTenant);
       }
-
-      function selectTenant(tenant) {
-        selectedTenantId = tenant.id;
-        selectedTenantName = tenant.name;
-        selectedOrgs = [];
-        renderShareTree();
-      }
-
-      function toggleOrg(tenant, org) {
-        selectedTenantId = "";
-        selectedTenantName = "";
-        if (isOrgSelected(org.id)) {
-          selectedOrgs = selectedOrgs.filter((o) => o.id !== org.id);
-        } else {
-          selectedOrgs = selectedOrgs.concat([
-            {
-              id: org.id,
-              name: org.name,
-              tenantId: tenant.id,
-              tenantName: tenant.name,
-            },
-          ]);
-        }
-        renderShareTree();
-      }
-
-      function renderShareTree() {
-        treeField.innerHTML = "";
-        if (shareMode === "private") {
-          treeLabel.style.visibility = "hidden";
-          treeField.style.visibility = "hidden";
-          treeField.style.height = "0";
-          treeField.style.overflow = "hidden";
-          return;
-        }
-        treeLabel.style.visibility = "visible";
-        treeField.style.visibility = "visible";
-        treeField.style.height = "";
-        treeField.style.overflow = "";
-
-        const tree = document.createElement("div");
-        tree.className = "smr-tree";
-        tree.setAttribute("aria-label", "租户组织树");
-
-        const hasTenant = !!selectedTenantId;
-        const hasOrgs = selectedOrgs.length > 0;
-
-        treeData.forEach((tenant) => {
-          const block = document.createElement("div");
-          block.className = "smr-tree__tenant";
-
-          const hdRow = document.createElement("div");
-          const tenantOn = selectedTenantId === tenant.id;
-          hdRow.className =
-            "smr-tree__tenant-hd" +
-            (tenantOn ? " is-selected" : "") +
-            (hasOrgs ? " is-disabled" : "");
-
-          const chev = document.createElement("span");
-          chev.className = "smr-tree__chev";
-          chev.textContent = expandedTenants.has(tenant.id) ? "▾" : "▸";
-          chev.addEventListener("click", (e) => {
-            e.stopPropagation();
-            if (expandedTenants.has(tenant.id)) expandedTenants.delete(tenant.id);
-            else expandedTenants.add(tenant.id);
-            renderShareTree();
-          });
-
-          const tenantCheck = document.createElement("input");
-          tenantCheck.type = "checkbox";
-          tenantCheck.className = "smr-tree__check";
-          tenantCheck.checked = tenantOn;
-          tenantCheck.disabled = hasOrgs;
-          tenantCheck.title = hasOrgs ? "已选择组织时不可再选租户" : "选择整个租户";
-          tenantCheck.addEventListener("click", (e) => e.stopPropagation());
-          tenantCheck.addEventListener("change", () => {
-            if (hasOrgs) return;
-            if (tenantCheck.checked) selectTenant(tenant);
-            else {
-              selectedTenantId = "";
-              selectedTenantName = "";
-              renderShareTree();
-            }
-          });
-
-          const name = document.createElement("span");
-          name.textContent = tenant.name;
-          const badge = document.createElement("span");
-          badge.className = "smr-tree__badge";
-          badge.textContent = tenantOn ? "整租户" : "租户";
-
-          hdRow.appendChild(chev);
-          hdRow.appendChild(tenantCheck);
-          hdRow.appendChild(name);
-          hdRow.appendChild(badge);
-          if (!hasOrgs) {
-            hdRow.addEventListener("click", (e) => {
-              if (e.target === chev || e.target === tenantCheck) return;
-              if (tenantOn) {
-                selectedTenantId = "";
-                selectedTenantName = "";
-                renderShareTree();
-              } else selectTenant(tenant);
-            });
-          }
-          block.appendChild(hdRow);
-
-          if (expandedTenants.has(tenant.id)) {
-            const orgs = document.createElement("div");
-            orgs.className = "smr-tree__orgs";
-            tenant.orgs.forEach((org) => {
-              const row = document.createElement("div");
-              const orgOn = isOrgSelected(org.id);
-              row.className =
-                "smr-tree__org" +
-                (orgOn ? " is-selected" : "") +
-                (hasTenant ? " is-disabled" : "");
-              const orgCheck = document.createElement("input");
-              orgCheck.type = "checkbox";
-              orgCheck.className = "smr-tree__check";
-              orgCheck.checked = orgOn;
-              orgCheck.disabled = hasTenant;
-              orgCheck.title = hasTenant ? "已选择租户时不可再选组织" : "选择组织";
-              orgCheck.addEventListener("click", (e) => e.stopPropagation());
-              orgCheck.addEventListener("change", () => {
-                if (hasTenant) return;
-                toggleOrg(tenant, org);
-              });
-              const orgName = document.createElement("span");
-              orgName.textContent = org.name;
-              const orgBadge = document.createElement("span");
-              orgBadge.className = "smr-tree__badge";
-              orgBadge.textContent = "组织";
-              row.appendChild(orgCheck);
-              row.appendChild(orgName);
-              row.appendChild(orgBadge);
-              if (!hasTenant) {
-                row.addEventListener("click", (e) => {
-                  if (e.target === orgCheck) return;
-                  toggleOrg(tenant, org);
-                });
-              }
-              orgs.appendChild(row);
-            });
-            block.appendChild(orgs);
-          }
-          tree.appendChild(block);
-        });
-
-        const tip = document.createElement("p");
-        tip.className = "smr-hint";
-        if (hasTenant) {
-          tip.textContent = "已选租户：" + selectedTenantName + "（整租户可用）";
-        } else if (hasOrgs) {
-          tip.textContent =
-            "已选组织：" +
-            selectedOrgs.map((o) => o.name).join("、") +
-            "（共 " +
-            selectedOrgs.length +
-            " 个）";
-        } else {
-          tip.textContent = "请选择一个租户，或勾选一个/多个组织（二者互斥）";
-        }
-
-        treeField.appendChild(tree);
-        treeField.appendChild(tip);
-      }
-      renderShareTree();
-
-      const advanced = document.createElement("div");
-      advanced.className = "smr-advanced";
-      const advToggle = document.createElement("button");
-      advToggle.type = "button";
-      advToggle.className = "smr-advanced__toggle";
-      advToggle.textContent = "高级：手动填写 ID ▾";
-      const advBody = document.createElement("div");
-      advBody.className = "smr-advanced__body";
-      advBody.hidden = true;
-      const manualTenantLabel = document.createElement("label");
-      manualTenantLabel.className = "smr-label";
-      manualTenantLabel.textContent = "租户ID";
-      const manualTenantInput = document.createElement("input");
-      manualTenantInput.className = "smr-input";
-      manualTenantInput.placeholder = "整租户时填写，例如 tenant-glodon";
-      const manualOrgLabel = document.createElement("label");
-      manualOrgLabel.className = "smr-label";
-      manualOrgLabel.textContent = "组织ID";
-      const manualOrgInput = document.createElement("input");
-      manualOrgInput.className = "smr-input";
-      manualOrgInput.placeholder = "多个组织用英文逗号分隔";
-      advBody.appendChild(manualTenantLabel);
-      advBody.appendChild(manualTenantInput);
-      advBody.appendChild(manualOrgLabel);
-      advBody.appendChild(manualOrgInput);
-      advToggle.addEventListener("click", () => {
-        advancedOpen = !advancedOpen;
-        advBody.hidden = !advancedOpen;
-        advToggle.textContent = advancedOpen ? "高级：手动填写 ID ▴" : "高级：手动填写 ID ▾";
-      });
-      advanced.appendChild(advToggle);
-      advanced.appendChild(advBody);
-      form.appendChild(document.createElement("div"));
-      form.appendChild(advanced);
+      renderScopePanels();
 
       body.appendChild(form);
 
@@ -35198,52 +35922,48 @@
           modelInput.focus();
           return;
         }
+        const projectIds = [];
+        const projects = [];
+        const appIds = [];
+        const apps = [];
 
         let scope = "USER";
         let tenantId = "";
         let tenantName = "";
+        let tenantIds = [];
         let orgIds = [];
         let orgId = "";
         let orgName = "";
+        let scopeProjectIds = [];
+        let scopeProjects = [];
 
-        if (shareMode === "share") {
-          const manualTenant = (manualTenantInput.value || "").trim();
-          const manualOrgs = (manualOrgInput.value || "")
-            .split(/[,，]/)
-            .map((s) => s.trim())
-            .filter(Boolean);
-
-          if (advancedOpen && manualOrgs.length) {
-            scope = "ORG";
-            orgIds = manualOrgs.map((id) => ({
-              id,
-              name: id,
-              tenantId: manualTenant || "",
-              tenantName: manualTenant || "",
-            }));
-            tenantId = manualTenant;
-            tenantName = manualTenant;
-            orgId = orgIds[0].id;
-            orgName = orgIds[0].name;
-          } else if (advancedOpen && manualTenant) {
-            scope = "TENANT";
-            tenantId = manualTenant;
-            tenantName = manualTenant;
-          } else if (selectedTenantId) {
-            scope = "TENANT";
-            tenantId = selectedTenantId;
-            tenantName = selectedTenantName;
-          } else if (selectedOrgs.length) {
-            scope = "ORG";
-            orgIds = selectedOrgs.slice();
-            tenantId = orgIds[0].tenantId || "";
-            tenantName = orgIds[0].tenantName || "";
-            orgId = orgIds[0].id;
-            orgName = orgIds[0].name;
-          } else {
-            showToast("请在树中选择租户，或选择一个/多个组织", "info");
+        if (shareMode === "project") {
+          // 工程模式：使用工程多选
+          scope = "PROJECT";
+          scopeProjectIds = projectSelectForScope.getSelectedIds();
+          scopeProjects = projectSelectForScope.getSelectedItems();
+          if (!scopeProjectIds.length) {
+            showToast("请至少选择一个工程", "info");
             return;
           }
+        } else if (shareMode === "tenant") {
+          // 租户/组织模式（仅支持智能问数）：支持多租户 + 跨租户多组织
+          const st = tenantPicker.getState();
+          const payload = buildSmrScopePayload("tenant", {
+            selectedTenants: st.selectedTenants,
+            selectedOrgs: st.selectedOrgs,
+          });
+          if (!payload) {
+            showToast("请至少选择一个租户或组织", "info");
+            return;
+          }
+          scope = payload.scope;
+          tenantId = payload.tenantId;
+          tenantName = payload.tenantName;
+          tenantIds = payload.tenantIds || [];
+          orgIds = payload.orgIds || [];
+          orgId = payload.orgId || "";
+          orgName = payload.orgName || "";
         }
 
         smrRows.unshift({
@@ -35257,9 +35977,16 @@
           scope,
           tenantId,
           tenantName,
+          tenantIds,
           orgId,
           orgName,
           orgIds,
+          projectIds,
+          projects,
+          appIds,
+          apps,
+          scopeProjectIds,
+          scopeProjects,
           ownerUserId: "u-current",
         });
         smrPage = 1;
@@ -35333,7 +36060,8 @@
         body.className = "smr-edit-page__body";
         const hint = document.createElement("p");
         hint.className = "smr-edit-page__hint";
-        hint.textContent = "可修改密钥、服务商、模型 ID 与可见范围。列表中也可直接点击可见范围快速调整。";
+        hint.textContent =
+          "可修改密钥、服务商、模型 ID、工程、应用与可见范围。列表中也可直接点击可见范围快速调整。";
         const form = document.createElement("div");
         form.className = "smr-form";
 
@@ -35386,6 +36114,28 @@
         modelInput.value = row.modelId || "";
         addField("模型ID", true, modelInput);
 
+        const projectSelect = createSmrProjectMultiSelect(
+          row.projectIds || (row.projects || []).map((p) => p.id)
+        );
+        const projectHint = document.createElement("p");
+        projectHint.className = "smr-hint";
+        projectHint.textContent = "支持多选。可关联多个工程。";
+        const projectField = document.createElement("div");
+        projectField.appendChild(projectSelect.wrap);
+        projectField.appendChild(projectHint);
+        addField("工程", true, projectField);
+
+        const appSelect = createSmrAppMultiSelect(
+          row.appIds || (row.apps || []).map((a) => a.id)
+        );
+        const appHint = document.createElement("p");
+        appHint.className = "smr-hint";
+        appHint.textContent = "支持多选。可关联智能开发、智能问数等应用。";
+        const appField = document.createElement("div");
+        appField.appendChild(appSelect.wrap);
+        appField.appendChild(appHint);
+        addField("应用", true, appField);
+
         const scopeHost = document.createElement("div");
         const scopeControls = mountSmrShareScopeControls(
           scopeHost,
@@ -35422,10 +36172,22 @@
             baseUrlField.input.focus();
             return;
           }
+          const projectIds = projectSelect.getSelectedIds();
+          const projects = projectSelect.getSelectedProjects();
+          if (!projectIds.length) {
+            showToast("请至少选择一个工程", "info");
+            return;
+          }
+          const appIds = appSelect.getSelectedIds();
+          const apps = appSelect.getSelectedApps();
+          if (!appIds.length) {
+            showToast("请至少选择一个应用", "info");
+            return;
+          }
           if (!scopeControls.validate()) return;
           const payload = scopeControls.getPayload();
           if (!payload) {
-            showToast("请选择租户或组织", "info");
+            showToast("请完善可见范围选择", "info");
             return;
           }
           const newKey = (apiInput.value || "").trim();
@@ -35436,6 +36198,10 @@
           row.provider = provider;
           row.modelId = modelId;
           row.baseUrl = provider === "自定义" ? baseUrl : "";
+          row.projectIds = projectIds;
+          row.projects = projects;
+          row.appIds = appIds;
+          row.apps = apps;
           applySmrScopePayload(row, payload);
           showToast("模型已更新", "success");
           goList();
@@ -35511,14 +36277,6 @@
             tdTime.textContent = row.createdAt;
             const tdAct = document.createElement("td");
             tdAct.className = "col-actions";
-            const editBtn = document.createElement("button");
-            editBtn.type = "button";
-            editBtn.className = "smr-link";
-            editBtn.textContent = "编辑";
-            editBtn.addEventListener("click", () => goEdit(row));
-            const sep = document.createElement("span");
-            sep.className = "smr-link-sep";
-            sep.textContent = "|";
             const delBtn = document.createElement("button");
             delBtn.type = "button";
             delBtn.className = "smr-link";
@@ -35529,8 +36287,6 @@
               showToast("已删除「" + row.modelId + "」", "success");
               render();
             });
-            tdAct.appendChild(editBtn);
-            tdAct.appendChild(sep);
             tdAct.appendChild(delBtn);
             tr.appendChild(tdKey);
             tr.appendChild(tdProvider);
