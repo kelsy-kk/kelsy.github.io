@@ -399,6 +399,193 @@
       font-size: 18pt;
       font-weight: 700;
     }
+
+    /* 操作流程图 */
+    .op-flow {
+      margin: 8px 0 4px;
+    }
+
+    .op-flow__row {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 10px;
+      margin: 0;
+    }
+
+    .op-flow__col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .op-flow__node {
+      width: 100%;
+      max-width: 168px;
+      padding: 10px 10px 9px;
+      border-radius: 10px;
+      border: 1px solid #cfe2ff;
+      background: linear-gradient(180deg, #f7faff 0%, #eef5ff 100%);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .op-flow__node strong {
+      display: block;
+      font-size: 10.5pt;
+      color: var(--blue-deep);
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+
+    .op-flow__node span {
+      display: block;
+      font-size: 8.5pt;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .op-flow__node.is-start,
+    .op-flow__node.is-end {
+      background: linear-gradient(180deg, #1677ff 0%, #0b4db8 100%);
+      border-color: #0b4db8;
+      color: #fff;
+    }
+
+    .op-flow__node.is-start strong,
+    .op-flow__node.is-end strong,
+    .op-flow__node.is-start span,
+    .op-flow__node.is-end span {
+      color: #fff;
+    }
+
+    .op-flow__node.is-decision {
+      background: #fff8e6;
+      border-color: #ffd591;
+      border-radius: 4px;
+      transform: none;
+    }
+
+    .op-flow__node.is-decision strong {
+      color: #ad6800;
+    }
+
+    .op-flow__node.is-alt {
+      background: #f6ffed;
+      border-color: #b7eb8f;
+    }
+
+    .op-flow__node.is-alt strong {
+      color: #389e0d;
+    }
+
+    .op-flow__arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 22px;
+      color: var(--blue);
+      font-size: 12pt;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .op-flow__arrow em {
+      font-style: normal;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #667085;
+      margin-bottom: 1px;
+    }
+
+    .op-flow__branch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .op-flow__branch-card {
+      border: 1px dashed #c5d8f5;
+      border-radius: 12px;
+      padding: 10px 10px 8px;
+      background: #fafcff;
+    }
+
+    .op-flow__branch-title {
+      margin: 0 0 8px;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--blue-deep);
+      text-align: center;
+    }
+
+    .op-flow__mini-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 0 0 6px;
+      font-size: 9pt;
+      color: #475467;
+      line-height: 1.4;
+    }
+
+    .op-flow__mini-step:last-child {
+      margin-bottom: 0;
+    }
+
+    .op-flow__mini-num {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #1677ff;
+      color: #fff;
+      font-size: 8pt;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .op-flow__legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 12px;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .op-flow__legend i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: -2px;
+      border: 1px solid transparent;
+    }
+
+    .op-flow__legend .lg-main {
+      background: #eef5ff;
+      border-color: #cfe2ff;
+    }
+
+    .op-flow__legend .lg-dec {
+      background: #fff8e6;
+      border-color: #ffd591;
+    }
+
+    .op-flow__legend .lg-alt {
+      background: #f6ffed;
+      border-color: #b7eb8f;
+    }
   </style>
 </head>
 <body>
@@ -613,6 +800,9 @@
     </div>
 
     <h3>四条典型业务旅程</h3>
+    <p style="margin-top:-4px;margin-bottom:10px;font-size:10pt;color:#667085">
+      完整端到端步骤见下一页「业务流程操作流程图」。
+    </p>
     <div class="grid-2">
       <div class="card">
         <h4>旅程 A · 从零建设</h4>
@@ -635,9 +825,105 @@
     <div class="footer-note">场景中心产品白皮书 · 第 4 页</div>
   </section>
 
-  <!-- Page 5: Highlights -->
+  <!-- Page 5: Operation Flowchart -->
   <section class="page inner">
-    <p class="section-kicker">04 / HIGHLIGHTS</p>
+    <p class="section-kicker">04 / OPERATION FLOW</p>
+    <h2>业务流程操作流程图</h2>
+    <p class="lead">
+      基于当前产品原型，梳理从进入场景中心到建设、运营、模板复用与跨环境迁移的端到端操作路径。
+    </p>
+
+    <div class="op-flow">
+      <div class="op-flow__row">
+        <div class="op-flow__col">
+          <div class="op-flow__node is-start">
+            <strong>进入场景中心</strong>
+            <span>默认打开「场景流程」</span>
+          </div>
+          <div class="op-flow__arrow">↓</div>
+          <div class="op-flow__node">
+            <strong>场景列表</strong>
+            <span>仅展示已有流程的场景</span>
+          </div>
+          <div class="op-flow__arrow"><em>无流程时</em>↓</div>
+          <div class="op-flow__node is-decision">
+            <strong>是否已有场景流程？</strong>
+            <span>否 → 缺省引导页</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="op-flow__branch">
+        <div class="op-flow__branch-card">
+          <p class="op-flow__branch-title">主路径 · 从零建设</p>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">1</span><span>点击「新建流程」</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">2</span><span>选择/添加所属场景与业务域</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">3</span><span>填写流程名称、描述</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">4</span><span>选择创建方式：空白 / 操作模板</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">5</span><span>进入工作台组装开发链路</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">6</span><span>保存 → 回到场景列表，出现场景卡片</span></div>
+        </div>
+        <div class="op-flow__branch-card">
+          <p class="op-flow__branch-title">已有资产 · 浏览运营</p>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">1</span><span>场景卡片：查看全部流程 / 进业务域</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">2</span><span>按业务域分组浏览，展开/收起</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">3</span><span>筛选：全部 / 收藏 / 协作；搜索名称</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">4</span><span>卡片操作：进入流程、收藏、协作、删除</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">5</span><span>工作台续编后保存，面包屑返回列表</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">6</span><span>可批量删除已选 / 当前筛选全部</span></div>
+        </div>
+      </div>
+
+      <div class="op-flow__row" style="margin-top:12px">
+        <div class="op-flow__col">
+          <div class="op-flow__arrow"><em>扩展能力</em>↓</div>
+        </div>
+      </div>
+
+      <div class="op-flow__branch">
+        <div class="op-flow__branch-card">
+          <p class="op-flow__branch-title">模板复用 · 流程定义</p>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">1</span><span>进入「流程定义」</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">2</span><span>新建/编辑自定义开发流程</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">3</span><span>组装操作模块并「上线」</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">4</span><span>新建流程时选用「使用操作模板」</span></div>
+        </div>
+        <div class="op-flow__branch-card">
+          <p class="op-flow__branch-title">跨环境交付 · 迁移助手</p>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">1</span><span>场景卡片点击「导出此场景」</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">2</span><span>写入迁移助手迁出记录</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">3</span><span>前往迁移助手查看 / 新建迁出</span></div>
+          <div class="op-flow__mini-step"><span class="op-flow__mini-num">4</span><span>需要时执行迁入（上传与映射）</span></div>
+        </div>
+      </div>
+
+      <div class="op-flow__row" style="margin-top:12px">
+        <div class="op-flow__col">
+          <div class="op-flow__arrow">↓</div>
+          <div class="op-flow__node is-end">
+            <strong>形成场景流程资产闭环</strong>
+            <span>可管理 · 可复用 · 可迁移</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-flow__legend">
+      <span><i class="lg-main"></i>主流程节点</span>
+      <span><i class="lg-dec"></i>判断 / 分支</span>
+      <span><i class="lg-alt"></i>（图中绿系）扩展路径卡片</span>
+    </div>
+
+    <div class="quote" style="margin-top:14px">
+      操作口诀：先定场景归属 → 再建流程实例 → 工作台落地 → 定义沉淀模板 → 导出完成迁移。
+    </div>
+
+    <div class="footer-note">场景中心产品白皮书 · 第 5 页</div>
+  </section>
+
+  <!-- Page 6: Highlights -->
+  <section class="page inner">
+    <p class="section-kicker">05 / HIGHLIGHTS</p>
     <h2>产品亮点拆解</h2>
 
     <h3>亮点 1：场景列表即资产门户</h3>
@@ -675,12 +961,12 @@
       </p>
     </div>
 
-    <div class="footer-note">场景中心产品白皮书 · 第 5 页</div>
+    <div class="footer-note">场景中心产品白皮书 · 第 6 页</div>
   </section>
 
-  <!-- Page 6: Closing -->
+  <!-- Page 7: Closing -->
   <section class="page inner">
-    <p class="section-kicker">05 / NEXT</p>
+    <p class="section-kicker">06 / NEXT</p>
     <h2>落地建议与下一步</h2>
     <p class="lead">建议各部门按「先看清、再建通、再沉淀、再迁移」的节奏推进场景中心落地。</p>
 
@@ -741,7 +1027,7 @@
     </div>
 
     <div class="footer-note">
-      场景中心产品白皮书 · 第 6 页 · 基于当前产品原型整理，界面文案与能力以最新原型为准。
+      场景中心产品白皮书 · 第 7 页 · 基于当前产品原型整理，界面文案与能力以最新原型为准。
     </div>
   </section>
 </body>

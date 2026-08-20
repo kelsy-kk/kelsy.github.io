@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>场景中心</title>
+  <title>产品原型 · 三栏布局</title>
   <style>
     :root {
       --bg: #f0f2f5;
@@ -769,11 +769,14 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-height: 0;
+      /* 随 body 滚动展开，避免多段映射被 flex 压扁重叠 */
+      flex-shrink: 0;
+      min-height: auto;
     }
 
     .mig-create__section.is-grow {
       flex: 1;
+      flex-shrink: 1;
       min-height: 420px;
     }
 
@@ -997,6 +1000,89 @@
       color: #ff4d4f;
     }
 
+    .mig-demo-pkgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .mig-demo-pkg {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #e5eaf3;
+      border-radius: 8px;
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .mig-demo-pkg:hover {
+      border-color: #91caff;
+      background: #f5f9ff;
+    }
+
+    .mig-demo-pkg.is-selected {
+      border-color: #1677ff;
+      background: #e6f4ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .mig-demo-pkg__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 500;
+    }
+
+    .mig-demo-pkg__badge.is-report {
+      color: #0958d9;
+      background: #e6f4ff;
+      border: 1px solid #91caff;
+    }
+
+    .mig-demo-pkg__badge.is-plain {
+      color: #389e0d;
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+    }
+
+    .mig-demo-pkg.is-selected .mig-demo-pkg__badge.is-report {
+      background: #fff;
+    }
+
+    .mig-demo-pkg.is-selected .mig-demo-pkg__badge.is-plain {
+      background: #fff;
+    }
+
+    .mig-demo-pkg__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      word-break: break-all;
+    }
+
+    .mig-demo-pkg__desc {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    @media (max-width: 900px) {
+      .mig-demo-pkgs {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .mig-map-block {
       display: flex;
       flex-direction: column;
@@ -1015,10 +1101,245 @@
       color: rgba(0, 0, 0, 0.88);
     }
 
+    .mig-map-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .mig-map-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .mig-map-group__title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-map-group__sub {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mig-map-group__sub-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-map-cascade {
+      display: grid;
+      grid-template-columns: minmax(160px, 1fr) minmax(160px, 1fr);
+      gap: 8px;
+      align-items: start;
+      width: 100%;
+    }
+
+    .mig-ana-map {
+      width: 100%;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      overflow: visible;
+      background: #fff;
+    }
+
+    .mig-ana-map__hd,
+    .mig-ana-map__row {
+      display: grid;
+      grid-template-columns: minmax(160px, 32%) minmax(0, 1fr);
+      gap: 0;
+      align-items: center;
+    }
+
+    .mig-ana-map__hd {
+      background: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-ana-map__hd > span {
+      padding: 10px 12px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+      font-weight: 500;
+    }
+
+    .mig-ana-map__hd .is-req {
+      color: #ff4d4f;
+      margin-right: 2px;
+    }
+
+    .mig-ana-map__row {
+      border-bottom: 1px solid #f0f0f0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mig-ana-map__row:last-child {
+      border-bottom: 0;
+    }
+
+    .mig-ana-map__row.is-open {
+      z-index: 20;
+    }
+
+    .mig-ana-map__src,
+    .mig-ana-map__target {
+      padding: 10px 12px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      min-width: 0;
+    }
+
+    .mig-ana-map__src {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.5;
+    }
+
+    .mig-map-picker {
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .mig-map-picker.is-open {
+      z-index: 30;
+    }
+
+    .mig-map-picker__trigger {
+      width: 100%;
+      height: 32px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 0 28px 0 11px;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      background:
+        #fff
+        url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%2398A2B3' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        no-repeat right 10px center;
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mig-map-picker__trigger.is-placeholder {
+      color: rgba(0, 0, 0, 0.25);
+    }
+
+    .mig-map-picker__trigger:focus,
+    .mig-map-picker.is-open .mig-map-picker__trigger {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+      outline: none;
+    }
+
+    .mig-map-picker__panel {
+      position: absolute;
+      z-index: 50;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 100%;
+      min-width: 200px;
+      max-height: 240px;
+      box-sizing: border-box;
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border: 1px solid #e5eaf3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+      overflow: hidden;
+    }
+
+    .mig-map-picker.is-open > .mig-map-picker__panel {
+      display: flex;
+    }
+
+    .mig-map-picker__search {
+      flex-shrink: 0;
+      margin: 8px;
+      height: 28px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 0 10px;
+      font: inherit;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .mig-map-picker__search:focus {
+      border-color: #1677ff;
+    }
+
+    .mig-map-picker__list {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 4px 0 8px;
+    }
+
+    .mig-map-picker__item {
+      display: block;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      text-align: left;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .mig-map-picker__item:hover,
+    .mig-map-picker__item.is-active {
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .mig-map-picker__item.is-l1 {
+      padding-left: 20px;
+      font-weight: 500;
+    }
+
+    .mig-map-picker__item.is-l2 {
+      padding-left: 36px;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .mig-map-picker__empty {
+      padding: 16px 12px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
+
     .mig-map-table {
       width: 100%;
+      display: table;
       border-collapse: collapse;
       table-layout: fixed;
+    }
+
+    .mig-map-table-wrap {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
     }
 
     .mig-map-table th,
@@ -1066,6 +1387,361 @@
     .mig-map-select:focus {
       border-color: #1677ff;
       box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .mig-map-select.is-unmapped,
+    .mig-map-picker__trigger.is-unmapped {
+      border-color: #ff4d4f;
+      background-color: #fff2f0;
+      box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.12);
+    }
+
+    .mig-map-select.is-unmapped:focus,
+    .mig-map-picker.is-open .mig-map-picker__trigger.is-unmapped {
+      border-color: #ff4d4f;
+      box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.18);
+    }
+
+    .mig-map-field {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .mig-map-pending {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #cf1322;
+    }
+
+    .mig-alert {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      border: 1px solid #ffe58f;
+      background: #fffbe6;
+      color: #ad6800;
+      border-radius: 6px;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .mig-map-notice {
+      flex-shrink: 0;
+      border: 1px solid #ffd591;
+      background: #fff7e6;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .mig-map-notice__hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+      text-align: left;
+      color: #d46b08;
+    }
+
+    .mig-map-notice__hd:hover {
+      background: rgba(255, 247, 230, 0.6);
+    }
+
+    .mig-map-notice__title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d46b08;
+    }
+
+    .mig-map-notice__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 6px;
+      height: 20px;
+      border-radius: 4px;
+      background: #fa8c16;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .mig-map-notice__toggle {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: #d46b08;
+      white-space: nowrap;
+    }
+
+    .mig-map-notice__toggle::after {
+      content: "收起";
+    }
+
+    .mig-map-notice.is-collapsed .mig-map-notice__toggle::after {
+      content: "展开";
+    }
+
+    .mig-map-notice__body {
+      padding: 0 12px 12px;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #ad6800;
+    }
+
+    .mig-map-notice.is-collapsed .mig-map-notice__body {
+      display: none;
+    }
+
+    .mig-map-notice__body strong {
+      color: #d46b08;
+    }
+
+    .mig-ds-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .mig-ds-table th,
+    .mig-ds-table td {
+      padding: 8px 10px;
+      border: 1px solid #f0f0f0;
+      text-align: left;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .mig-ds-table th {
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 600;
+    }
+
+    .mig-ds-table .is-muted {
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-ds-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .mig-res-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .mig-res-table tr.is-dup {
+      background: #fff1f0;
+    }
+
+    .mig-tag {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    .mig-tag.is-ok {
+      color: #389e0d;
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+    }
+
+    .mig-tag.is-miss {
+      color: #d46b08;
+      background: #fff7e6;
+      border: 1px solid #ffd591;
+    }
+
+    .mig-tag.is-dup {
+      color: #cf1322;
+      background: #fff1f0;
+      border: 1px solid #ffa39e;
+    }
+
+    .mig-tag.is-migrate {
+      color: #1677ff;
+      background: #e6f4ff;
+      border: 1px solid #91caff;
+      margin-left: 6px;
+    }
+
+    .mig-mode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mig-mode-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    .mig-mode-item:hover {
+      border-color: #91caff;
+    }
+
+    .mig-mode-item.is-active {
+      border-color: #1677ff;
+      background: #f0f7ff;
+    }
+
+    .mig-mode-item input {
+      margin-top: 3px;
+    }
+
+    .mig-mode-item__title {
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      font-weight: 600;
+    }
+
+    .mig-mode-item__desc {
+      margin-top: 2px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .mig-parse {
+      max-width: 640px;
+      margin: 24px auto 0;
+      text-align: center;
+    }
+
+    .mig-parse__title {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-parse__sub {
+      margin: 0 0 20px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.6;
+    }
+
+    .mig-parse__spinner {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 20px;
+      border: 3px solid #e6f4ff;
+      border-top-color: #1677ff;
+      border-radius: 50%;
+      animation: mig-spin 0.8s linear infinite;
+    }
+
+    .mig-parse__spinner.is-done {
+      animation: none;
+      border-color: #52c41a;
+      border-top-color: #52c41a;
+      position: relative;
+    }
+
+    .mig-parse__spinner.is-done::after {
+      content: "✓";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #52c41a;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    @keyframes mig-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .mig-parse__list {
+      text-align: left;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .mig-parse__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 13px;
+    }
+
+    .mig-parse__item:last-child {
+      border-bottom: none;
+    }
+
+    .mig-parse__item-name {
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-parse__item-status {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-parse__item-status.is-scan {
+      color: #1677ff;
+    }
+
+    .mig-parse__item-status.is-need {
+      color: #389e0d;
+    }
+
+    .mig-parse__item-status.is-skip {
+      color: rgba(0, 0, 0, 0.25);
+    }
+
+    .mig-parse__result {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+      color: #389e0d;
+      font-size: 13px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .mig-res-name {
+      width: 100%;
+      height: 28px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      padding: 0 8px;
+      font: inherit;
+      font-size: 12px;
     }
 
     /* 迁入/迁出 · 详情 */
@@ -3608,6 +4284,84 @@
     .smr-radio input {
       margin: 0;
       accent-color: #1677ff;
+    }
+
+    .smr-scope-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .smr-scope-tab {
+      height: 32px;
+      padding: 0 14px;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .smr-scope-tab:hover {
+      border-color: #1677ff;
+      color: #1677ff;
+    }
+
+    .smr-scope-tab.is-selected {
+      border-color: #1677ff;
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .smr-scope-tab.is-active {
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
+    }
+
+    .smr-scope-tab:disabled {
+      cursor: default;
+      opacity: 0.85;
+    }
+
+    .smr-scope-panel-hint {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .smr-scope-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .smr-scope-empty {
+      color: rgba(0, 0, 0, 0.25);
+      font-size: 13px;
+    }
+
+    .smr-readonly-banner {
+      margin: 0 0 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #fffbe6;
+      border: 1px solid #ffe58f;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .smr-scope-controls.is-readonly {
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    .smr-scope-controls.is-readonly .smr-scope-tabs {
+      pointer-events: auto;
     }
 
     .smr-hint {
@@ -32847,6 +33601,8 @@
         warehouseMaps: {},
         businessMaps: {},
       };
+      let dataMigFromAssistant = "analysis";
+      let dataMigDraft = null;
       let detailRow = null;
       let detailKind = "export"; // export | import
       let detailCategory = "场景流程";
@@ -33263,15 +34019,18 @@
             return;
           }
           if (activeAssistant === "scene-flow" && !isExport) {
+            dataMigFromAssistant = "scene-flow";
             importCreateStep = 1;
-            importDraft = {
-              name: "",
-              desc: "",
-              fileName: "",
-              warehouseMaps: {},
-              businessMaps: {},
-            };
-            pageView = "scene-import-create";
+            dataMigDraft = createDataMigDraft();
+            pageView = "data-migration-import";
+            renderAll();
+            return;
+          }
+          if ((activeAssistant === "governance" || activeAssistant === "analysis") && !isExport) {
+            dataMigFromAssistant = activeAssistant;
+            importCreateStep = 1;
+            dataMigDraft = createDataMigDraft();
+            pageView = "data-migration-import";
             renderAll();
             return;
           }
@@ -34206,6 +34965,1489 @@
         root.appendChild(create);
       }
 
+      function createDataMigDraft() {
+        return {
+          name: "分析资产导入测试",
+          fileName: "",
+          importMode: "map",
+          hasReport: false,
+          packageContents: [],
+          neededMapKinds: [],
+          parseDone: false,
+          /** 含报告：目录 + 分析数据源 */
+          dsDirMaps: {
+            PMLEAD公共: "",
+            测试: "",
+            应用集成库_ads: "",
+          },
+          analysisMaps: {
+            经营分析数据源: { dir: "all", ds: "" },
+            项目看板分析源: { dir: "all", ds: "" },
+            合规问数分析源: { dir: "all", ds: "" },
+          },
+          datasetDirMaps: {
+            数据分析标准化: "",
+            演示分类: "",
+            测试: "",
+          },
+          reportDirMaps: {
+            数据分析标准化: "",
+            演示分类: "",
+            测试: "",
+          },
+          /** 不含报告：数据源/工程/分层 */
+          businessMaps: {
+            "pml-经营决策-实体数据源": "",
+            "liny施工合同业务数据源_mysql(实体级)": "",
+          },
+          warehouseMaps: {
+            pml_ds_ads: "",
+            pml_ds_dwd: "",
+            pml_ds_ods: "",
+            "测试产品专用-sr_test": "",
+          },
+          projectMaps: {
+            项目管理系统: "",
+            BIM项目: "",
+            合规验证工程: "",
+            经营决策工程: "",
+          },
+          layerMaps: {
+            ODS_层: "",
+            DWD_层: "",
+            ADS_层: "",
+          },
+          autoMatched: {},
+        };
+      }
+
+      const DATA_MIG_PACKAGE_CONTENT_TYPES = [
+        "物理模型",
+        "逻辑模型",
+        "语义模型",
+        "离线集成任务",
+        "实时集成任务",
+        "离线开发任务",
+        "实时开发任务",
+        "轻任务",
+        "智能开发",
+        "API市场",
+        "报告",
+      ];
+
+      const DATA_MIG_DS_DIR_TARGETS = ["PMLEAD公共", "测试", "应用集成库_ads", "默认数据源目录"];
+      /** 数据集 / 报告目录树：全部 → 一级 → 二级 */
+      const DATA_MIG_DATASET_DIR_TREE = {
+        数据分析空间: {
+          数据分析标准化: true,
+          演示分类: true,
+        },
+        公共数据集空间: {
+          测试: true,
+          默认数据集目录: true,
+        },
+      };
+      const DATA_MIG_REPORT_DIR_TREE = {
+        报告空间: {
+          数据分析标准化: true,
+          演示分类: true,
+        },
+        公共报告空间: {
+          测试: true,
+          默认报告目录: true,
+        },
+      };
+      /** 分析数据源目标目录树：一级 → 二级 → 数据源列表 */
+      const DATA_MIG_ANALYSIS_DS_TREE = {
+        分析数据源目录: {
+          默认分类: ["经营分析-MySQL", "项目看板-PG", "合规问数-Hive"],
+          演示分类: ["演示分析源-A", "演示分析源-B"],
+        },
+        公共分析空间: {
+          共享分类: ["公共分析源-01", "公共分析源-02"],
+          测试分类: ["测试分析源"],
+        },
+      };
+
+      function getTreeDirOptions(tree) {
+        const opts = [{ key: "all", level: 0, label: "全部", pathLabel: "全部" }];
+        Object.keys(tree || {}).forEach((l1) => {
+          opts.push({ key: "l1:" + l1, level: 1, label: l1, pathLabel: l1 });
+          Object.keys(tree[l1] || {}).forEach((l2) => {
+            opts.push({
+              key: "l2:" + l1 + "/" + l2,
+              level: 2,
+              label: l2,
+              pathLabel: l1 + " / " + l2,
+            });
+          });
+        });
+        return opts;
+      }
+
+      function getAnalysisDirOptions() {
+        return getTreeDirOptions(DATA_MIG_ANALYSIS_DS_TREE);
+      }
+
+      function getDirPathLabel(dirKey) {
+        if (!dirKey || dirKey === "all") return "全部";
+        if (dirKey.indexOf("l1:") === 0) return dirKey.slice(3);
+        if (dirKey.indexOf("l2:") === 0) return dirKey.slice(3).replace("/", " / ");
+        return dirKey;
+      }
+
+      function getAnalysisDirLabel(dirKey) {
+        return getDirPathLabel(dirKey);
+      }
+
+      /** 按所选目录层级汇总其下全部数据源 */
+      function getAnalysisDsListByDir(dirKey) {
+        const key = dirKey || "all";
+        const list = [];
+        const seen = {};
+        function pushAll(arr) {
+          (arr || []).forEach((name) => {
+            if (!seen[name]) {
+              seen[name] = true;
+              list.push(name);
+            }
+          });
+        }
+        if (key === "all") {
+          Object.keys(DATA_MIG_ANALYSIS_DS_TREE).forEach((l1) => {
+            const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+            Object.keys(l2Map).forEach((l2) => pushAll(l2Map[l2]));
+          });
+          return list;
+        }
+        if (key.indexOf("l1:") === 0) {
+          const l1 = key.slice(3);
+          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+          Object.keys(l2Map).forEach((l2) => pushAll(l2Map[l2]));
+          return list;
+        }
+        if (key.indexOf("l2:") === 0) {
+          const path = key.slice(3);
+          const slash = path.indexOf("/");
+          if (slash < 0) return list;
+          const l1 = path.slice(0, slash);
+          const l2 = path.slice(slash + 1);
+          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+          pushAll(l2Map[l2]);
+          return list;
+        }
+        return list;
+      }
+
+      /** 根据数据源反查最精确的二级目录 key */
+      function findAnalysisDirKeyByDs(dsName) {
+        if (!dsName) return "";
+        const l1Keys = Object.keys(DATA_MIG_ANALYSIS_DS_TREE);
+        for (let i = 0; i < l1Keys.length; i++) {
+          const l1 = l1Keys[i];
+          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+          const l2Keys = Object.keys(l2Map);
+          for (let j = 0; j < l2Keys.length; j++) {
+            const l2 = l2Keys[j];
+            if ((l2Map[l2] || []).indexOf(dsName) >= 0) {
+              return "l2:" + l1 + "/" + l2;
+            }
+          }
+        }
+        return "";
+      }
+      const DATA_MIG_BIZ_DS_TARGETS = [
+        "pml-经营决策-实体数据源",
+        "liny施工合同业务数据源_mysql(实体级)",
+        "目标业务-通用实体库",
+      ];
+      const DATA_MIG_WH_DS_TARGETS = [
+        "pml_ds_ads",
+        "pml_ds_dwd",
+        "pml_ds_ods",
+        "测试产品专用-sr_test",
+        "目标数仓-中转",
+      ];
+      const DATA_MIG_PROJECT_TARGETS = [
+        "基础平台组",
+        "施工数字化工程",
+        "经营决策工程",
+        "合规验证工程",
+        "默认工程",
+      ];
+      const DATA_MIG_LAYER_TARGETS = ["ODS_层", "DWD_层", "ADS_层", "默认分层"];
+
+      const DATA_MIG_MAP_KIND_DEFS_WITH_REPORT = [
+        { key: "ds", label: "数据源" },
+        { key: "project", label: "工程" },
+        { key: "layer", label: "分层" },
+        { key: "datasetDir", label: "数据集目录" },
+        { key: "reportDir", label: "报告目录" },
+      ];
+      const DATA_MIG_MAP_KIND_DEFS_NO_REPORT = [
+        { key: "ds", label: "数据源" },
+        { key: "project", label: "工程" },
+        { key: "layer", label: "分层" },
+      ];
+
+      /** 解析迁出包内容：是否含报告决定映射分支 */
+      function resolvePackageParseResult(fileName) {
+        const name = String(fileName || "");
+        const hasReport = /报告|report/i.test(name);
+        const baseContents = [
+          "物理模型",
+          "逻辑模型",
+          "语义模型",
+          "离线集成任务",
+          "离线开发任务",
+          "智能开发",
+          "API市场",
+        ];
+        const packageContents = hasReport ? baseContents.concat(["报告"]) : baseContents;
+        const neededMapKinds = hasReport
+          ? DATA_MIG_MAP_KIND_DEFS_WITH_REPORT.map((d) => d.key)
+          : DATA_MIG_MAP_KIND_DEFS_NO_REPORT.map((d) => d.key);
+        return { hasReport, packageContents, neededMapKinds };
+      }
+
+      function getActiveMapKindDefs(hasReport) {
+        return hasReport ? DATA_MIG_MAP_KIND_DEFS_WITH_REPORT : DATA_MIG_MAP_KIND_DEFS_NO_REPORT;
+      }
+
+      function needsMapKind(kind) {
+        return !!(
+          dataMigDraft &&
+          Array.isArray(dataMigDraft.neededMapKinds) &&
+          dataMigDraft.neededMapKinds.indexOf(kind) >= 0
+        );
+      }
+
+      /** 按迁入包内名称，自动匹配目标系统已有同名项；返回每项是否匹配成功 */
+      function autoMatchMapsByName(maps, targetList) {
+        const auto = {};
+        Object.keys(maps).forEach((src) => {
+          if (targetList.indexOf(src) >= 0) {
+            maps[src] = src;
+            auto[src] = true;
+          } else {
+            if (!maps[src]) maps[src] = "";
+            auto[src] = false;
+          }
+        });
+        return auto;
+      }
+
+      function applyAutoMatchForCommonMaps() {
+        if (!dataMigDraft) return;
+        dataMigDraft.autoMatched = {};
+        Object.assign(
+          dataMigDraft.autoMatched,
+          autoMatchMapsByName(dataMigDraft.businessMaps, DATA_MIG_BIZ_DS_TARGETS)
+        );
+        Object.assign(
+          dataMigDraft.autoMatched,
+          autoMatchMapsByName(dataMigDraft.warehouseMaps, DATA_MIG_WH_DS_TARGETS)
+        );
+        Object.assign(
+          dataMigDraft.autoMatched,
+          autoMatchMapsByName(dataMigDraft.projectMaps, DATA_MIG_PROJECT_TARGETS)
+        );
+        Object.assign(
+          dataMigDraft.autoMatched,
+          autoMatchMapsByName(dataMigDraft.layerMaps, DATA_MIG_LAYER_TARGETS)
+        );
+        if (dataMigDraft.hasReport && dataMigDraft.analysisMaps) {
+          Object.keys(dataMigDraft.analysisMaps).forEach((src) => {
+            dataMigDraft.autoMatched[src] = false;
+          });
+        }
+      }
+
+      function appendAutoMatchTag(host, src) {
+        const matched = !!(dataMigDraft && dataMigDraft.autoMatched && dataMigDraft.autoMatched[src]);
+        const tag = document.createElement("span");
+        tag.className = "mig-tag " + (matched ? "is-ok" : "is-miss");
+        tag.style.marginLeft = "8px";
+        tag.textContent = matched ? "已自动匹配" : "未自动匹配";
+        host.appendChild(tag);
+        return tag;
+      }
+
+      function refreshDataMigDupStatus() {
+        if (!dataMigDraft || !Array.isArray(dataMigDraft.resources)) return;
+        const keyCount = {};
+        dataMigDraft.resources.forEach((row) => {
+          const key = (row.dir || "") + "::" + (row.name || "").trim();
+          keyCount[key] = (keyCount[key] || 0) + 1;
+        });
+        dataMigDraft.resources.forEach((row) => {
+          const key = (row.dir || "") + "::" + (row.name || "").trim();
+          row.status = !row.name.trim() || keyCount[key] > 1 ? "dup" : "ok";
+        });
+      }
+
+      function renderDataMigrationImport() {
+        if (!dataMigDraft) dataMigDraft = createDataMigDraft();
+        const isAuto = dataMigDraft.importMode === "auto";
+        const isParsing = importCreateStep === "parsing";
+        root.innerHTML = "";
+        const create = document.createElement("div");
+        create.className = "mig-create";
+        create.setAttribute("aria-label", "数据迁移导入");
+
+        const hd = document.createElement("div");
+        hd.className = "mig-create__hd";
+        const hdLeft = document.createElement("div");
+        hdLeft.className = "mig-create__hd-left";
+        const backBtn = document.createElement("button");
+        backBtn.type = "button";
+        backBtn.className = "mig-create__back";
+        backBtn.textContent = "← 返回";
+        function goHome() {
+          pageView = "home";
+          listTab = "import";
+          activeAssistant = dataMigFromAssistant;
+          renderAll();
+        }
+        backBtn.addEventListener("click", goHome);
+        const title = document.createElement("h2");
+        title.className = "mig-create__title";
+        title.textContent = "新建导入任务";
+        hdLeft.appendChild(backBtn);
+        hdLeft.appendChild(title);
+        hd.appendChild(hdLeft);
+
+        const steps = document.createElement("div");
+        steps.className = "mig-steps";
+        function buildStep(index, label, state) {
+          const step = document.createElement("div");
+          step.className =
+            "mig-step" + (state === "active" ? " is-active" : "") + (state === "done" ? " is-done" : "");
+          const idx = document.createElement("span");
+          idx.className = "mig-step__index";
+          idx.textContent = String(index);
+          const text = document.createElement("span");
+          text.textContent = label;
+          step.appendChild(idx);
+          step.appendChild(text);
+          return step;
+        }
+        function stepState(n) {
+          if (isParsing) {
+            if (n === 1) return "done";
+            if (n === 2) return "active";
+            return "";
+          }
+          if (importCreateStep === n) return "active";
+          if (importCreateStep > n) return "done";
+          return "";
+        }
+        steps.appendChild(buildStep(1, "基本信息", stepState(1)));
+        const line1 = document.createElement("span");
+        line1.className = "mig-step__line";
+        line1.setAttribute("aria-hidden", "true");
+        steps.appendChild(line1);
+        steps.appendChild(buildStep(2, "对象映射", stepState(2)));
+        const line2 = document.createElement("span");
+        line2.className = "mig-step__line";
+        line2.setAttribute("aria-hidden", "true");
+        steps.appendChild(line2);
+        steps.appendChild(buildStep(3, "预览", stepState(3)));
+
+        const body = document.createElement("div");
+        body.className = "mig-create__body";
+        const ft = document.createElement("div");
+        ft.className = "mig-create__ft is-center";
+
+        function appendPairMapTable(titleText, maps, targets, options) {
+          options = options || {};
+          const showAuto = !!options.showAuto;
+          const host = options.host || body;
+          const asSub = !!options.asSub;
+          const block = document.createElement("div");
+          block.className = asSub ? "mig-map-group__sub" : "mig-map-block";
+          const h = document.createElement(asSub ? "h4" : "h3");
+          h.className = asSub ? "mig-map-group__sub-title" : "mig-map-block__title";
+          h.textContent = titleText;
+          const wrap = document.createElement("div");
+          wrap.className = "mig-map-table-wrap";
+          const table = document.createElement("table");
+          table.className = "mig-map-table";
+          table.innerHTML =
+            "<thead><tr><th style='width:42%'>源对象</th><th><span class='is-req'>*</span>目标对象</th></tr></thead>";
+          const tbody = document.createElement("tbody");
+          Object.keys(maps).forEach((src) => {
+            const tr = document.createElement("tr");
+            const tdSrc = document.createElement("td");
+            const srcText = document.createElement("span");
+            srcText.textContent = src;
+            tdSrc.appendChild(srcText);
+            if (showAuto) appendAutoMatchTag(tdSrc, src);
+            const tdTarget = document.createElement("td");
+            const field = document.createElement("div");
+            field.className = "mig-map-field";
+            const select = document.createElement("select");
+            select.className = "mig-map-select";
+            select.innerHTML =
+              "<option value=''>请选择</option>" +
+              targets
+                .map(
+                  (p) =>
+                    "<option value='" +
+                    p +
+                    "'" +
+                    (maps[src] === p ? " selected" : "") +
+                    ">" +
+                    p +
+                    "</option>"
+                )
+                .join("");
+            const pending = document.createElement("span");
+            pending.className = "mig-map-pending";
+            pending.textContent = "待映射";
+            function syncSelectUnmapped() {
+              const empty = !select.value;
+              select.classList.toggle("is-unmapped", empty);
+              pending.hidden = !empty;
+            }
+            select.addEventListener("change", () => {
+              maps[src] = select.value;
+              syncSelectUnmapped();
+            });
+            syncSelectUnmapped();
+            field.appendChild(select);
+            field.appendChild(pending);
+            tdTarget.appendChild(field);
+            tr.appendChild(tdSrc);
+            tr.appendChild(tdTarget);
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          wrap.appendChild(table);
+          block.appendChild(h);
+          block.appendChild(wrap);
+          host.appendChild(block);
+        }
+
+        function missPairMap(maps) {
+          return Object.keys(maps).find((k) => !maps[k]);
+        }
+
+        function missAnalysisMap(maps) {
+          return Object.keys(maps).find((k) => {
+            const row = maps[k] || {};
+            return !(row.dir && row.ds);
+          });
+        }
+
+        function ensureAnalysisMaps() {
+          if (!dataMigDraft.analysisMaps || typeof dataMigDraft.analysisMaps !== "object") {
+            dataMigDraft.analysisMaps = {
+              经营分析数据源: { dir: "all", ds: "" },
+              项目看板分析源: { dir: "all", ds: "" },
+              合规问数分析源: { dir: "all", ds: "" },
+            };
+          }
+          Object.keys(dataMigDraft.analysisMaps).forEach((src) => {
+            const row = dataMigDraft.analysisMaps[src];
+            if (!row || typeof row !== "object") {
+              dataMigDraft.analysisMaps[src] = { dir: "all", ds: "" };
+              return;
+            }
+            let dir = row.dir || "";
+            if (!dir && (row.l1 || row.l2)) {
+              if (row.l1 && row.l2) dir = "l2:" + row.l1 + "/" + row.l2;
+              else if (row.l1) dir = "l1:" + row.l1;
+              else dir = "all";
+            }
+            if (!dir) dir = "all";
+            dataMigDraft.analysisMaps[src] = { dir: dir, ds: row.ds || "" };
+          });
+        }
+
+        function closeAllMigPickers(except) {
+          document.querySelectorAll(".mig-map-picker.is-open").forEach((el) => {
+            if (except && el === except) return;
+            el.classList.remove("is-open");
+            const row = el.closest(".mig-ana-map__row");
+            if (row && !row.querySelector(".mig-map-picker.is-open")) {
+              row.classList.remove("is-open");
+            }
+          });
+        }
+
+        function createMigPicker(config) {
+          const root = document.createElement("div");
+          root.className = "mig-map-picker";
+          const markUnmapped = config.markUnmapped !== false;
+          const field = document.createElement("div");
+          field.className = "mig-map-field";
+          const trigger = document.createElement("button");
+          trigger.type = "button";
+          trigger.className = "mig-map-picker__trigger";
+          trigger.setAttribute("aria-label", config.ariaLabel || "请选择");
+          const panel = document.createElement("div");
+          panel.className = "mig-map-picker__panel";
+          let searchInput = null;
+          if (config.searchable) {
+            searchInput = document.createElement("input");
+            searchInput.type = "search";
+            searchInput.className = "mig-map-picker__search";
+            searchInput.placeholder = config.searchPlaceholder || "搜索";
+            panel.appendChild(searchInput);
+          }
+          const listEl = document.createElement("div");
+          listEl.className = "mig-map-picker__list";
+          panel.appendChild(listEl);
+          root.appendChild(trigger);
+          root.appendChild(panel);
+          field.appendChild(root);
+          const pending = document.createElement("span");
+          pending.className = "mig-map-pending";
+          pending.textContent = config.pendingText || "待映射";
+          if (markUnmapped) field.appendChild(pending);
+
+          let currentValue = config.value || "";
+          let currentItems = (config.items || []).slice();
+
+          function syncUnmappedMark() {
+            if (!markUnmapped) {
+              trigger.classList.remove("is-unmapped");
+              pending.hidden = true;
+              return;
+            }
+            const empty = !currentValue;
+            trigger.classList.toggle("is-unmapped", empty);
+            pending.hidden = !empty;
+          }
+
+          function setTriggerText(text, isPlaceholder) {
+            trigger.textContent = text;
+            trigger.classList.toggle("is-placeholder", !!isPlaceholder);
+            syncUnmappedMark();
+          }
+
+          function renderList(filterText) {
+            const q = String(filterText || "")
+              .trim()
+              .toLowerCase();
+            listEl.innerHTML = "";
+            const filtered = currentItems.filter((item) => {
+              if (!q) return true;
+              const hay = ((item.label || "") + " " + (item.pathLabel || "") + " " + (item.key || "")).toLowerCase();
+              return hay.indexOf(q) >= 0;
+            });
+            if (!filtered.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-map-picker__empty";
+              empty.textContent = "无匹配项";
+              listEl.appendChild(empty);
+              return;
+            }
+            filtered.forEach((item) => {
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.className =
+                "mig-map-picker__item" +
+                (item.level === 1 ? " is-l1" : item.level === 2 ? " is-l2" : "") +
+                (item.key === currentValue ? " is-active" : "");
+              btn.textContent = item.label;
+              btn.title = item.pathLabel || item.label;
+              btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentValue = item.key;
+                setTriggerText(config.formatValue ? config.formatValue(item) : item.label, false);
+                closePicker();
+                if (typeof config.onChange === "function") config.onChange(item.key, item);
+              });
+              listEl.appendChild(btn);
+            });
+          }
+
+          function openPicker() {
+            closeAllMigPickers(root);
+            root.classList.add("is-open");
+            const row = root.closest(".mig-ana-map__row");
+            if (row) row.classList.add("is-open");
+            if (searchInput) searchInput.value = "";
+            renderList("");
+            if (searchInput) window.setTimeout(() => searchInput.focus(), 0);
+          }
+
+          function closePicker() {
+            root.classList.remove("is-open");
+            const row = root.closest(".mig-ana-map__row");
+            if (row && !row.querySelector(".mig-map-picker.is-open")) {
+              row.classList.remove("is-open");
+            }
+          }
+
+          function syncFromValue() {
+            const hit = currentItems.find((item) => item.key === currentValue);
+            if (hit) setTriggerText(config.formatValue ? config.formatValue(hit) : hit.label, false);
+            else setTriggerText(config.placeholder || "请选择", true);
+          }
+
+          trigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (root.classList.contains("is-open")) closePicker();
+            else openPicker();
+          });
+          panel.addEventListener("click", (e) => e.stopPropagation());
+          if (searchInput) {
+            searchInput.addEventListener("input", () => renderList(searchInput.value));
+          }
+
+          syncFromValue();
+
+          return {
+            el: field,
+            pickerEl: root,
+            setItems(items, keepValue) {
+              currentItems = (items || []).slice();
+              if (!keepValue || !currentItems.some((item) => item.key === currentValue)) {
+                currentValue = "";
+              }
+              syncFromValue();
+              if (root.classList.contains("is-open")) renderList(searchInput ? searchInput.value : "");
+            },
+            setValue(val) {
+              currentValue = val || "";
+              syncFromValue();
+            },
+            getValue() {
+              return currentValue;
+            },
+            close: closePicker,
+          };
+        }
+
+        function appendAnalysisDsMapTable(titleText, maps, options) {
+          options = options || {};
+          const host = options.host || body;
+          ensureAnalysisMaps();
+          const block = document.createElement("div");
+          block.className = options.asSub ? "mig-map-group__sub" : "mig-map-block";
+          const h = document.createElement(options.asSub ? "h4" : "h3");
+          h.className = options.asSub ? "mig-map-group__sub-title" : "mig-map-block__title";
+          h.textContent = titleText;
+
+          const list = document.createElement("div");
+          list.className = "mig-ana-map";
+          const hd = document.createElement("div");
+          hd.className = "mig-ana-map__hd";
+          hd.innerHTML =
+            "<span>源对象</span><span><span class='is-req'>*</span>目标对象（目录 / 数据源）</span>";
+          list.appendChild(hd);
+
+          const dirOptions = getAnalysisDirOptions();
+          Object.keys(maps).forEach((src) => {
+            if (!maps[src] || typeof maps[src] !== "object") {
+              maps[src] = { dir: "all", ds: "" };
+            }
+            const rowState = maps[src];
+            if (!rowState.dir) rowState.dir = "all";
+
+            const row = document.createElement("div");
+            row.className = "mig-ana-map__row";
+            const srcCell = document.createElement("div");
+            srcCell.className = "mig-ana-map__src";
+            const srcText = document.createElement("span");
+            srcText.textContent = src;
+            srcCell.appendChild(srcText);
+            if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
+            if (typeof dataMigDraft.autoMatched[src] === "undefined") {
+              dataMigDraft.autoMatched[src] = false;
+            }
+            appendAutoMatchTag(srcCell, src);
+
+            const targetCell = document.createElement("div");
+            targetCell.className = "mig-ana-map__target";
+            const cascade = document.createElement("div");
+            cascade.className = "mig-map-cascade";
+
+            let dirPicker = null;
+            const dsPicker = createMigPicker({
+              ariaLabel: src + " 目标数据源",
+              placeholder: "请选择数据源",
+              searchable: true,
+              searchPlaceholder: "搜索数据源",
+              value: rowState.ds || "",
+              items: getAnalysisDsListByDir(rowState.dir).map((name) => ({
+                key: name,
+                label: name,
+                level: 0,
+              })),
+              onChange(val) {
+                rowState.ds = val;
+                const dirKey = findAnalysisDirKeyByDs(val);
+                if (dirKey && dirPicker) {
+                  rowState.dir = dirKey;
+                  dirPicker.setValue(dirKey);
+                  const scopedList = getAnalysisDsListByDir(dirKey);
+                  dsPicker.setItems(
+                    scopedList.map((name) => ({ key: name, label: name, level: 0 })),
+                    true
+                  );
+                  dsPicker.setValue(val);
+                }
+              },
+            });
+
+            dirPicker = createMigPicker({
+              ariaLabel: src + " 目标目录",
+              placeholder: "请选择目录",
+              searchable: false,
+              value: rowState.dir || "all",
+              items: dirOptions,
+              formatValue(item) {
+                return item.pathLabel || item.label;
+              },
+              onChange(val) {
+                rowState.dir = val || "all";
+                const dsList = getAnalysisDsListByDir(rowState.dir);
+                if (dsList.indexOf(rowState.ds) < 0) rowState.ds = "";
+                dsPicker.setItems(
+                  dsList.map((name) => ({ key: name, label: name, level: 0 })),
+                  true
+                );
+                if (!rowState.ds) dsPicker.setValue("");
+              },
+            });
+
+            cascade.appendChild(dirPicker.el);
+            cascade.appendChild(dsPicker.el);
+            targetCell.appendChild(cascade);
+            row.appendChild(srcCell);
+            row.appendChild(targetCell);
+            list.appendChild(row);
+          });
+
+          if (!window.__migPickerDocCloseBound) {
+            window.__migPickerDocCloseBound = true;
+            document.addEventListener("click", () => closeAllMigPickers());
+          }
+
+          block.appendChild(h);
+          block.appendChild(list);
+          host.appendChild(block);
+        }
+
+        /** 数据集目录 / 报告目录：三级目录下拉（可搜索），选择后反显路径 */
+        function ensurePathDirMaps(maps) {
+          if (!maps || typeof maps !== "object") return;
+          Object.keys(maps).forEach((src) => {
+            const val = maps[src];
+            if (val && typeof val === "object") {
+              maps[src] = val.dir || "";
+              return;
+            }
+            const str = String(val || "");
+            if (!str) {
+              maps[src] = "";
+              return;
+            }
+            if (str === "all" || str.indexOf("l1:") === 0 || str.indexOf("l2:") === 0) {
+              maps[src] = str;
+              return;
+            }
+            maps[src] = "";
+          });
+        }
+
+        function missPathDirMap(maps) {
+          return Object.keys(maps).find((k) => !maps[k]);
+        }
+
+        function appendDirPathMapTable(titleText, maps, tree, options) {
+          options = options || {};
+          const host = options.host || body;
+          ensurePathDirMaps(maps);
+          const block = document.createElement("div");
+          block.className = options.asSub ? "mig-map-group__sub" : "mig-map-block";
+          const h = document.createElement(options.asSub ? "h4" : "h3");
+          h.className = options.asSub ? "mig-map-group__sub-title" : "mig-map-block__title";
+          h.textContent = titleText;
+
+          const list = document.createElement("div");
+          list.className = "mig-ana-map";
+          const hd = document.createElement("div");
+          hd.className = "mig-ana-map__hd";
+          hd.innerHTML =
+            "<span>源对象</span><span><span class='is-req'>*</span>目标目录（全部 / 一级 / 二级）</span>";
+          list.appendChild(hd);
+
+          const dirOptions = getTreeDirOptions(tree);
+          Object.keys(maps).forEach((src) => {
+            const row = document.createElement("div");
+            row.className = "mig-ana-map__row";
+            const srcCell = document.createElement("div");
+            srcCell.className = "mig-ana-map__src";
+            const srcText = document.createElement("span");
+            srcText.textContent = src;
+            srcCell.appendChild(srcText);
+
+            const targetCell = document.createElement("div");
+            targetCell.className = "mig-ana-map__target";
+            const dirPicker = createMigPicker({
+              ariaLabel: src + " 目标目录",
+              placeholder: "请选择目录",
+              searchable: true,
+              searchPlaceholder: "搜索目录",
+              value: maps[src] || "",
+              items: dirOptions,
+              formatValue(item) {
+                return item.pathLabel || item.label;
+              },
+              onChange(val, item) {
+                maps[src] = val || "";
+                if (item) {
+                  dirPicker.setValue(val);
+                }
+              },
+            });
+            targetCell.appendChild(dirPicker.el);
+            row.appendChild(srcCell);
+            row.appendChild(targetCell);
+            list.appendChild(row);
+          });
+
+          if (!window.__migPickerDocCloseBound) {
+            window.__migPickerDocCloseBound = true;
+            document.addEventListener("click", () => closeAllMigPickers());
+          }
+
+          block.appendChild(h);
+          block.appendChild(list);
+          host.appendChild(block);
+        }
+
+        function applyParseResultToDraft(result) {
+          dataMigDraft.hasReport = !!result.hasReport;
+          dataMigDraft.packageContents = (result.packageContents || []).slice();
+          dataMigDraft.neededMapKinds = (result.neededMapKinds || []).slice();
+          dataMigDraft.parseDone = true;
+          if (dataMigDraft.hasReport) ensureAnalysisMaps();
+          applyAutoMatchForCommonMaps();
+        }
+
+        if (importCreateStep === 1) {
+          const DEMO_PACKAGES = [
+            {
+              fileName: "业务流程迁出包_含报告.zip",
+              badge: "含报告",
+              badgeClass: "is-report",
+              desc: "在不含报告映射基础上，额外映射：分析数据源、数据集目录、报告目录",
+            },
+            {
+              fileName: "业务流程迁出包_不含报告.zip",
+              badge: "不含报告",
+              badgeClass: "is-plain",
+              desc: "解析后映射：数据源（业务/数仓）、工程、分层（同名自动匹配）",
+            },
+          ];
+
+          const pkgSec = document.createElement("section");
+          pkgSec.className = "mig-create__section";
+          const pkgTitle = document.createElement("h3");
+          pkgTitle.className = "mig-create__section-title";
+          pkgTitle.textContent = "选择演示迁出包";
+          const pkgHint = document.createElement("p");
+          pkgHint.className = "mig-create__hint";
+          pkgHint.style.margin = "0 0 4px";
+          pkgHint.style.fontSize = "12px";
+          pkgHint.style.color = "rgba(0,0,0,0.45)";
+          pkgHint.style.lineHeight = "1.6";
+          pkgHint.textContent =
+            "原型演示用：点选下方任一示例包即可进入对应对象映射；也可自行上传 .zip（文件名含「报告」或 report 视为含报告）。";
+          const pkgGrid = document.createElement("div");
+          pkgGrid.className = "mig-demo-pkgs";
+          const pkgBtns = [];
+
+          const basic = document.createElement("section");
+          basic.className = "mig-create__section";
+          const basicTitle = document.createElement("h3");
+          basicTitle.className = "mig-create__section-title";
+          basicTitle.textContent = "基本信息";
+          const form = document.createElement("div");
+          form.className = "mig-create__form";
+          const nameLabel = document.createElement("label");
+          nameLabel.className = "mig-create__label is-required";
+          nameLabel.textContent = "名称";
+          const nameInput = document.createElement("input");
+          nameInput.className = "mig-create__input";
+          nameInput.value = dataMigDraft.name || "";
+          nameInput.maxLength = 64;
+          nameInput.placeholder = "请输入导入任务名称";
+          const fileLabel = document.createElement("label");
+          fileLabel.className = "mig-create__label is-required";
+          fileLabel.textContent = "上传文件";
+          const fileCell = document.createElement("div");
+          const upload = document.createElement("div");
+          upload.className = "mig-upload";
+          const fileInput = document.createElement("input");
+          fileInput.type = "file";
+          fileInput.accept = ".zip";
+          fileInput.hidden = true;
+          upload.innerHTML =
+            '<div class="mig-upload__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V5M12 5l-4 4M12 5l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><p class="mig-upload__text">将文件拖到此处，或点击上传</p><p class="mig-upload__hint">仅支持 .zip</p>';
+          upload.appendChild(fileInput);
+          const fileChip = document.createElement("div");
+          fileChip.className = "mig-upload__file";
+          fileChip.hidden = !dataMigDraft.fileName;
+          const fileNameEl = document.createElement("span");
+          fileNameEl.className = "mig-upload__file-name";
+          fileNameEl.textContent = dataMigDraft.fileName || "";
+          const fileRemove = document.createElement("button");
+          fileRemove.type = "button";
+          fileRemove.className = "mig-upload__file-remove";
+          fileRemove.textContent = "×";
+          fileChip.appendChild(fileNameEl);
+          fileChip.appendChild(fileRemove);
+          function syncDemoPkgSelected() {
+            pkgBtns.forEach((btn) => {
+              btn.classList.toggle("is-selected", btn.dataset.fileName === dataMigDraft.fileName);
+            });
+          }
+          function setFile(name) {
+            dataMigDraft.fileName = name || "";
+            dataMigDraft.parseDone = false;
+            dataMigDraft.neededMapKinds = [];
+            fileNameEl.textContent = dataMigDraft.fileName;
+            fileChip.hidden = !dataMigDraft.fileName;
+            syncDemoPkgSelected();
+          }
+          DEMO_PACKAGES.forEach((pkg) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "mig-demo-pkg";
+            btn.dataset.fileName = pkg.fileName;
+            const badge = document.createElement("span");
+            badge.className = "mig-demo-pkg__badge " + pkg.badgeClass;
+            badge.textContent = pkg.badge;
+            const nameEl = document.createElement("span");
+            nameEl.className = "mig-demo-pkg__name";
+            nameEl.textContent = pkg.fileName;
+            const desc = document.createElement("p");
+            desc.className = "mig-demo-pkg__desc";
+            desc.textContent = pkg.desc;
+            btn.appendChild(badge);
+            btn.appendChild(nameEl);
+            btn.appendChild(desc);
+            btn.addEventListener("click", () => {
+              fileInput.value = "";
+              setFile(pkg.fileName);
+              showToast("已选择：" + pkg.badge + "包", "success");
+            });
+            pkgBtns.push(btn);
+            pkgGrid.appendChild(btn);
+          });
+          syncDemoPkgSelected();
+          pkgSec.appendChild(pkgTitle);
+          pkgSec.appendChild(pkgHint);
+          pkgSec.appendChild(pkgGrid);
+          body.appendChild(pkgSec);
+
+          upload.addEventListener("click", () => fileInput.click());
+          upload.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            upload.classList.add("is-dragover");
+          });
+          upload.addEventListener("dragleave", () => upload.classList.remove("is-dragover"));
+          upload.addEventListener("drop", (e) => {
+            e.preventDefault();
+            upload.classList.remove("is-dragover");
+            const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+            if (file) setFile(file.name);
+          });
+          fileInput.addEventListener("change", () => {
+            const file = fileInput.files && fileInput.files[0];
+            if (file) setFile(file.name);
+          });
+          fileRemove.addEventListener("click", (e) => {
+            e.stopPropagation();
+            fileInput.value = "";
+            setFile("");
+          });
+          fileCell.appendChild(upload);
+          fileCell.appendChild(fileChip);
+
+          form.appendChild(nameLabel);
+          form.appendChild(nameInput);
+          form.appendChild(fileLabel);
+          form.appendChild(fileCell);
+          basic.appendChild(basicTitle);
+          basic.appendChild(form);
+          body.appendChild(basic);
+
+          const nextBtn = document.createElement("button");
+          nextBtn.type = "button";
+          nextBtn.className = "mig-btn mig-btn--primary";
+          nextBtn.textContent = "下一步";
+          nextBtn.addEventListener("click", () => {
+            dataMigDraft.name = (nameInput.value || "").trim();
+            if (!dataMigDraft.name) {
+              showToast("请填写名称", "warn");
+              nameInput.focus();
+              return;
+            }
+            if (!dataMigDraft.fileName) {
+              showToast("请选择演示包或上传文件", "warn");
+              return;
+            }
+            dataMigDraft.importMode = "map";
+            dataMigDraft.parseDone = false;
+            dataMigDraft.neededMapKinds = [];
+            importCreateStep = "parsing";
+            renderAll();
+          });
+          const cancelBtn = document.createElement("button");
+          cancelBtn.type = "button";
+          cancelBtn.className = "mig-btn mig-btn--ghost";
+          cancelBtn.textContent = "取消";
+          cancelBtn.addEventListener("click", goHome);
+          ft.appendChild(nextBtn);
+          ft.appendChild(cancelBtn);
+        } else if (isParsing) {
+          const parseResult = resolvePackageParseResult(dataMigDraft.fileName);
+          const presentSet = {};
+          (parseResult.packageContents || []).forEach((c) => {
+            presentSet[c] = true;
+          });
+          const parseSec = document.createElement("section");
+          parseSec.className = "mig-create__section";
+          const parseBox = document.createElement("div");
+          parseBox.className = "mig-parse";
+          parseBox.innerHTML =
+            '<div class="mig-parse__spinner" id="migParseSpinner"></div>' +
+            '<h3 class="mig-parse__title">正在解析迁移包</h3>' +
+            '<p class="mig-parse__sub">正在识别包内资源类型。若包含「报告」，将在数据源/工程/分层基础上额外映射分析数据源、数据集目录、报告目录；否则仅映射数据源（业务/数仓）、工程与分层，并按同名自动匹配。</p>' +
+            '<div class="mig-parse__list" id="migParseList"></div>' +
+            '<div class="mig-parse__result" id="migParseResult" hidden></div>';
+          parseSec.appendChild(parseBox);
+          body.appendChild(parseSec);
+
+          const listEl = parseBox.querySelector("#migParseList");
+          const spinnerEl = parseBox.querySelector("#migParseSpinner");
+          const resultEl = parseBox.querySelector("#migParseResult");
+          const itemEls = {};
+          DATA_MIG_PACKAGE_CONTENT_TYPES.forEach((label) => {
+            const row = document.createElement("div");
+            row.className = "mig-parse__item";
+            row.dataset.kind = label;
+            row.innerHTML =
+              '<span class="mig-parse__item-name">' +
+              label +
+              '</span><span class="mig-parse__item-status">等待解析</span>';
+            listEl.appendChild(row);
+            itemEls[label] = row.querySelector(".mig-parse__item-status");
+          });
+
+          const cancelBtn = document.createElement("button");
+          cancelBtn.type = "button";
+          cancelBtn.className = "mig-btn mig-btn--ghost";
+          cancelBtn.textContent = "取消";
+          cancelBtn.addEventListener("click", () => {
+            importCreateStep = 1;
+            renderAll();
+          });
+          ft.appendChild(cancelBtn);
+
+          let idx = 0;
+          const kinds = DATA_MIG_PACKAGE_CONTENT_TYPES.slice();
+          function markStatus(kind, text, cls) {
+            const el = itemEls[kind];
+            if (!el) return;
+            el.textContent = text;
+            el.className = "mig-parse__item-status" + (cls ? " " + cls : "");
+          }
+          function tick() {
+            if (idx > 0) {
+              const prev = kinds[idx - 1];
+              if (presentSet[prev]) markStatus(prev, "包内包含", "is-need");
+              else markStatus(prev, "本包未包含", "is-skip");
+            }
+            if (idx < kinds.length) {
+              markStatus(kinds[idx], "解析中…", "is-scan");
+              idx += 1;
+              window.setTimeout(tick, 280);
+              return;
+            }
+            applyParseResultToDraft(parseResult);
+            if (spinnerEl) spinnerEl.classList.add("is-done");
+            const titleEl = parseBox.querySelector(".mig-parse__title");
+            const subEl = parseBox.querySelector(".mig-parse__sub");
+            if (titleEl) titleEl.textContent = "解析完成";
+            if (subEl) {
+              subEl.textContent = parseResult.hasReport
+                ? "本包包含报告，即将进入完整对象映射（含分析数据源、数据集目录、报告目录）。"
+                : "本包不含报告，即将进入数据源/工程/分层映射（同名已自动匹配）。";
+            }
+            const mapDefs = getActiveMapKindDefs(parseResult.hasReport);
+            if (resultEl) {
+              resultEl.hidden = false;
+              resultEl.textContent =
+                (parseResult.hasReport ? "含报告 · 需映射：" : "不含报告 · 需映射：") +
+                mapDefs.map((d) => d.label).join("、");
+            }
+            window.setTimeout(() => {
+              if (importCreateStep !== "parsing") return;
+              importCreateStep = 2;
+              renderAll();
+            }, 900);
+          }
+          window.setTimeout(tick, 240);
+        } else if (importCreateStep === 2) {
+          if (!dataMigDraft.parseDone || !dataMigDraft.neededMapKinds.length) {
+            applyParseResultToDraft(resolvePackageParseResult(dataMigDraft.fileName));
+          }
+          const hasReport = !!dataMigDraft.hasReport;
+          const notice = document.createElement("div");
+          notice.className = "mig-map-notice";
+          notice.setAttribute("aria-expanded", "true");
+          const noticeHd = document.createElement("button");
+          noticeHd.type = "button";
+          noticeHd.className = "mig-map-notice__hd";
+          noticeHd.innerHTML =
+            '<span class="mig-map-notice__title"><span class="mig-map-notice__badge">重要提示</span>迁入更新规则说明</span>' +
+            '<span class="mig-map-notice__toggle" aria-hidden="true"></span>';
+          const noticeBody = document.createElement("div");
+          noticeBody.className = "mig-map-notice__body";
+          noticeBody.innerHTML =
+            "所有迁入的内容，全部会根据<strong>映射路径 + 历史迁入标签</strong>进行判断：" +
+            "如映射路径下历史已迁入，则会<strong>直接更新</strong>相关资源；无迁入记录，则<strong>创建</strong>。" +
+            "如需要保留不同时期迁入资源，请自行创建新映射路径！！！！";
+          noticeHd.addEventListener("click", () => {
+            const collapsed = notice.classList.toggle("is-collapsed");
+            notice.setAttribute("aria-expanded", collapsed ? "false" : "true");
+          });
+          notice.appendChild(noticeHd);
+          notice.appendChild(noticeBody);
+          body.appendChild(notice);
+
+          const mapSection = document.createElement("section");
+          mapSection.className = "mig-create__section";
+          const mapOpts = { host: mapSection };
+
+          if (needsMapKind("ds")) {
+            const dsGroup = document.createElement("div");
+            dsGroup.className = "mig-map-group";
+            const dsTitle = document.createElement("h3");
+            dsTitle.className = "mig-map-group__title";
+            dsTitle.textContent = "数据源映射";
+            dsGroup.appendChild(dsTitle);
+            appendPairMapTable("业务数据源", dataMigDraft.businessMaps, DATA_MIG_BIZ_DS_TARGETS, {
+              host: dsGroup,
+              asSub: true,
+              showAuto: true,
+            });
+            appendPairMapTable("数仓数据源", dataMigDraft.warehouseMaps, DATA_MIG_WH_DS_TARGETS, {
+              host: dsGroup,
+              asSub: true,
+              showAuto: true,
+            });
+            if (hasReport) {
+              ensureAnalysisMaps();
+              appendAnalysisDsMapTable("分析数据源", dataMigDraft.analysisMaps, {
+                host: dsGroup,
+                asSub: true,
+              });
+            }
+            mapSection.appendChild(dsGroup);
+          }
+          if (needsMapKind("project"))
+            appendPairMapTable("工程映射", dataMigDraft.projectMaps, DATA_MIG_PROJECT_TARGETS, {
+              host: mapSection,
+              showAuto: true,
+            });
+          if (needsMapKind("layer"))
+            appendPairMapTable("分层映射", dataMigDraft.layerMaps, DATA_MIG_LAYER_TARGETS, {
+              host: mapSection,
+              showAuto: true,
+            });
+          if (hasReport) {
+            if (needsMapKind("datasetDir")) {
+              ensurePathDirMaps(dataMigDraft.datasetDirMaps);
+              appendDirPathMapTable(
+                "数据集目录映射",
+                dataMigDraft.datasetDirMaps,
+                DATA_MIG_DATASET_DIR_TREE,
+                mapOpts
+              );
+            }
+            if (needsMapKind("reportDir")) {
+              ensurePathDirMaps(dataMigDraft.reportDirMaps);
+              appendDirPathMapTable(
+                "报告目录映射",
+                dataMigDraft.reportDirMaps,
+                DATA_MIG_REPORT_DIR_TREE,
+                mapOpts
+              );
+            }
+          }
+          body.appendChild(mapSection);
+
+          const nextBtn = document.createElement("button");
+          nextBtn.type = "button";
+          nextBtn.className = "mig-btn mig-btn--primary";
+          nextBtn.textContent = "下一步";
+          nextBtn.addEventListener("click", () => {
+            if (needsMapKind("ds")) {
+              const missBiz = missPairMap(dataMigDraft.businessMaps);
+              if (missBiz) {
+                showToast("请完成业务数据源映射：" + missBiz, "warn");
+                return;
+              }
+              const missWh = missPairMap(dataMigDraft.warehouseMaps);
+              if (missWh) {
+                showToast("请完成数仓数据源映射：" + missWh, "warn");
+                return;
+              }
+              if (hasReport) {
+                ensureAnalysisMaps();
+                const missAna = missAnalysisMap(dataMigDraft.analysisMaps);
+                if (missAna) {
+                  showToast("请完成分析数据源映射：" + missAna + "（需选择目录与数据源）", "warn");
+                  return;
+                }
+              }
+            }
+            if (needsMapKind("project")) {
+              const miss = missPairMap(dataMigDraft.projectMaps);
+              if (miss) {
+                showToast("请完成工程映射：" + miss, "warn");
+                return;
+              }
+            }
+            if (needsMapKind("layer")) {
+              const miss = missPairMap(dataMigDraft.layerMaps);
+              if (miss) {
+                showToast("请完成分层映射：" + miss, "warn");
+                return;
+              }
+            }
+            if (hasReport) {
+              if (needsMapKind("datasetDir")) {
+                ensurePathDirMaps(dataMigDraft.datasetDirMaps);
+                const miss = missPathDirMap(dataMigDraft.datasetDirMaps);
+                if (miss) {
+                  showToast("请完成数据集目录映射：" + miss, "warn");
+                  return;
+                }
+              }
+              if (needsMapKind("reportDir")) {
+                ensurePathDirMaps(dataMigDraft.reportDirMaps);
+                const miss = missPathDirMap(dataMigDraft.reportDirMaps);
+                if (miss) {
+                  showToast("请完成报告目录映射：" + miss, "warn");
+                  return;
+                }
+              }
+            }
+            importCreateStep = 3;
+            detailCategory = "场景流程";
+            renderAll();
+          });
+          const prevBtn = document.createElement("button");
+          prevBtn.type = "button";
+          prevBtn.className = "mig-btn mig-btn--ghost";
+          prevBtn.textContent = "上一步";
+          prevBtn.addEventListener("click", () => {
+            importCreateStep = 1;
+            renderAll();
+          });
+          ft.appendChild(nextBtn);
+          ft.appendChild(prevBtn);
+        } else {
+          const previewRow = {
+            name: dataMigDraft.name,
+            status: "pending",
+            time: formatNow(),
+            importMode: dataMigDraft.importMode,
+          };
+          const basicSection = document.createElement("section");
+          basicSection.className = "mig-create__section";
+          const basicTitle = document.createElement("h3");
+          basicTitle.className = "mig-create__section-title";
+          basicTitle.textContent = "基本信息";
+          const meta = document.createElement("div");
+          meta.className = "mig-detail-meta";
+          const nameLab = document.createElement("div");
+          nameLab.className = "mig-detail-meta__label";
+          nameLab.textContent = "名称";
+          const nameVal = document.createElement("div");
+          nameVal.className = "mig-detail-meta__value";
+          nameVal.textContent = previewRow.name || "—";
+          meta.appendChild(nameLab);
+          meta.appendChild(nameVal);
+          basicSection.appendChild(basicTitle);
+          basicSection.appendChild(meta);
+
+          const contentSection = document.createElement("section");
+          contentSection.className = "mig-create__section is-grow";
+          const contentTitle = document.createElement("h3");
+          contentTitle.className = "mig-create__section-title";
+          contentTitle.textContent = "导入内容";
+          const catGrid = document.createElement("div");
+          catGrid.className = "mig-cat-grid";
+          const listHost = document.createElement("div");
+          listHost.className = "mig-table-wrap";
+          listHost.style.marginTop = "14px";
+          listHost.style.border = "1px solid #f0f0f0";
+          listHost.style.borderRadius = "8px";
+
+          function shouldAppendMigrateTag(category) {
+            return isAuto && category !== "业务数据源" && category !== "数仓数据源";
+          }
+
+          function renderPreviewCategoryList() {
+            const categories = getMigDetailCategories(previewRow);
+            const cat = categories.find((c) => c.key === detailCategory) || categories[0];
+            const items = buildMigCategoryItems(cat.key, cat.count, previewRow.name, previewRow);
+            listHost.innerHTML = "";
+            const listHd = document.createElement("div");
+            listHd.className = "mig-detail-list-hd";
+            listHd.style.padding = "12px 14px 0";
+            const listTitle = document.createElement("h4");
+            listTitle.className = "mig-detail-list-hd__title";
+            listTitle.textContent = cat.key + "列表";
+            const listSub = document.createElement("span");
+            listSub.className = "mig-detail-list-hd__sub";
+            listSub.textContent = "共 " + items.length + " 条";
+            listHd.appendChild(listTitle);
+            listHd.appendChild(listSub);
+            listHost.appendChild(listHd);
+            if (!items.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-empty";
+              empty.textContent = "该类目暂无导入内容";
+              listHost.appendChild(empty);
+              return;
+            }
+            const table = document.createElement("table");
+            table.className = "mig-table";
+            table.innerHTML =
+              "<thead><tr>" +
+              "<th style='width:64px'>序号</th>" +
+              "<th>名称</th>" +
+              "<th style='width:120px'>类型</th>" +
+              "<th style='width:100px'>状态</th>" +
+              "<th style='width:180px'>更新时间</th>" +
+              "</tr></thead>";
+            const tbody = document.createElement("tbody");
+            items.forEach((item, i) => {
+              const tr = document.createElement("tr");
+              const tdIdx = document.createElement("td");
+              tdIdx.textContent = String(i + 1);
+              const tdName = document.createElement("td");
+              const nameText = document.createElement("span");
+              nameText.textContent = item.name;
+              tdName.appendChild(nameText);
+              if (shouldAppendMigrateTag(cat.key)) {
+                const tag = document.createElement("span");
+                tag.className = "mig-tag is-migrate";
+                tag.textContent = "迁移";
+                tdName.appendChild(tag);
+              }
+              const tdType = document.createElement("td");
+              tdType.textContent = item.type;
+              const tdStatus = document.createElement("td");
+              const st = document.createElement("span");
+              st.className = statusClass("success");
+              st.textContent = "成功";
+              tdStatus.appendChild(st);
+              const tdTime = document.createElement("td");
+              tdTime.textContent = item.updateTime;
+              tr.appendChild(tdIdx);
+              tr.appendChild(tdName);
+              tr.appendChild(tdType);
+              tr.appendChild(tdStatus);
+              tr.appendChild(tdTime);
+              tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            listHost.appendChild(table);
+          }
+
+          function renderPreviewCategoryCards() {
+            catGrid.innerHTML = "";
+            getMigDetailCategories(previewRow).forEach((cat) => {
+              const card = document.createElement("button");
+              card.type = "button";
+              card.className = "mig-cat-card" + (detailCategory === cat.key ? " is-active" : "");
+              const nameEl = document.createElement("div");
+              nameEl.className = "mig-cat-card__name";
+              nameEl.textContent = cat.key;
+              const stat = document.createElement("div");
+              stat.className = "mig-cat-card__stat";
+              const countEl = document.createElement("span");
+              countEl.className = "mig-cat-card__count" + (cat.count ? " is-ok" : " is-zero");
+              countEl.textContent = String(cat.count);
+              stat.appendChild(countEl);
+              card.appendChild(nameEl);
+              card.appendChild(stat);
+              card.addEventListener("click", () => {
+                detailCategory = cat.key;
+                renderPreviewCategoryCards();
+                renderPreviewCategoryList();
+              });
+              catGrid.appendChild(card);
+            });
+          }
+
+          contentSection.appendChild(contentTitle);
+          contentSection.appendChild(catGrid);
+          contentSection.appendChild(listHost);
+          body.appendChild(basicSection);
+          body.appendChild(contentSection);
+          renderPreviewCategoryCards();
+          renderPreviewCategoryList();
+
+          const execBtn = document.createElement("button");
+          execBtn.type = "button";
+          execBtn.className = "mig-btn mig-btn--primary";
+          execBtn.textContent = "执行";
+          execBtn.addEventListener("click", () => {
+            const rec = {
+              id: "dm-" + Date.now(),
+              name: dataMigDraft.name,
+              creator: "当前用户",
+              status: "pending",
+              time: formatNow(),
+              exportType: "全量",
+              importMode: dataMigDraft.importMode,
+            };
+            if (dataMigFromAssistant === "governance") govImportRows.unshift(rec);
+            else if (dataMigFromAssistant === "analysis") analysisImportRows.unshift(rec);
+            else sceneImportRows.unshift(rec);
+            goHome();
+            showToast(isAuto ? "已创建导入任务（自动创建，已忽略历史重名）" : "已创建导入任务", "success");
+          });
+          const prevBtn = document.createElement("button");
+          prevBtn.type = "button";
+          prevBtn.className = "mig-btn mig-btn--ghost";
+          prevBtn.textContent = "上一步";
+          prevBtn.addEventListener("click", () => {
+            importCreateStep = 2;
+            renderAll();
+          });
+          const cancelBtn = document.createElement("button");
+          cancelBtn.type = "button";
+          cancelBtn.className = "mig-btn mig-btn--ghost";
+          cancelBtn.textContent = "取消";
+          cancelBtn.addEventListener("click", goHome);
+          ft.appendChild(execBtn);
+          ft.appendChild(prevBtn);
+          ft.appendChild(cancelBtn);
+        }
+
+        create.appendChild(hd);
+        create.appendChild(steps);
+        create.appendChild(body);
+        create.appendChild(ft);
+        root.appendChild(create);
+      }
+
       function renderAll() {
         root.innerHTML = "";
         if (pageView === "scene-export-create") {
@@ -34214,6 +36456,10 @@
         }
         if (pageView === "scene-import-create") {
           renderSceneImportCreate();
+          return;
+        }
+        if (pageView === "data-migration-import") {
+          renderDataMigrationImport();
           return;
         }
         if (pageView === "scene-transfer-detail") {
@@ -34304,11 +36550,16 @@
         provider: "智谱",
         modelId: "glm-5.1",
         createdAt: "2026/4/24 11:21:37",
+        sharePrivate: true,
+        shareProject: false,
+        shareQa: false,
         scope: "USER",
         tenantId: "",
         tenantName: "",
         orgId: "",
         orgName: "",
+        scopeProjectIds: [],
+        scopeProjects: [],
         projectIds: ["proj-a"],
         projects: [{ id: "proj-a", name: "工程A" }],
         appIds: ["app-smart-dev"],
@@ -34323,11 +36574,19 @@
         modelId: "deepseek-v4-pro",
         baseUrl: "https://api.deepseek.com",
         createdAt: "2026/4/24 11:21:09",
+        sharePrivate: true,
+        shareProject: true,
+        shareQa: true,
         scope: "ORG",
         tenantId: "tenant-glodon",
         tenantName: "广联达科技",
         orgId: "org-huiguo",
         orgName: "慧果产品部",
+        scopeProjectIds: ["proj-a", "proj-b"],
+        scopeProjects: [
+          { id: "proj-a", name: "工程A" },
+          { id: "proj-b", name: "工程B" },
+        ],
         projectIds: ["proj-a", "proj-b", "proj-c"],
         projects: [
           { id: "proj-a", name: "工程A" },
@@ -34380,12 +36639,16 @@
         provider: "MiniMax",
         modelId: "MiniMax-M2.7",
         createdAt: "2026/4/24 11:20:31",
+        sharePrivate: false,
+        shareProject: false,
+        shareQa: true,
         scope: "TENANT",
         tenantId: "tenant-glodon",
         tenantName: "广联达科技",
-        tenantIds: [{ id: "tenant-glodon", name: "广联达科技" }],
         orgId: "",
         orgName: "",
+        scopeProjectIds: [],
+        scopeProjects: [],
         projectIds: ["proj-b", "proj-d"],
         projects: [
           { id: "proj-b", name: "工程B" },
@@ -34393,7 +36656,7 @@
         ],
         appIds: ["app-smart-qa"],
         apps: [{ id: "app-smart-qa", name: "智能问数" }],
-        ownerUserId: "u-current",
+        ownerUserId: "u-other",
       },
     ];
 
@@ -34714,29 +36977,17 @@
 
     /**
      * 租户/组织双栏选择（对齐「添加组织」样式）
-     * - 勾选租户复选框：选择整个租户（可多选多个租户）
+     * - 勾选租户复选框：选择整个租户
      * - 点击租户名称：右侧加载该租户组织树
-     * - 组织勾选：选中当前节点；点 + ：选中本级及下级（可跨多个租户多选）
-     * - 同一租户下：整租户与组织选择互斥
+     * - 组织勾选：选中当前节点；点 + ：选中本级及下级
      */
     function createSmrTenantOrgPicker(initialState) {
       const treeData = fetchSmrTenantOrgTree();
-      let selectedTenants = [];
-      if (initialState && Array.isArray(initialState.selectedTenants) && initialState.selectedTenants.length) {
-        selectedTenants = initialState.selectedTenants
-          .map((t) => ({ id: t.id, name: t.name || t.id }))
-          .filter((t) => t.id);
-      } else if (initialState && initialState.selectedTenantId) {
-        selectedTenants = [
-          {
-            id: initialState.selectedTenantId,
-            name: initialState.selectedTenantName || initialState.selectedTenantId,
-          },
-        ];
-      }
+      let selectedTenantId = (initialState && initialState.selectedTenantId) || "";
+      let selectedTenantName = (initialState && initialState.selectedTenantName) || "";
       let selectedOrgs = ((initialState && initialState.selectedOrgs) || []).slice();
       let activeTenantId =
-        (selectedTenants[0] && selectedTenants[0].id) ||
+        selectedTenantId ||
         (selectedOrgs[0] && selectedOrgs[0].tenantId) ||
         (treeData[0] && treeData[0].id) ||
         "";
@@ -34786,10 +37037,6 @@
         return treeData.find((t) => t.id === id) || null;
       }
 
-      function isWholeTenant(tenantId) {
-        return selectedTenants.some((t) => t.id === tenantId);
-      }
-
       function isOrgSelected(orgId) {
         return selectedOrgs.some((o) => o.id === orgId);
       }
@@ -34807,50 +37054,43 @@
       }
 
       function updateTip() {
-        const parts = [];
-        if (selectedTenants.length) {
-          parts.push(
-            "已选租户：" +
-              selectedTenants.map((t) => t.name).join("、") +
-              "（" +
-              selectedTenants.length +
-              " 个整租户）"
-          );
-        }
-        if (selectedOrgs.length) {
-          parts.push(
+        if (selectedTenantId) {
+          tip.textContent = "已选租户：" + selectedTenantName + "（整租户可用）";
+        } else if (selectedOrgs.length) {
+          tip.textContent =
             "已选组织：" +
-              selectedOrgs.map((o) => o.name).join("、") +
-              "（共 " +
-              selectedOrgs.length +
-              " 个）"
-          );
+            selectedOrgs.map((o) => o.name).join("、") +
+            "（共 " +
+            selectedOrgs.length +
+            " 个）";
+        } else {
+          tip.textContent = "勾选租户即共享整租户；或点击租户名称后在右侧选择组织（二者互斥）";
         }
-        tip.textContent = parts.length
-          ? parts.join("；")
-          : "可多选整租户，也可分别选择多个租户下的组织（同一租户下整租户与组织互斥）";
       }
 
       function selectWholeTenant(tenant) {
-        if (!isWholeTenant(tenant.id)) {
-          selectedTenants = selectedTenants.concat([{ id: tenant.id, name: tenant.name }]);
-        }
-        selectedOrgs = selectedOrgs.filter((o) => o.tenantId !== tenant.id);
+        selectedTenantId = tenant.id;
+        selectedTenantName = tenant.name;
+        selectedOrgs = [];
         activeTenantId = tenant.id;
         renderAll();
       }
 
-      function clearWholeTenant(tenantId) {
-        selectedTenants = selectedTenants.filter((t) => t.id !== tenantId);
+      function clearWholeTenant() {
+        selectedTenantId = "";
+        selectedTenantName = "";
         renderAll();
       }
 
       function addOrgNode(tenant, node, withChildren) {
-        selectedTenants = selectedTenants.filter((t) => t.id !== tenant.id);
+        selectedTenantId = "";
+        selectedTenantName = "";
         const targets = withChildren ? collectSmrOrgNodes([node], []) : [node];
         const idSet = new Set(targets.map((n) => n.id));
+        // 去掉将被覆盖或重复的旧选项
         selectedOrgs = selectedOrgs.filter((o) => !idSet.has(o.id));
         if (withChildren) {
+          // 去掉已被本节点覆盖的子孙旧选项（已在 idSet 中）以及祖先上仅勾选自身的冲突
           const allUnder = collectSmrOrgIds([node], new Set());
           selectedOrgs = selectedOrgs.filter((o) => !allUnder.has(o.id));
         }
@@ -34883,12 +37123,11 @@
 
         const wrap = document.createElement("div");
         const selected = isOrgSelected(node.id);
-        const tenantWholly = isWholeTenant(tenant.id);
-        const covered = tenantWholly || isCoveredByAncestor(tenant, node.id);
+        const covered = !!selectedTenantId || isCoveredByAncestor(tenant, node.id);
         const row = document.createElement("div");
         row.className =
           "sys-auth-org-row" +
-          (selected || tenantWholly ? " is-active" : "") +
+          (selected ? " is-active" : "") +
           (covered && !selected ? " is-disabled" : "");
         row.style.paddingLeft = 6 + depth * 14 + "px";
 
@@ -34910,25 +37149,25 @@
         const check = document.createElement("input");
         check.type = "checkbox";
         check.className = "sys-auth-org-row__check";
-        check.checked = selected || tenantWholly;
-        check.disabled = tenantWholly || (covered && !selected);
+        check.checked = selected || (!!selectedTenantId && activeTenantId === tenant.id);
+        check.disabled = !!selectedTenantId || (covered && !selected);
         check.addEventListener("click", (e) => e.stopPropagation());
         check.addEventListener("change", () => {
-          if (tenantWholly) return;
+          if (selectedTenantId) return;
           if (check.checked) addOrgNode(tenant, node, false);
           else removeOrgNode(node, false);
         });
 
         const icon = document.createElement("button");
         icon.type = "button";
-        icon.className = "sys-auth-org-row__icon" + (selected || tenantWholly ? " is-on" : "");
+        icon.className = "sys-auth-org-row__icon" + (selected ? " is-on" : "");
         icon.setAttribute("aria-label", "选择本下级");
         icon.title = "选择本下级";
         icon.textContent = "+";
-        icon.disabled = tenantWholly || (covered && !selected);
+        icon.disabled = !!selectedTenantId || (covered && !selected);
         icon.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (tenantWholly) return;
+          if (selectedTenantId) return;
           if (selected) removeOrgNode(node, true);
           else addOrgNode(tenant, node, true);
         });
@@ -34979,6 +37218,7 @@
           orgListEl.appendChild(empty);
           return;
         }
+        // 默认展开首层
         if (!expandedIds.size) {
           tree.forEach((n) => expandedIds.add(n.id));
         }
@@ -35000,17 +37240,17 @@
           item.innerHTML =
             '<input type="checkbox" tabindex="-1" /><span class="sys-auth-pick-item__label"></span>';
           const cb = item.querySelector('input[type="checkbox"]');
-          const wholly = isWholeTenant(tenant.id);
           const hasOrgsUnder = selectedOrgs.some((o) => o.tenantId === tenant.id);
-          cb.checked = wholly;
-          cb.indeterminate = !wholly && hasOrgsUnder;
+          cb.checked = selectedTenantId === tenant.id;
+          cb.indeterminate = !cb.checked && hasOrgsUnder;
           if (cb.indeterminate) cb.classList.add("is-indeterminate");
           item.querySelector(".sys-auth-pick-item__label").textContent = tenant.name;
           cb.addEventListener("click", (e) => e.stopPropagation());
           cb.addEventListener("change", () => {
             if (cb.checked) selectWholeTenant(tenant);
-            else if (wholly) clearWholeTenant(tenant.id);
+            else if (selectedTenantId === tenant.id) clearWholeTenant();
             else {
+              // 取消半选组织时：清空该租户下组织
               selectedOrgs = selectedOrgs.filter((o) => o.tenantId !== tenant.id);
               renderAll();
             }
@@ -35043,7 +37283,8 @@
       return {
         wrap: root,
         clear() {
-          selectedTenants = [];
+          selectedTenantId = "";
+          selectedTenantName = "";
           selectedOrgs = [];
           tenantQuery = "";
           orgQuery = "";
@@ -35055,15 +37296,14 @@
         },
         getState() {
           return {
-            selectedTenants: selectedTenants.slice(),
-            selectedTenantId: selectedTenants[0] ? selectedTenants[0].id : "",
-            selectedTenantName: selectedTenants[0] ? selectedTenants[0].name : "",
+            selectedTenantId,
+            selectedTenantName,
             selectedOrgs: selectedOrgs.slice(),
           };
         },
         validate() {
-          if (!selectedTenants.length && !selectedOrgs.length) {
-            showToast("请至少选择一个租户或组织", "info");
+          if (!selectedTenantId && !selectedOrgs.length) {
+            showToast("请选择一个租户或组织", "info");
             return false;
           }
           return true;
@@ -35143,132 +37383,48 @@
       wrap.classList.toggle("smr-form-row-hidden", !visible);
     }
 
-    function getSmrScopeTenantList(row) {
-      if (row && Array.isArray(row.tenantIds) && row.tenantIds.length) {
-        return row.tenantIds.map((t) => ({
-          id: t.id,
-          name: t.name || t.id,
-        }));
-      }
-      if (row && row.tenantId) {
-        return [{ id: row.tenantId, name: row.tenantName || row.tenantId }];
-      }
-      return [];
+    const SMR_CURRENT_USER_ID = "u-current";
+
+    function isSmrRowOwner(row) {
+      return !row || !row.ownerUserId || row.ownerUserId === SMR_CURRENT_USER_ID;
     }
 
-    function getSmrScopeItems(row) {
-      if (row.scope === "TENANT" || row.scope === "MIXED") {
-        const tenants = getSmrScopeTenantList(row).map((t) => ({
-          label: t.name || t.id || "—",
-          sub: t.id || "",
-          kind: "tenant",
-        }));
-        if (row.scope === "TENANT") return tenants;
-        const orgs =
-          Array.isArray(row.orgIds) && row.orgIds.length
-            ? row.orgIds
-            : row.orgId
-              ? [{ id: row.orgId, name: row.orgName || row.orgId, tenantName: row.tenantName }]
-              : [];
-        return tenants.concat(
-          orgs.map((o) => ({
-            label: o.name || o.id,
-            sub: o.tenantName || o.tenantId || "",
-            kind: "org",
-          }))
-        );
+    function normalizeSmrShareFlags(row) {
+      if (!row) {
+        return { sharePrivate: true, shareProject: false, shareQa: false };
       }
-      if (row.scope === "ORG") {
-        const orgs =
-          Array.isArray(row.orgIds) && row.orgIds.length
-            ? row.orgIds
-            : row.orgId
-              ? [{ id: row.orgId, name: row.orgName || row.orgId, tenantName: row.tenantName }]
-              : [];
-        return orgs.map((o) => ({
-          label: o.name || o.id,
-          sub: o.tenantName || o.tenantId || "",
-          kind: "org",
-        }));
-      }
-      if (row.scope === "PROJECT") {
-        const list =
-          (row.scopeProjects && row.scopeProjects.length
-            ? row.scopeProjects
-            : resolveSmrPresetItems(SMR_PROJECT_PRESETS, row.scopeProjectIds || [])) || [];
-        return list.map((p) => ({
-          label: p.name || p.id,
-          sub: "",
-          kind: "project",
-        }));
-      }
-      return [];
-    }
-
-    function formatSmrScopeOverflow(kind, cls, prefix, items) {
-      const count = items.length;
-      if (!count) {
-        return { kind, cls, summary: prefix, count: 0, items: [], overflow: false };
-      }
-      if (count === 1) {
+      if (
+        row.sharePrivate != null ||
+        row.shareProject != null ||
+        row.shareQa != null
+      ) {
         return {
-          kind,
-          cls,
-          summary: prefix + " · " + items[0].label,
-          count: 1,
-          items,
-          overflow: false,
+          sharePrivate: !!row.sharePrivate,
+          shareProject: !!row.shareProject,
+          shareQa: !!row.shareQa,
         };
       }
-      return {
-        kind,
-        cls,
-        summary: prefix + " · " + items[0].label,
-        count,
-        items,
-        overflow: true,
-        moreText: "+" + (count - 1),
-      };
+      const flags = { sharePrivate: false, shareProject: false, shareQa: false };
+      if (row.scope === "USER") flags.sharePrivate = true;
+      else if (row.scope === "PROJECT") flags.shareProject = true;
+      else if (row.scope === "TENANT" || row.scope === "ORG") flags.shareQa = true;
+      else flags.sharePrivate = true;
+      return flags;
     }
 
-    function formatSmrScope(row) {
-      if (row.scope === "TENANT") {
-        return formatSmrScopeOverflow("tenant", "is-tenant", "租户", getSmrScopeItems(row));
+    function getSmrScopeCategories(row) {
+      const flags = normalizeSmrShareFlags(row);
+      const cats = [];
+      if (flags.sharePrivate) {
+        cats.push({ key: "private", label: "仅自己", cls: "" });
       }
-      if (row.scope === "ORG") {
-        return formatSmrScopeOverflow("org", "is-org", "组织", getSmrScopeItems(row));
+      if (flags.shareProject) {
+        cats.push({ key: "project", label: "按工程", cls: "is-project" });
       }
-      if (row.scope === "MIXED") {
-        const items = getSmrScopeItems(row);
-        const tenantCount = getSmrScopeTenantList(row).length;
-        const orgCount = Array.isArray(row.orgIds) ? row.orgIds.length : row.orgId ? 1 : 0;
-        const summary =
-          "租户 " +
-          tenantCount +
-          " · 组织 " +
-          orgCount +
-          (items[0] ? " · " + items[0].label : "");
-        return {
-          kind: "mixed",
-          cls: "is-tenant",
-          summary,
-          count: items.length,
-          items,
-          overflow: items.length > 1,
-          moreText: items.length > 1 ? "+" + (items.length - 1) : "",
-        };
+      if (flags.shareQa) {
+        cats.push({ key: "qa", label: "按租户组织", cls: "is-tenant" });
       }
-      if (row.scope === "PROJECT") {
-        return formatSmrScopeOverflow("project", "is-project", "工程", getSmrScopeItems(row));
-      }
-      return {
-        kind: "user",
-        cls: "",
-        summary: "仅自己",
-        count: 0,
-        items: [],
-        overflow: false,
-      };
+      return cats;
     }
 
     function closeAllSmrScopePops() {
@@ -35283,14 +37439,18 @@
       const el = document.getElementById("smrScopeEditor");
       if (el) el.remove();
       document.removeEventListener("click", smrScopeEditorDocCloser, true);
+      const modal = document.getElementById("smrScopeEditBackdrop");
+      if (modal) modal.remove();
     }
 
     let smrScopeEditorDocCloser = null;
 
     function rowToSmrShareState(row) {
+      const flags = normalizeSmrShareFlags(row);
       const empty = {
-        shareMode: "private",
-        selectedTenants: [],
+        sharePrivate: true,
+        shareProject: false,
+        shareQa: false,
         selectedTenantId: "",
         selectedTenantName: "",
         selectedOrgs: [],
@@ -35303,416 +37463,434 @@
           ? row.scopeProjectIds.slice()
           : (row.scopeProjects || []).map((p) => p.id).filter(Boolean);
 
-      if (row.scope === "PROJECT" || (!row.scope && projectIds.length) || (row.scope === "USER" && projectIds.length)) {
-        return {
-          shareMode: "project",
-          selectedTenants: [],
-          selectedTenantId: "",
-          selectedTenantName: "",
-          selectedOrgs: [],
-          scopeProjectIds: projectIds,
-        };
+      let selectedTenantId = "";
+      let selectedTenantName = "";
+      let selectedOrgs = [];
+      if (flags.shareQa || row.scope === "TENANT" || row.scope === "ORG") {
+        if (row.scope === "TENANT" || (row.tenantId && !(row.orgIds && row.orgIds.length) && !row.orgId)) {
+          selectedTenantId = row.tenantId || "";
+          selectedTenantName = row.tenantName || "";
+        }
+        if (row.scope === "ORG" || (row.orgIds && row.orgIds.length) || row.orgId) {
+          selectedOrgs =
+            Array.isArray(row.orgIds) && row.orgIds.length
+              ? row.orgIds.map((o) => ({
+                  id: o.id,
+                  name: o.name || o.id,
+                  tenantId: o.tenantId || row.tenantId || "",
+                  tenantName: o.tenantName || row.tenantName || "",
+                }))
+              : row.orgId
+                ? [
+                    {
+                      id: row.orgId,
+                      name: row.orgName || row.orgId,
+                      tenantId: row.tenantId || "",
+                      tenantName: row.tenantName || "",
+                    },
+                  ]
+                : [];
+          if (selectedOrgs.length) {
+            selectedTenantId = "";
+            selectedTenantName = "";
+          }
+        }
       }
 
-      const selectedTenants =
-        row.scope === "TENANT" || row.scope === "MIXED" ? getSmrScopeTenantList(row) : [];
-      const selectedOrgs =
-        row.scope === "ORG" || row.scope === "MIXED"
-          ? Array.isArray(row.orgIds) && row.orgIds.length
-            ? row.orgIds.map((o) => ({
-                id: o.id,
-                name: o.name || o.id,
-                tenantId: o.tenantId || row.tenantId || "",
-                tenantName: o.tenantName || row.tenantName || "",
-              }))
-            : row.orgId
-              ? [
-                  {
-                    id: row.orgId,
-                    name: row.orgName || row.orgId,
-                    tenantId: row.tenantId || "",
-                    tenantName: row.tenantName || "",
-                  },
-                ]
-              : []
-          : [];
-
-      if (row.scope === "TENANT" || row.scope === "ORG" || row.scope === "MIXED") {
-        return {
-          shareMode: "tenant",
-          selectedTenants,
-          selectedTenantId: selectedTenants[0] ? selectedTenants[0].id : "",
-          selectedTenantName: selectedTenants[0] ? selectedTenants[0].name : "",
-          selectedOrgs,
-          scopeProjectIds: [],
-        };
-      }
-      return empty;
+      return {
+        sharePrivate: flags.sharePrivate,
+        shareProject: flags.shareProject,
+        shareQa: flags.shareQa,
+        selectedTenantId,
+        selectedTenantName,
+        selectedOrgs,
+        scopeProjectIds: (flags.shareProject || row.scope === "PROJECT") ? projectIds : [],
+      };
     }
 
-    function buildSmrScopePayload(shareMode, options) {
-      const opts = options || {};
-      const selectedTenants = Array.isArray(opts.selectedTenants) ? opts.selectedTenants.slice() : [];
-      const selectedOrgs = Array.isArray(opts.selectedOrgs) ? opts.selectedOrgs.slice() : [];
-      const scopeProjectIds = Array.isArray(opts.scopeProjectIds) ? opts.scopeProjectIds.slice() : [];
-      const scopeProjects = Array.isArray(opts.scopeProjects) ? opts.scopeProjects.slice() : [];
+    function deriveLegacySmrScope(payload) {
+      if (payload.shareQa && payload.selectedTenantId) return "TENANT";
+      if (payload.shareQa && payload.selectedOrgs && payload.selectedOrgs.length) return "ORG";
+      if (payload.shareProject) return "PROJECT";
+      if (payload.sharePrivate) return "USER";
+      return "USER";
+    }
 
-      if (shareMode === "private") {
-        return {
-          scope: "USER",
-          tenantId: "",
-          tenantName: "",
-          tenantIds: [],
-          orgId: "",
-          orgName: "",
-          orgIds: [],
-          scopeProjectIds: [],
-          scopeProjects: [],
-        };
-      }
-      if (shareMode === "project") {
-        if (!scopeProjectIds.length) return null;
-        return {
-          scope: "PROJECT",
-          tenantId: "",
-          tenantName: "",
-          tenantIds: [],
-          orgId: "",
-          orgName: "",
-          orgIds: [],
-          scopeProjectIds,
-          scopeProjects,
-        };
-      }
-      if (shareMode === "tenant" || shareMode === "share") {
-        if (!selectedTenants.length && !selectedOrgs.length) return null;
-        if (selectedTenants.length && !selectedOrgs.length) {
-          return {
-            scope: "TENANT",
-            tenantId: selectedTenants[0].id,
-            tenantName: selectedTenants[0].name || selectedTenants[0].id,
-            tenantIds: selectedTenants,
-            orgId: "",
-            orgName: "",
-            orgIds: [],
-            scopeProjectIds: [],
-            scopeProjects: [],
-          };
+    function buildSmrScopePayload(state) {
+      if (!state) return null;
+      const sharePrivate = !!state.sharePrivate;
+      const shareProject = !!state.shareProject;
+      const shareQa = !!state.shareQa;
+      if (!sharePrivate && !shareProject && !shareQa) return null;
+
+      const scopeProjectIds = shareProject ? (state.scopeProjectIds || []).slice() : [];
+      const scopeProjects = shareProject ? (state.scopeProjects || []).slice() : [];
+      let tenantId = "";
+      let tenantName = "";
+      let orgId = "";
+      let orgName = "";
+      let orgIds = [];
+      let selectedTenantId = "";
+      let selectedOrgs = [];
+
+      if (shareQa) {
+        selectedTenantId = state.selectedTenantId || "";
+        selectedOrgs = (state.selectedOrgs || []).slice();
+        if (selectedTenantId) {
+          tenantId = selectedTenantId;
+          tenantName = state.selectedTenantName || selectedTenantId;
+        } else if (selectedOrgs.length) {
+          orgIds = selectedOrgs.slice();
+          tenantId = selectedOrgs[0].tenantId || "";
+          tenantName = selectedOrgs[0].tenantName || "";
+          orgId = selectedOrgs[0].id;
+          orgName = selectedOrgs[0].name;
         }
-        if (!selectedTenants.length && selectedOrgs.length) {
-          return {
-            scope: "ORG",
-            tenantId: selectedOrgs[0].tenantId || "",
-            tenantName: selectedOrgs[0].tenantName || "",
-            tenantIds: [],
-            orgId: selectedOrgs[0].id,
-            orgName: selectedOrgs[0].name,
-            orgIds: selectedOrgs,
-            scopeProjectIds: [],
-            scopeProjects: [],
-          };
-        }
-        return {
-          scope: "MIXED",
-          tenantId: selectedTenants[0].id,
-          tenantName: selectedTenants[0].name || selectedTenants[0].id,
-          tenantIds: selectedTenants,
-          orgId: selectedOrgs[0].id,
-          orgName: selectedOrgs[0].name,
-          orgIds: selectedOrgs,
-          scopeProjectIds: [],
-          scopeProjects: [],
-        };
       }
-      return null;
+
+      const payload = {
+        sharePrivate,
+        shareProject,
+        shareQa,
+        tenantId,
+        tenantName,
+        orgId,
+        orgName,
+        orgIds,
+        scopeProjectIds,
+        scopeProjects,
+        selectedTenantId,
+        selectedTenantName: state.selectedTenantName || "",
+        selectedOrgs,
+      };
+      payload.scope = deriveLegacySmrScope(payload);
+      return payload;
     }
 
     function applySmrScopePayload(row, payload) {
-      row.scope = payload.scope;
-      row.tenantId = payload.tenantId || "";
-      row.tenantName = payload.tenantName || "";
-      row.tenantIds = Array.isArray(payload.tenantIds) ? payload.tenantIds.slice() : [];
-      row.orgId = payload.orgId || "";
-      row.orgName = payload.orgName || "";
-      row.orgIds = Array.isArray(payload.orgIds) ? payload.orgIds.slice() : [];
-      row.scopeProjectIds = Array.isArray(payload.scopeProjectIds) ? payload.scopeProjectIds.slice() : [];
-      row.scopeProjects = Array.isArray(payload.scopeProjects) ? payload.scopeProjects.slice() : [];
+      row.sharePrivate = !!payload.sharePrivate;
+      row.shareProject = !!payload.shareProject;
+      row.shareQa = !!payload.shareQa;
+      row.scope = payload.scope || deriveLegacySmrScope(payload);
+      row.tenantId = payload.shareQa ? payload.tenantId || "" : "";
+      row.tenantName = payload.shareQa ? payload.tenantName || "" : "";
+      row.orgId = payload.shareQa ? payload.orgId || "" : "";
+      row.orgName = payload.shareQa ? payload.orgName || "" : "";
+      row.orgIds = payload.shareQa && Array.isArray(payload.orgIds) ? payload.orgIds.slice() : [];
+      row.scopeProjectIds =
+        payload.shareProject && Array.isArray(payload.scopeProjectIds)
+          ? payload.scopeProjectIds.slice()
+          : [];
+      row.scopeProjects =
+        payload.shareProject && Array.isArray(payload.scopeProjects)
+          ? payload.scopeProjects.slice()
+          : [];
     }
 
-    /** 构建可见范围选择器（仅自己 / 工程 / 租户组织），与新建弹窗一致 */
-    function mountSmrShareScopeControls(host, initialState, radioName) {
-      let shareMode = initialState.shareMode || "private";
-      if (shareMode === "share") shareMode = "tenant";
+    function setSmrTreeReadOnly(root, readOnly) {
+      if (!root) return;
+      root.querySelectorAll("input, button, select, textarea").forEach((el) => {
+        el.disabled = !!readOnly;
+      });
+      if (readOnly) root.setAttribute("aria-readonly", "true");
+      else root.removeAttribute("aria-readonly");
+    }
+
+    /** 构建可见范围选择器：多选 Tab（仅自己 / 工程 / 问数），切换不清空 */
+    function mountSmrShareScopeControls(host, initialState, options) {
+      const opts = options || {};
+      const readOnly = !!opts.readOnly;
+      const onWideChange = typeof opts.onWideChange === "function" ? opts.onWideChange : null;
+
+      let sharePrivate = initialState.sharePrivate !== false && (initialState.sharePrivate || (!initialState.shareProject && !initialState.shareQa));
+      if (initialState.sharePrivate != null) sharePrivate = !!initialState.sharePrivate;
+      let shareProject = !!initialState.shareProject;
+      let shareQa = !!initialState.shareQa;
+      if (!sharePrivate && !shareProject && !shareQa) sharePrivate = true;
+
+      let activePanel = sharePrivate ? "private" : shareProject ? "project" : "qa";
+
       const projectSelect = createSmrProjectTreeSelect(initialState.scopeProjectIds || []);
       const tenantPicker = createSmrTenantOrgPicker({
-        selectedTenants: (initialState.selectedTenants || []).slice(),
         selectedTenantId: initialState.selectedTenantId || "",
         selectedTenantName: initialState.selectedTenantName || "",
         selectedOrgs: (initialState.selectedOrgs || []).slice(),
       });
 
-      const radios = document.createElement("div");
-      radios.className = "smr-radios";
-      [
-        { value: "private", label: "仅自己" },
-        { value: "project", label: "工程" },
-        { value: "tenant", label: "租户/组织（仅支持智能问数）" },
-      ].forEach((opt) => {
-        const lab = document.createElement("label");
-        lab.className = "smr-radio";
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = radioName || "smrShareModeInline";
-        input.value = opt.value;
-        input.checked = shareMode === opt.value;
-        input.addEventListener("change", () => {
-          if (!input.checked) return;
-          shareMode = opt.value;
-          projectSelect.clear();
-          tenantPicker.clear();
-          renderScopePanels();
+      const root = document.createElement("div");
+      root.className = "smr-scope-controls" + (readOnly ? " is-readonly" : "");
+
+      const hint = document.createElement("p");
+      hint.className = "smr-scope-panel-hint";
+      hint.textContent = readOnly
+        ? "只读查看：可切换 Tab 查看已配置内容，不可修改。"
+        : "可同时勾选多个类别；切换 Tab 不会清空其它类别已选项。保存时须完成已选类别的必填项。";
+
+      const tabs = document.createElement("div");
+      tabs.className = "smr-scope-tabs";
+      tabs.setAttribute("role", "tablist");
+
+      const tabButtons = {};
+      const tabDefs = [
+        { key: "private", label: "仅自己" },
+        { key: "project", label: "工程" },
+        { key: "qa", label: "问数（租户/组织）" },
+      ];
+
+      function isSelected(key) {
+        if (key === "private") return sharePrivate;
+        if (key === "project") return shareProject;
+        return shareQa;
+      }
+
+      function setSelected(key, on) {
+        if (key === "private") sharePrivate = on;
+        else if (key === "project") shareProject = on;
+        else shareQa = on;
+      }
+
+      function syncTabUi() {
+        tabDefs.forEach((def) => {
+          const btn = tabButtons[def.key];
+          btn.classList.toggle("is-selected", isSelected(def.key));
+          btn.classList.toggle("is-active", activePanel === def.key);
+          btn.setAttribute("aria-selected", activePanel === def.key ? "true" : "false");
+          btn.setAttribute("aria-pressed", isSelected(def.key) ? "true" : "false");
         });
-        const span = document.createElement("span");
-        span.textContent = opt.label;
-        lab.appendChild(input);
-        lab.appendChild(span);
-        radios.appendChild(lab);
+      }
+
+      function renderPanels() {
+        privateWrap.style.display = activePanel === "private" ? "" : "none";
+        projectWrap.style.display = activePanel === "project" ? "" : "none";
+        treeWrap.style.display = activePanel === "qa" ? "" : "none";
+        if (onWideChange) onWideChange(activePanel === "qa");
+        syncTabUi();
+      }
+
+      tabDefs.forEach((def) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "smr-scope-tab";
+        btn.textContent = def.label;
+        btn.setAttribute("role", "tab");
+        btn.addEventListener("click", () => {
+          if (readOnly) {
+            activePanel = def.key;
+            renderPanels();
+            return;
+          }
+          // 切换查看面板；再次点击已选中且当前面板时取消勾选
+          if (activePanel === def.key && isSelected(def.key)) {
+            setSelected(def.key, false);
+            if (!sharePrivate && !shareProject && !shareQa) {
+              // 不允许全部取消，恢复
+              setSelected(def.key, true);
+              showToast("请至少保留一个可见范围类别", "info");
+            } else {
+              activePanel = sharePrivate ? "private" : shareProject ? "project" : "qa";
+            }
+          } else {
+            setSelected(def.key, true);
+            activePanel = def.key;
+          }
+          renderPanels();
+        });
+        tabButtons[def.key] = btn;
+        tabs.appendChild(btn);
       });
+
+      const privateWrap = document.createElement("div");
+      privateWrap.className = "smr-scope-private-wrap";
+      const privateTip = document.createElement("p");
+      privateTip.className = "smr-hint";
+      privateTip.textContent = "仅创建者本人可使用该模型配置。";
+      privateWrap.appendChild(privateTip);
 
       const projectWrap = document.createElement("div");
       projectWrap.className = "smr-scope-project-wrap";
       const projectHint = document.createElement("p");
       projectHint.className = "smr-hint";
-      projectHint.textContent = "可多选工程；切换可见范围时将清空已选内容。";
+      projectHint.textContent = "可多选工程；切换 Tab 不会清空已选工程。";
       projectWrap.appendChild(projectSelect.wrap);
       projectWrap.appendChild(projectHint);
 
       const treeWrap = document.createElement("div");
       treeWrap.appendChild(tenantPicker.wrap);
 
-      function renderScopePanels() {
-        const showProject = shareMode === "project";
-        const showTenant = shareMode === "tenant";
-        projectWrap.style.display = showProject ? "" : "none";
-        treeWrap.style.display = showTenant ? "" : "none";
+      root.appendChild(hint);
+      root.appendChild(tabs);
+      root.appendChild(privateWrap);
+      root.appendChild(projectWrap);
+      root.appendChild(treeWrap);
+      host.appendChild(root);
+
+      if (readOnly) {
+        setSmrTreeReadOnly(projectSelect.wrap, true);
+        setSmrTreeReadOnly(tenantPicker.wrap, true);
       }
 
-      host.appendChild(radios);
-      host.appendChild(projectWrap);
-      host.appendChild(treeWrap);
-      renderScopePanels();
+      renderPanels();
 
       return {
         getPayload() {
           const st = tenantPicker.getState();
-          return buildSmrScopePayload(shareMode, {
-            selectedTenants: st.selectedTenants,
+          return buildSmrScopePayload({
+            sharePrivate,
+            shareProject,
+            shareQa,
+            selectedTenantId: st.selectedTenantId,
+            selectedTenantName: st.selectedTenantName,
             selectedOrgs: st.selectedOrgs,
             scopeProjectIds: projectSelect.getSelectedIds(),
             scopeProjects: projectSelect.getSelectedItems(),
           });
         },
         validate() {
-          if (shareMode === "project" && !projectSelect.getSelectedIds().length) {
-            showToast("请至少选择一个工程", "info");
+          if (!sharePrivate && !shareProject && !shareQa) {
+            showToast("请至少选择一个可见范围类别", "info");
             return false;
           }
-          if (shareMode === "tenant" && !tenantPicker.validate()) return false;
+          if (shareProject && !projectSelect.getSelectedIds().length) {
+            showToast("请完善「工程」：至少选择一个工程", "info");
+            activePanel = "project";
+            renderPanels();
+            return false;
+          }
+          if (shareQa) {
+            const st = tenantPicker.getState();
+            if (!st.selectedTenantId && !st.selectedOrgs.length) {
+              showToast("请完善「问数」：请选择一个租户或组织", "info");
+              activePanel = "qa";
+              renderPanels();
+              return false;
+            }
+          }
           return true;
         },
       };
     }
 
-    function openSmrInlineScopeEditor(row, anchorEl, onSaved) {
+    function openSmrScopeEditModal(row, onSaved) {
       closeSmrScopeEditor();
       closeAllSmrScopePops();
-      const editor = document.createElement("div");
-      editor.id = "smrScopeEditor";
-      editor.className = "smr-scope-editor";
-      editor.addEventListener("click", (e) => e.stopPropagation());
+      closeSmrRegisterModal();
+
+      const readOnly = !isSmrRowOwner(row);
+      const backdrop = document.createElement("div");
+      backdrop.id = "smrScopeEditBackdrop";
+      backdrop.className = "smr-backdrop";
+      backdrop.setAttribute("role", "presentation");
+
+      const dialog = document.createElement("div");
+      dialog.className = "smr-dialog smr-dialog--wide";
+      dialog.setAttribute("role", "dialog");
+      dialog.setAttribute("aria-modal", "true");
+      dialog.addEventListener("click", (e) => e.stopPropagation());
 
       const hd = document.createElement("div");
-      hd.className = "smr-scope-editor__hd";
-      const hdTitle = document.createElement("span");
-      hdTitle.textContent = "修改可见范围";
+      hd.className = "smr-dialog__hd";
+      const title = document.createElement("h2");
+      title.className = "smr-dialog__title";
+      title.textContent = readOnly ? "查看可见范围" : "修改可见范围";
       const closeBtn = document.createElement("button");
       closeBtn.type = "button";
       closeBtn.className = "smr-dialog__close";
       closeBtn.textContent = "×";
       closeBtn.addEventListener("click", closeSmrScopeEditor);
-      hd.appendChild(hdTitle);
+      hd.appendChild(title);
       hd.appendChild(closeBtn);
 
       const body = document.createElement("div");
-      body.className = "smr-scope-editor__body";
-      const controls = mountSmrShareScopeControls(body, rowToSmrShareState(row), "smrInlineShare-" + row.id);
+      body.className = "smr-dialog__body";
+      if (readOnly) {
+        const banner = document.createElement("div");
+        banner.className = "smr-readonly-banner";
+        banner.textContent = "您不是该模型的创建者，仅可查看可见范围配置。";
+        body.appendChild(banner);
+      }
+      const controls = mountSmrShareScopeControls(body, rowToSmrShareState(row), {
+        readOnly,
+        onWideChange(wide) {
+          dialog.classList.toggle("smr-dialog--wide", wide);
+        },
+      });
 
       const ft = document.createElement("div");
-      ft.className = "smr-scope-editor__ft";
-      const cancelBtn = document.createElement("button");
-      cancelBtn.type = "button";
-      cancelBtn.className = "smr-btn-ghost";
-      cancelBtn.textContent = "取消";
-      cancelBtn.addEventListener("click", closeSmrScopeEditor);
-      const okBtn = document.createElement("button");
-      okBtn.type = "button";
-      okBtn.className = "smr-btn-primary";
-      okBtn.textContent = "保存";
-      okBtn.addEventListener("click", () => {
-        if (!controls.validate()) return;
-        const payload = controls.getPayload();
-        if (!payload) {
-          showToast("请完善可见范围选择", "info");
-          return;
-        }
-        applySmrScopePayload(row, payload);
-        showToast("可见范围已更新", "success");
-        closeSmrScopeEditor();
-        if (typeof onSaved === "function") onSaved();
-      });
-      ft.appendChild(cancelBtn);
-      ft.appendChild(okBtn);
+      ft.className = "smr-dialog__ft";
+      if (readOnly) {
+        const closeOnly = document.createElement("button");
+        closeOnly.type = "button";
+        closeOnly.className = "smr-btn-primary";
+        closeOnly.textContent = "关闭";
+        closeOnly.addEventListener("click", closeSmrScopeEditor);
+        ft.appendChild(closeOnly);
+      } else {
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "smr-btn-ghost";
+        cancelBtn.textContent = "取消";
+        cancelBtn.addEventListener("click", closeSmrScopeEditor);
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "smr-btn-primary";
+        okBtn.textContent = "保存";
+        okBtn.addEventListener("click", () => {
+          if (!controls.validate()) return;
+          const payload = controls.getPayload();
+          if (!payload) {
+            showToast("请完善可见范围选择", "info");
+            return;
+          }
+          applySmrScopePayload(row, payload);
+          showToast("可见范围已更新", "success");
+          closeSmrScopeEditor();
+          if (typeof onSaved === "function") onSaved();
+        });
+        ft.appendChild(cancelBtn);
+        ft.appendChild(okBtn);
+      }
 
-      editor.appendChild(hd);
-      editor.appendChild(body);
-      editor.appendChild(ft);
-      document.body.appendChild(editor);
-
-      const rect = anchorEl.getBoundingClientRect();
-      const w = Math.min(720, window.innerWidth - 16);
-      const h = Math.min(640, window.innerHeight * 0.8);
-      let left = rect.left;
-      let top = rect.bottom + 6;
-      if (left + w > window.innerWidth - 8) left = Math.max(8, window.innerWidth - w - 8);
-      if (top + 320 > window.innerHeight - 8) top = Math.max(8, rect.top - Math.min(h, 480) - 6);
-      editor.style.left = left + "px";
-      editor.style.top = top + "px";
-      editor.style.width = w + "px";
-
-      smrScopeEditorDocCloser = (e) => {
-        if (!editor.contains(e.target) && !anchorEl.contains(e.target)) closeSmrScopeEditor();
-      };
-      setTimeout(() => document.addEventListener("click", smrScopeEditorDocCloser, true), 0);
+      dialog.appendChild(hd);
+      dialog.appendChild(body);
+      dialog.appendChild(ft);
+      backdrop.appendChild(dialog);
+      backdrop.addEventListener("click", closeSmrScopeEditor);
+      document.body.appendChild(backdrop);
     }
 
     function buildSmrScopeCell(row, onScopeChanged) {
-      const meta = formatSmrScope(row);
+      const cats = getSmrScopeCategories(row);
       const cell = document.createElement("div");
       cell.className = "smr-scope-cell";
 
-      const tag = document.createElement("button");
-      tag.type = "button";
-      tag.className = "smr-scope-tag is-editable" + (meta.cls ? " " + meta.cls : "");
-      tag.title = "点击修改可见范围";
-      const summary = document.createElement("span");
-      summary.className = "smr-scope-summary";
-      const text = document.createElement("span");
-      text.className = "smr-scope-summary__text";
-      text.textContent = meta.summary;
-      summary.appendChild(text);
-      tag.appendChild(summary);
-      tag.addEventListener("click", (e) => {
-        e.stopPropagation();
-        openSmrInlineScopeEditor(row, tag, onScopeChanged);
-      });
-      cell.appendChild(tag);
-
-      if (!meta.overflow) return cell;
-
-      const moreBtn = document.createElement("button");
-      moreBtn.type = "button";
-      moreBtn.className = "smr-scope-more";
-      moreBtn.textContent = meta.moreText || "+" + Math.max(0, meta.count - 1);
-      moreBtn.title =
-        meta.kind === "project"
-          ? "查看全部 " + meta.count + " 个工程"
-          : meta.kind === "tenant"
-            ? "查看全部 " + meta.count + " 个租户"
-            : meta.kind === "mixed"
-              ? "查看全部 " + meta.count + " 项范围"
-              : "查看全部 " + meta.count + " 个组织";
-      moreBtn.setAttribute("aria-expanded", "false");
-
-      function positionPop(pop) {
-        const rect = moreBtn.getBoundingClientRect();
-        const popW = 280;
-        const popH = Math.min(240, 40 + meta.items.length * 28);
-        let left = rect.left;
-        let top = rect.bottom + 6;
-        if (left + popW > window.innerWidth - 8) left = Math.max(8, window.innerWidth - popW - 8);
-        if (top + popH > window.innerHeight - 8) top = Math.max(8, rect.top - popH - 6);
-        pop.style.left = left + "px";
-        pop.style.top = top + "px";
+      if (!cats.length) {
+        const empty = document.createElement("span");
+        empty.className = "smr-scope-empty";
+        empty.textContent = "—";
+        cell.appendChild(empty);
+        return cell;
       }
 
-      function openPop() {
-        closeAllSmrScopePops();
-        closeSmrScopeEditor();
-        const pop = document.createElement("div");
-        pop.className = "smr-scope-pop";
-        const popTitle = document.createElement("p");
-        popTitle.className = "smr-scope-pop__title";
-        popTitle.textContent =
-          meta.kind === "project"
-            ? "已选工程（" + meta.count + "）"
-            : meta.kind === "tenant"
-              ? "已选租户（" + meta.count + "）"
-              : meta.kind === "mixed"
-                ? "已选范围（" + meta.count + "）"
-                : "已共享组织（" + meta.count + "）";
-        const list = document.createElement("div");
-        list.className = "smr-scope-pop__list";
-        meta.items.forEach((item) => {
-          const rowEl = document.createElement("div");
-          rowEl.className = "smr-scope-pop__item";
-          rowEl.textContent = item.label;
-          if (item.sub) {
-            const em = document.createElement("em");
-            em.textContent = item.sub;
-            rowEl.appendChild(em);
-          }
-          list.appendChild(rowEl);
+      const wrap = document.createElement("div");
+      wrap.className = "smr-scope-tags";
+      cats.forEach((cat) => {
+        const tag = document.createElement("button");
+        tag.type = "button";
+        tag.className = "smr-scope-tag is-editable" + (cat.cls ? " " + cat.cls : "");
+        tag.title = isSmrRowOwner(row) ? "点击修改可见范围" : "点击查看可见范围（只读）";
+        tag.textContent = cat.label;
+        tag.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openSmrScopeEditModal(row, onScopeChanged);
         });
-        pop.appendChild(popTitle);
-        pop.appendChild(list);
-        document.body.appendChild(pop);
-        positionPop(pop);
-        moreBtn.classList.add("is-open");
-
-        function onDocClick(e) {
-          if (pop.contains(e.target) || moreBtn.contains(e.target)) return;
-          closePop();
-        }
-        function onScrollOrResize() {
-          if (!document.body.contains(pop)) return;
-          positionPop(pop);
-        }
-        function closePop() {
-          pop.remove();
-          moreBtn.classList.remove("is-open");
-          document.removeEventListener("click", onDocClick, true);
-          window.removeEventListener("scroll", onScrollOrResize, true);
-          window.removeEventListener("resize", onScrollOrResize);
-        }
-        document.addEventListener("click", onDocClick, true);
-        window.addEventListener("scroll", onScrollOrResize, true);
-        window.addEventListener("resize", onScrollOrResize);
-      }
-
-      moreBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (moreBtn.classList.contains("is-open")) {
-          closeAllSmrScopePops();
-          return;
-        }
-        openPop();
+        wrap.appendChild(tag);
       });
-
-      cell.appendChild(moreBtn);
+      cell.appendChild(wrap);
       return cell;
     }
 
     function formatSmrNow() {
+
       const d = new Date();
       const p = (n) => String(n).padStart(2, "0");
       return (
@@ -35774,9 +37952,6 @@
       const form = document.createElement("div");
       form.className = "smr-form";
 
-      /** shareMode: private | project | tenant */
-      let shareMode = "private";
-
       function addField(labelText, required, fieldNode) {
         const lab = document.createElement("label");
         lab.className = "smr-label" + (required ? " is-required" : "");
@@ -35819,75 +37994,17 @@
       modelInput.placeholder = "例如 glm-5.1";
       addField("模型ID", true, modelInput);
 
-      const projectSelectForScope = createSmrProjectTreeSelect([]);
-      const tenantPicker = createSmrTenantOrgPicker({});
-
-      const scopeField = document.createElement("div");
-      const radios = document.createElement("div");
-      radios.className = "smr-radios";
-      [
-        { value: "private", label: "仅自己" },
-        { value: "project", label: "工程" },
-        { value: "tenant", label: "租户/组织（仅支持智能问数）" },
-      ].forEach((opt) => {
-        const lab = document.createElement("label");
-        lab.className = "smr-radio";
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = "smrShareMode";
-        input.value = opt.value;
-        input.checked = shareMode === opt.value;
-        input.addEventListener("change", () => {
-          if (!input.checked) return;
-          shareMode = opt.value;
-          projectSelectForScope.clear();
-          tenantPicker.clear();
-          renderScopePanels();
-        });
-        const span = document.createElement("span");
-        span.textContent = opt.label;
-        lab.appendChild(input);
-        lab.appendChild(span);
-        radios.appendChild(lab);
-      });
-      scopeField.appendChild(radios);
-      addField("可见范围", true, scopeField);
-
-      // 工程多选区域（仅在选择"工程"时显示）
-      const projectScopeField = document.createElement("div");
-      projectScopeField.className = "smr-scope-project-wrap";
-      const projectScopeHint = document.createElement("p");
-      projectScopeHint.className = "smr-hint";
-      projectScopeHint.textContent = "可多选工程；切换可见范围时将清空已选内容。";
-      projectScopeField.appendChild(projectSelectForScope.wrap);
-      projectScopeField.appendChild(projectScopeHint);
-      const projectScopeLabel = document.createElement("label");
-      projectScopeLabel.className = "smr-label is-required";
-      projectScopeLabel.textContent = "工程";
-      const projectScopeContainer = document.createElement("div");
-      projectScopeContainer.appendChild(projectScopeField);
-      form.appendChild(projectScopeLabel);
-      form.appendChild(projectScopeContainer);
-
-      // 租户/组织双栏（仅在选择"租户/组织"时显示）
-      const treeLabel = document.createElement("label");
-      treeLabel.className = "smr-label is-required";
-      treeLabel.textContent = "租户/组织";
-      const treeContainer = document.createElement("div");
-      treeContainer.appendChild(tenantPicker.wrap);
-      form.appendChild(treeLabel);
-      form.appendChild(treeContainer);
-
-      function renderScopePanels() {
-        const showProject = shareMode === "project";
-        const showTenant = shareMode === "tenant";
-        projectScopeLabel.style.display = showProject ? "" : "none";
-        projectScopeContainer.style.display = showProject ? "" : "none";
-        treeLabel.style.display = showTenant ? "" : "none";
-        treeContainer.style.display = showTenant ? "" : "none";
-        dialog.classList.toggle("smr-dialog--wide", showTenant);
-      }
-      renderScopePanels();
+      const scopeHost = document.createElement("div");
+      const scopeControls = mountSmrShareScopeControls(
+        scopeHost,
+        { sharePrivate: true, shareProject: false, shareQa: false },
+        {
+          onWideChange(wide) {
+            dialog.classList.toggle("smr-dialog--wide", wide);
+          },
+        }
+      );
+      addField("可见范围", true, scopeHost);
 
       body.appendChild(form);
 
@@ -35922,51 +38039,19 @@
           modelInput.focus();
           return;
         }
+        if (!scopeControls.validate()) return;
+        const scopePayload = scopeControls.getPayload();
+        if (!scopePayload) {
+          showToast("请完善可见范围选择", "info");
+          return;
+        }
+
         const projectIds = [];
         const projects = [];
         const appIds = [];
         const apps = [];
 
-        let scope = "USER";
-        let tenantId = "";
-        let tenantName = "";
-        let tenantIds = [];
-        let orgIds = [];
-        let orgId = "";
-        let orgName = "";
-        let scopeProjectIds = [];
-        let scopeProjects = [];
-
-        if (shareMode === "project") {
-          // 工程模式：使用工程多选
-          scope = "PROJECT";
-          scopeProjectIds = projectSelectForScope.getSelectedIds();
-          scopeProjects = projectSelectForScope.getSelectedItems();
-          if (!scopeProjectIds.length) {
-            showToast("请至少选择一个工程", "info");
-            return;
-          }
-        } else if (shareMode === "tenant") {
-          // 租户/组织模式（仅支持智能问数）：支持多租户 + 跨租户多组织
-          const st = tenantPicker.getState();
-          const payload = buildSmrScopePayload("tenant", {
-            selectedTenants: st.selectedTenants,
-            selectedOrgs: st.selectedOrgs,
-          });
-          if (!payload) {
-            showToast("请至少选择一个租户或组织", "info");
-            return;
-          }
-          scope = payload.scope;
-          tenantId = payload.tenantId;
-          tenantName = payload.tenantName;
-          tenantIds = payload.tenantIds || [];
-          orgIds = payload.orgIds || [];
-          orgId = payload.orgId || "";
-          orgName = payload.orgName || "";
-        }
-
-        smrRows.unshift({
+        const row = {
           id: "smr-" + Date.now(),
           apiKeyMasked: maskSmrApiKey(apiKey),
           apiKeyRaw: apiKey,
@@ -35974,21 +38059,14 @@
           modelId,
           baseUrl: provider === "自定义" ? baseUrl : "",
           createdAt: formatSmrNow(),
-          scope,
-          tenantId,
-          tenantName,
-          tenantIds,
-          orgId,
-          orgName,
-          orgIds,
           projectIds,
           projects,
           appIds,
           apps,
-          scopeProjectIds,
-          scopeProjects,
-          ownerUserId: "u-current",
-        });
+          ownerUserId: SMR_CURRENT_USER_ID,
+        };
+        applySmrScopePayload(row, scopePayload);
+        smrRows.unshift(row);
         smrPage = 1;
         showToast("模型注册成功", "success");
         closeSmrRegisterModal();
@@ -39837,8 +41915,23 @@ LIMIT 5;</pre>
                     <span style="font-size: 12px; color: #1890ff;">合同名称(contract_info_name)</span>
                     <button style="border: none; background: none; color: #999; font-size: 14px; cursor: pointer;">×</button>
                   </div>
-                  <span style="font-size: 12px; color: #666;">等于</span>
-                  <span style="color: #999;">▼</span>
+                  <div id="smartDevCondOp" style="position: relative; display: inline-flex; align-items: center; gap: 2px; cursor: pointer; user-select: none;">
+                    <span id="smartDevCondOpLabel" style="font-size: 12px; color: #666;">等于</span>
+                    <span style="color: #999; font-size: 10px;">▼</span>
+                    <div id="smartDevCondOpMenu" hidden style="position: absolute; top: calc(100% + 4px); left: 0; z-index: 30; min-width: 108px; padding: 4px 0; background: #fff; border: 1px solid #e8e8e8; border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,.12);">
+                      <button type="button" class="smart-dev-cond-op-item" data-op="eq" style="display: block; width: 100%; border: none; background: #1890ff; color: #fff; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">等于</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="neq" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">不等于</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="contains" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">包含</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="not_contains" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">不包含</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="like_prefix" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">开头匹配</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="like_suffix" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">结尾匹配</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="like_fuzzy" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">模糊匹配</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="gte" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">大于等于</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="gt" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">大于</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="lt" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">小于</button>
+                      <button type="button" class="smart-dev-cond-op-item" data-op="lte" style="display: block; width: 100%; border: none; background: transparent; color: #333; text-align: left; padding: 6px 12px; font-size: 12px; cursor: pointer;">小于等于</button>
+                    </div>
+                  </div>
                   <input type="text" placeholder="请输入条件值" style="flex: 1; max-width: 200px; height: 32px; padding: 0 10px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 12px;"/>
                   <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
                     <input type="checkbox"/>
@@ -39866,6 +41959,37 @@ LIMIT 5;</pre>
         btnScriptEditorSave.addEventListener("click", () => {
           appendSmartDevSavedResource();
         });
+      }
+      const condOpRoot = document.getElementById("smartDevCondOp");
+      const condOpMenu = document.getElementById("smartDevCondOpMenu");
+      const condOpLabel = document.getElementById("smartDevCondOpLabel");
+      if (condOpRoot && condOpMenu && condOpLabel) {
+        const paintCondOp = (selectedOp) => {
+          condOpMenu.querySelectorAll(".smart-dev-cond-op-item").forEach((btn) => {
+            const on = btn.dataset.op === selectedOp;
+            btn.style.background = on ? "#1890ff" : "transparent";
+            btn.style.color = on ? "#fff" : "#333";
+            if (on) condOpLabel.textContent = btn.textContent.trim();
+          });
+        };
+        const closeCondOpMenu = (e) => {
+          if (!condOpMenu.isConnected) {
+            document.removeEventListener("click", closeCondOpMenu);
+            return;
+          }
+          if (!condOpRoot.contains(e.target)) condOpMenu.hidden = true;
+        };
+        condOpRoot.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const item = e.target.closest(".smart-dev-cond-op-item");
+          if (item) {
+            paintCondOp(item.dataset.op);
+            condOpMenu.hidden = true;
+            return;
+          }
+          condOpMenu.hidden = !condOpMenu.hidden;
+        });
+        document.addEventListener("click", closeCondOpMenu);
       }
       smartDevScriptEditorActive = true;
       renderOperationFlow();
