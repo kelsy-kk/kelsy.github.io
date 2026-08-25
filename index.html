@@ -330,6 +330,15 @@
       min-height: 0;
     }
 
+    .mig-root--import-page {
+      background: #fff;
+      padding: 0;
+    }
+
+    .mig-root--import-page .mig-create--import {
+      border-radius: 0;
+    }
+
     .mig-assistants {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -926,6 +935,160 @@
       background: #e8e8e8;
     }
 
+    .mig-step.is-done + .mig-step__line {
+      background: #1677ff;
+    }
+
+    /* —— 迁入流程 · 蓝色主色（页面底白，需强调的状态保留橙/红/绿） —— */
+    .mig-create--import {
+      background: #fff;
+    }
+
+    .mig-create--import .mig-create__hd {
+      border-bottom-color: #f0f0f0;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-create__ft {
+      border-top-color: #f0f0f0;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-create__body {
+      background: #fff;
+    }
+
+    .mig-create--import .mig-create__section-title,
+    .mig-create--import .mig-cmp-section__title,
+    .mig-create--import .mig-detail-list-hd__title {
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-map-block__title,
+    .mig-create--import .mig-map-group__title,
+    .mig-create--import .mig-map-group__sub-title {
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-map-table-wrap {
+      border-color: #d6e4ff;
+    }
+
+    .mig-create--import .mig-map-table th,
+    .mig-create--import .mig-ana-map__hd {
+      background: #f0f5ff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-ana-map__row {
+      border-bottom-color: #e6f4ff;
+    }
+
+    .mig-create--import .mig-upload {
+      border-color: #91caff;
+      background: #f0f5ff;
+    }
+
+    .mig-create--import .mig-demo-pkg__badge.is-plain {
+      color: #0958d9;
+      background: #e6f4ff;
+      border: 1px solid #91caff;
+    }
+
+    .mig-create--import .mig-parse__result {
+      background: #e6f4ff;
+      border-color: #91caff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-parse__item-status.is-need {
+      color: #1677ff;
+    }
+
+    .mig-create--import .mig-cmp-config {
+      border-color: #91caff;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-summary {
+      border-color: #91caff;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-summary__fail-panel {
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-panel {
+      border-color: #91caff;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-overview {
+      border-color: transparent;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-overview th,
+    .mig-create--import .mig-table th {
+      background: #fff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-cmp-empty {
+      border-color: #91caff;
+      background: #f0f5ff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-cmp-legend {
+      border-color: #91caff;
+      background: #f0f5ff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-cmp-model-row.is-expanded td {
+      background: #fafafa;
+    }
+
+    .mig-create--import .mig-cmp-filter {
+      border-color: #91caff;
+      color: #0958d9;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-cmp-filter.is-active {
+      border-color: #1677ff;
+      color: #fff;
+      background: #1677ff;
+    }
+
+    .mig-create--import .mig-cat-card__count.is-ok {
+      color: #1677ff;
+    }
+
+    .mig-create--import .mig-table .mig-status:not(.is-fail) {
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .mig-create--import .mig-cmp-struct__hd {
+      background: #f0f5ff;
+      color: #0958d9;
+    }
+
+    .mig-create--import .mig-create__picker {
+      border-color: #d6e4ff;
+    }
+
+    .mig-create--import .mig-cmp-tip {
+      color: #597ef7;
+    }
+
+    .mig-create--import .mig-map-picker__panel {
+      border-color: #91caff;
+    }
+
     .mig-upload {
       display: flex;
       flex-direction: column;
@@ -1154,6 +1317,184 @@
       grid-template-columns: minmax(160px, 32%) minmax(0, 1fr);
       gap: 0;
       align-items: center;
+    }
+
+    .mig-ana-map--batch .mig-ana-map__hd,
+    .mig-ana-map--batch .mig-ana-map__row {
+      grid-template-columns: 36px minmax(140px, 28%) minmax(0, 1fr);
+    }
+
+    .mig-ana-map__check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+    }
+
+    .mig-ana-map__check input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .mig-map-block__title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-bottom: 10px;
+    }
+
+    .mig-map-block__title-row .mig-map-block__title,
+    .mig-map-block__title-row .mig-map-group__sub-title {
+      margin: 0;
+    }
+
+    .mig-map-batch-btn {
+      font-size: 12px;
+      padding: 2px 10px;
+      height: 28px;
+    }
+
+    .mig-map-tree-picker__panel {
+      min-width: 280px;
+      max-height: 320px;
+    }
+
+    .mig-map-tree {
+      padding: 4px 0 8px;
+      max-height: 240px;
+      overflow: auto;
+    }
+
+    .mig-map-tree__row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-height: 30px;
+      padding-right: 8px;
+    }
+
+    .mig-map-tree__toggle {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border: 0;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 11px;
+      line-height: 18px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .mig-map-tree__toggle.is-leaf {
+      cursor: default;
+      visibility: hidden;
+    }
+
+    .mig-map-tree__label {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+      padding: 4px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mig-map-tree__label.is-folder {
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .mig-map-tree__label:hover {
+      background: #f0f5ff;
+    }
+
+    .mig-map-tree__label.is-active {
+      background: #e6f4ff;
+      color: #1677ff;
+    }
+
+    .mig-batch-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-batch-modal__box {
+      width: min(420px, 100%);
+      max-height: min(520px, 100%);
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .mig-batch-modal__hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-batch-modal__close {
+      border: 0;
+      background: transparent;
+      font-size: 18px;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .mig-batch-modal__body {
+      padding: 8px 12px 12px;
+      overflow: auto;
+    }
+
+    .mig-batch-modal__search {
+      width: 100%;
+      height: 32px;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 0 10px;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .mig-batch-modal__search:focus {
+      border-color: #1677ff;
+      outline: none;
+    }
+
+    .mig-batch-modal__tip {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
     }
 
     .mig-ana-map__hd {
@@ -1506,6 +1847,986 @@
       color: #d46b08;
     }
 
+    /* —— 版本比对 —— */
+    .mig-cmp-hd {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px 16px;
+      padding: 14px 16px;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .mig-cmp-hd__meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(160px, auto));
+      gap: 8px 24px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-hd__meta strong {
+      color: rgba(0, 0, 0, 0.88);
+      font-weight: 600;
+    }
+
+    .mig-cmp-hd__tables {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .mig-cmp-hd__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .mig-cmp-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mig-cmp-section__title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-report-meta {
+      margin: 4px 0 0;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-cmp-config {
+      padding: 14px 16px;
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .mig-cmp-checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-checks label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .mig-cmp-advanced {
+      margin-top: 12px;
+      border-top: 1px dashed #f0f0f0;
+      padding-top: 12px;
+    }
+
+    .mig-cmp-advanced__toggle {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #1677ff;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .mig-cmp-advanced__body {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 10px 16px;
+      font-size: 13px;
+    }
+
+    .mig-cmp-advanced.is-collapsed .mig-cmp-advanced__body {
+      display: none;
+    }
+
+    .mig-cmp-running {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      background: #e6f4ff;
+      color: #0958d9;
+      font-size: 13px;
+    }
+
+    .mig-cmp-running__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1677ff;
+      animation: mig-cmp-pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes mig-cmp-pulse {
+      0%,
+      100% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .mig-cmp-fail {
+      padding: 12px 14px;
+      border: 1px solid #ffa39e;
+      border-radius: 8px;
+      background: #fff2f0;
+      color: #cf1322;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mig-cmp-overview {
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      overflow: auto;
+      background: #fff;
+    }
+
+    .mig-cmp-overview table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .mig-cmp-overview th,
+    .mig-cmp-overview td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: left;
+    }
+
+    .mig-cmp-overview th {
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .mig-cmp-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 20px;
+      border: 1px solid transparent;
+    }
+
+    .mig-cmp-status.is-ok {
+      color: #389e0d;
+      background: #f6ffed;
+      border-color: #b7eb8f;
+    }
+
+    .mig-cmp-status.is-warn {
+      color: #d46b08;
+      background: #fff7e6;
+      border-color: #ffd591;
+    }
+
+    .mig-cmp-status.is-fail {
+      color: #cf1322;
+      background: #fff2f0;
+      border-color: #ffa39e;
+    }
+
+    .mig-cmp-status.is-new {
+      color: #0958d9;
+      background: #e6f4ff;
+      border-color: #91caff;
+    }
+
+    .mig-cmp-status.is-skip {
+      color: rgba(0, 0, 0, 0.45);
+      background: #fafafa;
+      border-color: #d9d9d9;
+    }
+
+    .mig-cmp-principle {
+      margin: 0;
+      padding: 12px 14px;
+      border: 1px solid #d6e4ff;
+      border-radius: 8px;
+      background: #f0f5ff;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+      line-height: 1.65;
+    }
+
+    .mig-cmp-principle strong {
+      color: rgba(0, 0, 0, 0.88);
+      font-weight: 600;
+    }
+
+    .mig-cmp-principle ol {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .mig-cmp-principle li + li {
+      margin-top: 4px;
+    }
+
+    .mig-cmp-scope {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    .mig-cmp-scope span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mig-cmp-scope strong {
+      color: rgba(0, 0, 0, 0.75);
+      font-weight: 500;
+    }
+
+    .mig-cmp-count-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .mig-cmp-count-table th,
+    .mig-cmp-count-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .mig-cmp-count-table th {
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .mig-cmp-count-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .mig-cmp-count-status.is-ok {
+      color: #389e0d;
+    }
+
+    .mig-cmp-count-status.is-extra {
+      color: #d46b08;
+      font-weight: 500;
+    }
+
+    .mig-cmp-count-extra-btn {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #d46b08;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .mig-cmp-count-extra-btn:hover {
+      color: #fa8c16;
+    }
+
+    .mig-cmp-count-row.is-expanded td {
+      background: #fafafa;
+    }
+
+    .mig-cmp-count-extra-detail td {
+      padding: 0 !important;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+
+    .mig-cmp-count-extra-inner {
+      padding: 12px 14px 14px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-title {
+      margin: 0 0 6px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-tip {
+      margin: 0 0 10px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-overview {
+      border-color: #f0f0f0;
+    }
+
+    .mig-cmp-extra-notice {
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border: 1px solid #ffe7ba;
+      border-radius: 8px;
+      background: #fffbe6;
+    }
+
+    .mig-cmp-extra-notice .mig-cmp-extra-title {
+      margin: 0 0 6px;
+    }
+
+    .mig-cmp-extra-notice .mig-cmp-extra-tip {
+      margin: 0;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-actions {
+      margin-bottom: 8px;
+    }
+
+    .mig-cmp-count-extra-btn {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #d46b08;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .mig-cmp-count-extra-btn:hover {
+      color: #fa8c16;
+    }
+
+    .mig-cmp-count-row.is-expanded td {
+      background: #fafafa;
+    }
+
+    .mig-cmp-count-extra-detail td {
+      padding: 0 !important;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fafafa;
+    }
+
+    .mig-cmp-count-extra-inner {
+      padding: 12px 14px 14px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-title {
+      margin: 0 0 6px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-tip {
+      margin: 0 0 10px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-overview {
+      border-color: #ffd591;
+      background: #fffbe6;
+    }
+
+    .mig-cmp-extra-block {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #d6e4ff;
+    }
+
+    .mig-cmp-extra-hd {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      margin-bottom: 10px;
+    }
+
+    .mig-cmp-extra-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-extra-tip {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.6;
+    }
+
+    .mig-cmp-extra-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-extra-actions label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .mig-cmp-delete-preview {
+      margin-top: 14px;
+      border: 1px solid #ffd591;
+      border-radius: 8px;
+      background: #fffbe6;
+      overflow: hidden;
+    }
+
+    .mig-cmp-delete-preview__hd {
+      padding: 10px 14px;
+      background: #fff7e6;
+      border-bottom: 1px solid #ffe7ba;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d46b08;
+    }
+
+    .mig-cmp-delete-preview__sub {
+      padding: 8px 14px 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .mig-cmp-delete-preview .mig-table {
+      border: none;
+    }
+
+    .mig-cmp-delete-preview .mig-table th,
+    .mig-cmp-delete-preview .mig-table td {
+      background: transparent;
+    }
+
+    .mig-preview-delete-summary {
+      margin-bottom: 12px;
+      border-color: #ffd591;
+      background: #fffbe6;
+    }
+
+    .mig-preview-delete-summary .mig-cmp-summary__item {
+      cursor: default;
+    }
+
+    .mig-preview-delete-summary .mig-cmp-summary__item:hover {
+      background: transparent;
+    }
+
+    .mig-preview-delete-empty {
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+      border: 1px dashed #f0f0f0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .mig-tag.is-delete-pending {
+      margin-left: 6px;
+      padding: 0 6px;
+      font-size: 11px;
+      line-height: 18px;
+      border-radius: 4px;
+      background: #fff2f0;
+      color: #cf1322;
+      border: 1px solid #ffa39e;
+    }
+
+    .mig-cmp-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 0;
+    }
+
+    .mig-cmp-tab-body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mig-cmp-tab-pane {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mig-cmp-tab-pane[hidden] {
+      display: none !important;
+    }
+
+    .mig-cmp-tab-badge {
+      margin-left: 6px;
+      padding: 0 6px;
+      font-size: 11px;
+      line-height: 18px;
+      border-radius: 10px;
+      background: #fff7e6;
+      color: #d46b08;
+      border: 1px solid #ffd591;
+      font-weight: 500;
+    }
+
+    .mig-cmp-tab {
+      border: 0;
+      background: transparent;
+      padding: 10px 16px;
+      font: inherit;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+
+    .mig-cmp-tab.is-active {
+      color: #1677ff;
+      font-weight: 600;
+      border-bottom-color: #1677ff;
+    }
+
+    .mig-cmp-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 4px;
+    }
+
+    .mig-cmp-subtitle {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-struct {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .mig-cmp-struct__col {
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      overflow: auto;
+    }
+
+    .mig-cmp-struct__hd {
+      padding: 10px 14px;
+      background: #fafafa;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.65);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-struct table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mig-cmp-struct th,
+    .mig-cmp-struct td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .mig-cmp-struct th {
+      padding: 10px 12px;
+      background: #fafafa;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.65);
+      white-space: nowrap;
+    }
+
+    .mig-cmp-struct tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .mig-cmp-struct tr.is-mismatch td {
+      background: #fff7e6;
+    }
+
+    .mig-cmp-struct tr.is-missing td {
+      background: #fff2f0;
+    }
+
+    .mig-cmp-struct tr.is-extra td {
+      background: #e6f4ff;
+    }
+
+    .mig-cmp-struct tr.is-same td {
+      background: #f6ffed;
+    }
+
+    .mig-cmp-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      background: #fafafa;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-toolbar .mig-cmp-legend {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      gap: 6px 14px;
+    }
+
+    .mig-cmp-legend__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mig-cmp-legend__swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+
+    .mig-cmp-legend__swatch.is-delete {
+      background: #fff2f0;
+      border-color: #ffa39e;
+    }
+
+    .mig-cmp-legend__swatch.is-same {
+      background: #f6ffed;
+      border-color: #b7eb8f;
+    }
+
+    .mig-cmp-legend__swatch.is-change {
+      background: #fff7e6;
+      border-color: #ffd591;
+    }
+
+    .mig-cmp-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .mig-cmp-summary {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .mig-cmp-summary__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    .mig-cmp-summary__item {
+      flex: 1 1 0;
+      min-width: 88px;
+      padding: 12px 14px;
+      text-align: center;
+      box-sizing: border-box;
+      border: 0;
+      border-right: 1px solid #91caff;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      transition: background 0.15s ease;
+    }
+
+    .mig-cmp-summary__item:last-child {
+      border-right: none;
+    }
+
+    .mig-cmp-summary__item:hover {
+      background: #f0f5ff;
+    }
+
+    .mig-cmp-summary__item.is-active {
+      background: #e6f4ff;
+    }
+
+    .mig-cmp-summary__label {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #0958d9;
+    }
+
+    .mig-cmp-summary__val {
+      margin-top: 4px;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #1677ff;
+    }
+
+    .mig-cmp-summary__fail-panel {
+      padding: 12px 14px;
+      border-top: 1px solid #91caff;
+      background: #fff;
+    }
+
+    .mig-cmp-summary__fail-title {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0958d9;
+    }
+
+    .mig-cmp-summary__fail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mig-cmp-summary__fail-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px 12px;
+      padding: 10px 12px;
+      border: 1px solid #91caff;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .mig-cmp-summary__fail-meta {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .mig-cmp-summary__fail-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-summary__fail-type {
+      margin-left: 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-cmp-summary__fail-reason {
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-fail-inline {
+      color: #cf1322;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mig-cmp-stat {
+      padding: 10px 12px;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .mig-cmp-stat__label {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-cmp-stat__val {
+      margin-top: 4px;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mig-cmp-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mig-cmp-filter {
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-filter.is-active {
+      border-color: #1677ff;
+      color: #1677ff;
+      background: #e6f4ff;
+    }
+
+    .mig-cmp-diff table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .mig-cmp-diff th,
+    .mig-cmp-diff td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .mig-cmp-diff th {
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-cmp-diff tr.is-expanded {
+      background: #fafafa;
+    }
+
+    .mig-cmp-diff-expand {
+      margin-top: 8px;
+      padding: 8px;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .mig-cmp-diff-expand table {
+      width: 100%;
+    }
+
+    .mig-cmp-diff-expand td.is-diff {
+      color: #cf1322;
+      font-weight: 600;
+    }
+
+    .mig-cmp-empty {
+      padding: 32px 16px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 13px;
+      border: 1px dashed #f0f0f0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .mig-cmp-tip {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.6;
+    }
+
+    .mig-cmp-panel {
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .mig-cmp-panel .mig-cmp-toolbar {
+      padding: 12px 14px 0;
+    }
+
+    .mig-cmp-panel .mig-cmp-summary {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #91caff;
+    }
+
+    .mig-cmp-panel .mig-cmp-overview {
+      border: none;
+      border-radius: 0;
+      border-top: 1px solid #91caff;
+      margin-top: 0;
+    }
+
+    .mig-cmp-model-name strong {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.4;
+    }
+
+    .mig-cmp-type {
+      display: inline-flex;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 20px;
+      border: 1px solid #d9d9d9;
+      color: rgba(0, 0, 0, 0.65);
+      background: #fff;
+    }
+
+    .mig-cmp-model-row.is-expanded td {
+      background: #fafafa;
+    }
+
+    .mig-cmp-model-detail td {
+      padding: 0 !important;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-model-detail .mig-cmp-struct {
+      padding: 16px;
+    }
+
     .mig-ds-table {
       width: 100%;
       border-collapse: collapse;
@@ -1566,6 +2887,12 @@
       color: #d46b08;
       background: #fff7e6;
       border: 1px solid #ffd591;
+    }
+
+    .mig-tag.is-manual {
+      color: #1677ff;
+      background: #e6f4ff;
+      border: 1px solid #91caff;
     }
 
     .mig-tag.is-dup {
@@ -1731,6 +3058,130 @@
       font-size: 13px;
       text-align: left;
       line-height: 1.6;
+    }
+
+    /* 迁入执行 */
+    .mig-exec-phase {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .mig-exec-phase strong {
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-exec-progress {
+      margin-bottom: 16px;
+    }
+
+    .mig-exec-progress__track {
+      height: 8px;
+      border-radius: 4px;
+      background: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .mig-exec-progress__bar {
+      height: 100%;
+      width: 0;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1677ff, #69b1ff);
+      transition: width 0.25s ease;
+    }
+
+    .mig-exec-progress__meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-exec-log {
+      flex: 1;
+      min-height: 280px;
+      max-height: 420px;
+      overflow: auto;
+      border: 1px solid #91caff;
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .mig-exec-log.is-paused {
+      border-color: #ffa39e;
+      background: #fff2f0;
+    }
+
+    .mig-exec-log__line {
+      margin: 0;
+      padding: 2px 0;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .mig-exec-log__line.is-ok {
+      color: #389e0d;
+    }
+
+    .mig-exec-log__line.is-fail {
+      color: #cf1322;
+      font-weight: 600;
+    }
+
+    .mig-exec-log__line.is-info {
+      color: #1677ff;
+    }
+
+    .mig-exec-fail-banner {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border: 1px solid #ffa39e;
+      border-radius: 8px;
+      background: #fff2f0;
+      color: #cf1322;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mig-exec-fail-banner strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .mig-detail-fail {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid #ffa39e;
+      border-radius: 8px;
+      background: #fff2f0;
+    }
+
+    .mig-detail-fail__title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #cf1322;
+    }
+
+    .mig-detail-fail__reason {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .mig-status.is-importing {
+      background: #e6f4ff;
+      color: #1677ff;
     }
 
     .mig-res-name {
@@ -21839,60 +23290,19 @@
   <div id="appToast" class="app-toast app-toast--success" hidden role="status"></div>
 
   <script>
-    /** 与参考图一致：物理/逻辑建模、离线与实时集成与开发、API 市场、制作报告 */
+    /** 工作台左侧操作导航（平铺，对齐产品菜单；不含模型注册、智能问数） */
     const navTree = [
       { type: "leaf", id: "physical-modeling", label: "物理建模", icon: "gear" },
       { type: "leaf", id: "logical-modeling", label: "逻辑建模", icon: "nodes" },
-      { type: "leaf", id: "business-modeling", label: "业务建模", icon: "nodes" },
-      {
-        type: "group",
-        id: "offline-integration",
-        label: "离线集成",
-        expanded: true,
-        activeGroup: false,
-        children: [
-          { id: "offline-integration-task", label: "离线任务", icon: "spark" },
-          { id: "offline-integration-instance", label: "离线实例", icon: "doc" },
-        ],
-      },
-      {
-        type: "group",
-        id: "realtime-integration",
-        label: "实时集成",
-        expanded: true,
-        activeGroup: false,
-        children: [
-          { id: "realtime-integration-task", label: "实时任务", icon: "spark" },
-          { id: "realtime-integration-instance", label: "实时实例", icon: "spark" },
-        ],
-      },
-      { type: "leaf", id: "one-stop-integration", label: "一站集成", icon: "spark" },
-      {
-        type: "group",
-        id: "offline-dev",
-        label: "离线开发",
-        expanded: false,
-        activeGroup: false,
-        children: [
-          { id: "offline-dev-task", label: "离线任务", icon: "doc" },
-          { id: "offline-dev-instance", label: "离线实例", icon: "doc" },
-        ],
-      },
-      {
-        type: "group",
-        id: "realtime-dev",
-        label: "实时开发",
-        expanded: true,
-        activeGroup: false,
-        children: [
-          { id: "realtime-dev-task", label: "实时任务", icon: "doc" },
-          { id: "realtime-dev-instance", label: "实时实例", icon: "doc" },
-        ],
-      },
-      { type: "leaf", id: "api-market", label: "API市场", icon: "nodes" },
-      { type: "leaf", id: "create-report", label: "数据分析", icon: "spark" },
+      { type: "leaf", id: "business-modeling", label: "语义建模", icon: "nodes" },
+      { type: "leaf", id: "offline-integration-task", label: "离线集成", icon: "spark" },
+      { type: "leaf", id: "realtime-integration-task", label: "实时集成", icon: "spark" },
+      { type: "leaf", id: "offline-dev-task", label: "离线开发", icon: "doc" },
+      { type: "leaf", id: "realtime-dev-task", label: "实时开发", icon: "doc" },
+      { type: "leaf", id: "light-task", label: "轻任务", icon: "doc" },
       { type: "leaf", id: "smart-dev", label: "智能开发", icon: "spark" },
-      { type: "leaf", id: "smart-query", label: "智能问数", icon: "spark" },
+      { type: "leaf", id: "api-market", label: "API市场", icon: "nodes" },
+      { type: "leaf", id: "create-report", label: "制作报告", icon: "spark" },
     ];
 
     const BP_CUSTOM_TEMPLATES_KEY = "bp_custom_flow_templates_v1";
@@ -23128,6 +24538,7 @@
       "one-stop-integration": "tasks",
       "offline-dev-task": "tasks",
       "realtime-dev-task": "tasks",
+      "light-task": "tasks",
       "offline-integration-instance": "taskInstances",
       "realtime-integration-instance": "taskInstances",
       "offline-dev-instance": "taskInstances",
@@ -23382,10 +24793,11 @@
       "business-modeling": "基础模型",
       "smart-dev": "新建脚本",
       "offline-dev-task": "新建任务流",
-      "offline-integration-task": "离线任务",
-      "realtime-integration-task": "实时任务",
+      "offline-integration-task": "离线集成",
+      "realtime-integration-task": "实时集成",
       "one-stop-integration": "新建一站接入",
-      "realtime-dev-task": "新建任务",
+      "realtime-dev-task": "实时开发",
+      "light-task": "轻任务",
       "api-market": "新建API",
       "create-report": "新建仪表板",
       "smart-query": "开启新对话",
@@ -24991,7 +26403,7 @@
         });
         return true;
       }
-      if (leafId === "offline-integration-task" || leafId === "offline-dev-task") {
+      if (leafId === "offline-integration-task" || leafId === "offline-dev-task" || leafId === "light-task") {
         oitPage = 1;
         oitTaskFlowRows.unshift({
           id: String(Date.now()),
@@ -33593,7 +35005,14 @@
       let pageView = "home"; // home | scene-export-create | scene-import-create | scene-transfer-detail
       let sceneImportSeq = 100;
       let editingExportRow = null; // null=新建；有值=详情查看（旧迁出创建复用）
-      let importCreateStep = 1; // 1=基本信息 2=对象映射
+      let importCreateStep = 1; // 1=基本信息 2=对象映射 3=版本比对 4=预览 5=执行
+      let importPreviewTab = "import"; // import | delete
+      let importPreviewDeleteCategory = "物理模型";
+      let detailContentTab = "import"; // import | delete
+      let detailDeleteCategory = "物理模型";
+      let dataMigExecRecord = null;
+      let dataMigExecTimer = null;
+      let dataMigExecAborted = false;
       let importDraft = {
         name: "",
         desc: "",
@@ -33603,30 +35022,34 @@
       };
       let dataMigFromAssistant = "analysis";
       let dataMigDraft = null;
+      let compareReportRow = null;
       let detailRow = null;
       let detailKind = "export"; // export | import
-      let detailCategory = "场景流程";
+      let detailCategory = "业务流程";
 
+      /** 迁移导入/导出预览与详情：以业务流程为主视角的固定统计类目（无内容为 0） */
       const MIG_CONTENT_CATEGORIES = [
-        { key: "场景流程", count: 3 },
-        { key: "一站集成", count: 2 },
-        { key: "业务板块", count: 15 },
+        { key: "业务流程", count: 3 },
+        { key: "物理模型", count: 14 },
+        { key: "逻辑模型", count: 8 },
+        { key: "语义模型", count: 5 },
+        { key: "离线集成任务", count: 6 },
+        { key: "实时集成任务", count: 2 },
+        { key: "离线开发任务", count: 4 },
+        { key: "实时开发任务", count: 0 },
+        { key: "轻任务", count: 1 },
+        { key: "智能开发脚本", count: 3 },
+        { key: "API", count: 6 },
+        { key: "制作报告", count: 4 },
         { key: "工程", count: 15 },
+        { key: "业务板块", count: 15 },
         { key: "业务数据源", count: 2 },
         { key: "数仓数据源", count: 6 },
-        { key: "模型", count: 14 },
-        { key: "视图", count: 1 },
-        { key: "离线集成", count: 0 },
-        { key: "实时集成", count: 0 },
-        { key: "离线开发", count: 4 },
-        { key: "实时开发", count: 0 },
-        { key: "质量任务", count: 0 },
-        { key: "数据服务", count: 6 },
-        { key: "资源", count: 0 },
-        { key: "数据类目", count: 0 },
-        { key: "实时集群", count: 0 },
-        { key: "对象模型", count: 0 },
         { key: "公共参数", count: 40 },
+        { key: "实时集成", count: 0 },
+        { key: "实时集群", count: 0 },
+        { key: "分析数据源", count: 2 },
+        { key: "数据集", count: 5 },
       ];
 
       function getMigDetailCategories(row) {
@@ -33634,44 +35057,25 @@
           (row && Array.isArray(row.flows) && row.flows.length) ||
           (row && row.flowCount) ||
           0;
-        const oneStopCount =
-          (row && Array.isArray(row.oneStopRows) && row.oneStopRows.length) ||
-          (row && row.oneStopCount) ||
-          0;
         return MIG_CONTENT_CATEGORIES.map((cat) => {
-          if (cat.key === "场景流程") {
+          if (cat.key === "业务流程") {
             return {
               key: cat.key,
               count: flowCount > 0 ? flowCount : cat.count,
             };
           }
-          if (cat.key === "一站集成") {
-            return {
-              key: cat.key,
-              count: oneStopCount > 0 ? oneStopCount : cat.count,
-            };
-          }
-          return cat;
+          return { key: cat.key, count: Number(cat.count) || 0 };
         });
       }
 
       function buildMigCategoryItems(category, count, taskName, row) {
-        if (category === "场景流程" && row && Array.isArray(row.flows) && row.flows.length) {
+        if (category === "业务流程" && row && Array.isArray(row.flows) && row.flows.length) {
           return row.flows.map((flow, i) => ({
             id: flow.id || "flow-" + (i + 1),
-            name: flow.name || flow.title || "未命名场景流程",
-            type: "场景流程",
+            name: flow.name || flow.title || "未命名业务流程",
+            type: "业务流程",
             status: "success",
             updateTime: row.time || "2026-07-15 15:23:01",
-          }));
-        }
-        if (category === "一站集成" && row && Array.isArray(row.oneStopRows) && row.oneStopRows.length) {
-          return row.oneStopRows.map((item, i) => ({
-            id: item.id || "osi-" + (i + 1),
-            name: item.name || "未命名一站集成",
-            type: item.type || item.accessMode || "一站集成",
-            status: item.status === "失败" || item.status === "fail" ? "fail" : "success",
-            updateTime: item.updateTime || item.submitTime || row.time || "2026-07-15 15:23:01",
           }));
         }
         if (!count) return [];
@@ -33681,22 +35085,13 @@
           "劳务智能问数分析流程",
           "工程咨询分析交付流程",
         ];
-        const oneStopSamples = [
-          { name: "物料库零拷贝采集", type: "离线" },
-          { name: "项目标识存量接入", type: "离线" },
-        ];
         for (let i = 1; i <= count; i++) {
           let name;
           let type = category;
-          if (category === "场景流程") {
+          if (category === "业务流程") {
             name =
               sceneFlowSamples[(i - 1) % sceneFlowSamples.length] +
               (i > sceneFlowSamples.length ? " · " + i : "");
-          } else if (category === "一站集成") {
-            const sample = oneStopSamples[(i - 1) % oneStopSamples.length];
-            name =
-              sample.name + (i > oneStopSamples.length ? " · " + i : "");
-            type = sample.type;
           } else {
             name = (taskName || "迁移任务") + " · " + category + " · " + i;
           }
@@ -33744,6 +35139,7 @@
 
       function statusLabel(status) {
         if (status === "exporting") return "导出中";
+        if (status === "importing") return "迁入中";
         if (status === "pending") return "进行中";
         if (status === "fail") return "失败";
         return "成功";
@@ -33751,6 +35147,7 @@
 
       function statusClass(status) {
         if (status === "exporting") return "mig-status is-exporting";
+        if (status === "importing") return "mig-status is-importing";
         if (status === "pending") return "mig-status is-pending";
         if (status === "fail") return "mig-status is-fail";
         return "mig-status";
@@ -33850,7 +35247,9 @@
           link.className = "mig-link";
           link.style.marginRight = "0";
           link.textContent = act.label;
+          if (act.disabled) link.disabled = true;
           link.addEventListener("click", () => {
+            if (link.disabled) return;
             if (typeof act.onClick === "function") {
               act.onClick(row);
               return;
@@ -33859,6 +35258,417 @@
           });
           tdAct.appendChild(link);
         });
+      }
+
+      function openImportCompareReport(row) {
+        const report = getImportRowCompareReport(row);
+        if (
+          !report ||
+          !(report.status === "success" || report.status === "partial") ||
+          !report.result
+        ) {
+          showToast("该任务暂无比对报告，请先在迁入流程中完成版本比对", "warn");
+          return;
+        }
+        compareReportRow = row;
+        pageView = "import-compare-report";
+        renderAll();
+      }
+
+      function buildImportCompareReportAction() {
+        return {
+          label: "版本比对报告",
+          onClick: openImportCompareReport,
+        };
+      }
+
+      function getDataMigImportRows() {
+        if (dataMigFromAssistant === "governance") return govImportRows;
+        if (dataMigFromAssistant === "analysis") return analysisImportRows;
+        return sceneImportRows;
+      }
+
+      function openDataMigImportDetail(row) {
+        detailRow = row;
+        detailKind = "import";
+        detailCategory = "业务流程";
+        if (row && row.assistant) activeAssistant = row.assistant;
+        pageView = "scene-transfer-detail";
+        renderAll();
+      }
+
+      function buildDataMigImportDetailAction() {
+        return {
+          label: "详情",
+          onClick: openDataMigImportDetail,
+        };
+      }
+
+      function buildDataMigExecPlan(draft) {
+        const previewRow = { name: draft.name || "迁入任务" };
+        const items = [];
+        getMigDetailCategories(previewRow).forEach((cat) => {
+          if (!cat.count) return;
+          const catItems = buildMigCategoryItems(cat.key, cat.count, previewRow.name, previewRow);
+          catItems.forEach((item, i) => {
+            items.push({
+              key: "import-" + cat.key + "-" + (item.id || i),
+              name: item.name,
+              category: cat.key,
+              typeLabel: item.type || cat.key,
+              phase: "import",
+              status: "pending",
+            });
+          });
+        });
+        getCompareSelectedExtraResources(draft.compare).forEach((item) => {
+          items.push({
+            key: "delete-" + item.key,
+            name: item.name,
+            category: item.typeLabel,
+            typeLabel: item.typeLabel,
+            phase: "delete",
+            resourceId: item.resourceId,
+            status: "pending",
+          });
+        });
+        return items;
+      }
+
+      function createDataMigImportRecord(draft) {
+        const execItems = buildDataMigExecPlan(draft);
+        return {
+          id: "dm-" + Date.now(),
+          name: draft.name,
+          creator: "当前用户",
+          status: "importing",
+          time: formatNow(),
+          exportType: "全量",
+          importMode: draft.importMode,
+          assistant: dataMigFromAssistant,
+          compareReport: cloneCompareStateForStorage(draft.compare),
+          deleteExtraKeys: (draft.compare && draft.compare.deleteExtraKeys || []).slice(),
+          failReason: "",
+          execPhase: execItems.some((i) => i.phase === "import") ? "import" : "delete",
+          execItems,
+          execIndex: 0,
+          execLogs: [],
+          execProgress: 0,
+          inList: false,
+          backgroundRun: false,
+        };
+      }
+
+      function ensureDataMigExecRecordInList(rec) {
+        if (!rec || rec.inList) return;
+        getDataMigImportRows().unshift(rec);
+        rec.inList = true;
+      }
+
+      function removeDataMigExecRecordFromList(rec) {
+        if (!rec || !rec.inList) return;
+        const rows = getDataMigImportRows();
+        const idx = rows.findIndex((r) => r.id === rec.id);
+        if (idx >= 0) rows.splice(idx, 1);
+        rec.inList = false;
+      }
+
+      function appendDataMigExecLog(rec, text, level) {
+        if (!rec.execLogs) rec.execLogs = [];
+        rec.execLogs.push({ text, level: level || "info", time: formatNow() });
+      }
+
+      function getDataMigExecPhaseLabel(rec) {
+        if (!rec) return "";
+        if (rec.status === "success") return "执行完成";
+        if (rec.status === "fail") return "执行已停止";
+        if (rec.execPhase === "delete") return "正在删除历史多余资源";
+        return "正在导入资源";
+      }
+
+      function updateDataMigExecProgress(rec) {
+        if (!rec || !rec.execItems || !rec.execItems.length) {
+          rec.execProgress = 0;
+          return;
+        }
+        const done = rec.execItems.filter((i) => i.status === "ok" || i.status === "fail").length;
+        rec.execProgress = Math.round((done / rec.execItems.length) * 100);
+      }
+
+      function stopDataMigExecTimer() {
+        if (dataMigExecTimer) {
+          window.clearTimeout(dataMigExecTimer);
+          dataMigExecTimer = null;
+        }
+      }
+
+      function refreshAfterDataMigExecChange() {
+        if (importCreateStep === 5 && pageView === "data-migration-import") renderAll();
+        else if (pageView === "home") renderPanel();
+      }
+
+      function finishDataMigImportExec(rec, success) {
+        stopDataMigExecTimer();
+        rec.status = success ? "success" : "fail";
+        rec.execProgress = success ? 100 : rec.execProgress;
+        ensureDataMigExecRecordInList(rec);
+        refreshAfterDataMigExecChange();
+      }
+
+      function failDataMigImportExec(rec, item, reason) {
+        item.status = "fail";
+        const phaseText = item.phase === "delete" ? "删除" : "导入";
+        const logText =
+          "[" +
+          phaseText +
+          "] " +
+          item.category +
+          " · " +
+          item.name +
+          " … 失败：" +
+          reason;
+        appendDataMigExecLog(rec, logText, "fail");
+        rec.failReason =
+          phaseText +
+          "失败（" +
+          item.category +
+          " · " +
+          item.name +
+          "）：" +
+          reason;
+        rec.status = "fail";
+        updateDataMigExecProgress(rec);
+        stopDataMigExecTimer();
+        ensureDataMigExecRecordInList(rec);
+        refreshAfterDataMigExecChange();
+      }
+
+      function tickDataMigImportExec() {
+        const rec = dataMigExecRecord;
+        if (!rec || dataMigExecAborted || rec.status === "fail" || rec.status === "success") return;
+
+        if (rec.execIndex >= rec.execItems.length) {
+          appendDataMigExecLog(rec, "迁入任务执行完成", "ok");
+          finishDataMigImportExec(rec, true);
+          showToast("迁入执行完成", "success");
+          return;
+        }
+
+        const item = rec.execItems[rec.execIndex];
+        rec.execPhase = item.phase;
+        const phaseText = item.phase === "delete" ? "删除" : "导入";
+
+        const demoFailIndex = 6;
+        const hasDeleteItems = (rec.execItems || []).some((i) => i.phase === "delete");
+        const isDemoFail =
+          !hasDeleteItems &&
+          item.phase === "import" &&
+          rec.execIndex === demoFailIndex;
+        if (isDemoFail) {
+          failDataMigImportExec(
+            rec,
+            item,
+            "目标环境写入权限不足，无法创建对象「" + item.name + "」"
+          );
+          return;
+        }
+
+        item.status = "ok";
+        appendDataMigExecLog(
+          rec,
+          "[" +
+            phaseText +
+            "] " +
+            item.category +
+            " · " +
+            item.name +
+            (item.phase === "delete" ? "（" + item.resourceId + "）" : "") +
+            " … 成功",
+          "ok"
+        );
+        rec.execIndex += 1;
+        updateDataMigExecProgress(rec);
+
+        refreshAfterDataMigExecChange();
+
+        dataMigExecTimer = window.setTimeout(tickDataMigImportExec, 420);
+      }
+
+      function startDataMigImportExec() {
+        const rec = dataMigExecRecord;
+        if (!rec || rec.status !== "importing") return;
+        stopDataMigExecTimer();
+        dataMigExecAborted = false;
+        if (!rec.execLogs.length) {
+          appendDataMigExecLog(rec, "开始执行迁入：先导入资源，再删除历史多余资源", "info");
+        }
+        dataMigExecTimer = window.setTimeout(tickDataMigImportExec, 320);
+      }
+
+      function confirmAbortDataMigImport(onConfirm) {
+        const overlay = document.createElement("div");
+        overlay.className = "mig-batch-modal";
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.remove();
+        });
+        const box = document.createElement("div");
+        box.className = "mig-batch-modal__box";
+        box.addEventListener("click", (e) => e.stopPropagation());
+        const hd = document.createElement("div");
+        hd.className = "mig-batch-modal__hd";
+        hd.textContent = "中止此次导入";
+        const body = document.createElement("div");
+        body.className = "mig-batch-modal__body";
+        const tip = document.createElement("p");
+        tip.className = "mig-batch-modal__tip";
+        tip.textContent =
+          "是否要停止此次迁移？确认后将取消本次迁入，列表中不会保留该任务记录。";
+        body.appendChild(tip);
+        const actions = document.createElement("div");
+        actions.className = "mig-cmp-hd__actions";
+        actions.style.justifyContent = "flex-end";
+        actions.style.marginTop = "12px";
+        const cancelBtn = document.createElement("button");
+        cancelBtn.type = "button";
+        cancelBtn.className = "mig-btn mig-btn--ghost";
+        cancelBtn.textContent = "取消";
+        cancelBtn.addEventListener("click", () => overlay.remove());
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "mig-btn mig-btn--primary";
+        okBtn.textContent = "确认中止";
+        okBtn.addEventListener("click", () => {
+          overlay.remove();
+          if (typeof onConfirm === "function") onConfirm();
+        });
+        actions.appendChild(cancelBtn);
+        actions.appendChild(okBtn);
+        body.appendChild(actions);
+        box.appendChild(hd);
+        box.appendChild(body);
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+      }
+
+      function renderDataMigImportExecute(body, ft, goHome) {
+        const rec = dataMigExecRecord;
+        if (!rec) {
+          importCreateStep = 4;
+          renderAll();
+          return;
+        }
+
+        const execSec = document.createElement("section");
+        execSec.className = "mig-create__section is-grow";
+        const execTitle = document.createElement("h3");
+        execTitle.className = "mig-create__section-title";
+        execTitle.textContent = "迁入执行";
+        execSec.appendChild(execTitle);
+
+        const phaseRow = document.createElement("div");
+        phaseRow.className = "mig-exec-phase";
+        phaseRow.innerHTML =
+          "<span>当前步骤：<strong>" +
+          getDataMigExecPhaseLabel(rec) +
+          "</strong></span><span>任务：" +
+          (rec.name || "—") +
+          "</span>";
+        execSec.appendChild(phaseRow);
+
+        const progressWrap = document.createElement("div");
+        progressWrap.className = "mig-exec-progress";
+        const track = document.createElement("div");
+        track.className = "mig-exec-progress__track";
+        const bar = document.createElement("div");
+        bar.className = "mig-exec-progress__bar";
+        bar.style.width = (rec.execProgress || 0) + "%";
+        track.appendChild(bar);
+        const meta = document.createElement("div");
+        meta.className = "mig-exec-progress__meta";
+        const doneCount = (rec.execItems || []).filter((i) => i.status === "ok").length;
+        const totalCount = (rec.execItems || []).length;
+        meta.innerHTML =
+          "<span>进度 " +
+          (rec.execProgress || 0) +
+          "%</span><span>已完成 " +
+          doneCount +
+          " / " +
+          totalCount +
+          "</span>";
+        progressWrap.appendChild(track);
+        progressWrap.appendChild(meta);
+        execSec.appendChild(progressWrap);
+
+        if (rec.status === "fail" && rec.failReason) {
+          const failBanner = document.createElement("div");
+          failBanner.className = "mig-exec-fail-banner";
+          failBanner.innerHTML =
+            "<strong>导入失败，已停止执行</strong>" + rec.failReason;
+          execSec.appendChild(failBanner);
+        }
+
+        const logBox = document.createElement("div");
+        logBox.className = "mig-exec-log" + (rec.status === "fail" ? " is-paused" : "");
+        (rec.execLogs || []).forEach((line) => {
+          const p = document.createElement("p");
+          p.className = "mig-exec-log__line" + (line.level ? " is-" + line.level : "");
+          p.textContent = "[" + line.time + "] " + line.text;
+          logBox.appendChild(p);
+        });
+        execSec.appendChild(logBox);
+        body.appendChild(execSec);
+        window.requestAnimationFrame(() => {
+          logBox.scrollTop = logBox.scrollHeight;
+        });
+
+        const isRunning = rec.status === "importing";
+        const isDone = rec.status === "success" || rec.status === "fail";
+
+        if (isRunning) {
+          const abortBtn = document.createElement("button");
+          abortBtn.type = "button";
+          abortBtn.className = "mig-btn mig-btn--ghost";
+          abortBtn.textContent = "中止此次导入";
+          abortBtn.addEventListener("click", () => {
+            confirmAbortDataMigImport(() => {
+              dataMigExecAborted = true;
+              stopDataMigExecTimer();
+              removeDataMigExecRecordFromList(rec);
+              dataMigExecRecord = null;
+              importCreateStep = 4;
+              showToast("已中止此次迁入，任务未写入列表", "info");
+              goHome();
+            });
+          });
+          const bgBtn = document.createElement("button");
+          bgBtn.type = "button";
+          bgBtn.className = "mig-btn mig-btn--ghost";
+          bgBtn.textContent = "后台运行";
+          bgBtn.addEventListener("click", () => {
+            rec.backgroundRun = true;
+            ensureDataMigExecRecordInList(rec);
+            dataMigExecRecord = rec;
+            importCreateStep = 1;
+            showToast("任务已在后台继续执行，可在迁入列表查看进度", "info");
+            goHome();
+          });
+          ft.appendChild(bgBtn);
+          ft.appendChild(abortBtn);
+        }
+
+        if (isDone) {
+          const backBtn = document.createElement("button");
+          backBtn.type = "button";
+          backBtn.className = "mig-btn mig-btn--primary";
+          backBtn.textContent = "返回迁入列表";
+          backBtn.addEventListener("click", () => {
+            dataMigExecRecord = null;
+            importCreateStep = 1;
+            goHome();
+            if (rec.status === "success") showToast("迁入任务已完成", "success");
+          });
+          ft.appendChild(backBtn);
+        }
       }
 
       function renderPagination(total) {
@@ -34080,7 +35890,7 @@
               "</th>" +
               "<th style='width:100px'>创建人</th>" +
               "<th style='width:180px'>创建时间</th>" +
-              "<th style='width:140px'>操作</th>" +
+              "<th style='width:220px'>操作</th>" +
               "</tr></thead>";
           } else if (isAnalysis) {
             table.innerHTML =
@@ -34094,7 +35904,7 @@
               "<th style='width:120px'>" +
               (isExport ? "导出状态" : "导入状态") +
               "</th>" +
-              "<th style='width:180px'>操作</th>" +
+              "<th style='width:260px'>操作</th>" +
               "</tr></thead>";
           } else {
             table.innerHTML =
@@ -34108,7 +35918,7 @@
               "<th style='width:180px'>" +
               (isExport ? "导出时间" : "导入时间") +
               "</th>" +
-              "<th style='width:180px'>操作</th>" +
+              "<th style='width:260px'>操作</th>" +
               "</tr></thead>";
           }
 
@@ -34132,10 +35942,14 @@
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdAct = document.createElement("td");
-              appendActionLinks(tdAct, row, [
-                { label: "详情", msg: "查看详情" },
-                { label: "下载", msg: "开始下载" },
-              ]);
+              const govActions = [
+                !isExport && row.compareReport
+                  ? buildDataMigImportDetailAction()
+                  : { label: "详情", msg: "查看详情" },
+              ];
+              if (isExport) govActions.push({ label: "下载", msg: "开始下载" });
+              if (!isExport) govActions.splice(1, 0, buildImportCompareReportAction());
+              appendActionLinks(tdAct, row, govActions);
               tr.appendChild(tdId);
               tr.appendChild(tdName);
               tr.appendChild(tdType);
@@ -34158,11 +35972,15 @@
               st.textContent = statusLabel(row.status);
               tdStatus.appendChild(st);
               const tdAct = document.createElement("td");
-              appendActionLinks(tdAct, row, [
-                { label: "详情", msg: "查看详情" },
-                { label: "下载", msg: "开始下载" },
-                { label: "删除", msg: "已删除（示意）" },
-              ]);
+              const analysisActions = [
+                !isExport && row.compareReport
+                  ? buildDataMigImportDetailAction()
+                  : { label: "详情", msg: "查看详情" },
+              ];
+              if (isExport) analysisActions.push({ label: "下载", msg: "开始下载" });
+              analysisActions.push({ label: "删除", msg: "已删除（示意）" });
+              if (!isExport) analysisActions.splice(1, 0, buildImportCompareReportAction());
+              appendActionLinks(tdAct, row, analysisActions);
               tr.appendChild(tdIdx);
               tr.appendChild(tdName);
               tr.appendChild(tdCreator);
@@ -34184,34 +36002,38 @@
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdAct = document.createElement("td");
-              const sceneActions = [
-                { label: "下载", msg: "开始下载" },
-                { label: "删除", msg: "已删除（示意）" },
-              ];
+              const sceneActions = [{ label: "删除", msg: "已删除（示意）" }];
               if (isExport) {
-                sceneActions.unshift({
-                  label: "详情",
-                  msg: "查看详情",
-                  onClick: (r) => {
-                    detailRow = r;
-                    detailKind = "export";
-                    detailCategory = "场景流程";
-                    pageView = "scene-transfer-detail";
-                    renderAll();
+                sceneActions.unshift(
+                  {
+                    label: "详情",
+                    msg: "查看详情",
+                    onClick: (r) => {
+                      detailRow = r;
+                      detailKind = "export";
+                      detailCategory = "业务流程";
+                      pageView = "scene-transfer-detail";
+                      renderAll();
+                    },
                   },
-                });
+                  { label: "下载", msg: "开始下载" }
+                );
               } else {
-                sceneActions.unshift({
-                  label: "详情",
-                  msg: "查看详情",
-                  onClick: (r) => {
-                    detailRow = r;
-                    detailKind = "import";
-                    detailCategory = "场景流程";
-                    pageView = "scene-transfer-detail";
-                    renderAll();
-                  },
-                });
+                sceneActions.unshift(
+                  row.compareReport
+                    ? buildDataMigImportDetailAction()
+                    : {
+                        label: "详情",
+                        onClick: (r) => {
+                          detailRow = r;
+                          detailKind = "import";
+                          detailCategory = "业务流程";
+                          pageView = "scene-transfer-detail";
+                          renderAll();
+                        },
+                      }
+                );
+                sceneActions.splice(1, 0, buildImportCompareReportAction());
               }
               appendActionLinks(tdAct, row, sceneActions);
               tr.appendChild(tdIdx);
@@ -34400,7 +36222,7 @@
           detailRow = null;
           pageView = "home";
           listTab = isExport ? "export" : "import";
-          activeAssistant = "scene-flow";
+          activeAssistant = (row && row.assistant) || "scene-flow";
           renderAll();
         });
         const title = document.createElement("h2");
@@ -34442,11 +36264,35 @@
         basicSection.appendChild(basicTitle);
         basicSection.appendChild(meta);
 
+        const isImportFail = !isExport && row.status === "fail" && row.failReason;
+
+        if (isImportFail) {
+          const failBox = document.createElement("div");
+          failBox.className = "mig-detail-fail";
+          const failTitle = document.createElement("h3");
+          failTitle.className = "mig-detail-fail__title";
+          failTitle.textContent = "迁入失败";
+          const failReason = document.createElement("p");
+          failReason.className = "mig-detail-fail__reason";
+          failReason.textContent = row.failReason;
+          failBox.appendChild(failTitle);
+          failBox.appendChild(failReason);
+          body.appendChild(basicSection);
+          body.appendChild(failBox);
+        } else {
+        const deletedResources = !isExport ? getImportRowDeletedResources(row) : [];
+        const showDeleteTab = !isExport && deletedResources.length > 0;
+        if (showDeleteTab) {
+          const delCats = getDeletePreviewCategories(deletedResources);
+          if (!delCats.some((c) => c.key === detailDeleteCategory)) {
+            detailDeleteCategory = delCats[0] ? delCats[0].key : "";
+          }
+        } else {
+          detailContentTab = "import";
+        }
+
         const contentSection = document.createElement("section");
         contentSection.className = "mig-create__section is-grow";
-        const contentTitle = document.createElement("h3");
-        contentTitle.className = "mig-create__section-title";
-        contentTitle.textContent = isExport ? "导出内容" : "导入内容";
 
         const catGrid = document.createElement("div");
         catGrid.className = "mig-cat-grid";
@@ -34456,12 +36302,27 @@
         listHost.style.border = "1px solid #f0f0f0";
         listHost.style.borderRadius = "8px";
 
+        const deleteCatGrid = document.createElement("div");
+        deleteCatGrid.className = "mig-cat-grid";
+        const deleteListHost = document.createElement("div");
+        deleteListHost.className = "mig-table-wrap";
+        deleteListHost.style.marginTop = "14px";
+        deleteListHost.style.border = "1px solid #f0f0f0";
+        deleteListHost.style.borderRadius = "8px";
+
         function renderCategoryList() {
           const categories = getMigDetailCategories(row);
+          listHost.innerHTML = "";
+          if (!categories.length) {
+            const empty = document.createElement("div");
+            empty.className = "mig-empty";
+            empty.textContent = "该类目暂无" + (isExport ? "导出" : "导入") + "内容";
+            listHost.appendChild(empty);
+            return;
+          }
           const cat =
             categories.find((c) => c.key === detailCategory) || categories[0];
           const items = buildMigCategoryItems(cat.key, cat.count, row.name, row);
-          listHost.innerHTML = "";
 
           const listHd = document.createElement("div");
           listHd.className = "mig-detail-list-hd";
@@ -34523,7 +36384,11 @@
 
         function renderCategoryCards() {
           catGrid.innerHTML = "";
-          getMigDetailCategories(row).forEach((cat) => {
+          const cats = getMigDetailCategories(row);
+          if (!cats.some((c) => c.key === detailCategory)) {
+            detailCategory = cats[0] ? cats[0].key : "业务流程";
+          }
+          cats.forEach((cat) => {
             const card = document.createElement("button");
             card.type = "button";
             card.className =
@@ -34536,7 +36401,7 @@
             stat.className = "mig-cat-card__stat";
             if (cat.count > 0) {
               const okText = document.createElement("span");
-              okText.textContent = "成功";
+              okText.textContent = isExport ? "成功" : "成功";
               const countEl = document.createElement("span");
               countEl.className = "mig-cat-card__count is-ok";
               countEl.textContent = String(cat.count);
@@ -34559,12 +36424,171 @@
           });
         }
 
-        contentSection.appendChild(contentTitle);
-        contentSection.appendChild(catGrid);
-        contentSection.appendChild(listHost);
+        function renderDetailDeleteCategoryList() {
+          const catKey = detailDeleteCategory;
+          const items = catKey
+            ? deletedResources.filter((item) => item.typeLabel === catKey)
+            : [];
+          deleteListHost.innerHTML = "";
+          if (!deletedResources.length || !catKey) {
+            const empty = document.createElement("div");
+            empty.className = "mig-empty";
+            empty.textContent = "无删除内容";
+            deleteListHost.appendChild(empty);
+            return;
+          }
+          const listHd = document.createElement("div");
+          listHd.className = "mig-detail-list-hd";
+          listHd.style.padding = "12px 14px 0";
+          const listTitle = document.createElement("h4");
+          listTitle.className = "mig-detail-list-hd__title";
+          listTitle.textContent = catKey + "列表";
+          const listSub = document.createElement("span");
+          listSub.className = "mig-detail-list-hd__sub";
+          listSub.textContent = "共 " + items.length + " 条";
+          listHd.appendChild(listTitle);
+          listHd.appendChild(listSub);
+          deleteListHost.appendChild(listHd);
+          if (!items.length) {
+            const empty = document.createElement("div");
+            empty.className = "mig-empty";
+            empty.textContent = "该类目暂无删除内容";
+            deleteListHost.appendChild(empty);
+            return;
+          }
+          const table = document.createElement("table");
+          table.className = "mig-table";
+          table.innerHTML =
+            "<thead><tr>" +
+            "<th style='width:64px'>序号</th>" +
+            "<th>名称</th>" +
+            "<th style='width:120px'>类型</th>" +
+            "<th>映射路径</th>" +
+            "<th style='width:120px'>资源 ID</th>" +
+            "</tr></thead>";
+          const tbody = document.createElement("tbody");
+          items.forEach((item, i) => {
+            const tr = document.createElement("tr");
+            const tdIdx = document.createElement("td");
+            tdIdx.textContent = String(i + 1);
+            const tdName = document.createElement("td");
+            const nameText = document.createElement("span");
+            nameText.textContent = item.name;
+            tdName.appendChild(nameText);
+            const delTag = document.createElement("span");
+            delTag.className = "mig-tag is-delete-pending";
+            delTag.textContent = "已删除";
+            tdName.appendChild(delTag);
+            const tdType = document.createElement("td");
+            tdType.textContent = item.typeLabel;
+            const tdPath = document.createElement("td");
+            tdPath.textContent = item.mapPath || "—";
+            const tdId = document.createElement("td");
+            tdId.textContent = item.resourceId || "—";
+            tr.appendChild(tdIdx);
+            tr.appendChild(tdName);
+            tr.appendChild(tdType);
+            tr.appendChild(tdPath);
+            tr.appendChild(tdId);
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          deleteListHost.appendChild(table);
+        }
+
+        function renderDetailDeleteCategoryCards() {
+          deleteCatGrid.innerHTML = "";
+          getDeletePreviewCategories(deletedResources).forEach((cat) => {
+            const card = document.createElement("button");
+            card.type = "button";
+            card.className =
+              "mig-cat-card" + (detailDeleteCategory === cat.key ? " is-active" : "");
+            const nameEl = document.createElement("div");
+            nameEl.className = "mig-cat-card__name";
+            nameEl.textContent = cat.key;
+            const stat = document.createElement("div");
+            stat.className = "mig-cat-card__stat";
+            const countEl = document.createElement("span");
+            countEl.className = "mig-cat-card__count is-ok";
+            countEl.textContent = String(cat.count);
+            stat.appendChild(countEl);
+            card.appendChild(nameEl);
+            card.appendChild(stat);
+            card.addEventListener("click", () => {
+              detailDeleteCategory = cat.key;
+              renderDetailDeleteCategoryCards();
+              renderDetailDeleteCategoryList();
+            });
+            deleteCatGrid.appendChild(card);
+          });
+        }
+
+        if (showDeleteTab) {
+          const detailTabs = document.createElement("div");
+          detailTabs.className = "mig-cmp-tabs";
+          const importTabBtn = document.createElement("button");
+          importTabBtn.type = "button";
+          importTabBtn.className =
+            "mig-cmp-tab" + (detailContentTab === "import" ? " is-active" : "");
+          importTabBtn.textContent = "导入内容";
+          const deleteTabBtn = document.createElement("button");
+          deleteTabBtn.type = "button";
+          deleteTabBtn.className =
+            "mig-cmp-tab" + (detailContentTab === "delete" ? " is-active" : "");
+          deleteTabBtn.textContent = "删除内容";
+          const deleteBadge = document.createElement("span");
+          deleteBadge.className = "mig-cmp-tab-badge";
+          deleteBadge.textContent = String(deletedResources.length);
+          deleteTabBtn.appendChild(deleteBadge);
+          detailTabs.appendChild(importTabBtn);
+          detailTabs.appendChild(deleteTabBtn);
+
+          const tabBody = document.createElement("div");
+          tabBody.className = "mig-cmp-tab-body";
+          tabBody.style.marginTop = "14px";
+          const importPane = document.createElement("div");
+          importPane.className = "mig-cmp-tab-pane";
+          importPane.hidden = detailContentTab !== "import";
+          const deletePane = document.createElement("div");
+          deletePane.className = "mig-cmp-tab-pane";
+          deletePane.hidden = detailContentTab !== "delete";
+
+          function switchDetailTab(tab) {
+            detailContentTab = tab;
+            importPane.hidden = tab !== "import";
+            deletePane.hidden = tab !== "delete";
+            importTabBtn.classList.toggle("is-active", tab === "import");
+            deleteTabBtn.classList.toggle("is-active", tab === "delete");
+          }
+          importTabBtn.addEventListener("click", () => switchDetailTab("import"));
+          deleteTabBtn.addEventListener("click", () => switchDetailTab("delete"));
+
+          importPane.appendChild(catGrid);
+          importPane.appendChild(listHost);
+          deletePane.appendChild(deleteCatGrid);
+          deletePane.appendChild(deleteListHost);
+          tabBody.appendChild(importPane);
+          tabBody.appendChild(deletePane);
+          contentSection.appendChild(detailTabs);
+          contentSection.appendChild(tabBody);
+        } else {
+          const contentTitle = document.createElement("h3");
+          contentTitle.className = "mig-create__section-title";
+          contentTitle.textContent = isExport ? "导出内容" : "导入内容";
+          contentSection.appendChild(contentTitle);
+          contentSection.appendChild(catGrid);
+          contentSection.appendChild(listHost);
+        }
 
         body.appendChild(basicSection);
         body.appendChild(contentSection);
+        renderCategoryCards();
+        renderCategoryList();
+        if (showDeleteTab) {
+          renderDetailDeleteCategoryCards();
+          renderDetailDeleteCategoryList();
+        }
+        }
 
         const ft = document.createElement("div");
         ft.className = "mig-create__ft";
@@ -34576,7 +36600,7 @@
           detailRow = null;
           pageView = "home";
           listTab = isExport ? "export" : "import";
-          activeAssistant = "scene-flow";
+          activeAssistant = (row && row.assistant) || "scene-flow";
           renderAll();
         });
         ft.appendChild(backFt);
@@ -34585,9 +36609,6 @@
         page.appendChild(body);
         page.appendChild(ft);
         root.appendChild(page);
-
-        renderCategoryCards();
-        renderCategoryList();
       }
 
       function renderSceneImportCreate() {
@@ -34970,6 +36991,10 @@
           name: "分析资产导入测试",
           fileName: "",
           importMode: "map",
+          tenantId: "tenant-glodon",
+          tenantName: "广联达科技",
+          orgId: "org-huiguo",
+          orgName: "慧果产品部",
           hasReport: false,
           packageContents: [],
           neededMapKinds: [],
@@ -35018,7 +37043,1339 @@
             ADS_层: "",
           },
           autoMatched: {},
+          compare: createDataMigCompareState(),
         };
+      }
+
+      function createDataMigCompareState() {
+        return {
+          status: "idle",
+          failReason: "",
+          expandedModelKey: null,
+          modelFilter: "all",
+          pollTimer: null,
+          deleteExtraKeys: [],
+          resultTab: "model",
+          expandedResourceTypeKey: null,
+          config: {
+            struct: true,
+            ignoreCase: false,
+          },
+          result: null,
+        };
+      }
+
+      function buildDefaultStoredCompareReport() {
+        const cmp = createDataMigCompareState();
+        cmp.status = "success";
+        cmp.config.ignoreCase = false;
+        cmp.result = buildMockCompareResult(cmp.config, {
+          tenantId: "tenant-glodon",
+          tenantName: "广联达科技",
+          orgId: "org-huiguo",
+          orgName: "慧果产品部",
+        });
+        return cmp;
+      }
+
+      function cloneCompareStateForStorage(cmp) {
+        if (!cmp) return null;
+        return {
+          status: cmp.status,
+          failReason: cmp.failReason || "",
+          expandedModelKey: null,
+          modelFilter: "all",
+          pollTimer: null,
+          deleteExtraKeys: (cmp.deleteExtraKeys || []).slice(),
+          config: Object.assign({ struct: true, ignoreCase: false }, cmp.config || {}),
+          result: cmp.result ? JSON.parse(JSON.stringify(cmp.result)) : null,
+        };
+      }
+
+      function getCompareSelectedExtraResources(cmp) {
+        if (!cmp || !cmp.result || !Array.isArray(cmp.result.extraResources)) return [];
+        const keys = cmp.deleteExtraKeys || [];
+        return cmp.result.extraResources.filter((item) => keys.indexOf(item.key) >= 0);
+      }
+
+      function getImportRowDeletedResources(row) {
+        if (!row) return [];
+        const cmp = row.compareReport || null;
+        if (cmp && cmp.result && Array.isArray(cmp.result.extraResources)) {
+          const keys =
+            row.deleteExtraKeys && row.deleteExtraKeys.length
+              ? row.deleteExtraKeys
+              : cmp.deleteExtraKeys || [];
+          return cmp.result.extraResources.filter((item) => keys.indexOf(item.key) >= 0);
+        }
+        if (Array.isArray(row.execItems)) {
+          return row.execItems
+            .filter((item) => item.phase === "delete" && item.status === "ok")
+            .map((item) => ({
+              key: item.key,
+              resourceId: item.resourceId || "—",
+              name: item.name,
+              typeLabel: item.typeLabel || item.category || "其他",
+              mapPath: item.mapPath || "—",
+            }));
+        }
+        return [];
+      }
+
+      function buildCompareDeleteSummaryCounts(items) {
+        const byType = {};
+        DATA_MIG_RESOURCE_COUNT_TYPES.forEach((t) => {
+          byType[t.label] = 0;
+        });
+        (items || []).forEach((item) => {
+          const label = item.typeLabel || item.typeKey || "其他";
+          byType[label] = (byType[label] || 0) + 1;
+        });
+        return { total: (items || []).length, byType };
+      }
+
+      function getDeletePreviewCategories(selectedExtras) {
+        const summary = buildCompareDeleteSummaryCounts(selectedExtras);
+        return DATA_MIG_RESOURCE_COUNT_TYPES.map((t) => ({
+          key: t.label,
+          count: summary.byType[t.label] || 0,
+        })).filter((c) => c.count > 0);
+      }
+
+      function ensureImportPreviewDeleteCategory(selectedExtras) {
+        const cats = getDeletePreviewCategories(selectedExtras);
+        if (cats.some((c) => c.key === importPreviewDeleteCategory)) return;
+        importPreviewDeleteCategory = cats[0] ? cats[0].key : "";
+      }
+
+      const DATA_MIG_RESOURCE_COUNT_EXCLUDE = {
+        工程: true,
+        业务板块: true,
+        业务数据源: true,
+        数仓数据源: true,
+        公共参数: true,
+        实时集成: true,
+        实时集群: true,
+        分析数据源: true,
+        数据集: true,
+      };
+
+      const DATA_MIG_RESOURCE_COUNT_TYPES = MIG_CONTENT_CATEGORIES.filter(
+        (cat) => !DATA_MIG_RESOURCE_COUNT_EXCLUDE[cat.key]
+      ).map((cat) => ({
+        key: cat.key,
+        label: cat.key,
+      }));
+
+      function getImportRowCompareReport(row) {
+        if (!row) return null;
+        if (row.compareReport) return row.compareReport;
+        if (row.status === "success") {
+          row.compareReport = buildDefaultStoredCompareReport();
+          return row.compareReport;
+        }
+        return null;
+      }
+
+      const DATA_MIG_COMPARE_MODEL_DEFS = [
+        { key: "project_contract", name: "project_contract", type: "table", label: "项目合同表" },
+        { key: "project_member", name: "project_member", type: "table", label: "项目成员表" },
+        { key: "dim_project", name: "dim_project", type: "table", label: "项目维度表" },
+        { key: "ods_contract_raw", name: "ods_contract_raw", type: "table", label: "合同原始表" },
+        { key: "dwd_contract_detail", name: "dwd_contract_detail", type: "table", label: "合同明细表" },
+        { key: "ads_contract_summary", name: "ads_contract_summary", type: "view", label: "合同汇总视图" },
+        { key: "v_project_member_stat", name: "v_project_member_stat", type: "view", label: "项目成员统计视图" },
+        { key: "v_contract_amount_by_month", name: "v_contract_amount_by_month", type: "view", label: "合同月度金额视图" },
+        { key: "dim_org", name: "dim_org", type: "table", label: "组织维度表" },
+        { key: "ads_project_overview", name: "ads_project_overview", type: "view", label: "项目总览视图" },
+      ];
+
+      /** 原型：各模型在对象映射路径下的上次迁入资源与标签信息 */
+      const DATA_MIG_COMPARE_MODEL_META = {
+        project_contract: {
+          mapPath: "工程「经营决策工程」/ 分层「DWD_层」",
+          lastResourceId: "res-mig-88301",
+          bpMigTag: true,
+        },
+        project_member: {
+          mapPath: "工程「项目管理系统」/ 分层「DWD_层」",
+          lastResourceId: "",
+          bpMigTag: false,
+        },
+        dim_project: {
+          mapPath: "工程「BIM项目」/ 分层「ADS_层」",
+          lastResourceId: "res-mig-88210",
+          bpMigTag: false,
+        },
+        ods_contract_raw: {
+          mapPath: "工程「经营决策工程」/ 分层「ODS_层」",
+          lastResourceId: "res-mig-88100",
+          bpMigTag: true,
+        },
+        dwd_contract_detail: {
+          mapPath: "工程「经营决策工程」/ 分层「DWD_层」",
+          lastResourceId: "res-mig-88420",
+          bpMigTag: true,
+        },
+        ads_contract_summary: {
+          mapPath: "工程「经营决策工程」/ 分层「ADS_层」",
+          lastResourceId: "res-mig-88500",
+          bpMigTag: true,
+        },
+        v_project_member_stat: {
+          mapPath: "工程「合规验证工程」/ 分层「ADS_层」",
+          lastResourceId: "res-mig-88600",
+          bpMigTag: true,
+        },
+        v_contract_amount_by_month: {
+          mapPath: "工程「经营决策工程」/ 分层「ADS_层」",
+          lastResourceId: "res-mig-88700",
+          bpMigTag: true,
+        },
+        dim_org: {
+          mapPath: "工程「项目管理系统」/ 分层「DWD_层」",
+          lastResourceId: "",
+          bpMigTag: false,
+        },
+        ads_project_overview: {
+          mapPath: "工程「经营决策工程」/ 分层「ADS_层」",
+          lastResourceId: "res-mig-88800",
+          bpMigTag: true,
+        },
+      };
+
+      const DATA_MIG_COMPARE_BP_TAG = "业务流程迁移";
+
+      function getDataMigCompareScopeText(draft) {
+        draft = draft || {};
+        const tenant = draft.tenantName || draft.tenantId || "—";
+        const org = draft.orgName || draft.orgId || "—";
+        const tenantId = draft.tenantId || "—";
+        const orgId = draft.orgId || "—";
+        return {
+          tenantLine: tenant + "（租户 ID：" + tenantId + "）",
+          orgLine: org + "（组织 ID：" + orgId + "）",
+        };
+      }
+
+      function canExpandCompareStruct(model) {
+        return model && (model.structStatus === "ok" || model.structStatus === "warn");
+      }
+
+      function buildCompareStructDetailRow(model) {
+        const trDetail = document.createElement("tr");
+        trDetail.className = "mig-cmp-model-detail";
+        trDetail.setAttribute("data-cmp-detail", model.key);
+        const tdDetail = document.createElement("td");
+        tdDetail.colSpan = 5;
+        const structGrid = document.createElement("div");
+        structGrid.className = "mig-cmp-struct";
+        ["源结构", "目标结构"].forEach((title, idx) => {
+          const col = document.createElement("div");
+          col.className = "mig-cmp-struct__col";
+          col.innerHTML = '<div class="mig-cmp-struct__hd">' + title + "</div>";
+          const stbl = document.createElement("table");
+          stbl.innerHTML =
+            "<thead><tr><th>字段</th><th>类型</th><th>长度</th><th>主键</th><th>可空</th><th>索引</th></tr></thead>";
+          const stbody = document.createElement("tbody");
+          (idx === 0 ? model.structSource : model.structTarget).forEach((row) => {
+            const str = document.createElement("tr");
+            if (row.diff === "mismatch") str.className = "is-mismatch";
+            else if (row.diff === "missing") str.className = "is-missing";
+            else if (row.diff === "extra") str.className = "is-extra";
+            else str.className = "is-same";
+            str.innerHTML =
+              "<td>" +
+              row.name +
+              "</td><td>" +
+              row.type +
+              "</td><td>" +
+              (row.len || "—") +
+              "</td><td>" +
+              row.pk +
+              "</td><td>" +
+              row.nullable +
+              "</td><td>" +
+              (row.idx || "—") +
+              "</td>";
+            stbody.appendChild(str);
+          });
+          stbl.appendChild(stbody);
+          col.appendChild(stbl);
+          structGrid.appendChild(col);
+        });
+        tdDetail.appendChild(structGrid);
+        trDetail.appendChild(tdDetail);
+        return trDetail;
+      }
+
+      function collapseCompareStructDetail(tbody, cmp) {
+        if (!tbody || !cmp || !cmp.expandedModelKey) return;
+        const key = cmp.expandedModelKey;
+        const modelRow = tbody.querySelector(".mig-cmp-model-row[data-model-key=\"" + key + "\"]");
+        if (modelRow) {
+          modelRow.classList.remove("is-expanded");
+          const btn = modelRow.querySelector(".mig-cmp-expand-btn");
+          if (btn) btn.textContent = "结构详情";
+        }
+        const detail = tbody.querySelector("[data-cmp-detail=\"" + key + "\"]");
+        if (detail) detail.remove();
+        cmp.expandedModelKey = null;
+      }
+
+      function buildMockStructFields(seed, hasDiff) {
+        const base = [
+          { name: "id", type: "BIGINT", len: "20", pk: "是", nullable: "否", idx: "PK" },
+          { name: "code", type: "VARCHAR", len: "64", pk: "否", nullable: "否", idx: "IDX" },
+          { name: "name", type: "VARCHAR", len: "128", pk: "否", nullable: "是", idx: "" },
+          { name: "update_time", type: "DATETIME", len: "", pk: "否", nullable: "是", idx: "" },
+        ];
+        if (!hasDiff) {
+          return { source: base.slice(), target: base.map((r) => Object.assign({}, r)) };
+        }
+        const source = base.concat([
+          { name: "legacy_flag", type: "TINYINT", len: "1", pk: "否", nullable: "是", idx: "", diff: "missing" },
+        ]);
+        const target = base.map((r, i) => {
+          const row = Object.assign({}, r);
+          if (i === 1) {
+            row.len = "128";
+            row.diff = "mismatch";
+          }
+          return row;
+        });
+        target.push({
+          name: "extra_remark",
+          type: "VARCHAR",
+          len: "255",
+          pk: "否",
+          nullable: "是",
+          idx: "",
+          diff: "extra",
+        });
+        return { source, target };
+      }
+
+      const DATA_MIG_COMPARE_FAIL_REASONS = {
+        v_project_member_stat:
+          "字段比对失败：目标视图定义无法读取，当前账号缺少目标数仓「读元数据」权限",
+      };
+
+      function buildCompareSummaryFromModels(models) {
+        return {
+          total: models.length,
+          tableCount: models.filter((m) => m.type === "table").length,
+          viewCount: models.filter((m) => m.type === "view").length,
+          newCount: models.filter((m) => m.structStatus === "new").length,
+          skipCount: models.filter((m) => m.structStatus === "skip").length,
+          ok: models.filter((m) => m.structStatus === "ok").length,
+          warn: models.filter((m) => m.structStatus === "warn").length,
+          fail: models.filter((m) => m.structStatus === "fail").length,
+        };
+      }
+
+      function retrySingleModelCompare(cmp, modelKey) {
+        const result = cmp.result;
+        if (!result) return;
+        const model = result.models.find((m) => m.key === modelKey);
+        if (!model || model.structStatus !== "fail" || model.retrying) return;
+        model.retrying = true;
+        renderAll();
+        window.setTimeout(() => {
+          model.retrying = false;
+          if (modelKey === "v_project_member_stat") {
+            const struct = buildMockStructFields(modelKey, false);
+            model.structStatus = "ok";
+            model.structSummary = "结构完全一致";
+            model.failReason = "";
+            model.structSource = struct.source;
+            model.structTarget = struct.target;
+            showToast("v_project_member_stat 重新比对成功", "success");
+          } else {
+            model.failReason =
+              "目标视图定义无法读取：当前账号缺少目标数仓「读元数据」权限，请联系管理员开通后重试";
+            model.structSummary = model.failReason;
+            showToast("重新比对仍失败，请查看失败原因", "warn");
+          }
+          result.summary = buildCompareSummaryFromModels(result.models);
+          cmp.status = result.summary.fail > 0 ? "partial" : "success";
+          renderAll();
+        }, 1200);
+      }
+
+      function buildMockResourceCountData(draft) {
+        draft = draft || {};
+        const hasReport = !!draft.hasReport;
+        const mapPathByType = {
+          业务流程: "场景流程 / 业务流程资产",
+          物理模型: "工程「经营决策工程」/ 分层「DWD_层」",
+          逻辑模型: "工程「经营决策工程」/ 逻辑模型",
+          语义模型: "工程「经营决策工程」/ 语义模型",
+          离线集成任务: "工程「经营决策工程」/ 离线集成",
+          实时集成任务: "工程「经营决策工程」/ 实时集成",
+          离线开发任务: "工程「经营决策工程」/ 离线开发",
+          实时开发任务: "工程「经营决策工程」/ 实时开发",
+          轻任务: "工程「经营决策工程」/ 轻任务",
+          智能开发脚本: "工程「经营决策工程」/ 智能开发",
+          API: "数据服务 / API 市场",
+          制作报告: "报告目录「数据分析标准化」",
+        };
+        const extraBumpByType = {
+          物理模型: 1,
+          逻辑模型: 1,
+          离线集成任务: 2,
+          离线开发任务: 1,
+          制作报告: hasReport ? 2 : 0,
+          API: 0,
+        };
+        const countByKey = {};
+        MIG_CONTENT_CATEGORIES.forEach((cat) => {
+          countByKey[cat.key] = Number(cat.count) || 0;
+        });
+
+        const countDefs = DATA_MIG_RESOURCE_COUNT_TYPES.map((t) => {
+          let packageCount = countByKey[t.key] || 0;
+          if (!hasReport && t.key === "制作报告") packageCount = 0;
+          const bump = extraBumpByType[t.key] || 0;
+          const targetCount = packageCount + bump;
+          return {
+            typeKey: t.key,
+            label: t.label,
+            mapPath: mapPathByType[t.key] || ("对象映射路径 / " + t.key),
+            packageCount,
+            targetCount,
+          };
+        });
+
+        const resourceCounts = countDefs.map((row) => {
+          const extraCount = Math.max(0, row.targetCount - row.packageCount);
+          return Object.assign({}, row, {
+            extraCount,
+            status: extraCount > 0 ? "extra" : "ok",
+          });
+        });
+
+        const extraSamples = [
+          { typeKey: "物理模型", resourceId: "res-leg-88301", name: "历史合同表_v1" },
+          { typeKey: "逻辑模型", resourceId: "res-leg-88402", name: "旧版逻辑实体_项目" },
+          { typeKey: "离线集成任务", resourceId: "res-leg-88503", name: "历史同步任务_2024" },
+          { typeKey: "离线集成任务", resourceId: "res-leg-88504", name: "废弃清洗任务" },
+          { typeKey: "离线开发任务", resourceId: "res-leg-88510", name: "旧版离线任务流" },
+          { typeKey: "制作报告", resourceId: "res-leg-88605", name: "旧版经营月报" },
+          { typeKey: "制作报告", resourceId: "res-leg-88606", name: "演示报告_已下线" },
+        ];
+
+        const extraResources = [];
+        extraSamples.forEach((sample) => {
+          const countRow = resourceCounts.find((r) => r.typeKey === sample.typeKey);
+          if (!countRow || countRow.extraCount <= 0) return;
+          const already = extraResources.filter((e) => e.typeKey === sample.typeKey).length;
+          if (already >= countRow.extraCount) return;
+          extraResources.push({
+            key: "extra-" + sample.resourceId,
+            resourceId: sample.resourceId,
+            name: sample.name,
+            typeKey: sample.typeKey,
+            typeLabel: countRow.label,
+            mapPath: countRow.mapPath,
+            tag: DATA_MIG_COMPARE_BP_TAG,
+          });
+        });
+
+        const resourceCountSummary = {
+          typeTotal: resourceCounts.length,
+          withExtra: resourceCounts.filter((r) => r.extraCount > 0).length,
+          extraTotal: resourceCounts.reduce((sum, r) => sum + r.extraCount, 0),
+          listedExtra: extraResources.length,
+        };
+
+        return { resourceCounts, resourceCountSummary, extraResources };
+      }
+
+      function getCompareExtrasByType(extraResources, typeKey) {
+        return (extraResources || []).filter((item) => item.typeKey === typeKey);
+      }
+
+      function collapseResourceExtraDetail(countBody, cmp) {
+        if (!countBody || !cmp || !cmp.expandedResourceTypeKey) return;
+        const key = cmp.expandedResourceTypeKey;
+        const row = countBody.querySelector(".mig-cmp-count-row[data-type-key=\"" + key + "\"]");
+        if (row) row.classList.remove("is-expanded");
+        const detail = countBody.querySelector("[data-extra-detail=\"" + key + "\"]");
+        if (detail) detail.remove();
+        cmp.expandedResourceTypeKey = null;
+      }
+
+      function buildResourceExtraDetailRow(typeKey, items, cmp, readOnly) {
+        const tr = document.createElement("tr");
+        tr.className = "mig-cmp-count-extra-detail";
+        tr.setAttribute("data-extra-detail", typeKey);
+        const td = document.createElement("td");
+        td.colSpan = 6;
+        const inner = document.createElement("div");
+        inner.className = "mig-cmp-count-extra-inner";
+
+        const actions = document.createElement("div");
+        actions.className = "mig-cmp-extra-actions";
+        const selectAllLab = document.createElement("label");
+        const selectAllCb = document.createElement("input");
+        selectAllCb.type = "checkbox";
+        selectAllCb.disabled = readOnly || !items.length;
+        const typeKeys = items.map((e) => e.key);
+        selectAllCb.checked =
+          typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+        const rowChecks = [];
+        selectAllCb.addEventListener("change", () => {
+          if (readOnly) return;
+          if (selectAllCb.checked) {
+            typeKeys.forEach((k) => {
+              if (cmp.deleteExtraKeys.indexOf(k) < 0) cmp.deleteExtraKeys.push(k);
+            });
+          } else {
+            cmp.deleteExtraKeys = cmp.deleteExtraKeys.filter((k) => typeKeys.indexOf(k) < 0);
+          }
+          rowChecks.forEach((item) => {
+            item.check.checked = cmp.deleteExtraKeys.indexOf(item.key) >= 0;
+          });
+          selectAllCb.checked =
+            typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+        });
+        selectAllLab.appendChild(selectAllCb);
+        selectAllLab.appendChild(document.createTextNode("全选本类"));
+
+        if (!items.length) {
+          const empty = document.createElement("p");
+          empty.className = "mig-cmp-tip";
+          empty.style.margin = "0";
+          empty.textContent = "暂无明细数据（演示包仅列出部分样例）。";
+          inner.appendChild(empty);
+        } else {
+          actions.appendChild(selectAllLab);
+          inner.appendChild(actions);
+          const extraWrap = document.createElement("div");
+          extraWrap.className = "mig-cmp-overview";
+          const extraTable = document.createElement("table");
+          extraTable.className = "mig-cmp-count-table";
+          extraTable.innerHTML =
+            "<thead><tr>" +
+            "<th style='width:40px'></th>" +
+            "<th>名称</th>" +
+            "<th style='width:120px'>资源 ID</th>" +
+            "<th style='width:110px'>标签</th>" +
+            "</tr></thead>";
+          const extraBody = document.createElement("tbody");
+          items.forEach((item) => {
+            const row = document.createElement("tr");
+            const tdCheck = document.createElement("td");
+            const check = document.createElement("input");
+            check.type = "checkbox";
+            check.disabled = readOnly;
+            check.checked = cmp.deleteExtraKeys.indexOf(item.key) >= 0;
+            check.setAttribute("aria-label", "删除 " + item.name);
+            check.addEventListener("change", () => {
+              if (readOnly) return;
+              if (check.checked) {
+                if (cmp.deleteExtraKeys.indexOf(item.key) < 0) cmp.deleteExtraKeys.push(item.key);
+              } else {
+                cmp.deleteExtraKeys = cmp.deleteExtraKeys.filter((k) => k !== item.key);
+              }
+              selectAllCb.checked =
+                typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+            });
+            rowChecks.push({ key: item.key, check });
+            tdCheck.appendChild(check);
+            const tdName = document.createElement("td");
+            tdName.textContent = item.name;
+            const tdId = document.createElement("td");
+            tdId.textContent = item.resourceId;
+            const tdTag = document.createElement("td");
+            tdTag.textContent = "【" + item.tag + "】";
+            row.appendChild(tdCheck);
+            row.appendChild(tdName);
+            row.appendChild(tdId);
+            row.appendChild(tdTag);
+            extraBody.appendChild(row);
+          });
+          extraTable.appendChild(extraBody);
+          extraWrap.appendChild(extraTable);
+          inner.appendChild(extraWrap);
+        }
+
+        td.appendChild(inner);
+        tr.appendChild(td);
+        return tr;
+      }
+
+      function buildCompareResourceCountPanel(cmp, options) {
+        options = options || {};
+        const readOnly = !!options.readOnly;
+        const result = cmp.result;
+        if (!result || !result.resourceCounts) return null;
+
+        if (!cmp.deleteExtraKeys) cmp.deleteExtraKeys = [];
+
+        const countPanel = document.createElement("div");
+        countPanel.className = "mig-cmp-panel";
+        const countTip = document.createElement("p");
+        countTip.className = "mig-cmp-tip";
+        countTip.style.margin = "0 0 10px";
+        countTip.textContent =
+          "在对象映射所设路径下，统计本次迁移包内各类型资源数量，并与目标环境中带【" +
+          DATA_MIG_COMPARE_BP_TAG +
+          "】标签的资源数量比对；若目标环境数量多于本次迁移，点击「多余」列数字可展开查看历史多余资源并勾选删除。";
+        countPanel.appendChild(countTip);
+
+        const extras = result.extraResources || [];
+        const extraTotal = (result.resourceCountSummary && result.resourceCountSummary.extraTotal) || 0;
+        if (extraTotal > 0) {
+          const notice = document.createElement("div");
+          notice.className = "mig-cmp-extra-notice";
+          const noticeTitle = document.createElement("h4");
+          noticeTitle.className = "mig-cmp-extra-title";
+          noticeTitle.textContent = "目标环境历史多余资源（非本次迁移包内容）";
+          const noticeTip = document.createElement("p");
+          noticeTip.className = "mig-cmp-extra-tip";
+          noticeTip.textContent =
+            "以下资源带有【" +
+            DATA_MIG_COMPARE_BP_TAG +
+            "】标签但不在本次迁移包内。勾选后将在预览页展示为待删除列表，执行迁入时一并清理。";
+          notice.appendChild(noticeTitle);
+          notice.appendChild(noticeTip);
+          countPanel.appendChild(notice);
+        }
+
+        const countWrap = document.createElement("div");
+        countWrap.className = "mig-cmp-overview";
+        const countTable = document.createElement("table");
+        countTable.className = "mig-cmp-count-table";
+        countTable.innerHTML =
+          "<thead><tr>" +
+          "<th style='width:100px'>资源类型</th>" +
+          "<th>对象映射路径</th>" +
+          "<th style='width:96px'>本次迁移</th>" +
+          "<th style='width:110px'>目标（迁移标签）</th>" +
+          "<th style='width:72px'>多余</th>" +
+          "<th style='width:88px'>比对结果</th>" +
+          "</tr></thead>";
+        const countBody = document.createElement("tbody");
+        result.resourceCounts.forEach((row) => {
+          const tr = document.createElement("tr");
+          tr.className =
+            "mig-cmp-count-row" +
+            (cmp.expandedResourceTypeKey === row.typeKey ? " is-expanded" : "");
+          tr.setAttribute("data-type-key", row.typeKey);
+
+          const tdLabel = document.createElement("td");
+          tdLabel.textContent = row.label;
+          const tdPath = document.createElement("td");
+          tdPath.textContent = row.mapPath;
+          const tdPkg = document.createElement("td");
+          tdPkg.textContent = String(row.packageCount);
+          const tdTarget = document.createElement("td");
+          tdTarget.textContent = String(row.targetCount);
+
+          const tdExtra = document.createElement("td");
+          if (row.extraCount > 0) {
+            const extraBtn = document.createElement("button");
+            extraBtn.type = "button";
+            extraBtn.className = "mig-cmp-count-extra-btn";
+            extraBtn.textContent = String(row.extraCount);
+            extraBtn.setAttribute("aria-label", "展开 " + row.label + " 的历史多余资源");
+            extraBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (cmp.expandedResourceTypeKey === row.typeKey) {
+                collapseResourceExtraDetail(countBody, cmp);
+                return;
+              }
+              collapseResourceExtraDetail(countBody, cmp);
+              cmp.expandedResourceTypeKey = row.typeKey;
+              tr.classList.add("is-expanded");
+              const typeExtras = getCompareExtrasByType(extras, row.typeKey);
+              tr.insertAdjacentElement(
+                "afterend",
+                buildResourceExtraDetailRow(row.typeKey, typeExtras, cmp, readOnly)
+              );
+            });
+            tdExtra.appendChild(extraBtn);
+          } else {
+            tdExtra.textContent = "0";
+          }
+
+          const tdStatus = document.createElement("td");
+          const statusCls = row.status === "extra" ? "is-extra" : "is-ok";
+          const statusText = row.status === "extra" ? "存在多余" : "数量一致";
+          tdStatus.innerHTML =
+            "<span class='mig-cmp-count-status " + statusCls + "'>" + statusText + "</span>";
+
+          tr.appendChild(tdLabel);
+          tr.appendChild(tdPath);
+          tr.appendChild(tdPkg);
+          tr.appendChild(tdTarget);
+          tr.appendChild(tdExtra);
+          tr.appendChild(tdStatus);
+          countBody.appendChild(tr);
+
+          if (cmp.expandedResourceTypeKey === row.typeKey && row.extraCount > 0) {
+            const typeExtras = getCompareExtrasByType(extras, row.typeKey);
+            tr.insertAdjacentElement(
+              "afterend",
+              buildResourceExtraDetailRow(row.typeKey, typeExtras, cmp, readOnly)
+            );
+          }
+        });
+        countTable.appendChild(countBody);
+        countWrap.appendChild(countTable);
+        countPanel.appendChild(countWrap);
+
+        if (result.resourceCountSummary && result.resourceCountSummary.extraTotal === 0) {
+          const okTip = document.createElement("p");
+          okTip.className = "mig-cmp-tip";
+          okTip.style.margin = "12px 0 0";
+          okTip.textContent = "各映射路径下目标环境迁移标签资源数量与本次迁移一致，无历史多余资源。";
+          countPanel.appendChild(okTip);
+        }
+
+        return countPanel;
+      }
+
+      function buildMockCompareResult(config, draft) {
+        const diffKeys = ["project_contract", "dwd_contract_detail", "v_contract_amount_by_month"];
+        const failKeys = ["v_project_member_stat"];
+        const scope = getDataMigCompareScopeText(draft);
+        const models = DATA_MIG_COMPARE_MODEL_DEFS.map((def) => {
+          const meta = DATA_MIG_COMPARE_MODEL_META[def.key] || {
+            mapPath: "—",
+            lastResourceId: "",
+            bpMigTag: false,
+          };
+          const base = {
+            key: def.key,
+            name: def.name,
+            type: def.type,
+            label: def.label,
+            mapPath: meta.mapPath,
+            lastResourceId: meta.lastResourceId || "",
+            bpMigTag: !!meta.bpMigTag,
+            retrying: false,
+          };
+
+          if (!meta.lastResourceId) {
+            return Object.assign(base, {
+              structStatus: "new",
+              structSummary:
+                "新增模型：在租户「" +
+                scope.tenantLine +
+                "」、组织「" +
+                scope.orgLine +
+                "」下，按对象映射路径「" +
+                meta.mapPath +
+                "」未找到上次迁入资源 ID，视为新增，不比对字段",
+              failReason: "",
+              structSource: [],
+              structTarget: [],
+            });
+          }
+
+          if (!meta.bpMigTag) {
+            return Object.assign(base, {
+              structStatus: "skip",
+              structSummary:
+                "已定位上次迁入资源 ID「" +
+                meta.lastResourceId +
+                "」，但目标资源无【" +
+                DATA_MIG_COMPARE_BP_TAG +
+                "】标签，跳过字段比对",
+              failReason: "",
+              structSource: [],
+              structTarget: [],
+            });
+          }
+
+          const hasDiff = diffKeys.indexOf(def.key) >= 0;
+          const isFail = failKeys.indexOf(def.key) >= 0;
+          const struct = buildMockStructFields(def.key, hasDiff);
+          let structStatus = "ok";
+          let structSummary =
+            "已匹配上次资源 ID「" +
+            meta.lastResourceId +
+            "」且含【" +
+            DATA_MIG_COMPARE_BP_TAG +
+            "】标签，结构完全一致";
+          let failReason = "";
+          if (isFail) {
+            structStatus = "fail";
+            failReason =
+              DATA_MIG_COMPARE_FAIL_REASONS[def.key] || "比对失败：目标对象不存在或权限不足";
+            structSummary = failReason;
+          } else if (hasDiff) {
+            structStatus = "warn";
+            structSummary = config.ignoreCase
+              ? "共 2 处结构差异（已忽略大小写后仍有 1 处类型不匹配）"
+              : "共 3 处结构差异：1 个字段丢失，1 个类型不匹配，1 个新增字段";
+          }
+          return Object.assign(base, {
+            structStatus,
+            structSummary,
+            failReason,
+            structSource: isFail ? [] : struct.source,
+            structTarget: isFail ? [] : struct.target,
+          });
+        });
+        const summary = buildCompareSummaryFromModels(models);
+        const resourceData = buildMockResourceCountData(draft);
+        return Object.assign(
+          { models, summary, scope },
+          resourceData
+        );
+      }
+
+      function renderDataMigVersionCompare(body, ft, goHome, draft, options) {
+        options = options || {};
+        const readOnly = !!options.readOnly;
+        if (!draft.compare) draft.compare = createDataMigCompareState();
+        else {
+          if (!draft.compare.config || typeof draft.compare.config !== "object") {
+            draft.compare.config = { struct: true, ignoreCase: false };
+          }
+          draft.compare.config.struct = true;
+          if (!draft.compare.modelFilter) draft.compare.modelFilter = "all";
+          if (draft.compare.expandedModelKey === undefined) draft.compare.expandedModelKey = null;
+          if (!draft.compare.deleteExtraKeys) draft.compare.deleteExtraKeys = [];
+          if (!draft.compare.resultTab) draft.compare.resultTab = "model";
+          if (draft.compare.expandedResourceTypeKey === undefined) {
+            draft.compare.expandedResourceTypeKey = null;
+          }
+        }
+        const cmp = draft.compare;
+        const isRunning = cmp.status === "running";
+        const hasResult = cmp.status === "success" || cmp.status === "partial";
+        const isFailed = cmp.status === "failed";
+
+        const startBtn = document.createElement("button");
+        startBtn.type = "button";
+        startBtn.className = "mig-btn mig-btn--primary";
+        startBtn.textContent = isRunning ? "比对中…" : "开始比对";
+        startBtn.disabled = isRunning;
+        startBtn.addEventListener("click", () => {
+          if (isRunning) return;
+          cmp.status = "running";
+          cmp.result = null;
+          cmp.failReason = "";
+          cmp.expandedModelKey = null;
+          cmp.expandedResourceTypeKey = null;
+          cmp.deleteExtraKeys = [];
+          if (cmp.pollTimer) window.clearTimeout(cmp.pollTimer);
+          cmp.pollTimer = window.setTimeout(() => {
+            cmp.status = "success";
+            cmp.result = buildMockCompareResult(cmp.config, draft);
+            cmp.pollTimer = null;
+            renderAll();
+          }, 2200);
+          renderAll();
+        });
+        const exportBtn = document.createElement("button");
+        exportBtn.type = "button";
+        exportBtn.className = "mig-btn mig-btn--ghost";
+        exportBtn.textContent = "导出比对报告";
+        exportBtn.disabled = !hasResult || isRunning;
+        exportBtn.addEventListener("click", () => {
+          if (!hasResult) return;
+          showToast("已导出全部数据模型比对报告（Excel）", "success");
+        });
+
+        const cfgSec = document.createElement("section");
+        cfgSec.className = "mig-cmp-section";
+        const cfgHd = document.createElement("div");
+        cfgHd.className = "mig-cmp-toolbar";
+        const cfgTitle = document.createElement("h3");
+        cfgTitle.className = "mig-cmp-section__title";
+        cfgTitle.style.margin = "0";
+        cfgTitle.textContent = "比对配置";
+        const cfgActions = document.createElement("div");
+        cfgActions.className = "mig-cmp-hd__actions";
+        cfgActions.appendChild(exportBtn);
+        if (!readOnly) cfgActions.appendChild(startBtn);
+        cfgHd.appendChild(cfgTitle);
+        cfgHd.appendChild(cfgActions);
+        const cfgBox = document.createElement("div");
+        cfgBox.className = "mig-cmp-config";
+        const cfgRow = document.createElement("div");
+        cfgRow.className = "mig-cmp-checks";
+        const structLab = document.createElement("span");
+        structLab.style.fontSize = "13px";
+        structLab.style.color = "rgba(0,0,0,0.88)";
+        structLab.textContent =
+          "比对范围：① 对象映射路径下各类型资源数量；② 数据模型表结构（字段名、类型、长度、主键、索引）";
+        const ignoreLab = document.createElement("label");
+        const ignoreCb = document.createElement("input");
+        ignoreCb.type = "checkbox";
+        ignoreCb.checked = !!cmp.config.ignoreCase;
+        ignoreCb.disabled = isRunning || readOnly;
+        ignoreCb.addEventListener("change", () => {
+          cmp.config.ignoreCase = ignoreCb.checked;
+        });
+        ignoreLab.appendChild(ignoreCb);
+        ignoreLab.appendChild(document.createTextNode("忽略大小写"));
+        cfgRow.appendChild(structLab);
+        cfgRow.appendChild(ignoreLab);
+        cfgBox.appendChild(cfgRow);
+        cfgSec.appendChild(cfgHd);
+        cfgSec.appendChild(cfgBox);
+
+        const principle = document.createElement("div");
+        principle.className = "mig-cmp-principle";
+        principle.innerHTML =
+          "<strong>比对原则</strong>：按租户 ID、组织 ID 锁定目标环境后，在对象映射所设路径下查找各模型上次迁入的资源 ID。" +
+          "<ol>" +
+          "<li>先确定 <strong>租户 ID</strong> 与 <strong>组织 ID</strong>；</li>" +
+          "<li>再按 <strong>对象映射路径</strong>（工程 / 分层等）在目标环境检索该路径下资源；</li>" +
+          "<li>仅对带有 <strong>【" +
+          DATA_MIG_COMPARE_BP_TAG +
+          "】</strong> 标签且已匹配到上次迁入资源 ID 的模型执行字段比对；</li>" +
+          "<li>未找到上次迁入资源 ID 的模型视为 <strong>新增</strong>，不比对内部字段；无【" +
+          DATA_MIG_COMPARE_BP_TAG +
+          "】标签的已匹配资源跳过字段比对。</li>" +
+          "<li>同步比对对象映射路径下与导入资源类目一致的资源数量（业务流程、物理模型、逻辑模型、语义模型、离线/实时集成与开发任务、轻任务、智能开发脚本、API、制作报告等）；目标环境迁移标签资源多于本次迁移的，列为历史多余资源，可勾选删除。</li>" +
+          "</ol>";
+        const scopeText = getDataMigCompareScopeText(draft);
+        const scopeEl = document.createElement("div");
+        scopeEl.className = "mig-cmp-scope";
+        scopeEl.innerHTML =
+          "<span><strong>租户</strong> " +
+          scopeText.tenantLine +
+          "</span><span><strong>组织</strong> " +
+          scopeText.orgLine +
+          "</span>";
+        principle.appendChild(scopeEl);
+        cfgSec.appendChild(principle);
+
+        if (!readOnly) {
+          cfgSec.appendChild(
+            Object.assign(document.createElement("p"), {
+              className: "mig-cmp-tip",
+              textContent:
+                "开始比对后，将按上述原则展示数据模型结构比对结果，以及对象映射路径下的资源数量比对结果。",
+            })
+          );
+        }
+        body.appendChild(cfgSec);
+
+        if (isRunning) {
+          const run = document.createElement("div");
+          run.className = "mig-cmp-running";
+          run.innerHTML =
+            '<span class="mig-cmp-running__dot"></span>正在按租户/组织与对象映射路径定位资源并比对字段…';
+          body.appendChild(run);
+        }
+        if (isFailed) {
+          const fail = document.createElement("div");
+          fail.className = "mig-cmp-fail";
+          fail.textContent = "比对失败：" + (cmp.failReason || "目标对象不存在或权限不足");
+          body.appendChild(fail);
+        }
+
+        if (!hasResult && !isRunning && !isFailed && !readOnly) {
+          const empty = document.createElement("div");
+          empty.className = "mig-cmp-empty";
+          empty.textContent =
+            "尚未执行比对。点击【开始比对】后，将按比对原则展示全部数据模型（表、视图）的比对结果。";
+          body.appendChild(empty);
+        }
+
+        if (hasResult && cmp.result) {
+          function statusTag(status) {
+            const cls =
+              status === "ok"
+                ? "is-ok"
+                : status === "fail"
+                  ? "is-fail"
+                  : status === "new"
+                    ? "is-new"
+                    : status === "skip"
+                      ? "is-skip"
+                      : "is-warn";
+            const text =
+              status === "ok"
+                ? "一致"
+                : status === "fail"
+                  ? "比对失败"
+                  : status === "new"
+                    ? "新增"
+                    : status === "skip"
+                      ? "未比对字段"
+                      : "部分不一致";
+            return '<span class="mig-cmp-status ' + cls + '">' + text + "</span>";
+          }
+          function createCompareLegend() {
+            const legend = document.createElement("div");
+            legend.className = "mig-cmp-legend";
+            [
+              { cls: "is-delete", label: "删除" },
+              { cls: "is-same", label: "一致" },
+              { cls: "is-change", label: "变更" },
+            ].forEach((item) => {
+              const span = document.createElement("span");
+              span.className = "mig-cmp-legend__item";
+              const swatch = document.createElement("i");
+              swatch.className = "mig-cmp-legend__swatch " + item.cls;
+              span.appendChild(swatch);
+              span.appendChild(document.createTextNode(item.label));
+              legend.appendChild(span);
+            });
+            return legend;
+          }
+          const sum = cmp.result.summary || {};
+
+          function setModelFilter(filterKey) {
+            cmp.modelFilter = filterKey;
+            cmp.expandedModelKey = null;
+            renderAll();
+          }
+
+          const listSec = document.createElement("section");
+          listSec.className = "mig-cmp-section is-grow";
+          const listHd = document.createElement("div");
+          listHd.className = "mig-cmp-toolbar";
+          const listTitle = document.createElement("h3");
+          listTitle.className = "mig-cmp-section__title";
+          listTitle.style.margin = "0";
+          listTitle.textContent = "比对结果";
+          listHd.appendChild(listTitle);
+
+          const tabs = document.createElement("div");
+          tabs.className = "mig-cmp-tabs";
+          tabs.setAttribute("role", "tablist");
+          const modelTabBtn = document.createElement("button");
+          modelTabBtn.type = "button";
+          modelTabBtn.className =
+            "mig-cmp-tab" + (cmp.resultTab === "model" ? " is-active" : "");
+          modelTabBtn.setAttribute("role", "tab");
+          modelTabBtn.textContent = "数据模型比对结果";
+          const resourceTabBtn = document.createElement("button");
+          resourceTabBtn.type = "button";
+          resourceTabBtn.className =
+            "mig-cmp-tab" + (cmp.resultTab === "resource" ? " is-active" : "");
+          resourceTabBtn.setAttribute("role", "tab");
+          resourceTabBtn.appendChild(document.createTextNode("对象映射路径资源数量比对"));
+          const extraBadge = (cmp.result.resourceCountSummary && cmp.result.resourceCountSummary.extraTotal) || 0;
+          if (extraBadge > 0) {
+            const badge = document.createElement("span");
+            badge.className = "mig-cmp-tab-badge";
+            badge.textContent = "多余 " + extraBadge;
+            resourceTabBtn.appendChild(badge);
+          }
+          tabs.appendChild(modelTabBtn);
+          tabs.appendChild(resourceTabBtn);
+
+          const tabBody = document.createElement("div");
+          tabBody.className = "mig-cmp-tab-body";
+
+          const modelPane = document.createElement("div");
+          modelPane.className = "mig-cmp-tab-pane";
+          modelPane.hidden = cmp.resultTab !== "model";
+
+          const resourcePane = document.createElement("div");
+          resourcePane.className = "mig-cmp-tab-pane";
+          resourcePane.hidden = cmp.resultTab !== "resource";
+
+          function switchResultTab(tabKey) {
+            cmp.resultTab = tabKey;
+            modelTabBtn.classList.toggle("is-active", tabKey === "model");
+            resourceTabBtn.classList.toggle("is-active", tabKey === "resource");
+            modelPane.hidden = tabKey !== "model";
+            resourcePane.hidden = tabKey !== "resource";
+          }
+          modelTabBtn.addEventListener("click", () => switchResultTab("model"));
+          resourceTabBtn.addEventListener("click", () => switchResultTab("resource"));
+
+          const resultPanel = document.createElement("div");
+          resultPanel.className = "mig-cmp-panel";
+          const modelToolbar = document.createElement("div");
+          modelToolbar.className = "mig-cmp-toolbar";
+          modelToolbar.style.marginBottom = "10px";
+          modelToolbar.appendChild(createCompareLegend());
+
+          const summaryBox = document.createElement("div");
+          summaryBox.className = "mig-cmp-summary";
+          const summaryRow = document.createElement("div");
+          summaryRow.className = "mig-cmp-summary__row";
+          [
+            { label: "数据模型总数", val: sum.total || 0, filter: "all" },
+            { label: "表", val: sum.tableCount || 0, filter: "table" },
+            { label: "视图", val: sum.viewCount || 0, filter: "view" },
+            { label: "新增", val: sum.newCount || 0, filter: "new" },
+            { label: "未比对字段", val: sum.skipCount || 0, filter: "skip" },
+            { label: "结构一致", val: sum.ok || 0, filter: "ok" },
+            { label: "存在差异", val: sum.warn || 0, filter: "warn" },
+            { label: "比对失败", val: sum.fail || 0, filter: "fail" },
+          ].forEach((item) => {
+            const cell = document.createElement("button");
+            cell.type = "button";
+            cell.className =
+              "mig-cmp-summary__item" + (cmp.modelFilter === item.filter ? " is-active" : "");
+            cell.innerHTML =
+              '<div class="mig-cmp-summary__label">' +
+              item.label +
+              "</div>" +
+              '<div class="mig-cmp-summary__val">' +
+              item.val +
+              "</div>";
+            cell.addEventListener("click", () => setModelFilter(item.filter));
+            summaryRow.appendChild(cell);
+          });
+          summaryBox.appendChild(summaryRow);
+          resultPanel.appendChild(modelToolbar);
+          resultPanel.appendChild(summaryBox);
+
+          const filtered = (cmp.result.models || []).filter((m) => {
+            if (cmp.modelFilter === "table") return m.type === "table";
+            if (cmp.modelFilter === "view") return m.type === "view";
+            if (cmp.modelFilter === "ok") return m.structStatus === "ok";
+            if (cmp.modelFilter === "warn") return m.structStatus === "warn";
+            if (cmp.modelFilter === "fail") return m.structStatus === "fail";
+            if (cmp.modelFilter === "new") return m.structStatus === "new";
+            if (cmp.modelFilter === "skip") return m.structStatus === "skip";
+            return true;
+          });
+
+          const listWrap = document.createElement("div");
+          listWrap.className = "mig-cmp-overview";
+          if (!filtered.length) {
+            listWrap.innerHTML = '<div class="mig-cmp-empty">当前筛选下暂无数据模型</div>';
+          } else {
+            const table = document.createElement("table");
+            table.innerHTML =
+              "<thead><tr><th style='width:22%'>名称</th><th style='width:72px'>类型</th><th style='width:110px'>结构比对</th><th>差异摘要</th><th style='width:88px'>操作</th></tr></thead>";
+            const tbody = document.createElement("tbody");
+            filtered.forEach((model) => {
+              const tr = document.createElement("tr");
+              tr.className =
+                "mig-cmp-model-row" + (cmp.expandedModelKey === model.key ? " is-expanded" : "");
+              tr.setAttribute("data-model-key", model.key);
+              const tdName = document.createElement("td");
+              tdName.className = "mig-cmp-model-name";
+              tdName.innerHTML =
+                "<strong>" +
+                (model.label || model.name) +
+                "</strong><br><span class='mig-cmp-tip'>" +
+                model.name +
+                (model.mapPath ? "<br>映射路径：" + model.mapPath : "") +
+                "</span>";
+              const tdType = document.createElement("td");
+              const typeTag = document.createElement("span");
+              typeTag.className = "mig-cmp-type";
+              typeTag.textContent = model.type === "view" ? "视图" : "表";
+              tdType.appendChild(typeTag);
+              const tdStatus = document.createElement("td");
+              tdStatus.innerHTML = statusTag(model.structStatus);
+              const tdSummary = document.createElement("td");
+              if (model.structStatus === "fail") {
+                tdSummary.className = "mig-cmp-fail-inline";
+                tdSummary.textContent = model.failReason || model.structSummary || "比对失败";
+              } else {
+                tdSummary.textContent = model.structSummary || "—";
+              }
+              const tdAct = document.createElement("td");
+              if (model.structStatus === "fail") {
+                if (readOnly) {
+                  tdAct.textContent = "—";
+                } else {
+                  const retryBtn = document.createElement("button");
+                  retryBtn.type = "button";
+                  retryBtn.className = "mig-btn mig-btn--ghost";
+                  retryBtn.style.padding = "0 6px";
+                  retryBtn.style.fontSize = "12px";
+                  retryBtn.textContent = model.retrying ? "比对中…" : "重新比对";
+                  retryBtn.disabled = model.retrying || isRunning || readOnly;
+                  retryBtn.addEventListener("click", () => {
+                    retrySingleModelCompare(cmp, model.key);
+                  });
+                  tdAct.appendChild(retryBtn);
+                }
+              } else if (canExpandCompareStruct(model)) {
+                const expandBtn = document.createElement("button");
+                expandBtn.type = "button";
+                expandBtn.className = "mig-btn mig-btn--ghost mig-cmp-expand-btn";
+                expandBtn.style.padding = "0 6px";
+                expandBtn.style.fontSize = "12px";
+                expandBtn.textContent = cmp.expandedModelKey === model.key ? "收起" : "结构详情";
+                expandBtn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const tbody = tr.parentElement;
+                  if (cmp.expandedModelKey === model.key) {
+                    collapseCompareStructDetail(tbody, cmp);
+                    return;
+                  }
+                  collapseCompareStructDetail(tbody, cmp);
+                  cmp.expandedModelKey = model.key;
+                  tr.classList.add("is-expanded");
+                  expandBtn.textContent = "收起";
+                  tr.insertAdjacentElement("afterend", buildCompareStructDetailRow(model));
+                });
+                tdAct.appendChild(expandBtn);
+              } else {
+                tdAct.textContent = "—";
+              }
+              tr.appendChild(tdName);
+              tr.appendChild(tdType);
+              tr.appendChild(tdStatus);
+              tr.appendChild(tdSummary);
+              tr.appendChild(tdAct);
+              tbody.appendChild(tr);
+              if (cmp.expandedModelKey === model.key && canExpandCompareStruct(model)) {
+                tr.insertAdjacentElement("afterend", buildCompareStructDetailRow(model));
+              }
+            });
+            table.appendChild(tbody);
+            listWrap.appendChild(table);
+          }
+          resultPanel.appendChild(listWrap);
+          modelPane.appendChild(resultPanel);
+
+          const resourcePanel = buildCompareResourceCountPanel(cmp, { readOnly });
+          if (resourcePanel) resourcePane.appendChild(resourcePanel);
+
+          tabBody.appendChild(modelPane);
+          tabBody.appendChild(resourcePane);
+          listSec.appendChild(listHd);
+          listSec.appendChild(tabs);
+          listSec.appendChild(tabBody);
+          body.appendChild(listSec);
+        }
+
+        const retryBtn = document.createElement("button");
+        retryBtn.type = "button";
+        retryBtn.className = "mig-btn mig-btn--ghost";
+        retryBtn.textContent = "重试比对";
+        retryBtn.disabled = isRunning;
+        retryBtn.addEventListener("click", () => {
+          cmp.status = "idle";
+          cmp.result = null;
+          cmp.failReason = "";
+          cmp.deleteExtraKeys = [];
+          cmp.expandedResourceTypeKey = null;
+          renderAll();
+        });
+        const exportCurBtn = document.createElement("button");
+        exportCurBtn.type = "button";
+        exportCurBtn.className = "mig-btn mig-btn--ghost";
+        exportCurBtn.textContent = "导出比对报告";
+        exportCurBtn.disabled = !hasResult || isRunning;
+        exportCurBtn.addEventListener("click", () => {
+          showToast("已导出全部数据模型比对报告（Excel）", "success");
+        });
+        if (readOnly) {
+          ft.appendChild(exportCurBtn);
+          return;
+        }
+        const nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "mig-btn mig-btn--primary";
+        nextBtn.textContent = "下一步";
+        nextBtn.disabled = isRunning || (!hasResult && !isFailed);
+        nextBtn.addEventListener("click", () => {
+          if (isRunning) return;
+          if (!hasResult && !isFailed) {
+            showToast("请先执行版本比对，或比对失败后可重试", "warn");
+            return;
+          }
+          importCreateStep = 4;
+          detailCategory = "业务流程";
+          renderAll();
+        });
+        const prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.className = "mig-btn mig-btn--ghost";
+        prevBtn.textContent = "上一步";
+        prevBtn.addEventListener("click", () => {
+          if (cmp.pollTimer) window.clearTimeout(cmp.pollTimer);
+          importCreateStep = 2;
+          renderAll();
+        });
+        ft.appendChild(nextBtn);
+        ft.appendChild(exportCurBtn);
+        ft.appendChild(retryBtn);
+        ft.appendChild(prevBtn);
+      }
+
+      function renderImportCompareReport() {
+        const row = compareReportRow;
+        if (!row) {
+          pageView = "home";
+          renderAll();
+          return;
+        }
+        const report = getImportRowCompareReport(row);
+        if (
+          !report ||
+          !(report.status === "success" || report.status === "partial") ||
+          !report.result
+        ) {
+          compareReportRow = null;
+          pageView = "home";
+          renderAll();
+          showToast("该任务暂无比对报告", "warn");
+          return;
+        }
+
+        const page = document.createElement("div");
+        page.className = "mig-create mig-create--import";
+        page.setAttribute("aria-label", "版本比对报告");
+
+        const hd = document.createElement("div");
+        hd.className = "mig-create__hd";
+        const hdLeft = document.createElement("div");
+        hdLeft.className = "mig-create__hd-left";
+        const backBtn = document.createElement("button");
+        backBtn.type = "button";
+        backBtn.className = "mig-create__back";
+        backBtn.textContent = "← 返回";
+        backBtn.addEventListener("click", () => {
+          compareReportRow = null;
+          pageView = "home";
+          listTab = "import";
+          renderAll();
+        });
+        const titleWrap = document.createElement("div");
+        const title = document.createElement("h2");
+        title.className = "mig-create__title";
+        title.textContent = "版本比对报告";
+        const sub = document.createElement("p");
+        sub.className = "mig-cmp-report-meta";
+        sub.textContent = "任务：" + row.name + (row.time ? " · " + row.time : "");
+        titleWrap.appendChild(title);
+        titleWrap.appendChild(sub);
+        hdLeft.appendChild(backBtn);
+        hdLeft.appendChild(titleWrap);
+        hd.appendChild(hdLeft);
+
+        const body = document.createElement("div");
+        body.className = "mig-create__body";
+        const ft = document.createElement("div");
+        ft.className = "mig-create__ft";
+
+        if (!row.compareReport) row.compareReport = report;
+        const draft = { compare: row.compareReport };
+        renderDataMigVersionCompare(body, ft, function () {}, draft, { readOnly: true });
+
+        const backFtBtn = document.createElement("button");
+        backFtBtn.type = "button";
+        backFtBtn.className = "mig-btn mig-btn--ghost";
+        backFtBtn.textContent = "返回列表";
+        backFtBtn.addEventListener("click", () => {
+          compareReportRow = null;
+          pageView = "home";
+          listTab = "import";
+          renderAll();
+        });
+        ft.insertBefore(backFtBtn, ft.firstChild);
+
+        page.appendChild(hd);
+        page.appendChild(body);
+        page.appendChild(ft);
+        root.appendChild(page);
       }
 
       const DATA_MIG_PACKAGE_CONTENT_TYPES = [
@@ -35156,6 +38513,118 @@
         }
         return "";
       }
+
+      function getAnalysisDsPickerItems() {
+        const items = [];
+        Object.keys(DATA_MIG_ANALYSIS_DS_TREE).forEach((l1) => {
+          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+          Object.keys(l2Map).forEach((l2) => {
+            const dirKey = "l2:" + l1 + "/" + l2;
+            const dirPath = l1 + " / " + l2;
+            (l2Map[l2] || []).forEach((dsName) => {
+              const display = dirPath + " / " + dsName;
+              items.push({
+                key: dirKey + "::" + dsName,
+                level: 0,
+                label: display,
+                pathLabel: display,
+                dirKey: dirKey,
+                dsName: dsName,
+              });
+            });
+          });
+        });
+        return items;
+      }
+
+      function getAnalysisMapPickerKey(rowState) {
+        if (!rowState || !rowState.ds) return "";
+        let dirKey = rowState.dir || "";
+        if (!dirKey || dirKey === "all") dirKey = findAnalysisDirKeyByDs(rowState.ds);
+        if (!dirKey) return "";
+        return dirKey + "::" + rowState.ds;
+      }
+
+      function findMigTreeNodeByKey(nodeList, key) {
+        if (!nodeList || !key) return null;
+        for (let i = 0; i < nodeList.length; i++) {
+          const node = nodeList[i];
+          if (node.key === key) return node;
+          if (node.children && node.children.length) {
+            const hit = findMigTreeNodeByKey(node.children, key);
+            if (hit) return hit;
+          }
+        }
+        return null;
+      }
+
+      function buildAnalysisDsTreeNodes() {
+        const nodes = [];
+        Object.keys(DATA_MIG_ANALYSIS_DS_TREE).forEach((l1) => {
+          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+          const l1Children = [];
+          Object.keys(l2Map).forEach((l2) => {
+            const dirKey = "l2:" + l1 + "/" + l2;
+            const dirPath = l1 + " / " + l2;
+            const dsChildren = (l2Map[l2] || []).map((dsName) => ({
+              key: dirKey + "::" + dsName,
+              label: dsName,
+              type: "leaf",
+              selectable: true,
+              dirKey: dirKey,
+              dsName: dsName,
+              pathLabel: dirPath + " / " + dsName,
+            }));
+            l1Children.push({
+              key: dirKey,
+              label: l2,
+              type: "folder",
+              selectable: false,
+              children: dsChildren,
+            });
+          });
+          nodes.push({
+            key: "l1:" + l1,
+            label: l1,
+            type: "folder",
+            selectable: false,
+            children: l1Children,
+          });
+        });
+        return nodes;
+      }
+
+      function buildPathDirTreeNodes(tree) {
+        const nodes = [
+          {
+            key: "all",
+            label: "全部",
+            type: "leaf",
+            selectable: true,
+            pathLabel: "全部",
+          },
+        ];
+        Object.keys(tree || {}).forEach((l1) => {
+          const l2Map = tree[l1] || {};
+          const l2Children = Object.keys(l2Map).map((l2) => ({
+            key: "l2:" + l1 + "/" + l2,
+            label: l2,
+            type: "leaf",
+            selectable: true,
+            pathLabel: l1 + " / " + l2,
+          }));
+          nodes.push({
+            key: "l1:" + l1,
+            label: l1,
+            type: "folder",
+            selectable: true,
+            pathLabel: l1,
+            children: l2Children,
+          });
+        });
+        return nodes;
+      }
+
       const DATA_MIG_BIZ_DS_TARGETS = [
         "pml-经营决策-实体数据源",
         "liny施工合同业务数据源_mysql(实体级)",
@@ -35190,10 +38659,21 @@
         { key: "layer", label: "分层" },
       ];
 
-      /** 解析迁出包内容：是否含报告决定映射分支 */
+      /** 解析迁出包内容：是否含报告决定映射分支（「不含报告」须优先于「报告」匹配） */
+      function resolveDataMigPackageHasReport(fileName) {
+        const name = String(fileName || "");
+        if (/不含报告|不含\s*report|without[\s_-]*report|no[\s_-]*report/i.test(name)) {
+          return false;
+        }
+        if (/含报告|含\s*report|with[\s_-]*report/i.test(name)) {
+          return true;
+        }
+        return /报告|report/i.test(name);
+      }
+
       function resolvePackageParseResult(fileName) {
         const name = String(fileName || "");
-        const hasReport = /报告|report/i.test(name);
+        const hasReport = resolveDataMigPackageHasReport(name);
         const baseContents = [
           "物理模型",
           "逻辑模型",
@@ -35263,12 +38743,26 @@
         }
       }
 
-      function appendAutoMatchTag(host, src) {
-        const matched = !!(dataMigDraft && dataMigDraft.autoMatched && dataMigDraft.autoMatched[src]);
+      function getMapMatchTagState(src, isMapped) {
+        const auto = !!(dataMigDraft && dataMigDraft.autoMatched && dataMigDraft.autoMatched[src]);
+        if (auto) return { text: "已自动匹配", cls: "is-ok" };
+        if (isMapped) return { text: "已手动映射", cls: "is-manual" };
+        return { text: "未自动匹配", cls: "is-miss" };
+      }
+
+      function updateMapMatchTag(tag, src, isMapped) {
+        if (!tag) return;
+        const state = getMapMatchTagState(src, isMapped);
+        tag.className = "mig-tag " + state.cls;
+        tag.textContent = state.text;
+      }
+
+      function appendAutoMatchTag(host, src, isMapped) {
+        const state = getMapMatchTagState(src, isMapped);
         const tag = document.createElement("span");
-        tag.className = "mig-tag " + (matched ? "is-ok" : "is-miss");
+        tag.className = "mig-tag " + state.cls;
         tag.style.marginLeft = "8px";
-        tag.textContent = matched ? "已自动匹配" : "未自动匹配";
+        tag.textContent = state.text;
         host.appendChild(tag);
         return tag;
       }
@@ -35292,7 +38786,7 @@
         const isParsing = importCreateStep === "parsing";
         root.innerHTML = "";
         const create = document.createElement("div");
-        create.className = "mig-create";
+        create.className = "mig-create mig-create--import";
         create.setAttribute("aria-label", "数据迁移导入");
 
         const hd = document.createElement("div");
@@ -35316,6 +38810,20 @@
         hdLeft.appendChild(backBtn);
         hdLeft.appendChild(title);
         hd.appendChild(hdLeft);
+
+        if (importCreateStep === 5) {
+          title.textContent = "迁入执行";
+          const execBody = document.createElement("div");
+          execBody.className = "mig-create__body";
+          const execFt = document.createElement("div");
+          execFt.className = "mig-create__ft is-center";
+          renderDataMigImportExecute(execBody, execFt, goHome);
+          create.appendChild(hd);
+          create.appendChild(execBody);
+          create.appendChild(execFt);
+          root.appendChild(create);
+          return;
+        }
 
         const steps = document.createElement("div");
         steps.className = "mig-steps";
@@ -35352,7 +38860,12 @@
         line2.className = "mig-step__line";
         line2.setAttribute("aria-hidden", "true");
         steps.appendChild(line2);
-        steps.appendChild(buildStep(3, "预览", stepState(3)));
+        steps.appendChild(buildStep(3, "版本比对", stepState(3)));
+        const line3 = document.createElement("span");
+        line3.className = "mig-step__line";
+        line3.setAttribute("aria-hidden", "true");
+        steps.appendChild(line3);
+        steps.appendChild(buildStep(4, "预览", stepState(4)));
 
         const body = document.createElement("div");
         body.className = "mig-create__body";
@@ -35382,7 +38895,8 @@
             const srcText = document.createElement("span");
             srcText.textContent = src;
             tdSrc.appendChild(srcText);
-            if (showAuto) appendAutoMatchTag(tdSrc, src);
+            let matchTag = null;
+            if (showAuto) matchTag = appendAutoMatchTag(tdSrc, src, !!maps[src]);
             const tdTarget = document.createElement("td");
             const field = document.createElement("div");
             field.className = "mig-map-field";
@@ -35413,6 +38927,7 @@
             select.addEventListener("change", () => {
               maps[src] = select.value;
               syncSelectUnmapped();
+              updateMapMatchTag(matchTag, src, !!maps[src]);
             });
             syncSelectUnmapped();
             field.appendChild(select);
@@ -35622,118 +39137,556 @@
           };
         }
 
-        function appendAnalysisDsMapTable(titleText, maps, options) {
+        function createMigTreePicker(config) {
+          const root = document.createElement("div");
+          root.className = "mig-map-picker mig-map-tree-picker";
+          const markUnmapped = config.markUnmapped !== false;
+          const field = document.createElement("div");
+          field.className = "mig-map-field";
+          const trigger = document.createElement("button");
+          trigger.type = "button";
+          trigger.className = "mig-map-picker__trigger";
+          trigger.setAttribute("aria-label", config.ariaLabel || "请选择");
+          const panel = document.createElement("div");
+          panel.className = "mig-map-picker__panel mig-map-tree-picker__panel";
+          let searchInput = null;
+          if (config.searchable) {
+            searchInput = document.createElement("input");
+            searchInput.type = "search";
+            searchInput.className = "mig-map-picker__search";
+            searchInput.placeholder = config.searchPlaceholder || "搜索";
+            panel.appendChild(searchInput);
+          }
+          const treeEl = document.createElement("div");
+          treeEl.className = "mig-map-tree";
+          panel.appendChild(treeEl);
+          root.appendChild(trigger);
+          root.appendChild(panel);
+          field.appendChild(root);
+          const pending = document.createElement("span");
+          pending.className = "mig-map-pending";
+          pending.textContent = config.pendingText || "待映射";
+          if (markUnmapped) field.appendChild(pending);
+
+          let currentValue = config.value || "";
+          let nodes = (config.nodes || []).slice();
+          const expanded = new Set();
+          nodes.forEach((n) => {
+            if (n.type === "folder") expanded.add(n.key);
+          });
+
+          function syncUnmappedMark() {
+            if (!markUnmapped) {
+              trigger.classList.remove("is-unmapped");
+              pending.hidden = true;
+              return;
+            }
+            const empty = !currentValue;
+            trigger.classList.toggle("is-unmapped", empty);
+            pending.hidden = !empty;
+          }
+
+          function displayText(val) {
+            const hit = findMigTreeNodeByKey(nodes, val);
+            if (!hit) return config.placeholder || "请选择";
+            if (config.formatDisplay) return config.formatDisplay(hit);
+            return hit.pathLabel || hit.label;
+          }
+
+          function setTriggerText(text, isPlaceholder) {
+            trigger.textContent = text;
+            trigger.classList.toggle("is-placeholder", !!isPlaceholder);
+            syncUnmappedMark();
+          }
+
+          function nodeMatches(node, q) {
+            if (!q) return true;
+            const hay = ((node.label || "") + " " + (node.pathLabel || "")).toLowerCase();
+            if (hay.indexOf(q) >= 0) return true;
+            if (node.children && node.children.length) {
+              return node.children.some((child) => nodeMatches(child, q));
+            }
+            return false;
+          }
+
+          function renderTree(filterText) {
+            const q = String(filterText || "")
+              .trim()
+              .toLowerCase();
+            treeEl.innerHTML = "";
+            if (q) {
+              nodes.forEach((n) => {
+                if (n.type === "folder") expanded.add(n.key);
+                if (n.children) {
+                  n.children.forEach((c) => {
+                    if (c.type === "folder") expanded.add(c.key);
+                  });
+                }
+              });
+            }
+            function renderNodes(nodeList, depth) {
+              const frag = document.createDocumentFragment();
+              nodeList.forEach((node) => {
+                if (!nodeMatches(node, q)) return;
+                const wrap = document.createElement("div");
+                wrap.className = "mig-map-tree__node";
+                const row = document.createElement("div");
+                row.className = "mig-map-tree__row";
+                row.style.paddingLeft = 8 + depth * 16 + "px";
+                const hasChildren = node.children && node.children.length;
+                const toggle = document.createElement("button");
+                toggle.type = "button";
+                toggle.className = "mig-map-tree__toggle" + (!hasChildren ? " is-leaf" : "");
+                toggle.textContent = hasChildren ? (expanded.has(node.key) ? "▾" : "▸") : "";
+                if (hasChildren) {
+                  toggle.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (expanded.has(node.key)) expanded.delete(node.key);
+                    else expanded.add(node.key);
+                    renderTree(searchInput ? searchInput.value : "");
+                  });
+                }
+                const labelBtn = document.createElement("button");
+                labelBtn.type = "button";
+                labelBtn.className =
+                  "mig-map-tree__label" +
+                  (node.key === currentValue ? " is-active" : "") +
+                  (!node.selectable ? " is-folder" : "");
+                labelBtn.textContent = node.label;
+                labelBtn.title = node.pathLabel || node.label;
+                if (node.selectable) {
+                  labelBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    currentValue = node.key;
+                    setTriggerText(displayText(currentValue), false);
+                    closePicker();
+                    if (typeof config.onChange === "function") config.onChange(node.key, node);
+                  });
+                } else if (hasChildren) {
+                  labelBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (expanded.has(node.key)) expanded.delete(node.key);
+                    else expanded.add(node.key);
+                    renderTree(searchInput ? searchInput.value : "");
+                  });
+                }
+                row.appendChild(toggle);
+                row.appendChild(labelBtn);
+                wrap.appendChild(row);
+                if (hasChildren && expanded.has(node.key)) {
+                  const childWrap = document.createElement("div");
+                  childWrap.className = "mig-map-tree__children";
+                  childWrap.appendChild(renderNodes(node.children, depth + 1));
+                  wrap.appendChild(childWrap);
+                }
+                frag.appendChild(wrap);
+              });
+              return frag;
+            }
+            treeEl.appendChild(renderNodes(nodes, 0));
+            if (!treeEl.children.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-map-picker__empty";
+              empty.textContent = "无匹配项";
+              treeEl.appendChild(empty);
+            }
+          }
+
+          function openPicker() {
+            closeAllMigPickers(root);
+            root.classList.add("is-open");
+            const row = root.closest(".mig-ana-map__row");
+            if (row) row.classList.add("is-open");
+            if (searchInput) searchInput.value = "";
+            renderTree("");
+            if (searchInput) window.setTimeout(() => searchInput.focus(), 0);
+          }
+
+          function closePicker() {
+            root.classList.remove("is-open");
+            const row = root.closest(".mig-ana-map__row");
+            if (row && !row.querySelector(".mig-map-picker.is-open")) {
+              row.classList.remove("is-open");
+            }
+          }
+
+          function syncFromValue() {
+            if (currentValue && findMigTreeNodeByKey(nodes, currentValue)) {
+              setTriggerText(displayText(currentValue), false);
+            } else {
+              setTriggerText(config.placeholder || "请选择", true);
+            }
+          }
+
+          trigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (root.classList.contains("is-open")) closePicker();
+            else openPicker();
+          });
+          panel.addEventListener("click", (e) => e.stopPropagation());
+          if (searchInput) {
+            searchInput.addEventListener("input", () => renderTree(searchInput.value));
+          }
+
+          syncFromValue();
+
+          return {
+            el: field,
+            pickerEl: root,
+            setNodes(newNodes, keepValue) {
+              nodes = (newNodes || []).slice();
+              nodes.forEach((n) => {
+                if (n.type === "folder") expanded.add(n.key);
+              });
+              if (!keepValue || !findMigTreeNodeByKey(nodes, currentValue)) currentValue = "";
+              syncFromValue();
+              if (root.classList.contains("is-open")) renderTree(searchInput ? searchInput.value : "");
+            },
+            setValue(val) {
+              currentValue = val || "";
+              syncFromValue();
+            },
+            getValue() {
+              return currentValue;
+            },
+            close: closePicker,
+          };
+        }
+
+        function openMigBatchTreeModal(options) {
+          options = options || {};
+          const overlay = document.createElement("div");
+          overlay.className = "mig-batch-modal";
+          overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.remove();
+          });
+          const box = document.createElement("div");
+          box.className = "mig-batch-modal__box";
+          box.addEventListener("click", (e) => e.stopPropagation());
+          const hd = document.createElement("div");
+          hd.className = "mig-batch-modal__hd";
+          hd.textContent = options.title || "批量设置";
+          const closeBtn = document.createElement("button");
+          closeBtn.type = "button";
+          closeBtn.className = "mig-batch-modal__close";
+          closeBtn.textContent = "×";
+          closeBtn.addEventListener("click", () => overlay.remove());
+          hd.appendChild(closeBtn);
+          const body = document.createElement("div");
+          body.className = "mig-batch-modal__body";
+          const tip = document.createElement("p");
+          tip.className = "mig-batch-modal__tip";
+          tip.textContent = options.tip || "在组织树中选择目标目录，将应用到已勾选的源对象。";
+          body.appendChild(tip);
+          const searchInput = document.createElement("input");
+          searchInput.type = "search";
+          searchInput.className = "mig-batch-modal__search";
+          searchInput.placeholder = options.searchPlaceholder || "搜索目录";
+          body.appendChild(searchInput);
+          const treeEl = document.createElement("div");
+          treeEl.className = "mig-map-tree";
+          body.appendChild(treeEl);
+          box.appendChild(hd);
+          box.appendChild(body);
+          overlay.appendChild(box);
+          document.body.appendChild(overlay);
+
+          const nodes = (options.nodes || []).slice();
+          const expanded = new Set();
+          nodes.forEach((n) => {
+            if (n.type === "folder") expanded.add(n.key);
+          });
+
+          function nodeMatches(node, q) {
+            if (!q) return true;
+            const hay = ((node.label || "") + " " + (node.pathLabel || "")).toLowerCase();
+            if (hay.indexOf(q) >= 0) return true;
+            if (node.children && node.children.length) {
+              return node.children.some((child) => nodeMatches(child, q));
+            }
+            return false;
+          }
+
+          function renderTree(filterText) {
+            const q = String(filterText || "")
+              .trim()
+              .toLowerCase();
+            treeEl.innerHTML = "";
+            if (q) {
+              nodes.forEach((n) => {
+                if (n.type === "folder") expanded.add(n.key);
+                if (n.children) {
+                  n.children.forEach((c) => {
+                    if (c.type === "folder") expanded.add(c.key);
+                  });
+                }
+              });
+            }
+            function renderNodes(nodeList, depth) {
+              const frag = document.createDocumentFragment();
+              nodeList.forEach((node) => {
+                if (!nodeMatches(node, q)) return;
+                const wrap = document.createElement("div");
+                wrap.className = "mig-map-tree__node";
+                const row = document.createElement("div");
+                row.className = "mig-map-tree__row";
+                row.style.paddingLeft = 8 + depth * 16 + "px";
+                const hasChildren = node.children && node.children.length;
+                const toggle = document.createElement("button");
+                toggle.type = "button";
+                toggle.className = "mig-map-tree__toggle" + (!hasChildren ? " is-leaf" : "");
+                toggle.textContent = hasChildren ? (expanded.has(node.key) ? "▾" : "▸") : "";
+                if (hasChildren) {
+                  toggle.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (expanded.has(node.key)) expanded.delete(node.key);
+                    else expanded.add(node.key);
+                    renderTree(searchInput.value);
+                  });
+                }
+                const labelBtn = document.createElement("button");
+                labelBtn.type = "button";
+                labelBtn.className = "mig-map-tree__label" + (!node.selectable ? " is-folder" : "");
+                labelBtn.textContent = node.label;
+                labelBtn.title = node.pathLabel || node.label;
+                if (node.selectable) {
+                  labelBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    overlay.remove();
+                    if (typeof options.onSelect === "function") options.onSelect(node.key, node);
+                  });
+                } else if (hasChildren) {
+                  labelBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (expanded.has(node.key)) expanded.delete(node.key);
+                    else expanded.add(node.key);
+                    renderTree(searchInput.value);
+                  });
+                }
+                row.appendChild(toggle);
+                row.appendChild(labelBtn);
+                wrap.appendChild(row);
+                if (hasChildren && expanded.has(node.key)) {
+                  const childWrap = document.createElement("div");
+                  childWrap.className = "mig-map-tree__children";
+                  childWrap.appendChild(renderNodes(node.children, depth + 1));
+                  wrap.appendChild(childWrap);
+                }
+                frag.appendChild(wrap);
+              });
+              return frag;
+            }
+            treeEl.appendChild(renderNodes(nodes, 0));
+          }
+
+          searchInput.addEventListener("input", () => renderTree(searchInput.value));
+          renderTree("");
+          window.setTimeout(() => searchInput.focus(), 0);
+        }
+
+        function appendTreeObjectMapBlock(options) {
           options = options || {};
           const host = options.host || body;
-          ensureAnalysisMaps();
+          const mode = options.mode || "dir";
+          const maps = options.maps || {};
+          const treeNodes =
+            options.nodes ||
+            (mode === "analysis" ? buildAnalysisDsTreeNodes() : buildPathDirTreeNodes(options.tree));
+
           const block = document.createElement("div");
           block.className = options.asSub ? "mig-map-group__sub" : "mig-map-block";
+          const titleRow = document.createElement("div");
+          titleRow.className = "mig-map-block__title-row";
           const h = document.createElement(options.asSub ? "h4" : "h3");
           h.className = options.asSub ? "mig-map-group__sub-title" : "mig-map-block__title";
-          h.textContent = titleText;
+          h.textContent = options.titleText || "";
+          const batchBtn = document.createElement("button");
+          batchBtn.type = "button";
+          batchBtn.className = "mig-btn mig-btn--ghost mig-map-batch-btn";
+          batchBtn.textContent = "批量设置";
+          batchBtn.hidden = true;
+          titleRow.appendChild(h);
+          titleRow.appendChild(batchBtn);
 
           const list = document.createElement("div");
-          list.className = "mig-ana-map";
+          list.className = "mig-ana-map mig-ana-map--batch";
           const hd = document.createElement("div");
           hd.className = "mig-ana-map__hd";
-          hd.innerHTML =
-            "<span>源对象</span><span><span class='is-req'>*</span>目标对象（目录 / 数据源）</span>";
+          const hdCheck = document.createElement("div");
+          hdCheck.className = "mig-ana-map__check";
+          const selectAll = document.createElement("input");
+          selectAll.type = "checkbox";
+          selectAll.setAttribute("aria-label", "全选源对象");
+          selectAll.title = "全选";
+          hdCheck.appendChild(selectAll);
+          const hdSrc = document.createElement("span");
+          hdSrc.textContent = "源对象";
+          const hdTarget = document.createElement("span");
+          hdTarget.innerHTML =
+            "<span class='is-req'>*</span>" + (options.targetHeader || "目标目录");
+          hd.appendChild(hdCheck);
+          hd.appendChild(hdSrc);
+          hd.appendChild(hdTarget);
           list.appendChild(hd);
 
-          const dirOptions = getAnalysisDirOptions();
-          Object.keys(maps).forEach((src) => {
-            if (!maps[src] || typeof maps[src] !== "object") {
-              maps[src] = { dir: "all", ds: "" };
+          const selected = new Set();
+          const rowPickers = {};
+          const rowMatchTags = {};
+          const rowChecks = {};
+
+          function syncBatchBtn() {
+            batchBtn.hidden = selected.size === 0;
+          }
+
+          function syncSelectAll() {
+            const keys = Object.keys(rowChecks);
+            const total = keys.length;
+            const checkedCount = keys.filter((k) => rowChecks[k].checked).length;
+            selectAll.checked = total > 0 && checkedCount === total;
+            selectAll.indeterminate = checkedCount > 0 && checkedCount < total;
+          }
+
+          selectAll.addEventListener("change", () => {
+            const checked = selectAll.checked;
+            Object.keys(rowChecks).forEach((src) => {
+              rowChecks[src].checked = checked;
+              if (checked) selected.add(src);
+              else selected.delete(src);
+            });
+            selectAll.indeterminate = false;
+            syncBatchBtn();
+          });
+
+          function applyTargetToSrc(src, key, node) {
+            if (mode === "analysis") {
+              if (!maps[src] || typeof maps[src] !== "object") maps[src] = { dir: "all", ds: "" };
+              if (node && node.dirKey && node.dsName) {
+                maps[src].dir = node.dirKey;
+                maps[src].ds = node.dsName;
+              } else if (key && key.indexOf("::") >= 0) {
+                const sep = key.indexOf("::");
+                maps[src].dir = key.slice(0, sep);
+                maps[src].ds = key.slice(sep + 2);
+              } else {
+                maps[src].dir = "all";
+                maps[src].ds = "";
+              }
+            } else {
+              maps[src] = key || "";
             }
-            const rowState = maps[src];
-            if (!rowState.dir) rowState.dir = "all";
+            if (rowPickers[src]) rowPickers[src].setValue(key);
+            if (rowMatchTags[src]) {
+              const complete =
+                mode === "analysis"
+                  ? isAnalysisMapComplete(maps[src])
+                  : !!maps[src];
+              updateMapMatchTag(rowMatchTags[src], src, complete);
+            }
+          }
+
+          batchBtn.addEventListener("click", () => {
+            const count = selected.size;
+            if (!count) return;
+            openMigBatchTreeModal({
+              title: "批量设置：" + (options.titleText || ""),
+              nodes: treeNodes,
+              searchPlaceholder: options.searchPlaceholder || "搜索目录",
+              tip: options.batchTip || "在组织树中选择目标，将应用到已勾选的源对象。",
+              onSelect(key, node) {
+                selected.forEach((src) => applyTargetToSrc(src, key, node));
+                selected.forEach((src) => {
+                  if (rowChecks[src]) rowChecks[src].checked = false;
+                });
+                selected.clear();
+                syncBatchBtn();
+                syncSelectAll();
+                showToast("已批量设置 " + count + " 个源对象", "success");
+              },
+            });
+          });
+
+          Object.keys(maps).forEach((src) => {
+            if (mode === "analysis") {
+              if (!maps[src] || typeof maps[src] !== "object") maps[src] = { dir: "all", ds: "" };
+              if (!maps[src].dir) maps[src].dir = "all";
+            }
 
             const row = document.createElement("div");
             row.className = "mig-ana-map__row";
+            const checkCell = document.createElement("div");
+            checkCell.className = "mig-ana-map__check";
+            const check = document.createElement("input");
+            check.type = "checkbox";
+            check.setAttribute("aria-label", "选择 " + src);
+            check.addEventListener("change", () => {
+              if (check.checked) selected.add(src);
+              else selected.delete(src);
+              syncBatchBtn();
+              syncSelectAll();
+            });
+            rowChecks[src] = check;
+            checkCell.appendChild(check);
+
             const srcCell = document.createElement("div");
             srcCell.className = "mig-ana-map__src";
             const srcText = document.createElement("span");
             srcText.textContent = src;
             srcCell.appendChild(srcText);
-            if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
-            if (typeof dataMigDraft.autoMatched[src] === "undefined") {
-              dataMigDraft.autoMatched[src] = false;
+            if (mode === "analysis") {
+              if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
+              if (typeof dataMigDraft.autoMatched[src] === "undefined") {
+                dataMigDraft.autoMatched[src] = false;
+              }
+              rowMatchTags[src] = appendAutoMatchTag(
+                srcCell,
+                src,
+                isAnalysisMapComplete(maps[src])
+              );
             }
-            appendAutoMatchTag(srcCell, src);
 
             const targetCell = document.createElement("div");
             targetCell.className = "mig-ana-map__target";
-            const cascade = document.createElement("div");
-            cascade.className = "mig-map-cascade";
-
-            let dirPicker = null;
-            const dsPicker = createMigPicker({
-              ariaLabel: src + " 目标数据源",
-              placeholder: "请选择数据源",
-              searchable: true,
-              searchPlaceholder: "搜索数据源",
-              value: rowState.ds || "",
-              items: getAnalysisDsListByDir(rowState.dir).map((name) => ({
-                key: name,
-                label: name,
-                level: 0,
-              })),
-              onChange(val) {
-                rowState.ds = val;
-                const dirKey = findAnalysisDirKeyByDs(val);
-                if (dirKey && dirPicker) {
-                  rowState.dir = dirKey;
-                  dirPicker.setValue(dirKey);
-                  const scopedList = getAnalysisDsListByDir(dirKey);
-                  dsPicker.setItems(
-                    scopedList.map((name) => ({ key: name, label: name, level: 0 })),
-                    true
-                  );
-                  dsPicker.setValue(val);
-                }
-              },
-            });
-
-            dirPicker = createMigPicker({
+            const initialValue =
+              mode === "analysis" ? getAnalysisMapPickerKey(maps[src]) : maps[src] || "";
+            const picker = createMigTreePicker({
               ariaLabel: src + " 目标目录",
-              placeholder: "请选择目录",
-              searchable: false,
-              value: rowState.dir || "all",
-              items: dirOptions,
-              formatValue(item) {
-                return item.pathLabel || item.label;
+              placeholder: options.placeholder || "请选择目录",
+              searchable: true,
+              searchPlaceholder: options.searchPlaceholder || "搜索目录",
+              value: initialValue,
+              nodes: treeNodes,
+              formatDisplay(node) {
+                return node.pathLabel || node.label;
               },
-              onChange(val) {
-                rowState.dir = val || "all";
-                const dsList = getAnalysisDsListByDir(rowState.dir);
-                if (dsList.indexOf(rowState.ds) < 0) rowState.ds = "";
-                dsPicker.setItems(
-                  dsList.map((name) => ({ key: name, label: name, level: 0 })),
-                  true
-                );
-                if (!rowState.ds) dsPicker.setValue("");
+              onChange(key, node) {
+                applyTargetToSrc(src, key, node);
               },
             });
+            rowPickers[src] = picker;
+            targetCell.appendChild(picker.el);
 
-            cascade.appendChild(dirPicker.el);
-            cascade.appendChild(dsPicker.el);
-            targetCell.appendChild(cascade);
+            row.appendChild(checkCell);
             row.appendChild(srcCell);
             row.appendChild(targetCell);
             list.appendChild(row);
           });
 
+          block.appendChild(titleRow);
+          block.appendChild(list);
+          host.appendChild(block);
+          syncSelectAll();
+
           if (!window.__migPickerDocCloseBound) {
             window.__migPickerDocCloseBound = true;
             document.addEventListener("click", () => closeAllMigPickers());
           }
-
-          block.appendChild(h);
-          block.appendChild(list);
-          host.appendChild(block);
         }
 
-        /** 数据集目录 / 报告目录：三级目录下拉（可搜索），选择后反显路径 */
+        function isAnalysisMapComplete(row) {
+          return !!(row && row.dir && row.ds);
+        }
+
+        /** 数据集目录 / 报告目录：组织树选择，选择后反显路径 */
         function ensurePathDirMaps(maps) {
           if (!maps || typeof maps !== "object") return;
           Object.keys(maps).forEach((src) => {
@@ -35759,75 +39712,16 @@
           return Object.keys(maps).find((k) => !maps[k]);
         }
 
-        function appendDirPathMapTable(titleText, maps, tree, options) {
-          options = options || {};
-          const host = options.host || body;
-          ensurePathDirMaps(maps);
-          const block = document.createElement("div");
-          block.className = options.asSub ? "mig-map-group__sub" : "mig-map-block";
-          const h = document.createElement(options.asSub ? "h4" : "h3");
-          h.className = options.asSub ? "mig-map-group__sub-title" : "mig-map-block__title";
-          h.textContent = titleText;
-
-          const list = document.createElement("div");
-          list.className = "mig-ana-map";
-          const hd = document.createElement("div");
-          hd.className = "mig-ana-map__hd";
-          hd.innerHTML =
-            "<span>源对象</span><span><span class='is-req'>*</span>目标目录（全部 / 一级 / 二级）</span>";
-          list.appendChild(hd);
-
-          const dirOptions = getTreeDirOptions(tree);
-          Object.keys(maps).forEach((src) => {
-            const row = document.createElement("div");
-            row.className = "mig-ana-map__row";
-            const srcCell = document.createElement("div");
-            srcCell.className = "mig-ana-map__src";
-            const srcText = document.createElement("span");
-            srcText.textContent = src;
-            srcCell.appendChild(srcText);
-
-            const targetCell = document.createElement("div");
-            targetCell.className = "mig-ana-map__target";
-            const dirPicker = createMigPicker({
-              ariaLabel: src + " 目标目录",
-              placeholder: "请选择目录",
-              searchable: true,
-              searchPlaceholder: "搜索目录",
-              value: maps[src] || "",
-              items: dirOptions,
-              formatValue(item) {
-                return item.pathLabel || item.label;
-              },
-              onChange(val, item) {
-                maps[src] = val || "";
-                if (item) {
-                  dirPicker.setValue(val);
-                }
-              },
-            });
-            targetCell.appendChild(dirPicker.el);
-            row.appendChild(srcCell);
-            row.appendChild(targetCell);
-            list.appendChild(row);
-          });
-
-          if (!window.__migPickerDocCloseBound) {
-            window.__migPickerDocCloseBound = true;
-            document.addEventListener("click", () => closeAllMigPickers());
-          }
-
-          block.appendChild(h);
-          block.appendChild(list);
-          host.appendChild(block);
-        }
-
         function applyParseResultToDraft(result) {
           dataMigDraft.hasReport = !!result.hasReport;
           dataMigDraft.packageContents = (result.packageContents || []).slice();
-          dataMigDraft.neededMapKinds = (result.neededMapKinds || []).slice();
+          if (dataMigDraft.hasReport) {
+            dataMigDraft.neededMapKinds = (result.neededMapKinds || []).slice();
+            ensureAnalysisMaps();
+          } else {
+            dataMigDraft.neededMapKinds = DATA_MIG_MAP_KIND_DEFS_NO_REPORT.map((d) => d.key);
+          }
           dataMigDraft.parseDone = true;
-          if (dataMigDraft.hasReport) ensureAnalysisMaps();
           applyAutoMatchForCommonMaps();
         }
 
@@ -35859,7 +39753,7 @@
           pkgHint.style.color = "rgba(0,0,0,0.45)";
           pkgHint.style.lineHeight = "1.6";
           pkgHint.textContent =
-            "原型演示用：点选下方任一示例包即可进入对应对象映射；也可自行上传 .zip（文件名含「报告」或 report 视为含报告）。";
+            "原型演示用：点选下方任一示例包即可进入对应对象映射；自行上传时文件名含「含报告」或 report 视为含报告，含「不含报告」视为不含报告。";
           const pkgGrid = document.createElement("div");
           pkgGrid.className = "mig-demo-pkgs";
           const pkgBtns = [];
@@ -36146,11 +40040,18 @@
               asSub: true,
               showAuto: true,
             });
-            if (hasReport) {
+            if (hasReport && needsMapKind("ds")) {
               ensureAnalysisMaps();
-              appendAnalysisDsMapTable("分析数据源", dataMigDraft.analysisMaps, {
+              appendTreeObjectMapBlock({
+                titleText: "分析数据源",
+                maps: dataMigDraft.analysisMaps,
+                mode: "analysis",
                 host: dsGroup,
                 asSub: true,
+                targetHeader: "目标对象（映射目录）",
+                placeholder: "请选择映射目录（目录 / 数据源）",
+                searchPlaceholder: "搜索目录或数据源",
+                batchTip: "在组织树中选择目录及数据源，将应用到已勾选的源对象。",
               });
             }
             mapSection.appendChild(dsGroup);
@@ -36168,21 +40069,29 @@
           if (hasReport) {
             if (needsMapKind("datasetDir")) {
               ensurePathDirMaps(dataMigDraft.datasetDirMaps);
-              appendDirPathMapTable(
-                "数据集目录映射",
-                dataMigDraft.datasetDirMaps,
-                DATA_MIG_DATASET_DIR_TREE,
-                mapOpts
-              );
+              appendTreeObjectMapBlock({
+                titleText: "数据集目录映射",
+                maps: dataMigDraft.datasetDirMaps,
+                mode: "dir",
+                tree: DATA_MIG_DATASET_DIR_TREE,
+                host: mapSection,
+                targetHeader: "目标目录",
+                placeholder: "请选择目录",
+                searchPlaceholder: "搜索目录",
+              });
             }
             if (needsMapKind("reportDir")) {
               ensurePathDirMaps(dataMigDraft.reportDirMaps);
-              appendDirPathMapTable(
-                "报告目录映射",
-                dataMigDraft.reportDirMaps,
-                DATA_MIG_REPORT_DIR_TREE,
-                mapOpts
-              );
+              appendTreeObjectMapBlock({
+                titleText: "报告目录映射",
+                maps: dataMigDraft.reportDirMaps,
+                mode: "dir",
+                tree: DATA_MIG_REPORT_DIR_TREE,
+                host: mapSection,
+                targetHeader: "目标目录",
+                placeholder: "请选择目录",
+                searchPlaceholder: "搜索目录",
+              });
             }
           }
           body.appendChild(mapSection);
@@ -36245,7 +40154,6 @@
               }
             }
             importCreateStep = 3;
-            detailCategory = "场景流程";
             renderAll();
           });
           const prevBtn = document.createElement("button");
@@ -36258,6 +40166,8 @@
           });
           ft.appendChild(nextBtn);
           ft.appendChild(prevBtn);
+        } else if (importCreateStep === 3) {
+          renderDataMigVersionCompare(body, ft, goHome, dataMigDraft);
         } else {
           const previewRow = {
             name: dataMigDraft.name,
@@ -36283,11 +40193,44 @@
           basicSection.appendChild(basicTitle);
           basicSection.appendChild(meta);
 
+          const previewSelectedExtras = getCompareSelectedExtraResources(dataMigDraft.compare);
+          ensureImportPreviewDeleteCategory(previewSelectedExtras);
+
           const contentSection = document.createElement("section");
           contentSection.className = "mig-create__section is-grow";
-          const contentTitle = document.createElement("h3");
-          contentTitle.className = "mig-create__section-title";
-          contentTitle.textContent = "导入内容";
+
+          const previewTabs = document.createElement("div");
+          previewTabs.className = "mig-cmp-tabs";
+          const importTabBtn = document.createElement("button");
+          importTabBtn.type = "button";
+          importTabBtn.className =
+            "mig-cmp-tab" + (importPreviewTab === "import" ? " is-active" : "");
+          importTabBtn.textContent = "导入内容";
+          const deleteTabBtn = document.createElement("button");
+          deleteTabBtn.type = "button";
+          deleteTabBtn.className =
+            "mig-cmp-tab" + (importPreviewTab === "delete" ? " is-active" : "");
+          deleteTabBtn.textContent = "删除内容";
+          if (previewSelectedExtras.length) {
+            const deleteBadge = document.createElement("span");
+            deleteBadge.className = "mig-cmp-tab-badge";
+            deleteBadge.textContent = String(previewSelectedExtras.length);
+            deleteTabBtn.appendChild(deleteBadge);
+          }
+          previewTabs.appendChild(importTabBtn);
+          previewTabs.appendChild(deleteTabBtn);
+
+          const tabBody = document.createElement("div");
+          tabBody.className = "mig-cmp-tab-body";
+          tabBody.style.marginTop = "14px";
+
+          const importPane = document.createElement("div");
+          importPane.className = "mig-cmp-tab-pane";
+          importPane.hidden = importPreviewTab !== "import";
+          const deletePane = document.createElement("div");
+          deletePane.className = "mig-cmp-tab-pane";
+          deletePane.hidden = importPreviewTab !== "delete";
+
           const catGrid = document.createElement("div");
           catGrid.className = "mig-cat-grid";
           const listHost = document.createElement("div");
@@ -36296,15 +40239,40 @@
           listHost.style.border = "1px solid #f0f0f0";
           listHost.style.borderRadius = "8px";
 
+          const deleteCatGrid = document.createElement("div");
+          deleteCatGrid.className = "mig-cat-grid";
+          const deleteListHost = document.createElement("div");
+          deleteListHost.className = "mig-table-wrap";
+          deleteListHost.style.marginTop = "14px";
+          deleteListHost.style.border = "1px solid #f0f0f0";
+          deleteListHost.style.borderRadius = "8px";
+
+          function switchPreviewTab(tab) {
+            importPreviewTab = tab;
+            importPane.hidden = tab !== "import";
+            deletePane.hidden = tab !== "delete";
+            importTabBtn.classList.toggle("is-active", tab === "import");
+            deleteTabBtn.classList.toggle("is-active", tab === "delete");
+          }
+          importTabBtn.addEventListener("click", () => switchPreviewTab("import"));
+          deleteTabBtn.addEventListener("click", () => switchPreviewTab("delete"));
+
           function shouldAppendMigrateTag(category) {
             return isAuto && category !== "业务数据源" && category !== "数仓数据源";
           }
 
           function renderPreviewCategoryList() {
             const categories = getMigDetailCategories(previewRow);
+            listHost.innerHTML = "";
+            if (!categories.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-empty";
+              empty.textContent = "暂无导入内容";
+              listHost.appendChild(empty);
+              return;
+            }
             const cat = categories.find((c) => c.key === detailCategory) || categories[0];
             const items = buildMigCategoryItems(cat.key, cat.count, previewRow.name, previewRow);
-            listHost.innerHTML = "";
             const listHd = document.createElement("div");
             listHd.className = "mig-detail-list-hd";
             listHd.style.padding = "12px 14px 0";
@@ -36331,7 +40299,6 @@
               "<th style='width:64px'>序号</th>" +
               "<th>名称</th>" +
               "<th style='width:120px'>类型</th>" +
-              "<th style='width:100px'>状态</th>" +
               "<th style='width:180px'>更新时间</th>" +
               "</tr></thead>";
             const tbody = document.createElement("tbody");
@@ -36351,17 +40318,11 @@
               }
               const tdType = document.createElement("td");
               tdType.textContent = item.type;
-              const tdStatus = document.createElement("td");
-              const st = document.createElement("span");
-              st.className = statusClass("success");
-              st.textContent = "成功";
-              tdStatus.appendChild(st);
               const tdTime = document.createElement("td");
               tdTime.textContent = item.updateTime;
               tr.appendChild(tdIdx);
               tr.appendChild(tdName);
               tr.appendChild(tdType);
-              tr.appendChild(tdStatus);
               tr.appendChild(tdTime);
               tbody.appendChild(tr);
             });
@@ -36371,7 +40332,11 @@
 
           function renderPreviewCategoryCards() {
             catGrid.innerHTML = "";
-            getMigDetailCategories(previewRow).forEach((cat) => {
+            const cats = getMigDetailCategories(previewRow);
+            if (!cats.some((c) => c.key === detailCategory)) {
+              detailCategory = cats[0] ? cats[0].key : "业务流程";
+            }
+            cats.forEach((cat) => {
               const card = document.createElement("button");
               card.type = "button";
               card.className = "mig-cat-card" + (detailCategory === cat.key ? " is-active" : "");
@@ -36395,40 +40360,140 @@
             });
           }
 
-          contentSection.appendChild(contentTitle);
-          contentSection.appendChild(catGrid);
-          contentSection.appendChild(listHost);
+          function renderPreviewDeleteCategoryList() {
+            const catKey = importPreviewDeleteCategory;
+            const items = catKey
+              ? previewSelectedExtras.filter((item) => item.typeLabel === catKey)
+              : [];
+            deleteListHost.innerHTML = "";
+            if (!previewSelectedExtras.length || !catKey) {
+              const empty = document.createElement("div");
+              empty.className = "mig-empty";
+              empty.textContent =
+                "未勾选待删除资源。若在比对步骤勾选历史多余资源，将在此展示。";
+              deleteListHost.appendChild(empty);
+              return;
+            }
+            const listHd = document.createElement("div");
+            listHd.className = "mig-detail-list-hd";
+            listHd.style.padding = "12px 14px 0";
+            const listTitle = document.createElement("h4");
+            listTitle.className = "mig-detail-list-hd__title";
+            listTitle.textContent = catKey + "列表";
+            const listSub = document.createElement("span");
+            listSub.className = "mig-detail-list-hd__sub";
+            listSub.textContent = "共 " + items.length + " 条";
+            listHd.appendChild(listTitle);
+            listHd.appendChild(listSub);
+            deleteListHost.appendChild(listHd);
+            if (!items.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-empty";
+              empty.textContent = "该类目暂无待删除资源";
+              deleteListHost.appendChild(empty);
+              return;
+            }
+            const table = document.createElement("table");
+            table.className = "mig-table";
+            table.innerHTML =
+              "<thead><tr>" +
+              "<th style='width:64px'>序号</th>" +
+              "<th>名称</th>" +
+              "<th style='width:120px'>类型</th>" +
+              "<th>映射路径</th>" +
+              "<th style='width:120px'>资源 ID</th>" +
+              "</tr></thead>";
+            const tbody = document.createElement("tbody");
+            items.forEach((item, i) => {
+              const tr = document.createElement("tr");
+              const tdIdx = document.createElement("td");
+              tdIdx.textContent = String(i + 1);
+              const tdName = document.createElement("td");
+              const nameText = document.createElement("span");
+              nameText.textContent = item.name;
+              tdName.appendChild(nameText);
+              const delTag = document.createElement("span");
+              delTag.className = "mig-tag is-delete-pending";
+              delTag.textContent = "待删除";
+              tdName.appendChild(delTag);
+              const tdType = document.createElement("td");
+              tdType.textContent = item.typeLabel;
+              const tdPath = document.createElement("td");
+              tdPath.textContent = item.mapPath || "—";
+              const tdId = document.createElement("td");
+              tdId.textContent = item.resourceId || "—";
+              tr.appendChild(tdIdx);
+              tr.appendChild(tdName);
+              tr.appendChild(tdType);
+              tr.appendChild(tdPath);
+              tr.appendChild(tdId);
+              tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            deleteListHost.appendChild(table);
+          }
+
+          function renderPreviewDeleteCategoryCards() {
+            deleteCatGrid.innerHTML = "";
+            getDeletePreviewCategories(previewSelectedExtras).forEach((cat) => {
+              const card = document.createElement("button");
+              card.type = "button";
+              card.className =
+                "mig-cat-card" +
+                (importPreviewDeleteCategory === cat.key ? " is-active" : "");
+              const nameEl = document.createElement("div");
+              nameEl.className = "mig-cat-card__name";
+              nameEl.textContent = cat.key;
+              const stat = document.createElement("div");
+              stat.className = "mig-cat-card__stat";
+              const countEl = document.createElement("span");
+              countEl.className = "mig-cat-card__count is-ok";
+              countEl.textContent = String(cat.count);
+              stat.appendChild(countEl);
+              card.appendChild(nameEl);
+              card.appendChild(stat);
+              card.addEventListener("click", () => {
+                importPreviewDeleteCategory = cat.key;
+                renderPreviewDeleteCategoryCards();
+                renderPreviewDeleteCategoryList();
+              });
+              deleteCatGrid.appendChild(card);
+            });
+          }
+
+          importPane.appendChild(catGrid);
+          importPane.appendChild(listHost);
+          deletePane.appendChild(deleteCatGrid);
+          deletePane.appendChild(deleteListHost);
+          tabBody.appendChild(importPane);
+          tabBody.appendChild(deletePane);
+
+          contentSection.appendChild(previewTabs);
+          contentSection.appendChild(tabBody);
+
           body.appendChild(basicSection);
           body.appendChild(contentSection);
           renderPreviewCategoryCards();
           renderPreviewCategoryList();
+          renderPreviewDeleteCategoryCards();
+          renderPreviewDeleteCategoryList();
 
           const execBtn = document.createElement("button");
           execBtn.type = "button";
           execBtn.className = "mig-btn mig-btn--primary";
           execBtn.textContent = "执行";
           execBtn.addEventListener("click", () => {
-            const rec = {
-              id: "dm-" + Date.now(),
-              name: dataMigDraft.name,
-              creator: "当前用户",
-              status: "pending",
-              time: formatNow(),
-              exportType: "全量",
-              importMode: dataMigDraft.importMode,
-            };
-            if (dataMigFromAssistant === "governance") govImportRows.unshift(rec);
-            else if (dataMigFromAssistant === "analysis") analysisImportRows.unshift(rec);
-            else sceneImportRows.unshift(rec);
-            goHome();
-            showToast(isAuto ? "已创建导入任务（自动创建，已忽略历史重名）" : "已创建导入任务", "success");
+            dataMigExecRecord = createDataMigImportRecord(dataMigDraft);
+            importCreateStep = 5;
+            startDataMigImportExec();
+            renderAll();
           });
           const prevBtn = document.createElement("button");
           prevBtn.type = "button";
           prevBtn.className = "mig-btn mig-btn--ghost";
           prevBtn.textContent = "上一步";
           prevBtn.addEventListener("click", () => {
-            importCreateStep = 2;
+            importCreateStep = 3;
             renderAll();
           });
           const cancelBtn = document.createElement("button");
@@ -36448,30 +40513,68 @@
         root.appendChild(create);
       }
 
+      function captureMigCompareScrollState() {
+        const body = root.querySelector(".mig-create__body");
+        if (!body) return null;
+        return {
+          bodyTop: body.scrollTop,
+          canvasTop: canvasEl ? canvasEl.scrollTop : 0,
+          windowY: window.scrollY || document.documentElement.scrollTop || 0,
+        };
+      }
+
+      function restoreMigCompareScrollState(state) {
+        if (!state) return;
+        window.requestAnimationFrame(() => {
+          const body = root.querySelector(".mig-create__body");
+          if (body) body.scrollTop = state.bodyTop;
+          if (canvasEl) canvasEl.scrollTop = state.canvasTop;
+          window.scrollTo(0, state.windowY);
+        });
+      }
+
+      function shouldPreserveMigCompareScroll() {
+        return pageView === "import-compare-report" || (pageView === "data-migration-import" && importCreateStep === 3);
+      }
+
       function renderAll() {
+        const scrollState = shouldPreserveMigCompareScroll() ? captureMigCompareScrollState() : null;
         root.innerHTML = "";
         if (pageView === "scene-export-create") {
+          root.className = "mig-root" + (hideCards ? " mig-root--list-only" : "");
           renderSceneExportCreate();
           return;
         }
         if (pageView === "scene-import-create") {
+          root.className = "mig-root" + (hideCards ? " mig-root--list-only" : "");
           renderSceneImportCreate();
           return;
         }
         if (pageView === "data-migration-import") {
+          root.className = "mig-root mig-root--import-page";
           renderDataMigrationImport();
+          if (scrollState) restoreMigCompareScrollState(scrollState);
+          return;
+        }
+        if (pageView === "import-compare-report") {
+          root.className = "mig-root mig-root--import-page";
+          renderImportCompareReport();
+          if (scrollState) restoreMigCompareScrollState(scrollState);
           return;
         }
         if (pageView === "scene-transfer-detail") {
+          root.className = "mig-root" + (hideCards ? " mig-root--list-only" : "");
           renderSceneTransferDetail();
           return;
         }
+        root.className = "mig-root" + (hideCards ? " mig-root--list-only" : "");
         if (!hideCards) {
           renderCards();
           root.appendChild(cardsWrap);
         }
         renderPanel();
         root.appendChild(panel);
+        if (scrollState) restoreMigCompareScrollState(scrollState);
       }
 
       renderAll();
@@ -48231,7 +52334,7 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         devPathFlowState = null;
         return;
       }
-      if (leafId === "offline-integration-task" || leafId === "offline-dev-task") {
+      if (leafId === "offline-integration-task" || leafId === "offline-dev-task" || leafId === "light-task") {
         oitPage = 1;
         devPathFlowState = null;
         return;
@@ -48324,7 +52427,7 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         mountLogicalCanvas();
       } else if (leafId === "one-stop-integration") {
         mountOneStopIntegrationCanvas();
-      } else if (leafId === "offline-integration-task" || leafId === "offline-dev-task") {
+      } else if (leafId === "offline-integration-task" || leafId === "offline-dev-task" || leafId === "light-task") {
         mountOfflineIntegrationTaskCanvas();
       } else if (leafId === "offline-integration-instance") {
         mountOfflineIntegrationInstanceCanvas();
