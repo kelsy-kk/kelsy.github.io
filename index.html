@@ -2110,6 +2110,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
+      table-layout: auto;
     }
 
     .mig-cmp-count-table th,
@@ -2118,6 +2119,20 @@
       border-bottom: 1px solid #f0f0f0;
       text-align: left;
       vertical-align: middle;
+    }
+
+    .mig-cmp-count-table .mig-cmp-count-col-type,
+    .mig-cmp-count-table .mig-cmp-count-col-num,
+    .mig-cmp-count-table .mig-cmp-count-col-status {
+      white-space: nowrap;
+      width: 1%;
+    }
+
+    .mig-cmp-count-table .mig-cmp-count-col-path {
+      max-width: 168px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .mig-cmp-count-table th {
@@ -2180,6 +2195,80 @@
 
     .mig-cmp-count-extra-inner .mig-cmp-overview {
       border-color: #f0f0f0;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table th,
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table td {
+      padding: 0;
+      vertical-align: middle;
+      line-height: 1.5;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table tbody td {
+      min-height: 44px;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table tbody tr {
+      transition: background 0.15s ease;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table tbody tr:hover {
+      background: #fff;
+    }
+
+    .mig-cmp-extra-name-hd,
+    .mig-cmp-extra-name-cell {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      min-height: 44px;
+      padding: 10px 14px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .mig-cmp-extra-name-hd input[type="checkbox"],
+    .mig-cmp-extra-name-cell input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .mig-cmp-extra-name-hd input[type="checkbox"]:disabled,
+    .mig-cmp-extra-name-cell input[type="checkbox"]:disabled {
+      cursor: not-allowed;
+    }
+
+    .mig-cmp-extra-name-text {
+      flex: 1;
+      min-width: 0;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.5;
+      word-break: break-all;
+      text-align: left;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table td.mig-cmp-extra-id {
+      padding: 10px 14px;
+      min-height: 44px;
+      color: rgba(0, 0, 0, 0.65);
+      white-space: nowrap;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .mig-cmp-count-extra-inner .mig-cmp-extra-table th.mig-cmp-extra-th {
+      padding: 10px 14px;
+      min-height: 44px;
+      vertical-align: middle;
+      font-weight: 500;
+      text-align: left;
     }
 
     .mig-cmp-extra-notice {
@@ -3182,6 +3271,19 @@
     .mig-status.is-importing {
       background: #e6f4ff;
       color: #1677ff;
+    }
+
+    .mig-status.is-clickable {
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dashed;
+      text-underline-offset: 3px;
+      transition: opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .mig-status.is-clickable:hover {
+      opacity: 0.88;
+      box-shadow: 0 0 0 1px currentColor;
     }
 
     .mig-res-name {
@@ -35153,6 +35255,62 @@
         return "mig-status";
       }
 
+      function getRowStatusLabel(row) {
+        if (row && row.backgroundRun && row.status === "importing") return "进行中";
+        return statusLabel(row.status);
+      }
+
+      function getRowStatusClass(row) {
+        if (row && row.backgroundRun && row.status === "importing") {
+          return "mig-status is-pending";
+        }
+        return statusClass(row.status);
+      }
+
+      function canOpenDataMigImportExec(row) {
+        return !!(
+          row &&
+          row.status === "importing" &&
+          Array.isArray(row.execItems) &&
+          row.execItems.length
+        );
+      }
+
+      function openDataMigImportExecPage(row) {
+        if (!canOpenDataMigImportExec(row)) return;
+        dataMigExecRecord = row;
+        dataMigFromAssistant = row.assistant || activeAssistant;
+        activeAssistant = dataMigFromAssistant;
+        importCreateStep = 5;
+        pageView = "data-migration-import";
+        renderAll();
+      }
+
+      function appendRowStatusCell(tdStatus, row, isExport) {
+        const st = document.createElement("span");
+        const clickable = !isExport && canOpenDataMigImportExec(row);
+        st.className =
+          (isExport ? statusClass(row.status) : getRowStatusClass(row)) +
+          (clickable ? " is-clickable" : "");
+        st.textContent = isExport ? statusLabel(row.status) : getRowStatusLabel(row);
+        if (clickable) {
+          st.setAttribute("role", "button");
+          st.setAttribute("tabindex", "0");
+          st.setAttribute("title", "点击查看迁入执行进度");
+          st.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openDataMigImportExecPage(row);
+          });
+          st.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openDataMigImportExecPage(row);
+            }
+          });
+        }
+        tdStatus.appendChild(st);
+      }
+
       function startSceneExportTask(row) {
         startSceneFlowMigExportTask(row, () => {
           if (pageView === "home" && activeAssistant === "scene-flow" && listTab === "export") {
@@ -35933,10 +36091,7 @@
               const tdType = document.createElement("td");
               tdType.textContent = row.exportType || "全量";
               const tdStatus = document.createElement("td");
-              const st = document.createElement("span");
-              st.className = statusClass(row.status);
-              st.textContent = statusLabel(row.status);
-              tdStatus.appendChild(st);
+              appendRowStatusCell(tdStatus, row, isExport);
               const tdCreator = document.createElement("td");
               tdCreator.textContent = row.creator;
               const tdTime = document.createElement("td");
@@ -35967,10 +36122,7 @@
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdStatus = document.createElement("td");
-              const st = document.createElement("span");
-              st.className = statusClass(row.status);
-              st.textContent = statusLabel(row.status);
-              tdStatus.appendChild(st);
+              appendRowStatusCell(tdStatus, row, isExport);
               const tdAct = document.createElement("td");
               const analysisActions = [
                 !isExport && row.compareReport
@@ -35995,10 +36147,7 @@
               const tdCreator = document.createElement("td");
               tdCreator.textContent = row.creator;
               const tdStatus = document.createElement("td");
-              const st = document.createElement("span");
-              st.className = statusClass(row.status);
-              st.textContent = statusLabel(row.status);
-              tdStatus.appendChild(st);
+              appendRowStatusCell(tdStatus, row, isExport);
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdAct = document.createElement("td");
@@ -37515,34 +37664,6 @@
         const inner = document.createElement("div");
         inner.className = "mig-cmp-count-extra-inner";
 
-        const actions = document.createElement("div");
-        actions.className = "mig-cmp-extra-actions";
-        const selectAllLab = document.createElement("label");
-        const selectAllCb = document.createElement("input");
-        selectAllCb.type = "checkbox";
-        selectAllCb.disabled = readOnly || !items.length;
-        const typeKeys = items.map((e) => e.key);
-        selectAllCb.checked =
-          typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
-        const rowChecks = [];
-        selectAllCb.addEventListener("change", () => {
-          if (readOnly) return;
-          if (selectAllCb.checked) {
-            typeKeys.forEach((k) => {
-              if (cmp.deleteExtraKeys.indexOf(k) < 0) cmp.deleteExtraKeys.push(k);
-            });
-          } else {
-            cmp.deleteExtraKeys = cmp.deleteExtraKeys.filter((k) => typeKeys.indexOf(k) < 0);
-          }
-          rowChecks.forEach((item) => {
-            item.check.checked = cmp.deleteExtraKeys.indexOf(item.key) >= 0;
-          });
-          selectAllCb.checked =
-            typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
-        });
-        selectAllLab.appendChild(selectAllCb);
-        selectAllLab.appendChild(document.createTextNode("全选本类"));
-
         if (!items.length) {
           const empty = document.createElement("p");
           empty.className = "mig-cmp-tip";
@@ -37550,23 +37671,66 @@
           empty.textContent = "暂无明细数据（演示包仅列出部分样例）。";
           inner.appendChild(empty);
         } else {
-          actions.appendChild(selectAllLab);
-          inner.appendChild(actions);
           const extraWrap = document.createElement("div");
           extraWrap.className = "mig-cmp-overview";
           const extraTable = document.createElement("table");
-          extraTable.className = "mig-cmp-count-table";
-          extraTable.innerHTML =
-            "<thead><tr>" +
-            "<th style='width:40px'></th>" +
-            "<th>名称</th>" +
-            "<th style='width:120px'>资源 ID</th>" +
-            "<th style='width:110px'>标签</th>" +
-            "</tr></thead>";
+          extraTable.className = "mig-cmp-count-table mig-cmp-extra-table";
           const extraBody = document.createElement("tbody");
+          const typeKeys = items.map((e) => e.key);
+          const rowChecks = [];
+
+          const syncSelectAll = () => {
+            selectAllCb.checked =
+              typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+            selectAllCb.indeterminate =
+              !selectAllCb.checked &&
+              typeKeys.some((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+          };
+
+          const selectAllCb = document.createElement("input");
+          selectAllCb.type = "checkbox";
+          selectAllCb.disabled = readOnly || !items.length;
+          selectAllCb.setAttribute("aria-label", "全选本类资源");
+          syncSelectAll();
+          selectAllCb.addEventListener("change", () => {
+            if (readOnly) return;
+            if (selectAllCb.checked) {
+              typeKeys.forEach((k) => {
+                if (cmp.deleteExtraKeys.indexOf(k) < 0) cmp.deleteExtraKeys.push(k);
+              });
+            } else {
+              cmp.deleteExtraKeys = cmp.deleteExtraKeys.filter((k) => typeKeys.indexOf(k) < 0);
+            }
+            rowChecks.forEach((item) => {
+              item.check.checked = cmp.deleteExtraKeys.indexOf(item.key) >= 0;
+            });
+            syncSelectAll();
+          });
+
+          const thead = document.createElement("thead");
+          const headTr = document.createElement("tr");
+          const thName = document.createElement("th");
+          const nameHd = document.createElement("div");
+          nameHd.className = "mig-cmp-extra-name-hd";
+          const nameLabel = document.createElement("span");
+          nameLabel.textContent = "名称";
+          nameHd.appendChild(selectAllCb);
+          nameHd.appendChild(nameLabel);
+          thName.appendChild(nameHd);
+          const thId = document.createElement("th");
+          thId.className = "mig-cmp-extra-th";
+          thId.style.width = "180px";
+          thId.textContent = "资源 ID";
+          headTr.appendChild(thName);
+          headTr.appendChild(thId);
+          thead.appendChild(headTr);
+          extraTable.appendChild(thead);
+
           items.forEach((item) => {
             const row = document.createElement("tr");
-            const tdCheck = document.createElement("td");
+            const tdName = document.createElement("td");
+            const nameCell = document.createElement("div");
+            nameCell.className = "mig-cmp-extra-name-cell";
             const check = document.createElement("input");
             check.type = "checkbox";
             check.disabled = readOnly;
@@ -37579,21 +37743,22 @@
               } else {
                 cmp.deleteExtraKeys = cmp.deleteExtraKeys.filter((k) => k !== item.key);
               }
-              selectAllCb.checked =
-                typeKeys.length > 0 && typeKeys.every((k) => cmp.deleteExtraKeys.indexOf(k) >= 0);
+              syncSelectAll();
             });
             rowChecks.push({ key: item.key, check });
-            tdCheck.appendChild(check);
-            const tdName = document.createElement("td");
-            tdName.textContent = item.name;
+            const nameText = document.createElement("span");
+            nameText.className = "mig-cmp-extra-name-text";
+            nameText.textContent = item.name;
+            nameCell.appendChild(check);
+            nameCell.appendChild(nameText);
+            tdName.appendChild(nameCell);
+
             const tdId = document.createElement("td");
+            tdId.className = "mig-cmp-extra-id";
             tdId.textContent = item.resourceId;
-            const tdTag = document.createElement("td");
-            tdTag.textContent = "【" + item.tag + "】";
-            row.appendChild(tdCheck);
+
             row.appendChild(tdName);
             row.appendChild(tdId);
-            row.appendChild(tdTag);
             extraBody.appendChild(row);
           });
           extraTable.appendChild(extraBody);
@@ -37616,14 +37781,6 @@
 
         const countPanel = document.createElement("div");
         countPanel.className = "mig-cmp-panel";
-        const countTip = document.createElement("p");
-        countTip.className = "mig-cmp-tip";
-        countTip.style.margin = "0 0 10px";
-        countTip.textContent =
-          "在对象映射所设路径下，统计本次迁移包内各类型资源数量，并与目标环境中带【" +
-          DATA_MIG_COMPARE_BP_TAG +
-          "】标签的资源数量比对；若目标环境数量多于本次迁移，点击「多余」列数字可展开查看历史多余资源并勾选删除。";
-        countPanel.appendChild(countTip);
 
         const extras = result.extraResources || [];
         const extraTotal = (result.resourceCountSummary && result.resourceCountSummary.extraTotal) || 0;
@@ -37650,12 +37807,12 @@
         countTable.className = "mig-cmp-count-table";
         countTable.innerHTML =
           "<thead><tr>" +
-          "<th style='width:100px'>资源类型</th>" +
-          "<th>对象映射路径</th>" +
-          "<th style='width:96px'>本次迁移</th>" +
-          "<th style='width:110px'>目标（迁移标签）</th>" +
-          "<th style='width:72px'>多余</th>" +
-          "<th style='width:88px'>比对结果</th>" +
+          "<th class='mig-cmp-count-col-type'>资源类型</th>" +
+          "<th class='mig-cmp-count-col-path'>对象映射路径</th>" +
+          "<th class='mig-cmp-count-col-num'>本次迁移</th>" +
+          "<th class='mig-cmp-count-col-num'>目标环境</th>" +
+          "<th class='mig-cmp-count-col-num'>多余</th>" +
+          "<th class='mig-cmp-count-col-status'>比对结果</th>" +
           "</tr></thead>";
         const countBody = document.createElement("tbody");
         result.resourceCounts.forEach((row) => {
@@ -37666,15 +37823,21 @@
           tr.setAttribute("data-type-key", row.typeKey);
 
           const tdLabel = document.createElement("td");
+          tdLabel.className = "mig-cmp-count-col-type";
           tdLabel.textContent = row.label;
           const tdPath = document.createElement("td");
+          tdPath.className = "mig-cmp-count-col-path";
           tdPath.textContent = row.mapPath;
+          tdPath.title = row.mapPath || "";
           const tdPkg = document.createElement("td");
+          tdPkg.className = "mig-cmp-count-col-num";
           tdPkg.textContent = String(row.packageCount);
           const tdTarget = document.createElement("td");
+          tdTarget.className = "mig-cmp-count-col-num";
           tdTarget.textContent = String(row.targetCount);
 
           const tdExtra = document.createElement("td");
+          tdExtra.className = "mig-cmp-count-col-num";
           if (row.extraCount > 0) {
             const extraBtn = document.createElement("button");
             extraBtn.type = "button";
@@ -37703,6 +37866,7 @@
           }
 
           const tdStatus = document.createElement("td");
+          tdStatus.className = "mig-cmp-count-col-status";
           const statusCls = row.status === "extra" ? "is-extra" : "is-ok";
           const statusText = row.status === "extra" ? "存在多余" : "数量一致";
           tdStatus.innerHTML =
