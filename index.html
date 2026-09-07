@@ -308,6 +308,16 @@
       display: none !important;
     }
 
+    body.main--app-mode .sub-nav-item--scene,
+    body.main--app-mode .sub-nav-item--asset,
+    body.main--app-mode .sub-nav-item--system {
+      display: none !important;
+    }
+
+    body:not(.main--app-mode) .sub-nav-item--app {
+      display: none !important;
+    }
+
     /* —— 资产中心 · 迁移助手 —— */
     .mig-root {
       flex: 1;
@@ -1847,7 +1857,7 @@
       color: #d46b08;
     }
 
-    /* —— 版本比对 —— */
+    /* —— 资源比对 —— */
     .mig-cmp-hd {
       display: flex;
       flex-wrap: wrap;
@@ -2535,6 +2545,7 @@
       font-weight: 600;
       color: rgba(0, 0, 0, 0.65);
       border-bottom: 1px solid #f0f0f0;
+      text-align: center;
     }
 
     .mig-cmp-struct table {
@@ -2547,8 +2558,8 @@
     .mig-cmp-struct th,
     .mig-cmp-struct td {
       padding: 11px 12px;
-      border-bottom: 1px solid #f0f0f0;
-      text-align: left;
+      border: 1px solid #f0f0f0;
+      text-align: center;
       vertical-align: middle;
     }
 
@@ -2561,7 +2572,7 @@
     }
 
     .mig-cmp-struct tbody tr:last-child td {
-      border-bottom: none;
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .mig-cmp-struct tr.is-mismatch td {
@@ -2875,6 +2886,7 @@
     .mig-cmp-panel .mig-cmp-summary {
       border: none;
       border-radius: 0;
+      border-top: 1px solid #91caff;
       border-bottom: 1px solid #91caff;
     }
 
@@ -8933,6 +8945,1859 @@
 
     .da-ai-fab:hover {
       border-color: var(--nav-active);
+    }
+
+    /* —— 数据分析 · 报告编辑器 —— */
+    .da-editor-root {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+      background: #f5f5f5;
+    }
+
+    .da-module-nav {
+      flex-shrink: 0;
+      width: 112px;
+      border-right: 1px solid var(--border);
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0 0;
+      position: relative;
+    }
+
+    .da-module-nav-item {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .da-module-nav-item:hover {
+      background: #f0f0f0;
+    }
+
+    .da-module-nav-item.is-active {
+      background: #e6f4ff;
+      color: var(--nav-active);
+      font-weight: 500;
+      box-shadow: inset 3px 0 0 var(--nav-active);
+    }
+
+    .da-module-nav-rail {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 0 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .da-module-nav-rail-btn {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .da-module-nav-rail-btn:hover {
+      color: var(--nav-active);
+      border-color: var(--nav-active);
+    }
+
+    .da-editor-workspace {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .da-editor-workspace > .da-root {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .da-editor-head {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .da-editor-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .da-editor-back svg {
+      flex-shrink: 0;
+      color: var(--muted);
+    }
+
+    .da-editor-head-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .da-editor-toolbar {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 6px 12px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .da-editor-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .da-editor-shortcuts {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--nav-active);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .da-editor-shortcuts:hover {
+      text-decoration: underline;
+    }
+
+    .da-editor-tool {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .da-editor-tool:hover {
+      background: #f5f5f5;
+      color: var(--text);
+    }
+
+    .da-editor-tool-sep {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+      margin: 0 4px;
+    }
+
+    .da-editor-tool-menu {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .da-editor-tool-menu > .da-editor-tool {
+      width: 28px;
+      height: 28px;
+    }
+
+    .da-editor-tool-menu > .da-editor-tool svg {
+      display: block;
+    }
+
+    .da-editor-tool-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0;
+      z-index: 40;
+      min-width: 96px;
+      padding: 4px 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .da-editor-tool-menu:hover > .da-editor-tool,
+    .da-editor-tool-menu:focus-within > .da-editor-tool {
+      background: #f5f5f5;
+      color: var(--text);
+    }
+
+    .da-editor-tool-menu:hover > .da-editor-tool-dropdown,
+    .da-editor-tool-menu:focus-within > .da-editor-tool-dropdown {
+      display: block;
+    }
+
+    .da-editor-tool-dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      text-align: left;
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+
+    .da-editor-tool-dropdown-item:hover {
+      background: #f5f5f5;
+      color: var(--nav-active);
+    }
+
+    .da-editor-tool-dropdown--ctrl {
+      min-width: 148px;
+      max-height: 360px;
+      overflow: auto;
+      padding: 6px 0;
+    }
+
+    .da-editor-tool-group {
+      padding: 4px 0 6px;
+    }
+
+    .da-editor-tool-group + .da-editor-tool-group {
+      border-top: 1px solid #f0f0f0;
+      margin-top: 2px;
+      padding-top: 6px;
+    }
+
+    .da-editor-tool-group-title {
+      padding: 4px 14px 6px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.4;
+    }
+
+    .da-editor-tool-dropdown-item.is-muted {
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+    .da-editor-tool-dropdown-item.is-muted:hover {
+      color: rgba(0, 0, 0, 0.45);
+      background: #fafafa;
+    }
+
+    .da-editor-body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .da-comp-list {
+      flex-shrink: 0;
+      width: 200px;
+      border-right: 1px solid var(--border);
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .da-comp-list-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .da-comp-list-ai {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--panel);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--nav-active);
+      cursor: pointer;
+    }
+
+    .da-comp-items {
+      flex: 1;
+      overflow: auto;
+      padding: 6px 0;
+    }
+
+    .da-comp-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .da-comp-item:hover {
+      background: #fafafa;
+    }
+
+    .da-comp-item.is-active {
+      background: #e6f4ff;
+      color: var(--nav-active);
+    }
+
+    .da-comp-item-eye {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .da-editor-canvas {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      overflow: auto;
+      padding: 0;
+      background: #fff;
+    }
+
+    .da-editor-widgets {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: stretch;
+      min-height: 100%;
+      background: #fff;
+      border: none;
+    }
+
+    .da-editor-widget {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      min-height: 0;
+      box-shadow: none;
+    }
+
+    .da-editor-widget.is-active {
+      outline: 2px solid #1890ff;
+      outline-offset: -2px;
+    }
+
+    .da-editor-widget--filter,
+    .da-editor-widget--table {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .da-editor-widget--filter {
+      background: #f5f7fa;
+    }
+
+    .da-editor-widget--table {
+      flex: 1;
+      background: #fff;
+    }
+
+    .da-editor-widget-bd {
+      display: block;
+      min-height: 0;
+      padding: 0;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.85);
+      overflow: auto;
+    }
+
+    .da-contract-board {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      background: #fff;
+    }
+
+    .da-contract-filter {
+      padding: 12px 16px 0;
+      background: #f5f7fa;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .da-contract-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+      margin-bottom: 12px;
+    }
+
+    .da-contract-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .da-contract-field > label {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+      white-space: nowrap;
+    }
+
+    .da-contract-field input[type="text"],
+    .da-contract-field input[type="date"],
+    .da-contract-field select {
+      height: 28px;
+      min-width: 140px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      background: #fff;
+    }
+
+    .da-contract-field input[type="text"] {
+      min-width: 200px;
+    }
+
+    .da-contract-field input::placeholder {
+      color: #bfbfbf;
+    }
+
+    .da-contract-range {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 4px;
+      height: 28px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    .da-contract-range input {
+      min-width: 110px;
+      width: 110px;
+      height: 26px;
+      border: none;
+      padding: 0 4px;
+      background: transparent;
+    }
+
+    .da-contract-range-sep {
+      color: #bfbfbf;
+      font-size: 12px;
+    }
+
+    .da-contract-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .da-contract-actions .da-btn {
+      height: 28px;
+      padding: 0 14px;
+      font-size: 12px;
+      border-radius: 2px;
+    }
+
+    .da-contract-actions .da-btn-primary {
+      border-color: #1890ff;
+      background: #1890ff;
+      color: #fff;
+    }
+
+    .da-contract-reset {
+      border: none;
+      background: transparent;
+      color: #1890ff;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+    }
+
+    .da-contract-reset::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      width: 1px;
+      height: 12px;
+      background: #d9d9d9;
+      transform: translateY(-50%);
+    }
+
+    .da-contract-reset:hover {
+      color: #40a9ff;
+    }
+
+    .da-contract-radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-contract-radio label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .da-contract-radio input[type="radio"] {
+      accent-color: #1890ff;
+      width: 14px;
+      height: 14px;
+      margin: 0;
+    }
+
+    .da-contract-filter-toggle {
+      display: flex;
+      justify-content: center;
+      padding: 0 0 8px;
+      background: #f5f7fa;
+    }
+
+    .da-contract-filter-toggle button {
+      width: 48px;
+      height: 16px;
+      border: none;
+      background: transparent;
+      color: #bfbfbf;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .da-contract-filter-toggle button:hover {
+      color: #1890ff;
+    }
+
+    .da-contract-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 8px 16px;
+      background: #fff;
+    }
+
+    .da-contract-toolbar .da-btn {
+      height: 28px;
+      padding: 0 14px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 12px;
+    }
+
+    .da-contract-toolbar .da-btn:hover {
+      color: #1890ff;
+      border-color: #1890ff;
+    }
+
+    .da-contract-table-wrap {
+      width: 100%;
+      overflow: auto;
+      background: #fff;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .da-editor-table {
+      width: 100%;
+      min-width: 1280px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-editor-table th,
+    .da-editor-table td {
+      padding: 9px 10px;
+      border: 1px solid #e8e8e8;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+      background: #fff;
+    }
+
+    .da-editor-table thead th {
+      background: #f0f2f5;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.85);
+      text-align: center;
+    }
+
+    .da-editor-table td.is-num,
+    .da-editor-table th.is-num,
+    .da-editor-table td.is-amount,
+    .da-editor-table th.is-amount {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .da-editor-table td.is-center,
+    .da-editor-table th.is-center {
+      text-align: center;
+    }
+
+    .da-editor-table a.da-contract-link {
+      color: #1890ff;
+      text-decoration: none;
+    }
+
+    .da-editor-table a.da-contract-link:hover {
+      color: #40a9ff;
+      text-decoration: underline;
+    }
+
+    .da-editor-table td.is-link-num {
+      color: #1890ff;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .da-editor-table tbody tr:nth-child(even):not(.is-total) td {
+      background: #fafafa;
+    }
+
+    .da-editor-table tbody tr:hover:not(.is-total) td {
+      background: #e6f7ff;
+    }
+
+    .da-editor-table tr.is-total td {
+      background: #e8eaed;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-th-help {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      margin-left: 4px;
+      border-radius: 50%;
+      border: 1px solid #bfbfbf;
+      color: #8c8c8c;
+      font-size: 10px;
+      line-height: 1;
+      vertical-align: middle;
+      background: #fff;
+    }
+
+    .da-contract-pager {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 10px 16px;
+      border-top: 1px solid #e8e8e8;
+      background: #fff;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .da-contract-pager select,
+    .da-contract-pager input {
+      height: 24px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      font-size: 12px;
+      padding: 0 6px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-contract-pager input {
+      width: 40px;
+      text-align: center;
+    }
+
+    .da-contract-pager-btn {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .da-contract-pager-btn:hover {
+      color: #1890ff;
+      border-color: #1890ff;
+    }
+
+    .da-contract-col-setting {
+      width: 36px;
+      border: 1px solid #e8e8e8 !important;
+      background: #f0f2f5 !important;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+    }
+
+    .da-prop-panel {
+      flex-shrink: 0;
+      width: 260px;
+      border-left: 1px solid #e8e8e8;
+      background: #f7f8fa;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .da-prop-panel-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.85);
+      background: #f7f8fa;
+    }
+
+    .da-prop-panel-hd a {
+      font-size: 11px;
+      font-weight: 400;
+      color: #1890ff;
+      text-decoration: none;
+    }
+
+    .da-prop-sections {
+      flex: 1;
+      overflow: auto;
+    }
+
+    .da-prop-section {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .da-prop-section-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .da-prop-section-hd:hover {
+      background: #f0f0f0;
+    }
+
+    .da-prop-chevron {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .da-prop-section-bd {
+      padding: 0 12px 12px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+
+    .da-prop-section:not(.is-open) .da-prop-section-bd {
+      display: none;
+    }
+
+    .da-prop-form {
+      padding: 12px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .da-prop-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 28px;
+    }
+
+    .da-prop-label {
+      flex-shrink: 0;
+      width: 64px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      line-height: 1.4;
+    }
+
+    .da-prop-control {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .da-prop-static {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 4px;
+      background: #f0f2f5;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      line-height: 1;
+    }
+
+    .da-prop-select {
+      width: 100%;
+      height: 28px;
+      padding: 0 24px 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23bfbfbf' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat right 8px center;
+      appearance: none;
+      -webkit-appearance: none;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+    }
+
+    .da-prop-select:hover,
+    .da-prop-select:focus {
+      border-color: #40a9ff;
+      outline: none;
+    }
+
+    .da-prop-color {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fff;
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .da-prop-color::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 8px 8px;
+      border-color: transparent transparent #bfbfbf transparent;
+    }
+
+    .da-prop-color input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0;
+    }
+
+    .da-prop-divider {
+      position: relative;
+      display: inline-flex;
+      align-items: stretch;
+      height: 28px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .da-prop-divider-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-width: 44px;
+      padding: 0 8px;
+      border: none;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.65);
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .da-prop-divider-btn + .da-prop-divider-btn {
+      border-left: 1px solid #d9d9d9;
+    }
+
+    .da-prop-divider-btn:hover,
+    .da-prop-divider.is-open .da-prop-divider-btn[data-act="style"] {
+      background: #fafafa;
+      color: #1890ff;
+    }
+
+    .da-prop-divider-preview {
+      display: block;
+      width: 18px;
+      height: 10px;
+      position: relative;
+    }
+
+    .da-prop-divider-preview::before,
+    .da-prop-divider-preview::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .da-prop-divider-preview[data-style="none"]::before,
+    .da-prop-divider-preview[data-style="none"]::after {
+      display: none;
+    }
+
+    .da-prop-divider-preview[data-style="thin"]::before {
+      border-top: 1px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-preview[data-style="medium"]::before {
+      border-top: 2px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-preview[data-style="thick"]::before {
+      border-top: 3px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-preview[data-style="dot"]::before {
+      border-top: 1px dotted rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-preview[data-style="dash"]::before {
+      border-top: 1px dashed rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-preview[data-style="double"]::before {
+      height: 4px;
+      border-top: 1px solid rgba(0, 0, 0, 0.65);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.65);
+      transform: translateY(-50%);
+    }
+
+    .da-prop-divider-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      z-index: 30;
+      min-width: 120px;
+      padding: 4px 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .da-prop-divider.is-open .da-prop-divider-menu {
+      display: block;
+    }
+
+    .da-prop-divider-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 28px;
+      padding: 0 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .da-prop-divider-item:hover,
+    .da-prop-divider-item.is-active {
+      background: #e6f7ff;
+    }
+
+    .da-prop-divider-item-text {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-prop-divider-item-line {
+      display: block;
+      width: 72px;
+      height: 10px;
+      position: relative;
+    }
+
+    .da-prop-divider-item-line::before,
+    .da-prop-divider-item-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .da-prop-divider-item-line[data-style="thin"]::before {
+      border-top: 1px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-item-line[data-style="medium"]::before {
+      border-top: 2px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-item-line[data-style="thick"]::before {
+      border-top: 3px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-item-line[data-style="dot"]::before {
+      border-top: 1px dotted rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-item-line[data-style="dash"]::before {
+      border-top: 1px dashed rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-divider-item-line[data-style="double"]::before {
+      height: 4px;
+      border-top: 1px solid rgba(0, 0, 0, 0.65);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.65);
+    }
+
+    .da-prop-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .da-prop-check input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .da-prop-check-box {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .da-prop-check input:checked + .da-prop-check-box {
+      background: #1890ff;
+      border-color: #1890ff;
+    }
+
+    .da-prop-check input:checked + .da-prop-check-box::after {
+      content: "";
+      width: 4px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translateY(-1px);
+    }
+
+    .da-prop-panel-inner {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .da-prop-tabs {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid #e8e8e8;
+      background: #fff;
+      flex-shrink: 0;
+      padding: 0 12px;
+    }
+
+    .da-prop-tab {
+      position: relative;
+      height: 40px;
+      padding: 0 14px;
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+    }
+
+    .da-prop-tab.is-active {
+      color: #1890ff;
+      font-weight: 500;
+    }
+
+    .da-prop-tab.is-active::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+      height: 2px;
+      background: #1890ff;
+      border-radius: 1px 1px 0 0;
+    }
+
+    .da-prop-title-block {
+      padding: 12px 14px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fff;
+    }
+
+    .da-prop-title-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-prop-title-label .req {
+      color: #ff4d4f;
+      margin-right: 2px;
+    }
+
+    .da-prop-title-input {
+      width: 100%;
+      height: 32px;
+      padding: 0 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #f5f5f5;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      box-sizing: border-box;
+    }
+
+    .da-prop-title-input:focus {
+      background: #fff;
+      border-color: #40a9ff;
+      outline: none;
+    }
+
+    .da-prop-accordion {
+      background: #fff;
+    }
+
+    .da-prop-acc-item {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .da-prop-acc-hd {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .da-prop-acc-hd:hover {
+      background: #fafafa;
+    }
+
+    .da-prop-acc-arrow {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      width: 12px;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+
+    .da-prop-acc-item.is-open .da-prop-acc-arrow {
+      transform: rotate(90deg);
+    }
+
+    .da-prop-acc-bd {
+      display: none;
+      padding: 0 8px 12px;
+      background: #fafafa;
+    }
+
+    .da-prop-acc-item.is-open .da-prop-acc-bd {
+      display: block;
+    }
+
+    .da-prop-acc-bd--title {
+      background: #fff;
+      padding: 0 14px 14px;
+    }
+
+    .da-prop-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .da-prop-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .da-prop-field-label {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-prop-field-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 28px;
+    }
+
+    .da-prop-select--filled {
+      background-color: #f0f2f5;
+      border-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238c8c8c' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    }
+
+    .da-prop-select--filled:hover,
+    .da-prop-select--filled:focus {
+      background-color: #e8eaed;
+      border-color: transparent;
+    }
+
+    .da-prop-switch {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .da-prop-switch input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .da-prop-switch-slider {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: #d9d9d9;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .da-prop-switch-slider::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .da-prop-switch input:checked + .da-prop-switch-slider {
+      background: #1890ff;
+    }
+
+    .da-prop-switch input:checked + .da-prop-switch-slider::before {
+      transform: translateX(16px);
+    }
+
+    .da-prop-font-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .da-prop-font-row {
+      display: grid;
+      grid-template-columns: 72px 1fr 28px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .da-prop-color--sm {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+    }
+
+    .da-prop-acc-bd .da-prop-form {
+      padding: 4px 6px 8px;
+      gap: 12px;
+    }
+
+    .da-prop-empty {
+      padding: 24px 14px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
+
+    .da-prop-acc-bd--jump {
+      background: #fff;
+      padding: 0 10px 14px;
+    }
+
+    .da-jump-entry {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .da-jump-entry-tip {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .da-jump-entry-btn {
+      height: 32px;
+      border: 1px solid #1890ff;
+      border-radius: 2px;
+      background: #fff;
+      color: #1890ff;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .da-jump-entry-btn:hover {
+      background: #e6f7ff;
+    }
+
+    .da-jump-entry-list {
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .da-jump-entry-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .da-jump-entry-row:first-child {
+      border-top: none;
+    }
+
+    .da-jump-entry-row button {
+      border: none;
+      background: transparent;
+      color: #1890ff;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .da-jump-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 12000;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .da-jump-modal__box {
+      width: min(1360px, 98vw);
+      height: min(760px, 90vh);
+      max-height: min(760px, 90vh);
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .da-jump-modal__body {
+      padding: 16px 20px 8px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .da-jump-rule-hd {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .da-jump-rule-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-jump-help {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid #bfbfbf;
+      color: #8c8c8c;
+      font-size: 10px;
+      line-height: 12px;
+      text-align: center;
+      cursor: help;
+      display: inline-block;
+    }
+
+    .da-jump-add {
+      border: none;
+      background: transparent;
+      color: #1890ff;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .da-jump-add:hover {
+      color: #40a9ff;
+    }
+
+    .da-jump-table-wrap {
+      border: 1px solid #e8e8e8;
+      overflow: auto;
+      background: #fff;
+    }
+
+    .da-jump-table-wrap--full {
+      overflow-x: hidden;
+      overflow-y: visible;
+      width: 100%;
+    }
+
+    .da-jump-table {
+      width: max-content;
+      min-width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .da-jump-table-wrap--full .da-jump-table {
+      width: 100%;
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .da-jump-table th,
+    .da-jump-table td {
+      border: 1px solid #e8e8e8;
+      padding: 8px 8px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      vertical-align: middle;
+      background: #fff;
+      min-width: 0;
+    }
+
+    .da-jump-table-wrap--full .da-jump-table th,
+    .da-jump-table-wrap--full .da-jump-table td {
+      white-space: normal;
+      word-break: break-all;
+    }
+
+    .da-jump-table th {
+      background: #fafafa;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.65);
+      white-space: nowrap;
+    }
+
+    .da-jump-table-wrap--full .da-jump-table th {
+      white-space: nowrap;
+    }
+
+    .da-jump-table input,
+    .da-jump-table select {
+      width: 100%;
+      max-width: 100%;
+      height: 28px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.85);
+      background: #fff;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .da-jump-table select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238c8c8c' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      padding-right: 22px;
+    }
+
+    .da-jump-table input:focus,
+    .da-jump-table select:focus {
+      border-color: #40a9ff;
+      outline: none;
+    }
+
+    .da-jump-static {
+      display: block;
+      height: 28px;
+      line-height: 26px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      background: #fafafa;
+      color: rgba(0, 0, 0, 0.65);
+      box-sizing: border-box;
+    }
+
+    .da-jump-rel-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .da-jump-rel-keys {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .da-jump-rel-key {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      margin: 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .da-jump-rel-key input {
+      width: 100%;
+      height: 32px;
+      padding: 0 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      font-size: 12px;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .da-jump-rel-key input:focus {
+      border-color: #40a9ff;
+      outline: none;
+    }
+
+    .da-jump-rel-tip {
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.4;
+    }
+
+    .da-jump-name-index {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .da-jump-link {
+      border: none;
+      background: transparent;
+      color: #1890ff;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+      margin-right: 10px;
+    }
+
+    .da-jump-link:last-child {
+      margin-right: 0;
+    }
+
+    .da-jump-link:hover {
+      color: #40a9ff;
+    }
+
+    .da-jump-ops {
+      white-space: nowrap;
+    }
+
+    .da-jump-field-panel {
+      margin-top: 14px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+
+    .da-jump-field-tip {
+      padding: 16px 14px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: rgba(0, 0, 0, 0.65);
+      background: #fafafa;
+    }
+
+    .da-jump-field-tip em {
+      font-style: normal;
+      color: #1890ff;
+      font-weight: 500;
+    }
+
+    .da-jump-field-panel-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 12px;
+      border-bottom: 1px solid #e8e8e8;
+      background: #fafafa;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .da-jump-field-panel-hd strong {
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
+    }
+
+    .da-jump-field-bar {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      background: #f0f7ff;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .da-jump-field-table-scroll {
+      max-height: 256px; /* 表头约 36px + 3 行映射约 220px */
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .da-jump-field-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .da-jump-field-table th,
+    .da-jump-field-table td {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 10px 12px;
+      font-size: 12px;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .da-jump-field-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: rgba(0, 0, 0, 0.45);
+      font-weight: 400;
+      background: #fafafa;
+    }
+
+    .da-jump-field-table th {
+      color: rgba(0, 0, 0, 0.45);
+      font-weight: 400;
+      background: #fafafa;
+    }
+
+    .da-jump-field-table td:last-child {
+      width: 64px;
+      text-align: right;
+    }
+
+    .da-jump-radios {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .da-jump-radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 12px;
+    }
+
+    .da-jump-radio input {
+      accent-color: #1890ff;
+      margin: 0;
+    }
+
+    .da-jump-field-table select,
+    .da-jump-field-table input[type="text"] {
+      width: 100%;
+      height: 28px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      font-size: 12px;
+      box-sizing: border-box;
+    }
+
+    .da-jump-field-table select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238c8c8c' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      padding-right: 22px;
+      background-color: #fff;
+    }
+
+    .da-jump-modal__ft {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 12px 20px 16px;
+      border-top: 1px solid #f0f0f0;
+      flex-shrink: 0;
+    }
+
+    .da-jump-btn {
+      min-width: 64px;
+      height: 32px;
+      padding: 0 16px;
+      border-radius: 2px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .da-jump-btn:hover {
+      border-color: #40a9ff;
+      color: #40a9ff;
+    }
+
+    .da-jump-btn--primary {
+      background: #1890ff;
+      border-color: #1890ff;
+      color: #fff;
+    }
+
+    .da-jump-btn--primary:hover {
+      background: #40a9ff;
+      border-color: #40a9ff;
+      color: #fff;
+    }
+
+    .da-prop-panel {
+      background: #fff;
+    }
+
+    .da-prop-sections {
+      background: #fff;
+    }
+
+    .da-editor-canvas-fab {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--nav-active);
+      cursor: pointer;
     }
 
     /* —— 离线集成 · 离线任务 —— */
@@ -23215,7 +25080,7 @@
       <a class="header-nav-item" href="javascript:void(0)">治理中心</a>
       <a class="header-nav-item" href="javascript:void(0)" data-hub-center="asset">资产中心</a>
       <a class="header-nav-item active" href="javascript:void(0)" data-hub-center="scene" aria-current="page">场景中心</a>
-      <a class="header-nav-item" href="javascript:void(0)">应用中心</a>
+      <a class="header-nav-item" href="javascript:void(0)" data-hub-center="app">应用中心</a>
       <a class="header-nav-item" href="javascript:void(0)" data-hub-center="system">系统管理</a>
     </nav>
 
@@ -23271,6 +25136,15 @@
     <!-- 系统管理二级菜单 -->
     <a class="sub-nav-item sub-nav-item--system" href="javascript:void(0)" data-hub-system="resource-auth">资源授权</a>
     <a class="sub-nav-item sub-nav-item--system" href="javascript:void(0)" data-hub-system="model-registry">模型注册</a>
+    <!-- 应用中心二级菜单 -->
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="home">首页</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="query">数据查询</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="api">API市场</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="push">数据推送</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="subscribe">消息订阅</a>
+    <a class="sub-nav-item sub-nav-item--app active" href="javascript:void(0)" data-hub-app="data-analysis">数据分析</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="smart-query">智能问数</a>
+    <a class="sub-nav-item sub-nav-item--app" href="javascript:void(0)" data-hub-app="flow">流程中心</a>
   </nav>
 
   <div class="workspace-toolbar" id="workspaceToolbar" hidden aria-label="工作台功能栏">
@@ -24405,13 +26279,20 @@
     const apmPageSize = 15;
     /** 数据分析 · 仪表板 */
     let daApp = "gdmp";
-    let daActiveTabId = "demo0514";
-    let daSelectedReportId = "demo0514";
+    let daActiveTabId = "train1544";
+    let daSelectedReportId = "train1544";
     let daTreeExpanded = { system: false, public: true, demo: true };
     let daProjectFilter = "";
     let daMaterialFilter = "";
     let daPage = 1;
     const daPageSize = 15;
+    /** 数据分析 · 画布模式：editor 报告编辑器 | list 报告列表预览 */
+    let daCanvasMode = "list";
+    let daEditorTitle = "测试培训1544";
+    let daModuleNavActive = "create-report";
+    let daSelectedComponentId = "filter-area";
+    /** 应用中心二级菜单当前项 */
+    let appCenterSubKey = "data-analysis";
     /** 物理建模表格搜索（从资源详情返回时会带入节点名） */
     let pmTableSearchQuery = "";
     let pmTableSearchFromInputRefocus = false;
@@ -28684,7 +30565,8 @@
         centerOverride === "system-resource-auth" ||
         centerOverride === "system-model-registry" ||
         centerOverride === "scene-flow-migration" ||
-        centerOverride === "asset-migration"
+        centerOverride === "asset-migration" ||
+        centerOverride === "app-data-analysis"
       );
     }
 
@@ -28733,6 +30615,7 @@
       const workspace = isProcessDevWorkspace();
       const systemMode = isSystemManagementMode();
       const assetMode = isAssetMigrationMode();
+      const appMode = isAppCenterReportMode();
       if (mainLayoutEl) {
         mainLayoutEl.classList.toggle("main--hub", hub);
         mainLayoutEl.classList.toggle("main--workspace", workspace);
@@ -28740,8 +30623,81 @@
       document.body.classList.toggle("main--workspace-mode", workspace);
       document.body.classList.toggle("main--system-mode", systemMode);
       document.body.classList.toggle("main--asset-mode", assetMode);
+      document.body.classList.toggle("main--app-mode", appMode);
+      syncAppCenterChrome();
       syncWorkspaceToolbar();
       syncNavPanelCollapsed();
+    }
+
+    function isAppCenterMode() {
+      return centerOverride === "app-data-analysis";
+    }
+
+    function isAppCenterReportMode() {
+      return isAppCenterMode() || (selectedLeafId === "create-report" && !centerOverride);
+    }
+
+    function syncAppSubNavActive(key) {
+      appCenterSubKey = key || "data-analysis";
+      document.querySelectorAll(".sub-nav-item").forEach((el) => el.classList.remove("active"));
+      document.querySelectorAll(".sub-nav-item--app").forEach((el) => {
+        el.classList.toggle("active", el.getAttribute("data-hub-app") === appCenterSubKey);
+      });
+    }
+
+    function syncAppCenterChrome() {
+      if (!isAppCenterReportMode()) return;
+      syncHeaderCenterActive("app");
+      syncAppSubNavActive(isAppCenterMode() ? appCenterSubKey : "data-analysis");
+    }
+
+    function goToAppCenter(options) {
+      const opts = options || {};
+      const appKey = opts.appKey || "data-analysis";
+      const appLabels = {
+        home: "首页",
+        query: "数据查询",
+        api: "API市场",
+        push: "数据推送",
+        subscribe: "消息订阅",
+        "data-analysis": "数据分析",
+        "smart-query": "智能问数",
+        flow: "流程中心",
+      };
+      if (appKey !== "data-analysis") {
+        if (!isAppCenterMode()) {
+          goToAppCenter({ skipAnimation: opts.skipAnimation, appKey: "data-analysis" });
+        }
+        syncAppSubNavActive(appKey);
+        showToast("「" + (appLabels[appKey] || appKey) + "」待接入（示意）", "info");
+        return;
+      }
+      const apply = () => {
+        resourceDetailState = null;
+        templateEditorId = null;
+        centerOverride = "app-data-analysis";
+        bpFlowListInitialBoardId = null;
+        resetHubWorkspaceState();
+        daCanvasMode = "list";
+        daModuleNavActive = "create-report";
+        daPage = 1;
+        appCenterSubKey = "data-analysis";
+        syncHeaderCenterActive("app");
+        syncAppSubNavActive("data-analysis");
+        syncMainLayout();
+        syncCanvas();
+        renderNav({ skipSyncCanvas: true });
+        renderOperationFlow();
+      };
+      if (opts.skipAnimation) {
+        apply();
+        return;
+      }
+      if (isProcessDevWorkspace()) {
+        animateWorkspaceToHub(apply);
+        return;
+      }
+      apply();
     }
 
     function syncAssetSubNavActive(key) {
@@ -35107,7 +37063,7 @@
       let pageView = "home"; // home | scene-export-create | scene-import-create | scene-transfer-detail
       let sceneImportSeq = 100;
       let editingExportRow = null; // null=新建；有值=详情查看（旧迁出创建复用）
-      let importCreateStep = 1; // 1=基本信息 2=对象映射 3=版本比对 4=预览 5=执行
+      let importCreateStep = 1; // 1=基本信息 2=对象映射 3=资源比对 4=预览 5=执行
       let importPreviewTab = "import"; // import | delete
       let importPreviewDeleteCategory = "物理模型";
       let detailContentTab = "import"; // import | delete
@@ -35425,7 +37381,7 @@
           !(report.status === "success" || report.status === "partial") ||
           !report.result
         ) {
-          showToast("该任务暂无比对报告，请先在迁入流程中完成版本比对", "warn");
+          showToast("该任务暂无比对报告，请先在迁入流程中完成资源比对", "warn");
           return;
         }
         compareReportRow = row;
@@ -35435,7 +37391,7 @@
 
       function buildImportCompareReportAction() {
         return {
-          label: "版本比对报告",
+          label: "资源比对报告",
           onClick: openImportCompareReport,
         };
       }
@@ -35503,6 +37459,7 @@
           time: formatNow(),
           exportType: "全量",
           importMode: draft.importMode,
+          compareSkipped: !!draft.compareSkipped,
           assistant: dataMigFromAssistant,
           compareReport: cloneCompareStateForStorage(draft.compare),
           deleteExtraKeys: (draft.compare && draft.compare.deleteExtraKeys || []).slice(),
@@ -35658,12 +37615,38 @@
         stopDataMigExecTimer();
         dataMigExecAborted = false;
         if (!rec.execLogs.length) {
-          appendDataMigExecLog(rec, "开始执行迁入：先导入资源，再删除历史多余资源", "info");
+          appendDataMigExecLog(
+            rec,
+            rec.compareSkipped
+              ? "已跳过资源比对，开始执行迁入：仅导入资源（不清理历史多余资源）"
+              : "开始执行迁入：先导入资源，再删除历史多余资源",
+            "info"
+          );
         }
         dataMigExecTimer = window.setTimeout(tickDataMigImportExec, 320);
       }
 
       function confirmAbortDataMigImport(onConfirm) {
+        confirmDataMigAction({
+          title: "中止此次导入",
+          tip: "是否要停止此次迁移？确认后将取消本次迁入，列表中不会保留该任务记录。",
+          okText: "确认中止",
+          onConfirm,
+        });
+      }
+
+      function confirmSkipResourceCompare(onConfirm) {
+        confirmDataMigAction({
+          title: "跳过资源比对",
+          tip:
+            "跳过资源比对后将不检查目标环境差异，也不会清理历史多余资源，并直接开始迁入执行。确定跳过并执行吗？",
+          okText: "跳过并执行",
+          onConfirm,
+        });
+      }
+
+      function confirmDataMigAction(options) {
+        options = options || {};
         const overlay = document.createElement("div");
         overlay.className = "mig-batch-modal";
         overlay.addEventListener("click", (e) => {
@@ -35674,13 +37657,12 @@
         box.addEventListener("click", (e) => e.stopPropagation());
         const hd = document.createElement("div");
         hd.className = "mig-batch-modal__hd";
-        hd.textContent = "中止此次导入";
+        hd.textContent = options.title || "确认";
         const body = document.createElement("div");
         body.className = "mig-batch-modal__body";
         const tip = document.createElement("p");
         tip.className = "mig-batch-modal__tip";
-        tip.textContent =
-          "是否要停止此次迁移？确认后将取消本次迁入，列表中不会保留该任务记录。";
+        tip.textContent = options.tip || "";
         body.appendChild(tip);
         const actions = document.createElement("div");
         actions.className = "mig-cmp-hd__actions";
@@ -35694,10 +37676,10 @@
         const okBtn = document.createElement("button");
         okBtn.type = "button";
         okBtn.className = "mig-btn mig-btn--primary";
-        okBtn.textContent = "确认中止";
+        okBtn.textContent = options.okText || "确定";
         okBtn.addEventListener("click", () => {
           overlay.remove();
-          if (typeof onConfirm === "function") onConfirm();
+          if (typeof options.onConfirm === "function") options.onConfirm();
         });
         actions.appendChild(cancelBtn);
         actions.appendChild(okBtn);
@@ -37148,6 +39130,7 @@
           packageContents: [],
           neededMapKinds: [],
           parseDone: false,
+          compareSkipped: false,
           /** 含报告：目录 + 分析数据源 */
           dsDirMaps: {
             PMLEAD公共: "",
@@ -37273,9 +39256,6 @@
 
       function buildCompareDeleteSummaryCounts(items) {
         const byType = {};
-        DATA_MIG_RESOURCE_COUNT_TYPES.forEach((t) => {
-          byType[t.label] = 0;
-        });
         (items || []).forEach((item) => {
           const label = item.typeLabel || item.typeKey || "其他";
           byType[label] = (byType[label] || 0) + 1;
@@ -37285,10 +39265,12 @@
 
       function getDeletePreviewCategories(selectedExtras) {
         const summary = buildCompareDeleteSummaryCounts(selectedExtras);
-        return DATA_MIG_RESOURCE_COUNT_TYPES.map((t) => ({
-          key: t.label,
-          count: summary.byType[t.label] || 0,
-        })).filter((c) => c.count > 0);
+        return Object.keys(summary.byType)
+          .map((key) => ({
+            key: key,
+            count: summary.byType[key] || 0,
+          }))
+          .filter((c) => c.count > 0);
       }
 
       function ensureImportPreviewDeleteCategory(selectedExtras) {
@@ -37298,6 +39280,8 @@
       }
 
       const DATA_MIG_RESOURCE_COUNT_EXCLUDE = {
+        物理模型: true,
+        逻辑模型: true,
         工程: true,
         业务板块: true,
         业务数据源: true,
@@ -37308,6 +39292,62 @@
         分析数据源: true,
         数据集: true,
       };
+
+      /** 包内解析标签 → 比对/预览统一类目名 */
+      const DATA_MIG_PACKAGE_LABEL_TO_CATEGORY = {
+        物理模型: "物理模型",
+        逻辑模型: "逻辑模型",
+        语义模型: "语义模型",
+        离线集成任务: "离线集成任务",
+        实时集成任务: "实时集成任务",
+        离线开发任务: "离线开发任务",
+        实时开发任务: "实时开发任务",
+        轻任务: "轻任务",
+        智能开发: "智能开发脚本",
+        智能开发脚本: "智能开发脚本",
+        API市场: "API",
+        API: "API",
+        报告: "制作报告",
+        制作报告: "制作报告",
+        业务流程: "业务流程",
+      };
+
+      const DATA_MIG_STRUCTURE_COMPARE_TYPES = {
+        物理模型: true,
+        逻辑模型: true,
+      };
+
+      function normalizePackageContentLabels(contents) {
+        const seen = {};
+        const out = [];
+        (contents || []).forEach((raw) => {
+          const key = DATA_MIG_PACKAGE_LABEL_TO_CATEGORY[raw] || raw;
+          if (!key || seen[key]) return;
+          seen[key] = true;
+          out.push(key);
+        });
+        return out;
+      }
+
+      /** 资源比对类目计划：一律以迁入包解析出的资源类型为准 */
+      function getDataMigCompareTypePlan(draft) {
+        draft = draft || {};
+        let labels = Array.isArray(draft.packageContents) ? draft.packageContents.slice() : [];
+        if (!labels.length && draft.fileName) {
+          const parsed = resolvePackageParseResult(draft.fileName);
+          labels = parsed.packageContents || [];
+        }
+        const cats = normalizePackageContentLabels(labels);
+        const structureTypes = cats.filter((k) => DATA_MIG_STRUCTURE_COMPARE_TYPES[k]);
+        const resourceCountTypes = cats.filter((k) => !DATA_MIG_STRUCTURE_COMPARE_TYPES[k]);
+        return {
+          allTypes: cats,
+          structureTypes,
+          resourceCountTypes,
+          hasStructureCompare: structureTypes.length > 0,
+          hasResourceCountCompare: resourceCountTypes.length > 0,
+        };
+      }
 
       const DATA_MIG_RESOURCE_COUNT_TYPES = MIG_CONTENT_CATEGORIES.filter(
         (cat) => !DATA_MIG_RESOURCE_COUNT_EXCLUDE[cat.key]
@@ -37425,7 +39465,7 @@
           col.innerHTML = '<div class="mig-cmp-struct__hd">' + title + "</div>";
           const stbl = document.createElement("table");
           stbl.innerHTML =
-            "<thead><tr><th>字段</th><th>类型</th><th>长度</th><th>主键</th><th>可空</th><th>索引</th></tr></thead>";
+            "<thead><tr><th>字段</th><th>中文名</th><th>类型</th><th>长度</th><th>主键</th><th>可空</th><th>索引</th></tr></thead>";
           const stbody = document.createElement("tbody");
           (idx === 0 ? model.structSource : model.structTarget).forEach((row) => {
             const str = document.createElement("tr");
@@ -37436,6 +39476,8 @@
             str.innerHTML =
               "<td>" +
               row.name +
+              "</td><td>" +
+              (row.zhName || "—") +
               "</td><td>" +
               row.type +
               "</td><td>" +
@@ -37474,16 +39516,25 @@
 
       function buildMockStructFields(seed, hasDiff) {
         const base = [
-          { name: "id", type: "BIGINT", len: "20", pk: "是", nullable: "否", idx: "PK" },
-          { name: "code", type: "VARCHAR", len: "64", pk: "否", nullable: "否", idx: "IDX" },
-          { name: "name", type: "VARCHAR", len: "128", pk: "否", nullable: "是", idx: "" },
-          { name: "update_time", type: "DATETIME", len: "", pk: "否", nullable: "是", idx: "" },
+          { name: "id", zhName: "主键 ID", type: "BIGINT", len: "20", pk: "是", nullable: "否", idx: "PK" },
+          { name: "code", zhName: "编码", type: "VARCHAR", len: "64", pk: "否", nullable: "否", idx: "IDX" },
+          { name: "name", zhName: "名称", type: "VARCHAR", len: "128", pk: "否", nullable: "是", idx: "" },
+          { name: "update_time", zhName: "更新时间", type: "DATETIME", len: "", pk: "否", nullable: "是", idx: "" },
         ];
         if (!hasDiff) {
           return { source: base.slice(), target: base.map((r) => Object.assign({}, r)) };
         }
         const source = base.concat([
-          { name: "legacy_flag", type: "TINYINT", len: "1", pk: "否", nullable: "是", idx: "", diff: "missing" },
+          {
+            name: "legacy_flag",
+            zhName: "历史标记",
+            type: "TINYINT",
+            len: "1",
+            pk: "否",
+            nullable: "是",
+            idx: "",
+            diff: "missing",
+          },
         ]);
         const target = base.map((r, i) => {
           const row = Object.assign({}, r);
@@ -37495,6 +39546,7 @@
         });
         target.push({
           name: "extra_remark",
+          zhName: "备注说明",
           type: "VARCHAR",
           len: "255",
           pk: "否",
@@ -37554,11 +39606,9 @@
 
       function buildMockResourceCountData(draft) {
         draft = draft || {};
-        const hasReport = !!draft.hasReport;
+        const plan = getDataMigCompareTypePlan(draft);
         const mapPathByType = {
           业务流程: "场景流程 / 业务流程资产",
-          物理模型: "工程「经营决策工程」/ 分层「DWD_层」",
-          逻辑模型: "工程「经营决策工程」/ 逻辑模型",
           语义模型: "工程「经营决策工程」/ 语义模型",
           离线集成任务: "工程「经营决策工程」/ 离线集成",
           实时集成任务: "工程「经营决策工程」/ 实时集成",
@@ -37570,11 +39620,10 @@
           制作报告: "报告目录「数据分析标准化」",
         };
         const extraBumpByType = {
-          物理模型: 1,
-          逻辑模型: 1,
           离线集成任务: 2,
           离线开发任务: 1,
-          制作报告: hasReport ? 2 : 0,
+          制作报告: 2,
+          语义模型: 1,
           API: 0,
         };
         const countByKey = {};
@@ -37582,15 +39631,14 @@
           countByKey[cat.key] = Number(cat.count) || 0;
         });
 
-        const countDefs = DATA_MIG_RESOURCE_COUNT_TYPES.map((t) => {
-          let packageCount = countByKey[t.key] || 0;
-          if (!hasReport && t.key === "制作报告") packageCount = 0;
-          const bump = extraBumpByType[t.key] || 0;
+        const countDefs = plan.resourceCountTypes.map((typeKey) => {
+          const packageCount = countByKey[typeKey] > 0 ? countByKey[typeKey] : 3;
+          const bump = extraBumpByType[typeKey] || 0;
           const targetCount = packageCount + bump;
           return {
-            typeKey: t.key,
-            label: t.label,
-            mapPath: mapPathByType[t.key] || ("对象映射路径 / " + t.key),
+            typeKey: typeKey,
+            label: typeKey,
+            mapPath: mapPathByType[typeKey] || ("对象映射路径 / " + typeKey),
             packageCount,
             targetCount,
           };
@@ -37605,11 +39653,10 @@
         });
 
         const extraSamples = [
-          { typeKey: "物理模型", resourceId: "res-leg-88301", name: "历史合同表_v1" },
-          { typeKey: "逻辑模型", resourceId: "res-leg-88402", name: "旧版逻辑实体_项目" },
           { typeKey: "离线集成任务", resourceId: "res-leg-88503", name: "历史同步任务_2024" },
           { typeKey: "离线集成任务", resourceId: "res-leg-88504", name: "废弃清洗任务" },
           { typeKey: "离线开发任务", resourceId: "res-leg-88510", name: "旧版离线任务流" },
+          { typeKey: "语义模型", resourceId: "res-leg-88701", name: "历史语义模型_合同" },
           { typeKey: "制作报告", resourceId: "res-leg-88605", name: "旧版经营月报" },
           { typeKey: "制作报告", resourceId: "res-leg-88606", name: "演示报告_已下线" },
         ];
@@ -37896,7 +39943,8 @@
           const okTip = document.createElement("p");
           okTip.className = "mig-cmp-tip";
           okTip.style.margin = "12px 0 0";
-          okTip.textContent = "各映射路径下目标环境迁移标签资源数量与本次迁移一致，无历史多余资源。";
+          okTip.textContent =
+            "各映射路径下，历史上通过迁移助手迁入的资源数量与本次迁移一致，无多余资源。";
           countPanel.appendChild(okTip);
         }
 
@@ -37904,10 +39952,12 @@
       }
 
       function buildMockCompareResult(config, draft) {
+        const plan = getDataMigCompareTypePlan(draft);
         const diffKeys = ["project_contract", "dwd_contract_detail", "v_contract_amount_by_month"];
         const failKeys = ["v_project_member_stat"];
         const scope = getDataMigCompareScopeText(draft);
-        const models = DATA_MIG_COMPARE_MODEL_DEFS.map((def) => {
+        const models = plan.hasStructureCompare
+          ? DATA_MIG_COMPARE_MODEL_DEFS.map((def) => {
           const meta = DATA_MIG_COMPARE_MODEL_META[def.key] || {
             mapPath: "—",
             lastResourceId: "",
@@ -37928,28 +39978,9 @@
             return Object.assign(base, {
               structStatus: "new",
               structSummary:
-                "新增模型：在租户「" +
-                scope.tenantLine +
-                "」、组织「" +
-                scope.orgLine +
-                "」下，按对象映射路径「" +
+                "新增：在租户 / 组织 / 对象映射路径「" +
                 meta.mapPath +
-                "」未找到上次迁入资源 ID，视为新增，不比对字段",
-              failReason: "",
-              structSource: [],
-              structTarget: [],
-            });
-          }
-
-          if (!meta.bpMigTag) {
-            return Object.assign(base, {
-              structStatus: "skip",
-              structSummary:
-                "已定位上次迁入资源 ID「" +
-                meta.lastResourceId +
-                "」，但目标资源无【" +
-                DATA_MIG_COMPARE_BP_TAG +
-                "】标签，跳过字段比对",
+                "」下，目标环境未找到相同编码的表 / 模型 / 视图，不比对字段；执行时将直接插入",
               failReason: "",
               structSource: [],
               structTarget: [],
@@ -37961,11 +39992,9 @@
           const struct = buildMockStructFields(def.key, hasDiff);
           let structStatus = "ok";
           let structSummary =
-            "已匹配上次资源 ID「" +
-            meta.lastResourceId +
-            "」且含【" +
-            DATA_MIG_COMPARE_BP_TAG +
-            "】标签，结构完全一致";
+            "编码一致（「" +
+            def.name +
+            "」），表结构完全一致；执行时将覆盖更新";
           let failReason = "";
           if (isFail) {
             structStatus = "fail";
@@ -37974,9 +40003,8 @@
             structSummary = failReason;
           } else if (hasDiff) {
             structStatus = "warn";
-            structSummary = config.ignoreCase
-              ? "共 2 处结构差异（已忽略大小写后仍有 1 处类型不匹配）"
-              : "共 3 处结构差异：1 个字段丢失，1 个类型不匹配，1 个新增字段";
+            structSummary =
+              "编码一致，共 3 处结构差异：1 个字段丢失，1 个类型不匹配，1 个新增字段（执行时将覆盖更新）";
           }
           return Object.assign(base, {
             structStatus,
@@ -37985,11 +40013,21 @@
             structSource: isFail ? [] : struct.source,
             structTarget: isFail ? [] : struct.target,
           });
-        });
+        })
+          : [];
         const summary = buildCompareSummaryFromModels(models);
         const resourceData = buildMockResourceCountData(draft);
         return Object.assign(
-          { models, summary, scope },
+          {
+            models,
+            summary,
+            scope,
+            comparePlan: {
+              allTypes: plan.allTypes.slice(),
+              structureTypes: plan.structureTypes.slice(),
+              resourceCountTypes: plan.resourceCountTypes.slice(),
+            },
+          },
           resourceData
         );
       }
@@ -38012,6 +40050,16 @@
           }
         }
         const cmp = draft.compare;
+        const comparePlan = getDataMigCompareTypePlan(draft);
+        if (cmp.resultTab === "model" && !comparePlan.hasStructureCompare && comparePlan.hasResourceCountCompare) {
+          cmp.resultTab = "resource";
+        } else if (
+          cmp.resultTab === "resource" &&
+          !comparePlan.hasResourceCountCompare &&
+          comparePlan.hasStructureCompare
+        ) {
+          cmp.resultTab = "model";
+        }
         const isRunning = cmp.status === "running";
         const hasResult = cmp.status === "success" || cmp.status === "partial";
         const isFailed = cmp.status === "failed";
@@ -38020,9 +40068,9 @@
         startBtn.type = "button";
         startBtn.className = "mig-btn mig-btn--primary";
         startBtn.textContent = isRunning ? "比对中…" : "开始比对";
-        startBtn.disabled = isRunning;
+        startBtn.disabled = isRunning || !comparePlan.allTypes.length;
         startBtn.addEventListener("click", () => {
-          if (isRunning) return;
+          if (isRunning || !comparePlan.allTypes.length) return;
           cmp.status = "running";
           cmp.result = null;
           cmp.failReason = "";
@@ -38038,16 +40086,6 @@
           }, 2200);
           renderAll();
         });
-        const exportBtn = document.createElement("button");
-        exportBtn.type = "button";
-        exportBtn.className = "mig-btn mig-btn--ghost";
-        exportBtn.textContent = "导出比对报告";
-        exportBtn.disabled = !hasResult || isRunning;
-        exportBtn.addEventListener("click", () => {
-          if (!hasResult) return;
-          showToast("已导出全部数据模型比对报告（Excel）", "success");
-        });
-
         const cfgSec = document.createElement("section");
         cfgSec.className = "mig-cmp-section";
         const cfgHd = document.createElement("div");
@@ -38055,52 +40093,57 @@
         const cfgTitle = document.createElement("h3");
         cfgTitle.className = "mig-cmp-section__title";
         cfgTitle.style.margin = "0";
-        cfgTitle.textContent = "比对配置";
+        cfgTitle.textContent = "比对原则";
         const cfgActions = document.createElement("div");
         cfgActions.className = "mig-cmp-hd__actions";
-        cfgActions.appendChild(exportBtn);
+        if (hasResult) {
+          const exportBtn = document.createElement("button");
+          exportBtn.type = "button";
+          exportBtn.className = "mig-btn mig-btn--ghost";
+          exportBtn.textContent = "导出比对报告";
+          exportBtn.disabled = isRunning;
+          exportBtn.addEventListener("click", () => {
+            showToast("已导出全部数据模型比对报告（Excel）", "success");
+          });
+          cfgActions.appendChild(exportBtn);
+        }
         if (!readOnly) cfgActions.appendChild(startBtn);
         cfgHd.appendChild(cfgTitle);
         cfgHd.appendChild(cfgActions);
-        const cfgBox = document.createElement("div");
-        cfgBox.className = "mig-cmp-config";
-        const cfgRow = document.createElement("div");
-        cfgRow.className = "mig-cmp-checks";
-        const structLab = document.createElement("span");
-        structLab.style.fontSize = "13px";
-        structLab.style.color = "rgba(0,0,0,0.88)";
-        structLab.textContent =
-          "比对范围：① 对象映射路径下各类型资源数量；② 数据模型表结构（字段名、类型、长度、主键、索引）";
-        const ignoreLab = document.createElement("label");
-        const ignoreCb = document.createElement("input");
-        ignoreCb.type = "checkbox";
-        ignoreCb.checked = !!cmp.config.ignoreCase;
-        ignoreCb.disabled = isRunning || readOnly;
-        ignoreCb.addEventListener("change", () => {
-          cmp.config.ignoreCase = ignoreCb.checked;
-        });
-        ignoreLab.appendChild(ignoreCb);
-        ignoreLab.appendChild(document.createTextNode("忽略大小写"));
-        cfgRow.appendChild(structLab);
-        cfgRow.appendChild(ignoreLab);
-        cfgBox.appendChild(cfgRow);
         cfgSec.appendChild(cfgHd);
-        cfgSec.appendChild(cfgBox);
 
         const principle = document.createElement("div");
         principle.className = "mig-cmp-principle";
+        const packageTypeText = comparePlan.allTypes.length
+          ? comparePlan.allTypes.join("、")
+          : "（请先完成迁出包解析）";
+        const structureTypeText = comparePlan.structureTypes.length
+          ? comparePlan.structureTypes.join("、")
+          : "无";
+        const resourceTypeText = comparePlan.resourceCountTypes.length
+          ? comparePlan.resourceCountTypes.join("、")
+          : "无";
         principle.innerHTML =
-          "<strong>比对原则</strong>：按租户 ID、组织 ID 锁定目标环境后，在对象映射所设路径下查找各模型上次迁入的资源 ID。" +
+          "整体比对均基于 <strong>租户 + 组织 + 对象映射路径</strong> 进行；比对类目以本次上传包解析出的资源类型为准：<strong>" +
+          packageTypeText +
+          "</strong>。" +
           "<ol>" +
-          "<li>先确定 <strong>租户 ID</strong> 与 <strong>组织 ID</strong>；</li>" +
-          "<li>再按 <strong>对象映射路径</strong>（工程 / 分层等）在目标环境检索该路径下资源；</li>" +
-          "<li>仅对带有 <strong>【" +
-          DATA_MIG_COMPARE_BP_TAG +
-          "】</strong> 标签且已匹配到上次迁入资源 ID 的模型执行字段比对；</li>" +
-          "<li>未找到上次迁入资源 ID 的模型视为 <strong>新增</strong>，不比对内部字段；无【" +
-          DATA_MIG_COMPARE_BP_TAG +
-          "】标签的已匹配资源跳过字段比对。</li>" +
-          "<li>同步比对对象映射路径下与导入资源类目一致的资源数量（业务流程、物理模型、逻辑模型、语义模型、离线/实时集成与开发任务、轻任务、智能开发脚本、API、制作报告等）；目标环境迁移标签资源多于本次迁移的，列为历史多余资源，可勾选删除。</li>" +
+          (comparePlan.hasStructureCompare
+            ? "<li><strong>数据模型表结构比对</strong>（" +
+              structureTypeText +
+              "）：在对象映射路径下，将本次迁移的模型与目标环境中的<strong>全部表 / 模型 / 视图</strong>按<strong>编码</strong>比对。" +
+              "编码一致时，比对表结构；执行迁入时视为<strong>覆盖更新</strong>。" +
+              "未找到相同编码时，视为新增，执行时<strong>直接插入</strong>。</li>"
+            : "<li><strong>数据模型表结构比对</strong>：当前迁入包<strong>未包含物理模型、逻辑模型</strong>，无需进行数据模型比对，比对结果为空。</li>") +
+          (comparePlan.hasResourceCountCompare
+            ? "<li><strong>其余资源比对</strong>（" +
+              resourceTypeText +
+              "）：仅针对目标环境中<strong>历史上通过迁移助手迁入</strong>的内容进行比对。" +
+              "编码与名称重复的，执行时<strong>直接覆盖</strong>；目标环境中多出的历史迁移内容，在下方列表展示，由用户自行勾选删除。</li>"
+            : "") +
+          (!comparePlan.allTypes.length
+            ? "<li>当前迁入包尚未解析出资源类型，请返回上一步确认上传包。</li>"
+            : "") +
           "</ol>";
         const scopeText = getDataMigCompareScopeText(draft);
         const scopeEl = document.createElement("div");
@@ -38114,22 +40157,13 @@
         principle.appendChild(scopeEl);
         cfgSec.appendChild(principle);
 
-        if (!readOnly) {
-          cfgSec.appendChild(
-            Object.assign(document.createElement("p"), {
-              className: "mig-cmp-tip",
-              textContent:
-                "开始比对后，将按上述原则展示数据模型结构比对结果，以及对象映射路径下的资源数量比对结果。",
-            })
-          );
-        }
         body.appendChild(cfgSec);
 
         if (isRunning) {
           const run = document.createElement("div");
           run.className = "mig-cmp-running";
           run.innerHTML =
-            '<span class="mig-cmp-running__dot"></span>正在按租户/组织与对象映射路径定位资源并比对字段…';
+            '<span class="mig-cmp-running__dot"></span>正在按租户 / 组织 / 对象映射路径定位资源并比对…';
           body.appendChild(run);
         }
         if (isFailed) {
@@ -38142,8 +40176,9 @@
         if (!hasResult && !isRunning && !isFailed && !readOnly) {
           const empty = document.createElement("div");
           empty.className = "mig-cmp-empty";
-          empty.textContent =
-            "尚未执行比对。点击【开始比对】后，将按比对原则展示全部数据模型（表、视图）的比对结果。";
+          empty.textContent = comparePlan.allTypes.length
+            ? "尚未执行比对。点击【开始比对】后，将按本包解析出的资源类型展示比对结果。"
+            : "当前迁入包尚未解析出资源类型，请返回上一步确认上传并完成解析。";
           body.appendChild(empty);
         }
 
@@ -38207,6 +40242,28 @@
           listTitle.textContent = "比对结果";
           listHd.appendChild(listTitle);
 
+          const resultPlan =
+            (cmp.result && cmp.result.comparePlan) ||
+            {
+              structureTypes: comparePlan.structureTypes,
+              resourceCountTypes: comparePlan.resourceCountTypes,
+            };
+          const hasStructureModels = !!(
+            resultPlan.structureTypes && resultPlan.structureTypes.length
+          );
+          const showResourceTab =
+            !!(resultPlan.resourceCountTypes && resultPlan.resourceCountTypes.length) ||
+            !!(cmp.result.resourceCounts && cmp.result.resourceCounts.length);
+          // 无物理/逻辑模型时仍展示「数据模型比对结果」空态；默认落到资源数量比对
+          if (!hasStructureModels && showResourceTab && cmp.resultTab === "model") {
+            cmp.resultTab = "resource";
+          } else if (
+            cmp.resultTab === "resource" &&
+            !showResourceTab
+          ) {
+            cmp.resultTab = "model";
+          }
+
           const tabs = document.createElement("div");
           tabs.className = "mig-cmp-tabs";
           tabs.setAttribute("role", "tablist");
@@ -38215,7 +40272,9 @@
           modelTabBtn.className =
             "mig-cmp-tab" + (cmp.resultTab === "model" ? " is-active" : "");
           modelTabBtn.setAttribute("role", "tab");
-          modelTabBtn.textContent = "数据模型比对结果";
+          modelTabBtn.textContent = hasStructureModels
+            ? "数据模型比对结果（" + resultPlan.structureTypes.join("、") + "）"
+            : "数据模型比对结果";
           const resourceTabBtn = document.createElement("button");
           resourceTabBtn.type = "button";
           resourceTabBtn.className =
@@ -38230,7 +40289,7 @@
             resourceTabBtn.appendChild(badge);
           }
           tabs.appendChild(modelTabBtn);
-          tabs.appendChild(resourceTabBtn);
+          if (showResourceTab) tabs.appendChild(resourceTabBtn);
 
           const tabBody = document.createElement("div");
           tabBody.className = "mig-cmp-tab-body";
@@ -38241,20 +40300,32 @@
 
           const resourcePane = document.createElement("div");
           resourcePane.className = "mig-cmp-tab-pane";
-          resourcePane.hidden = cmp.resultTab !== "resource";
+          resourcePane.hidden = !showResourceTab || cmp.resultTab !== "resource";
 
           function switchResultTab(tabKey) {
             cmp.resultTab = tabKey;
             modelTabBtn.classList.toggle("is-active", tabKey === "model");
             resourceTabBtn.classList.toggle("is-active", tabKey === "resource");
             modelPane.hidden = tabKey !== "model";
-            resourcePane.hidden = tabKey !== "resource";
+            resourcePane.hidden = !showResourceTab || tabKey !== "resource";
           }
           modelTabBtn.addEventListener("click", () => switchResultTab("model"));
           resourceTabBtn.addEventListener("click", () => switchResultTab("resource"));
 
           const resultPanel = document.createElement("div");
           resultPanel.className = "mig-cmp-panel";
+
+          if (!hasStructureModels) {
+            const emptyModel = document.createElement("div");
+            emptyModel.className = "mig-cmp-empty";
+            emptyModel.style.padding = "28px 20px";
+            emptyModel.style.lineHeight = "1.7";
+            emptyModel.innerHTML =
+              "<strong>当前迁入包未包含物理模型、逻辑模型</strong><br>" +
+              "本次无需进行数据模型表结构比对，数据模型比对结果为空。";
+            resultPanel.appendChild(emptyModel);
+            modelPane.appendChild(resultPanel);
+          } else {
           const modelToolbar = document.createElement("div");
           modelToolbar.className = "mig-cmp-toolbar";
           modelToolbar.style.marginBottom = "10px";
@@ -38397,41 +40468,30 @@
           }
           resultPanel.appendChild(listWrap);
           modelPane.appendChild(resultPanel);
+          }
 
           const resourcePanel = buildCompareResourceCountPanel(cmp, { readOnly });
-          if (resourcePanel) resourcePane.appendChild(resourcePanel);
+          if (resourcePanel && showResourceTab) resourcePane.appendChild(resourcePanel);
 
           tabBody.appendChild(modelPane);
-          tabBody.appendChild(resourcePane);
+          if (showResourceTab) tabBody.appendChild(resourcePane);
           listSec.appendChild(listHd);
-          listSec.appendChild(tabs);
+          if (tabs.childNodes.length) listSec.appendChild(tabs);
           listSec.appendChild(tabBody);
           body.appendChild(listSec);
         }
 
-        const retryBtn = document.createElement("button");
-        retryBtn.type = "button";
-        retryBtn.className = "mig-btn mig-btn--ghost";
-        retryBtn.textContent = "重试比对";
-        retryBtn.disabled = isRunning;
-        retryBtn.addEventListener("click", () => {
-          cmp.status = "idle";
-          cmp.result = null;
-          cmp.failReason = "";
-          cmp.deleteExtraKeys = [];
-          cmp.expandedResourceTypeKey = null;
-          renderAll();
-        });
-        const exportCurBtn = document.createElement("button");
-        exportCurBtn.type = "button";
-        exportCurBtn.className = "mig-btn mig-btn--ghost";
-        exportCurBtn.textContent = "导出比对报告";
-        exportCurBtn.disabled = !hasResult || isRunning;
-        exportCurBtn.addEventListener("click", () => {
-          showToast("已导出全部数据模型比对报告（Excel）", "success");
-        });
         if (readOnly) {
-          ft.appendChild(exportCurBtn);
+          if (hasResult) {
+            const exportCurBtn = document.createElement("button");
+            exportCurBtn.type = "button";
+            exportCurBtn.className = "mig-btn mig-btn--ghost";
+            exportCurBtn.textContent = "导出比对报告";
+            exportCurBtn.addEventListener("click", () => {
+              showToast("已导出全部数据模型比对报告（Excel）", "success");
+            });
+            ft.appendChild(exportCurBtn);
+          }
           return;
         }
         const nextBtn = document.createElement("button");
@@ -38442,9 +40502,10 @@
         nextBtn.addEventListener("click", () => {
           if (isRunning) return;
           if (!hasResult && !isFailed) {
-            showToast("请先执行版本比对，或比对失败后可重试", "warn");
+            showToast("请先执行资源比对，或比对失败后可重试；也可选择跳过资源比对直接执行", "warn");
             return;
           }
+          dataMigDraft.compareSkipped = false;
           importCreateStep = 4;
           detailCategory = "业务流程";
           renderAll();
@@ -38459,8 +40520,53 @@
           renderAll();
         });
         ft.appendChild(nextBtn);
-        ft.appendChild(exportCurBtn);
-        ft.appendChild(retryBtn);
+        if (!hasResult) {
+          const skipBtn = document.createElement("button");
+          skipBtn.type = "button";
+          skipBtn.className = "mig-btn mig-btn--ghost";
+          skipBtn.textContent = "跳过资源比对，直接执行";
+          skipBtn.disabled = isRunning;
+          skipBtn.addEventListener("click", () => {
+            if (isRunning) return;
+            confirmSkipResourceCompare(() => {
+              if (cmp.pollTimer) window.clearTimeout(cmp.pollTimer);
+              cmp.pollTimer = null;
+              cmp.deleteExtraKeys = [];
+              dataMigDraft.compareSkipped = true;
+              dataMigExecRecord = createDataMigImportRecord(dataMigDraft);
+              importCreateStep = 5;
+              startDataMigImportExec();
+              showToast("已跳过资源比对，开始执行迁入", "info");
+              renderAll();
+            });
+          });
+          ft.appendChild(skipBtn);
+        }
+        if (hasResult) {
+          const exportCurBtn = document.createElement("button");
+          exportCurBtn.type = "button";
+          exportCurBtn.className = "mig-btn mig-btn--ghost";
+          exportCurBtn.textContent = "导出比对报告";
+          exportCurBtn.disabled = isRunning;
+          exportCurBtn.addEventListener("click", () => {
+            showToast("已导出全部数据模型比对报告（Excel）", "success");
+          });
+          const retryBtn = document.createElement("button");
+          retryBtn.type = "button";
+          retryBtn.className = "mig-btn mig-btn--ghost";
+          retryBtn.textContent = "重试比对";
+          retryBtn.disabled = isRunning;
+          retryBtn.addEventListener("click", () => {
+            cmp.status = "idle";
+            cmp.result = null;
+            cmp.failReason = "";
+            cmp.deleteExtraKeys = [];
+            cmp.expandedResourceTypeKey = null;
+            renderAll();
+          });
+          ft.appendChild(exportCurBtn);
+          ft.appendChild(retryBtn);
+        }
         ft.appendChild(prevBtn);
       }
 
@@ -38486,7 +40592,7 @@
 
         const page = document.createElement("div");
         page.className = "mig-create mig-create--import";
-        page.setAttribute("aria-label", "版本比对报告");
+        page.setAttribute("aria-label", "资源比对报告");
 
         const hd = document.createElement("div");
         hd.className = "mig-create__hd";
@@ -38505,7 +40611,7 @@
         const titleWrap = document.createElement("div");
         const title = document.createElement("h2");
         title.className = "mig-create__title";
-        title.textContent = "版本比对报告";
+        title.textContent = "资源比对报告";
         const sub = document.createElement("p");
         sub.className = "mig-cmp-report-meta";
         sub.textContent = "任务：" + row.name + (row.time ? " · " + row.time : "");
@@ -39024,7 +41130,7 @@
         line2.className = "mig-step__line";
         line2.setAttribute("aria-hidden", "true");
         steps.appendChild(line2);
-        steps.appendChild(buildStep(3, "版本比对", stepState(3)));
+        steps.appendChild(buildStep(3, "资源比对", stepState(3)));
         const line3 = document.createElement("span");
         line3.className = "mig-step__line";
         line3.setAttribute("aria-hidden", "true");
@@ -47379,6 +49485,7 @@ showToast("发布「" + row.name + "」（示意）", "info");
     const daApps = [{ id: "gdmp", label: "大数据开发平台应用(gdmp)" }];
 
     const daOpenTabs = [
+      { id: "train1544", label: "测试培训1544" },
       { id: "test61", label: "测试61" },
       { id: "demo0514", label: "演示仪表板0514" },
     ];
@@ -47395,6 +49502,7 @@ showToast("发布「" + row.name + "」（示意）", "info");
         label: "公共报告",
         type: "folder",
         children: [
+          { id: "train1544", label: "测试培训1544", type: "report" },
           { id: "test61", label: "测试61", type: "report" },
           { id: "test", label: "test", type: "report" },
           { id: "material-check", label: "物资盘点表", type: "report" },
@@ -47412,6 +49520,7 @@ showToast("发布「" + row.name + "」（示意）", "info");
     ];
 
     const daReportMeta = {
+      train1544: { title: "测试培训1544", unpublished: false, chartTitle: "测试培训1544" },
       demo0514: { title: "演示仪表板0514", unpublished: true, chartTitle: "自建数据图表_1000" },
       test61: { title: "测试61", unpublished: false, chartTitle: "测试数据图表" },
     };
@@ -47505,9 +49614,1676 @@ showToast("发布「" + row.name + "」（示意）", "info");
       physicalCanvasMode = "list";
       reverseModelingStep = 1;
       canvasEl.classList.add("canvas--physical");
-      canvasToolbarEl.textContent = "数据分析";
+      canvasToolbarEl.textContent =
+        daCanvasMode === "editor" ? "数据分析 · 制作报告" : "数据分析 · 报告列表";
       canvasEl.innerHTML = "";
+      syncAppCenterChrome();
+      if (daCanvasMode === "editor") {
+        mountDataAnalysisEditorCanvas();
+      } else {
+        mountDataAnalysisListCanvas();
+      }
+    }
 
+    const daModuleNavItems = [
+      { id: "data-connect", label: "数据连接" },
+      { id: "data-prep", label: "数据准备" },
+      { id: "create-report", label: "制作报告" },
+      { id: "view-share", label: "查看与分享报告" },
+    ];
+
+    const daEditorComponents = [
+      { id: "filter-area", label: "筛选区", widgetClass: "da-editor-widget--filter", kind: "filter", listOrder: 1, canvasOrder: 1 },
+      { id: "data-table", label: "数据表格", widgetClass: "da-editor-widget--table", kind: "table", listOrder: 2, canvasOrder: 2 },
+    ];
+
+    const daContractFilterState = {
+      keyword: "",
+      supplier: "",
+      unitName: "新项目管理测试租户",
+      category: "",
+      status: "",
+      priceType: "",
+      signStart: "",
+      signEnd: "",
+      perfStart: "",
+      perfEnd: "",
+      rateDate: "2026-08-31",
+      amountUnit: "yuan",
+      collapsed: false,
+      page: 1,
+      pageSize: 20,
+    };
+
+    const daContractRows = [
+      { code: "zyfb_2026082800001", name: "专业分包合同", currency: "-", rate: "-", amount: 30, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 30 },
+      { code: "zyfb_2026082800002", name: "专业分包合同", currency: "-", rate: "-", amount: 20, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 20 },
+      { code: "zyfb_2026082600002", name: "专业分包合同", currency: "-", rate: "-", amount: 66666666666666, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 66666666666666 },
+      { code: "zyfb_2026082600001", name: "专业分包合同", currency: "-", rate: "-", amount: 55555555555555, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 55555555555555 },
+      { code: "lwfb_2026082500001", name: "劳务分包合同", currency: "-", rate: "-", amount: 100, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 100 },
+      { code: "lwfb_2026082100001", name: "劳务分包合同", currency: "-", rate: "-", amount: 1000, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 1000 },
+      { code: "clcg_2026081900002", name: "材料采购合同", currency: "-", rate: "-", amount: 100, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 100 },
+      { code: "clcg_2026081900001", name: "材料采购合同", currency: "-", rate: "-", amount: 200, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 200 },
+      { code: "zyfb_2026081400001", name: "专业分包合同", currency: "-", rate: "-", amount: 666, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 666 },
+      { code: "zyfb_2026081300001", name: "专业分包合同", currency: "-", rate: "-", amount: 444, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 444 },
+      { code: "lwfb_2026081200001", name: "劳务分包合同", currency: "-", rate: "-", amount: 333, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 333 },
+      { code: "lwfb_2026080700001", name: "劳务分包合同", currency: "-", rate: "-", amount: 222, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 222 },
+      { code: "lwfb_2026080500001", name: "劳务分包合同", currency: "-", rate: "-", amount: 111, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 111 },
+      { code: "lwfb_2026073100001", name: "劳务分包合同", currency: "-", rate: "-", amount: 666, changeCount: 0, paid: 0, processSettle: 0, finalSettle: 0, settleRatio: 0, owe: 666 },
+    ];
+
+    function formatDaContractNum(n) {
+      if (n == null || n === "-") return "-";
+      const num = Number(n);
+      if (Number.isNaN(num)) return String(n);
+      return num.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function buildDaContractFilter() {
+      const filter = document.createElement("div");
+      filter.className = "da-contract-filter";
+      if (daContractFilterState.collapsed) filter.hidden = true;
+
+      const row1 = document.createElement("div");
+      row1.className = "da-contract-filter-row";
+      row1.innerHTML =
+        '<div class="da-contract-field"><input type="text" placeholder="请输入合同编号/合同名称" data-k="keyword" /></div>' +
+        '<div class="da-contract-field"><label>分包分供商</label><select data-k="supplier"><option value="">请选择</option><option value="a">分包商A</option><option value="b">分供商B</option></select></div>' +
+        '<div class="da-contract-field"><label>单位名称</label><select data-k="unitName"><option value="新项目管理测试租户">新项目管理测试租户</option><option value="演示单位">演示单位</option></select></div>' +
+        '<div class="da-contract-field"><label>合同分类</label><select data-k="category"><option value="">请选择</option><option value="zy">专业分包</option><option value="lw">劳务分包</option><option value="cl">材料采购</option></select></div>' +
+        '<div class="da-contract-field"><label>合同状态</label><select data-k="status"><option value="">请选择</option><option value="exec">履约中</option><option value="done">已完成</option></select></div>' +
+        '<div class="da-contract-actions"><button type="button" class="da-btn da-btn-primary" data-act="search">查询</button><button type="button" class="da-contract-reset" data-act="reset">重置</button></div>';
+
+      const row2 = document.createElement("div");
+      row2.className = "da-contract-filter-row";
+      row2.innerHTML =
+        '<div class="da-contract-field"><label>合同价款类型</label><select data-k="priceType"><option value="">请选择</option><option value="fixed">固定总价</option><option value="unit">单价合同</option></select></div>' +
+        '<div class="da-contract-field"><label>签约日期</label><span class="da-contract-range"><input type="date" data-k="signStart" /><span class="da-contract-range-sep">→</span><input type="date" data-k="signEnd" /></span></div>' +
+        '<div class="da-contract-field"><label>履约数据查询日期</label><span class="da-contract-range"><input type="date" data-k="perfStart" /><span class="da-contract-range-sep">→</span><input type="date" data-k="perfEnd" /></span></div>';
+
+      const row3 = document.createElement("div");
+      row3.className = "da-contract-filter-row";
+      row3.innerHTML =
+        '<div class="da-contract-field"><label>汇率转换日期</label><input type="date" data-k="rateDate" /></div>' +
+        '<div class="da-contract-field"><label>金额单位(人民币)</label><span class="da-contract-radio">' +
+        '<label><input type="radio" name="daAmountUnit" value="yuan" />元</label>' +
+        '<label><input type="radio" name="daAmountUnit" value="wan" />万元</label>' +
+        "</span></div>";
+
+      filter.appendChild(row1);
+      filter.appendChild(row2);
+      filter.appendChild(row3);
+
+      filter.querySelectorAll("[data-k]").forEach((el) => {
+        const key = el.getAttribute("data-k");
+        if (key && daContractFilterState[key] != null) el.value = daContractFilterState[key];
+        el.addEventListener("change", () => {
+          daContractFilterState[key] = el.value;
+        });
+        el.addEventListener("input", () => {
+          daContractFilterState[key] = el.value;
+        });
+      });
+      filter.querySelectorAll('input[name="daAmountUnit"]').forEach((el) => {
+        el.checked = el.value === daContractFilterState.amountUnit;
+        el.addEventListener("change", () => {
+          if (el.checked) daContractFilterState.amountUnit = el.value;
+        });
+      });
+      filter.querySelector('[data-act="search"]').addEventListener("click", () => showToast("查询（示意）", "info"));
+      filter.querySelector('[data-act="reset"]').addEventListener("click", () => {
+        Object.assign(daContractFilterState, {
+          keyword: "",
+          supplier: "",
+          unitName: "新项目管理测试租户",
+          category: "",
+          status: "",
+          priceType: "",
+          signStart: "",
+          signEnd: "",
+          perfStart: "",
+          perfEnd: "",
+          rateDate: "2026-08-31",
+          amountUnit: "yuan",
+          page: 1,
+        });
+        mountDataAnalysisCanvas();
+        showToast("已重置筛选（示意）", "info");
+      });
+      return filter;
+    }
+
+    function buildDaContractTable() {
+      const wrap = document.createElement("div");
+      wrap.className = "da-contract-table-wrap";
+      const table = document.createElement("table");
+      table.className = "da-editor-table";
+      table.innerHTML =
+        "<thead>" +
+        "<tr>" +
+        '<th rowspan="2" class="is-center" style="width:56px">序号</th>' +
+        '<th rowspan="2" style="width:160px">合同编号</th>' +
+        '<th rowspan="2" style="width:120px">合同名称</th>' +
+        '<th rowspan="2" style="width:90px">本币币种</th>' +
+        '<th rowspan="2" style="width:120px">转换人民币汇率</th>' +
+        '<th colspan="5">累计履约信息</th>' +
+        '<th colspan="2">指标信息</th>' +
+        '<th rowspan="2" class="da-contract-col-setting" title="列设置">⋮</th>' +
+        "</tr>" +
+        "<tr>" +
+        '<th class="is-num">变更后合同金额</th>' +
+        '<th class="is-center">变更次数</th>' +
+        '<th class="is-num">已支付金额</th>' +
+        '<th class="is-num">过程结算金额(元)</th>' +
+        '<th class="is-num">最终结算金额(元)</th>' +
+        '<th class="is-num">结算占比(%) <span class="da-th-help" title="结算占比说明">?</span></th>' +
+        '<th class="is-num">欠付金额 <span class="da-th-help" title="欠付金额说明">?</span></th>' +
+        "</tr>" +
+        "</thead>";
+
+      const tbody = document.createElement("tbody");
+      daContractRows.forEach((row, idx) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          '<td class="is-center">' + (idx + 1) + "</td>" +
+          '<td><a class="da-contract-link" href="javascript:void(0)">' + row.code + "</a></td>" +
+          '<td title="' + row.name + '">' + row.name + "</td>" +
+          '<td class="is-center">' + row.currency + "</td>" +
+          '<td class="is-center">' + row.rate + "</td>" +
+          '<td class="is-link-num">' + formatDaContractNum(row.amount) + "</td>" +
+          '<td class="is-center">' + row.changeCount + "</td>" +
+          '<td class="is-num">' + formatDaContractNum(row.paid) + "</td>" +
+          '<td class="is-link-num">' + formatDaContractNum(row.processSettle) + "</td>" +
+          '<td class="is-num">' + formatDaContractNum(row.finalSettle) + "</td>" +
+          '<td class="is-num">' + formatDaContractNum(row.settleRatio) + "</td>" +
+          '<td class="is-num">' + formatDaContractNum(row.owe) + "</td>" +
+          '<td class="da-contract-col-setting"></td>';
+        tr.querySelector(".da-contract-link").addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          showToast("打开合同「" + row.code + "」（示意）", "info");
+        });
+        tbody.appendChild(tr);
+      });
+
+      const total = daContractRows.reduce(
+        (acc, row) => {
+          acc.amount += row.amount;
+          acc.paid += row.paid;
+          acc.processSettle += row.processSettle;
+          acc.finalSettle += row.finalSettle;
+          acc.owe += row.owe;
+          return acc;
+        },
+        { amount: 0, paid: 0, processSettle: 0, finalSettle: 0, owe: 0 }
+      );
+      const totalTr = document.createElement("tr");
+      totalTr.className = "is-total";
+      totalTr.innerHTML =
+        '<td class="is-center">合计</td>' +
+        "<td></td><td></td><td></td><td></td>" +
+        '<td class="is-num">' + formatDaContractNum(total.amount) + "</td>" +
+        '<td class="is-center"></td>' +
+        '<td class="is-num">' + formatDaContractNum(total.paid) + "</td>" +
+        '<td class="is-num">' + formatDaContractNum(total.processSettle) + "</td>" +
+        '<td class="is-num">' + formatDaContractNum(total.finalSettle) + "</td>" +
+        "<td></td>" +
+        '<td class="is-num">' + formatDaContractNum(total.owe) + "</td>" +
+        "<td></td>";
+      tbody.appendChild(totalTr);
+      table.appendChild(tbody);
+      wrap.appendChild(table);
+      return wrap;
+    }
+
+    function buildDaContractPager() {
+      const pager = document.createElement("div");
+      pager.className = "da-contract-pager";
+      const total = 1514;
+      const pages = 76;
+      pager.innerHTML =
+        "<span>共" +
+        total +
+        "条</span>" +
+        '<select aria-label="每页条数"><option value="20" selected>显示20条/页</option><option value="50">显示50条/页</option><option value="100">显示100条/页</option></select>' +
+        '<button type="button" class="da-contract-pager-btn" data-act="prev" aria-label="上一页">‹</button>' +
+        '<input type="text" value="' +
+        daContractFilterState.page +
+        '" aria-label="页码" />' +
+        "<span>/ " +
+        pages +
+        "</span>" +
+        '<button type="button" class="da-contract-pager-btn" data-act="next" aria-label="下一页">›</button>';
+      pager.querySelector("select").addEventListener("change", (e) => {
+        daContractFilterState.pageSize = Number(e.target.value) || 20;
+        showToast("切换每页 " + daContractFilterState.pageSize + " 条（示意）", "info");
+      });
+      pager.querySelector('[data-act="prev"]').addEventListener("click", () => {
+        if (daContractFilterState.page > 1) {
+          daContractFilterState.page -= 1;
+          mountDataAnalysisCanvas();
+        }
+      });
+      pager.querySelector('[data-act="next"]').addEventListener("click", () => {
+        if (daContractFilterState.page < pages) {
+          daContractFilterState.page += 1;
+          mountDataAnalysisCanvas();
+        }
+      });
+      pager.querySelector("input").addEventListener("change", (e) => {
+        const v = Math.max(1, Math.min(pages, Number(e.target.value) || 1));
+        daContractFilterState.page = v;
+        mountDataAnalysisCanvas();
+      });
+      return pager;
+    }
+
+    function buildDaContractBoard() {
+      const board = document.createElement("div");
+      board.className = "da-contract-board";
+
+      const filterWrap = document.createElement("div");
+      filterWrap.className =
+        "da-editor-widget da-editor-widget--filter" +
+        (daSelectedComponentId === "filter-area" ? " is-active" : "");
+      const filterBd = document.createElement("div");
+      filterBd.className = "da-editor-widget-bd";
+      filterBd.appendChild(buildDaContractFilter());
+      const toggle = document.createElement("div");
+      toggle.className = "da-contract-filter-toggle";
+      const toggleBtn = document.createElement("button");
+      toggleBtn.type = "button";
+      toggleBtn.textContent = daContractFilterState.collapsed ? "▾" : "▴";
+      toggleBtn.title = daContractFilterState.collapsed ? "展开筛选" : "收起筛选";
+      toggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        daContractFilterState.collapsed = !daContractFilterState.collapsed;
+        mountDataAnalysisCanvas();
+      });
+      toggle.appendChild(toggleBtn);
+      filterBd.appendChild(toggle);
+      filterWrap.appendChild(filterBd);
+      filterWrap.addEventListener("click", () => {
+        daSelectedComponentId = "filter-area";
+        mountDataAnalysisCanvas();
+      });
+
+      const tableWrap = document.createElement("div");
+      tableWrap.className =
+        "da-editor-widget da-editor-widget--table" +
+        (daSelectedComponentId === "data-table" ? " is-active" : "");
+      const tableBd = document.createElement("div");
+      tableBd.className = "da-editor-widget-bd";
+      const toolbar = document.createElement("div");
+      toolbar.className = "da-contract-toolbar";
+      const exportBtn = document.createElement("button");
+      exportBtn.type = "button";
+      exportBtn.className = "da-btn";
+      exportBtn.textContent = "导出";
+      exportBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showToast("导出（示意）", "info");
+      });
+      toolbar.appendChild(exportBtn);
+      tableBd.appendChild(toolbar);
+      tableBd.appendChild(buildDaContractTable());
+      tableBd.appendChild(buildDaContractPager());
+      tableWrap.appendChild(tableBd);
+      tableWrap.addEventListener("click", () => {
+        daSelectedComponentId = "data-table";
+        mountDataAnalysisCanvas();
+      });
+
+      board.appendChild(filterWrap);
+      board.appendChild(tableWrap);
+      return board;
+    }
+
+    const daEditorPropState = {
+      tab: "style",
+      componentTitle: "筛选栏_2000",
+      bgColor: "#ffffff",
+      adaptive: true,
+      showTitle: false,
+      titleAlign: "left",
+      titleFontFamily: "default",
+      titleFontScale: "normal",
+      titleFontSize: "14",
+      titleFontWeight: "regular",
+      titleFontColor: "#1f2d3d",
+      dividerStyle: "thin",
+      openSections: { filter: true, titleFormat: false, jump: true },
+      jumpRules: [
+        {
+          id: "jr1",
+          name: "柱状图跳转",
+          mode: "按行",
+          type: "跳转到URL",
+          event: "左键单击",
+          openMode: "打开对话框",
+          dialogW: "1000",
+          dialogH: "600",
+          relation: "",
+        },
+      ],
+      jumpFieldMaps: [
+        {
+          id: "jm1",
+          ruleId: "jr1",
+          kind: "field",
+          source: "",
+          target: "",
+          fromRelation: false,
+        },
+      ],
+      jumpFieldPanelRuleId: "jr1",
+    };
+
+    function createDaJumpRule() {
+      return {
+        id: "jr" + Date.now() + Math.floor(Math.random() * 1000),
+        name: "柱状图跳转",
+        mode: "按行",
+        type: "跳转到URL",
+        event: "左键单击",
+        openMode: "打开对话框",
+        dialogW: "1000",
+        dialogH: "600",
+        relation: "",
+      };
+    }
+
+    function createDaJumpFieldMap(ruleId) {
+      return {
+        id: "jm" + Date.now() + Math.floor(Math.random() * 1000),
+        ruleId: ruleId || "",
+        kind: "field",
+        source: "",
+        target: "",
+        fromRelation: false,
+      };
+    }
+
+    const DA_JUMP_PLATFORM_MENU_TYPE = "跳转到平台菜单";
+    const DA_JUMP_PLATFORM_MENU_DEFAULT =
+      "?applicationCode=geps_new&productCode=geps_new&menuCode=scgl.market-project-opportunity.ProjectBidPlan_c&orgId=676350682693632&tenantId=676350681612288&viewMode=full";
+    const DA_JUMP_PLATFORM_MENU_KEYS = ["applicationCode", "productCode", "menuCode"];
+    const DA_JUMP_PLATFORM_MENU_FIXED_KEYS = [
+      "applicationCode",
+      "productCode",
+      "menuCode",
+      "orgId",
+      "tenantId",
+      "viewMode",
+    ];
+
+    function parseQueryRelation(relation) {
+      const raw = String(relation || "").trim();
+      if (!raw) return { path: "", params: [] };
+      let path = "";
+      let query = raw;
+      const qIndex = raw.indexOf("?");
+      if (qIndex >= 0) {
+        path = raw.slice(0, qIndex);
+        query = raw.slice(qIndex + 1);
+      } else if (raw.indexOf("=") < 0) {
+        return { path: raw, params: [] };
+      }
+      const params = [];
+      String(query || "")
+        .split("&")
+        .forEach((pair) => {
+          if (!pair) return;
+          const eq = pair.indexOf("=");
+          if (eq < 0) params.push({ key: decodeURIComponent(pair), value: "" });
+          else {
+            params.push({
+              key: decodeURIComponent(pair.slice(0, eq)),
+              value: pair.slice(eq + 1),
+            });
+          }
+        });
+      return { path: path, params: params };
+    }
+
+    function buildQueryRelation(path, params) {
+      const qsRaw = (params || [])
+        .map((p) => String(p.key) + "=" + String(p.value == null ? "" : p.value))
+        .join("&");
+      if (!qsRaw) return path || "";
+      return (path || "") + "?" + qsRaw;
+    }
+
+    function getQueryParam(relation, key) {
+      const parsed = parseQueryRelation(relation);
+      const hit = parsed.params.find((p) => p.key === key);
+      return hit ? hit.value : "";
+    }
+
+    function getPlatformMenuAppendText(relation) {
+      const parsed = parseQueryRelation(relation);
+      return parsed.params
+        .filter((p) => DA_JUMP_PLATFORM_MENU_FIXED_KEYS.indexOf(p.key) < 0)
+        .map((p) => String(p.key) + "=" + String(p.value == null ? "" : p.value))
+        .join("&");
+    }
+
+    function composePlatformMenuRelation(relation, keyOverrides, appendText) {
+      const baseParams = parseQueryRelation(DA_JUMP_PLATFORM_MENU_DEFAULT).params.map((p) =>
+        Object.assign({}, p)
+      );
+      const current = parseQueryRelation(relation || DA_JUMP_PLATFORM_MENU_DEFAULT);
+      baseParams.forEach((p) => {
+        const hit = current.params.find((c) => c.key === p.key);
+        if (hit) p.value = hit.value;
+      });
+      if (keyOverrides) {
+        Object.keys(keyOverrides).forEach((key) => {
+          const hit = baseParams.find((p) => p.key === key);
+          if (hit) hit.value = keyOverrides[key];
+          else baseParams.push({ key: key, value: keyOverrides[key] });
+        });
+      }
+      const appendRaw = String(appendText == null ? "" : appendText)
+        .trim()
+        .replace(/^\?/, "")
+        .replace(/^&/, "");
+      if (appendRaw) {
+        const extras = parseQueryRelation(
+          appendRaw.indexOf("=") >= 0 ? "?" + appendRaw : appendRaw
+        ).params;
+        if (extras.length) {
+          extras.forEach((p) => baseParams.push(p));
+        } else if (appendRaw) {
+          baseParams.push({ key: appendRaw, value: "" });
+        }
+      }
+      return buildQueryRelation("", baseParams);
+    }
+
+    function ensurePlatformMenuRelation(relation) {
+      const next = String(relation || "").trim();
+      if (!next || !/(^|[?&])applicationCode=/.test(next)) {
+        return DA_JUMP_PLATFORM_MENU_DEFAULT;
+      }
+      return composePlatformMenuRelation(next, null, getPlatformMenuAppendText(next));
+    }
+
+    function parseRelationPlaceholders(relation) {
+      const list = [];
+      const re = /\{([^{}]+)\}/g;
+      let match;
+      while ((match = re.exec(String(relation || ""))) !== null) {
+        const token = String(match[1] || "").trim();
+        if (token && list.indexOf(token) === -1) list.push(token);
+      }
+      return list;
+    }
+
+    function syncJumpMapsFromRelation(maps, ruleId, relation) {
+      const tokens = parseRelationPlaceholders(relation);
+      const others = maps.filter((m) => m.ruleId !== ruleId);
+      const existing = maps.filter((m) => m.ruleId === ruleId);
+      const used = {};
+      const next = [];
+
+      tokens.forEach((token) => {
+        const hit = existing.find((m) => m.target === token && !used[m.id]);
+        if (hit) {
+          used[hit.id] = true;
+          hit.fromRelation = true;
+          next.push(hit);
+          return;
+        }
+        const empty = existing.find((m) => !m.target && !used[m.id]);
+        if (empty) {
+          used[empty.id] = true;
+          empty.target = token;
+          empty.fromRelation = true;
+          next.push(empty);
+          return;
+        }
+        const created = createDaJumpFieldMap(ruleId);
+        created.target = token;
+        created.fromRelation = true;
+        next.push(created);
+      });
+
+      existing.forEach((m) => {
+        if (used[m.id]) return;
+        if (m.fromRelation) return;
+        next.push(m);
+      });
+
+      if (!next.length) {
+        next.push(createDaJumpFieldMap(ruleId));
+      }
+      return others.concat(next);
+    }
+
+    function buildDaJumpSelect(options, value) {
+      const sel = document.createElement("select");
+      options.forEach((opt) => {
+        const o = document.createElement("option");
+        o.value = opt;
+        o.textContent = opt;
+        if (opt === value) o.selected = true;
+        sel.appendChild(o);
+      });
+      return sel;
+    }
+
+    function openDaJumpRuleModal() {
+      const existing = document.querySelector(".da-jump-modal");
+      if (existing) existing.remove();
+
+      let draftRules = daEditorPropState.jumpRules.map((r) => Object.assign({}, r));
+      let draftMaps = daEditorPropState.jumpFieldMaps.map((m) => Object.assign({}, m));
+      draftRules.forEach((rule) => {
+        draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+      });
+      let activeRuleId = daEditorPropState.jumpFieldPanelRuleId || "";
+      if (activeRuleId && !draftRules.some((r) => r.id === activeRuleId)) {
+        activeRuleId = "";
+      }
+
+      const overlay = document.createElement("div");
+      overlay.className = "da-jump-modal";
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) overlay.remove();
+      });
+
+      const box = document.createElement("div");
+      box.className = "da-jump-modal__box";
+      box.addEventListener("click", (e) => e.stopPropagation());
+
+      const body = document.createElement("div");
+      body.className = "da-jump-modal__body";
+
+      const ruleHd = document.createElement("div");
+      ruleHd.className = "da-jump-rule-hd";
+      ruleHd.innerHTML =
+        '<span class="da-jump-rule-title">规则设置<span class="da-jump-help" title="配置组件跳转规则">?</span></span>';
+      const addRuleBtn = document.createElement("button");
+      addRuleBtn.type = "button";
+      addRuleBtn.className = "da-jump-add";
+      addRuleBtn.textContent = "+ 点击新建";
+      ruleHd.appendChild(addRuleBtn);
+      body.appendChild(ruleHd);
+
+      const tableWrap = document.createElement("div");
+      tableWrap.className = "da-jump-table-wrap da-jump-table-wrap--full";
+      const table = document.createElement("table");
+      table.className = "da-jump-table";
+      table.innerHTML =
+        "<thead><tr>" +
+        "<th style='width:4%'>序号</th>" +
+        "<th style='width:10%'>名称</th>" +
+        "<th style='width:9%'>跳转模式</th>" +
+        "<th style='width:11%'>类型</th>" +
+        "<th style='width:9%'>交互事件</th>" +
+        "<th style='width:11%'>打开方式</th>" +
+        "<th style='width:8%'>对话框宽度</th>" +
+        "<th style='width:8%'>对话框高度</th>" +
+        "<th style='width:14%'>关系设置</th>" +
+        "<th style='width:16%'>操作</th>" +
+        "</tr></thead>";
+      const tbody = document.createElement("tbody");
+      table.appendChild(tbody);
+      tableWrap.appendChild(table);
+      body.appendChild(tableWrap);
+
+      const fieldPanel = document.createElement("div");
+      fieldPanel.className = "da-jump-field-panel";
+      body.appendChild(fieldPanel);
+
+      function renderFieldPanel() {
+        fieldPanel.innerHTML = "";
+        const activeRule = draftRules.find((r) => r.id === activeRuleId);
+        if (!activeRule) {
+          const tip = document.createElement("div");
+          tip.className = "da-jump-field-tip";
+          tip.innerHTML =
+            "新建参数/字段映射请先点击对应规则操作列中的<em>参数/字段映射配置</em>进行查看与配置。";
+          fieldPanel.appendChild(tip);
+          return;
+        }
+
+        const hd = document.createElement("div");
+        hd.className = "da-jump-field-panel-hd";
+        hd.innerHTML =
+          "<span>参数/字段映射配置 · <strong>" +
+          (activeRule.name || "未命名规则") +
+          "</strong></span>";
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "da-jump-link";
+        closeBtn.textContent = "收起";
+        closeBtn.addEventListener("click", () => {
+          activeRuleId = "";
+          renderRuleRows();
+          renderFieldPanel();
+        });
+        hd.appendChild(closeBtn);
+        fieldPanel.appendChild(hd);
+
+        const bar = document.createElement("div");
+        bar.className = "da-jump-field-bar";
+        const addMapBtn = document.createElement("button");
+        addMapBtn.type = "button";
+        addMapBtn.className = "da-jump-add";
+        addMapBtn.textContent = "+ 点击新建";
+        addMapBtn.addEventListener("click", () => {
+          draftMaps.push(createDaJumpFieldMap(activeRuleId));
+          renderFieldPanel();
+        });
+        bar.appendChild(addMapBtn);
+        fieldPanel.appendChild(bar);
+
+        const tableScroll = document.createElement("div");
+        tableScroll.className = "da-jump-field-table-scroll";
+        const ft = document.createElement("table");
+        ft.className = "da-jump-field-table";
+        ft.innerHTML =
+          "<thead><tr><th style='width:88px'>类型</th><th>取值字段/变量</th><th>赋值字段/变量</th><th></th></tr></thead>";
+        const fb = document.createElement("tbody");
+        const maps = draftMaps.filter((m) => m.ruleId === activeRuleId);
+        if (!maps.length) {
+          const emptyTr = document.createElement("tr");
+          emptyTr.innerHTML =
+            '<td colspan="4" style="color:rgba(0,0,0,.45);padding:16px 12px;">暂无字段映射，点击上方「+ 点击新建」添加；也可收起后重新点击「参数/字段映射配置」查看。</td>';
+          fb.appendChild(emptyTr);
+        }
+        maps.forEach((map) => {
+          const tr = document.createElement("tr");
+          const kindTd = document.createElement("td");
+          const radios = document.createElement("div");
+          radios.className = "da-jump-radios";
+          [
+            ["field", "字段"],
+            ["variable", "变量"],
+          ].forEach(([val, label]) => {
+            const lab = document.createElement("label");
+            lab.className = "da-jump-radio";
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "jump-kind-" + map.id;
+            input.value = val;
+            input.checked = map.kind === val;
+            input.addEventListener("change", () => {
+              map.kind = val;
+            });
+            lab.appendChild(input);
+            lab.appendChild(document.createTextNode(label));
+            radios.appendChild(lab);
+          });
+          kindTd.appendChild(radios);
+
+          const srcTd = document.createElement("td");
+          const srcSel = buildDaJumpSelect(
+            ["", "合同编码", "合同名称", "签约金额", "履约状态"],
+            map.source
+          );
+          srcSel.addEventListener("change", () => {
+            map.source = srcSel.value;
+          });
+          srcTd.appendChild(srcSel);
+
+          const tgtTd = document.createElement("td");
+          const tgtInput = document.createElement("input");
+          tgtInput.type = "text";
+          tgtInput.value = map.target || "";
+          tgtInput.placeholder = "请输入赋值字段/变量";
+          tgtInput.addEventListener("input", () => {
+            map.target = tgtInput.value;
+          });
+          tgtTd.appendChild(tgtInput);
+
+          const opTd = document.createElement("td");
+          const del = document.createElement("button");
+          del.type = "button";
+          del.className = "da-jump-link";
+          del.textContent = "删除";
+          del.addEventListener("click", () => {
+            draftMaps = draftMaps.filter((m) => m.id !== map.id);
+            renderFieldPanel();
+          });
+          opTd.appendChild(del);
+
+          tr.appendChild(kindTd);
+          tr.appendChild(srcTd);
+          tr.appendChild(tgtTd);
+          tr.appendChild(opTd);
+          fb.appendChild(tr);
+        });
+        ft.appendChild(fb);
+        tableScroll.appendChild(ft);
+        fieldPanel.appendChild(tableScroll);
+      }
+
+      function renderRuleRows() {
+        tbody.innerHTML = "";
+        draftRules.forEach((rule, index) => {
+          const tr = document.createElement("tr");
+          if (rule.id === activeRuleId) tr.style.background = "#f0f7ff";
+
+          const indexTd = document.createElement("td");
+          const nameIndex = document.createElement("span");
+          nameIndex.className = "da-jump-name-index";
+          nameIndex.textContent = String(index + 1);
+          indexTd.appendChild(nameIndex);
+
+          const nameTd = document.createElement("td");
+          const nameInput = document.createElement("input");
+          nameInput.type = "text";
+          nameInput.value = rule.name;
+          nameInput.addEventListener("input", () => {
+            rule.name = nameInput.value;
+          });
+          nameTd.appendChild(nameInput);
+
+          const modeTd = document.createElement("td");
+          const modeSel = buildDaJumpSelect(["按行", "按列", "按单元格"], rule.mode);
+          modeSel.addEventListener("change", () => {
+            rule.mode = modeSel.value;
+          });
+          modeTd.appendChild(modeSel);
+
+          const typeTd = document.createElement("td");
+          const typeSel = buildDaJumpSelect(
+            ["跳转到URL", "跳转到报告", "跳转到仪表板", DA_JUMP_PLATFORM_MENU_TYPE],
+            rule.type
+          );
+          typeSel.addEventListener("change", () => {
+            rule.type = typeSel.value;
+            if (rule.type === DA_JUMP_PLATFORM_MENU_TYPE) {
+              rule.relation = ensurePlatformMenuRelation(rule.relation);
+              draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+            }
+            renderRuleRows();
+            renderFieldPanel();
+          });
+          typeTd.appendChild(typeSel);
+
+          const eventTd = document.createElement("td");
+          const eventBox = document.createElement("span");
+          eventBox.className = "da-jump-static";
+          eventBox.textContent = rule.event || "左键单击";
+          eventTd.appendChild(eventBox);
+
+          const openTd = document.createElement("td");
+          const openSel = buildDaJumpSelect(
+            ["打开对话框", "当前窗口", "新窗口"],
+            rule.openMode
+          );
+          openSel.addEventListener("change", () => {
+            rule.openMode = openSel.value;
+          });
+          openTd.appendChild(openSel);
+
+          const wTd = document.createElement("td");
+          const wInput = document.createElement("input");
+          wInput.type = "text";
+          wInput.value = rule.dialogW;
+          wInput.addEventListener("input", () => {
+            rule.dialogW = wInput.value;
+          });
+          wTd.appendChild(wInput);
+
+          const hTd = document.createElement("td");
+          const hInput = document.createElement("input");
+          hInput.type = "text";
+          hInput.value = rule.dialogH;
+          hInput.addEventListener("input", () => {
+            rule.dialogH = hInput.value;
+          });
+          hTd.appendChild(hInput);
+
+          const relTd = document.createElement("td");
+          const relWrap = document.createElement("div");
+          relWrap.className = "da-jump-rel-wrap";
+          const isPlatformMenu = rule.type === DA_JUMP_PLATFORM_MENU_TYPE;
+          const keyInputs = {};
+          let appendInput = null;
+          if (isPlatformMenu) {
+            const tip = document.createElement("div");
+            tip.className = "da-jump-rel-tip";
+            tip.textContent = "请配置以下三项，下方可追加其他参数";
+            relWrap.appendChild(tip);
+            const cfg = document.createElement("div");
+            cfg.className = "da-jump-rel-keys";
+            DA_JUMP_PLATFORM_MENU_KEYS.forEach((key) => {
+              const item = document.createElement("label");
+              item.className = "da-jump-rel-key";
+              const lab = document.createElement("span");
+              lab.textContent = key;
+              const input = document.createElement("input");
+              input.type = "text";
+              input.value = getQueryParam(rule.relation, key);
+              input.setAttribute("data-key", key);
+              input.addEventListener("input", () => {
+                const overrides = {};
+                DA_JUMP_PLATFORM_MENU_KEYS.forEach((k) => {
+                  overrides[k] = keyInputs[k] ? keyInputs[k].value : getQueryParam(rule.relation, k);
+                });
+                rule.relation = composePlatformMenuRelation(
+                  rule.relation,
+                  overrides,
+                  appendInput ? appendInput.value : getPlatformMenuAppendText(rule.relation)
+                );
+                draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+                if (activeRuleId === rule.id) renderFieldPanel();
+              });
+              keyInputs[key] = input;
+              item.appendChild(lab);
+              item.appendChild(input);
+              cfg.appendChild(item);
+            });
+            relWrap.appendChild(cfg);
+
+            appendInput = document.createElement("input");
+            appendInput.type = "text";
+            appendInput.value = getPlatformMenuAppendText(rule.relation);
+            appendInput.placeholder = "如：path=/detail/{f_id}";
+            appendInput.addEventListener("input", () => {
+              const overrides = {};
+              DA_JUMP_PLATFORM_MENU_KEYS.forEach((k) => {
+                overrides[k] = keyInputs[k] ? keyInputs[k].value : getQueryParam(rule.relation, k);
+              });
+              rule.relation = composePlatformMenuRelation(rule.relation, overrides, appendInput.value);
+              draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+              if (activeRuleId === rule.id) renderFieldPanel();
+            });
+            relWrap.appendChild(appendInput);
+          } else {
+            const relInput = document.createElement("input");
+            relInput.type = "text";
+            relInput.value = rule.relation;
+            relInput.placeholder = "如：path=/detail/{f_id}";
+            relInput.addEventListener("input", () => {
+              rule.relation = relInput.value;
+              draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+              if (activeRuleId === rule.id) renderFieldPanel();
+            });
+            relWrap.appendChild(relInput);
+          }
+          relTd.appendChild(relWrap);
+
+          const opTd = document.createElement("td");
+          opTd.className = "da-jump-ops";
+          const mapBtn = document.createElement("button");
+          mapBtn.type = "button";
+          mapBtn.className = "da-jump-link";
+          mapBtn.textContent = rule.id === activeRuleId ? "收起映射配置" : "参数/字段映射配置";
+          mapBtn.addEventListener("click", () => {
+            if (rule.id === activeRuleId) {
+              activeRuleId = "";
+            } else {
+              activeRuleId = rule.id;
+              draftMaps = syncJumpMapsFromRelation(draftMaps, rule.id, rule.relation);
+            }
+            renderRuleRows();
+            renderFieldPanel();
+          });
+          const delBtn = document.createElement("button");
+          delBtn.type = "button";
+          delBtn.className = "da-jump-link";
+          delBtn.textContent = "删除";
+          delBtn.addEventListener("click", () => {
+            draftRules = draftRules.filter((r) => r.id !== rule.id);
+            draftMaps = draftMaps.filter((m) => m.ruleId !== rule.id);
+            if (activeRuleId === rule.id) activeRuleId = "";
+            renderRuleRows();
+            renderFieldPanel();
+          });
+          opTd.appendChild(mapBtn);
+          opTd.appendChild(delBtn);
+
+          tr.appendChild(indexTd);
+          tr.appendChild(nameTd);
+          tr.appendChild(modeTd);
+          tr.appendChild(typeTd);
+          tr.appendChild(eventTd);
+          tr.appendChild(openTd);
+          tr.appendChild(wTd);
+          tr.appendChild(hTd);
+          tr.appendChild(relTd);
+          tr.appendChild(opTd);
+          tbody.appendChild(tr);
+        });
+      }
+
+      addRuleBtn.addEventListener("click", () => {
+        const rule = createDaJumpRule();
+        draftRules.push(rule);
+        if (!draftMaps.some((m) => m.ruleId === rule.id)) {
+          draftMaps.push(createDaJumpFieldMap(rule.id));
+        }
+        activeRuleId = "";
+        renderRuleRows();
+        renderFieldPanel();
+        showToast("请点击「参数/字段映射配置」查看参数配置", "info");
+      });
+
+      renderRuleRows();
+      renderFieldPanel();
+
+      const ft = document.createElement("div");
+      ft.className = "da-jump-modal__ft";
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className = "da-jump-btn";
+      cancelBtn.textContent = "取消";
+      cancelBtn.addEventListener("click", () => overlay.remove());
+      const okBtn = document.createElement("button");
+      okBtn.type = "button";
+      okBtn.className = "da-jump-btn da-jump-btn--primary";
+      okBtn.textContent = "确定";
+      okBtn.addEventListener("click", () => {
+        daEditorPropState.jumpRules = draftRules.map((r) => Object.assign({}, r));
+        daEditorPropState.jumpFieldMaps = draftMaps.map((m) => Object.assign({}, m));
+        daEditorPropState.jumpFieldPanelRuleId = activeRuleId;
+        overlay.remove();
+        showToast("跳转设置已保存（示意）", "success");
+        mountDataAnalysisCanvas();
+      });
+      ft.appendChild(cancelBtn);
+      ft.appendChild(okBtn);
+
+      box.appendChild(body);
+      box.appendChild(ft);
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+    }
+
+    function buildDaPropJumpEntry() {
+      const wrap = document.createElement("div");
+      wrap.className = "da-jump-entry";
+
+      const ruleHd = document.createElement("div");
+      ruleHd.className = "da-jump-rule-hd";
+      ruleHd.style.marginBottom = "8px";
+      ruleHd.innerHTML =
+        '<span class="da-jump-rule-title">规则设置<span class="da-jump-help" title="配置组件跳转规则">?</span></span>';
+      const addBtn = document.createElement("button");
+      addBtn.type = "button";
+      addBtn.className = "da-jump-add";
+      addBtn.textContent = "+ 点击新建";
+      addBtn.addEventListener("click", () => {
+        const rule = createDaJumpRule();
+        daEditorPropState.jumpRules.push(rule);
+        daEditorPropState.jumpFieldMaps.push(createDaJumpFieldMap(rule.id));
+        daEditorPropState.jumpFieldPanelRuleId = "";
+        openDaJumpRuleModal();
+        showToast("请点击「参数/字段映射配置」查看参数配置", "info");
+      });
+      ruleHd.appendChild(addBtn);
+      wrap.appendChild(ruleHd);
+
+      const preview = document.createElement("div");
+      preview.className = "da-jump-table-wrap";
+      preview.style.maxHeight = "160px";
+      const table = document.createElement("table");
+      table.className = "da-jump-table";
+      table.innerHTML =
+        "<thead><tr>" +
+        "<th style='width:88px'>名称</th>" +
+        "<th style='width:72px'>跳转模式</th>" +
+        "<th style='width:88px'>类型</th>" +
+        "<th style='width:72px'>操作</th>" +
+        "</tr></thead>";
+      const tbody = document.createElement("tbody");
+      if (!daEditorPropState.jumpRules.length) {
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          '<td colspan="4" style="color:rgba(0,0,0,.45);text-align:center;">暂无规则，点击新建</td>';
+        tbody.appendChild(tr);
+      } else {
+        daEditorPropState.jumpRules.forEach((rule) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" +
+            (rule.name || "-") +
+            "</td><td>" +
+            (rule.mode || "-") +
+            "</td><td>" +
+            (rule.type || "-") +
+            "</td>";
+          const opTd = document.createElement("td");
+          opTd.className = "da-jump-ops";
+          const edit = document.createElement("button");
+          edit.type = "button";
+          edit.className = "da-jump-link";
+          edit.textContent = "配置";
+          edit.addEventListener("click", () => {
+            daEditorPropState.jumpFieldPanelRuleId = rule.id;
+            openDaJumpRuleModal();
+          });
+          opTd.appendChild(edit);
+          tr.appendChild(opTd);
+          tbody.appendChild(tr);
+        });
+      }
+      table.appendChild(tbody);
+      preview.appendChild(table);
+      wrap.appendChild(preview);
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "da-jump-entry-btn";
+      btn.textContent = "打开完整规则设置";
+      btn.addEventListener("click", () => openDaJumpRuleModal());
+      wrap.appendChild(btn);
+      return wrap;
+    }
+
+    function buildDaPropFilterFields() {
+      const form = document.createElement("div");
+      form.className = "da-prop-form";
+
+      const bgRow = document.createElement("div");
+      bgRow.className = "da-prop-row";
+      bgRow.innerHTML =
+        '<span class="da-prop-label">背景颜色</span><div class="da-prop-control">' +
+        '<button type="button" class="da-prop-color" title="背景颜色" style="background:' +
+        daEditorPropState.bgColor +
+        '"><input type="color" value="' +
+        daEditorPropState.bgColor +
+        '" /></button></div>';
+      const colorBtn = bgRow.querySelector(".da-prop-color");
+      const colorInput = bgRow.querySelector('input[type="color"]');
+      colorInput.addEventListener("input", () => {
+        daEditorPropState.bgColor = colorInput.value;
+        colorBtn.style.background = colorInput.value;
+      });
+      colorInput.addEventListener("change", () => {
+        showToast("背景颜色已更新（示意）", "info");
+      });
+
+      const divRow = document.createElement("div");
+      divRow.className = "da-prop-row";
+      const dividerWrap = document.createElement("div");
+      dividerWrap.className = "da-prop-control";
+      const divider = document.createElement("div");
+      divider.className = "da-prop-divider";
+      const styleBtn = document.createElement("button");
+      styleBtn.type = "button";
+      styleBtn.className = "da-prop-divider-btn";
+      styleBtn.setAttribute("data-act", "style");
+      styleBtn.title = "线型";
+      styleBtn.innerHTML =
+        '<span class="da-prop-divider-preview" data-style="' +
+        daEditorPropState.dividerStyle +
+        '"></span>▾';
+      const penBtn = document.createElement("button");
+      penBtn.type = "button";
+      penBtn.className = "da-prop-divider-btn";
+      penBtn.setAttribute("data-act", "pen");
+      penBtn.title = "画笔";
+      penBtn.textContent = "✎▾";
+      const menu = document.createElement("div");
+      menu.className = "da-prop-divider-menu";
+      menu.setAttribute("role", "menu");
+      const dividerOptions = [
+        { id: "none", kind: "text", label: "空" },
+        { id: "thin", kind: "line" },
+        { id: "medium", kind: "line" },
+        { id: "thick", kind: "line" },
+        { id: "dot", kind: "line" },
+        { id: "dash", kind: "line" },
+        { id: "double", kind: "line" },
+      ];
+      const syncDividerPreview = () => {
+        const preview = styleBtn.querySelector(".da-prop-divider-preview");
+        if (preview) preview.setAttribute("data-style", daEditorPropState.dividerStyle);
+        menu.querySelectorAll(".da-prop-divider-item").forEach((item) => {
+          item.classList.toggle("is-active", item.getAttribute("data-style") === daEditorPropState.dividerStyle);
+        });
+      };
+      dividerOptions.forEach((opt) => {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className =
+          "da-prop-divider-item" + (daEditorPropState.dividerStyle === opt.id ? " is-active" : "");
+        item.setAttribute("data-style", opt.id);
+        item.setAttribute("role", "menuitem");
+        if (opt.kind === "text") {
+          item.innerHTML = '<span class="da-prop-divider-item-text">空</span>';
+        } else {
+          item.innerHTML = '<span class="da-prop-divider-item-line" data-style="' + opt.id + '"></span>';
+        }
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
+          daEditorPropState.dividerStyle = opt.id;
+          divider.classList.remove("is-open");
+          syncDividerPreview();
+          showToast("分割线样式已更新（示意）", "info");
+        });
+        menu.appendChild(item);
+      });
+      styleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const willOpen = !divider.classList.contains("is-open");
+        document.querySelectorAll(".da-prop-divider.is-open").forEach((el) => el.classList.remove("is-open"));
+        if (willOpen) divider.classList.add("is-open");
+      });
+      penBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        divider.classList.remove("is-open");
+        showToast("画笔（示意）", "info");
+      });
+      divider.addEventListener("click", (e) => e.stopPropagation());
+      divider.appendChild(styleBtn);
+      divider.appendChild(penBtn);
+      divider.appendChild(menu);
+      dividerWrap.appendChild(divider);
+      divRow.innerHTML = '<span class="da-prop-label">分割线</span>';
+      divRow.appendChild(dividerWrap);
+
+      const adaptRow = document.createElement("div");
+      adaptRow.className = "da-prop-row";
+      adaptRow.innerHTML =
+        '<span class="da-prop-label"></span><div class="da-prop-control">' +
+        '<label class="da-prop-check"><input type="checkbox" data-k="adaptive" /><span class="da-prop-check-box"></span>自适应</label></div>';
+      const adaptInput = adaptRow.querySelector('input[type="checkbox"]');
+      adaptInput.checked = !!daEditorPropState.adaptive;
+      adaptInput.addEventListener("change", () => {
+        daEditorPropState.adaptive = adaptInput.checked;
+        showToast(adaptInput.checked ? "已开启自适应（示意）" : "已关闭自适应（示意）", "info");
+      });
+
+      form.appendChild(bgRow);
+      form.appendChild(divRow);
+      form.appendChild(adaptRow);
+      return form;
+    }
+
+    function buildDaPropTitleFormatFields() {
+      const wrap = document.createElement("div");
+      wrap.className = "da-prop-stack";
+
+      const showRow = document.createElement("div");
+      showRow.className = "da-prop-field-row";
+      showRow.innerHTML =
+        '<span class="da-prop-field-label">显示标题</span>' +
+        '<label class="da-prop-switch"><input type="checkbox" /><span class="da-prop-switch-slider"></span></label>';
+      const showInput = showRow.querySelector("input");
+      showInput.checked = !!daEditorPropState.showTitle;
+      showInput.addEventListener("change", () => {
+        daEditorPropState.showTitle = showInput.checked;
+        showToast(showInput.checked ? "已显示标题（示意）" : "已隐藏标题（示意）", "info");
+      });
+
+      const alignField = document.createElement("div");
+      alignField.className = "da-prop-field";
+      alignField.innerHTML =
+        '<span class="da-prop-field-label">对齐方式</span>' +
+        '<select class="da-prop-select da-prop-select--filled">' +
+        '<option value="left">左对齐</option>' +
+        '<option value="center">居中</option>' +
+        '<option value="right">右对齐</option>' +
+        "</select>";
+      const alignSel = alignField.querySelector("select");
+      alignSel.value = daEditorPropState.titleAlign;
+      alignSel.addEventListener("change", () => {
+        daEditorPropState.titleAlign = alignSel.value;
+        showToast("对齐方式已更新（示意）", "info");
+      });
+
+      const fontField = document.createElement("div");
+      fontField.className = "da-prop-field";
+      fontField.innerHTML =
+        '<span class="da-prop-field-label">字体</span>' +
+        '<div class="da-prop-font-grid">' +
+        '<select class="da-prop-select da-prop-select--filled" data-k="family">' +
+        '<option value="default">默认字体</option>' +
+        '<option value="microsoft-yahei">微软雅黑</option>' +
+        '<option value="pingfang">苹方</option>' +
+        "</select>" +
+        '<select class="da-prop-select da-prop-select--filled" data-k="scale">' +
+        '<option value="normal">常规字号</option>' +
+        '<option value="large">大号</option>' +
+        '<option value="small">小号</option>' +
+        "</select>" +
+        "</div>" +
+        '<div class="da-prop-font-row">' +
+        '<select class="da-prop-select da-prop-select--filled" data-k="size">' +
+        '<option value="12">12</option>' +
+        '<option value="14">14</option>' +
+        '<option value="16">16</option>' +
+        '<option value="18">18</option>' +
+        '<option value="20">20</option>' +
+        "</select>" +
+        '<select class="da-prop-select da-prop-select--filled" data-k="weight">' +
+        '<option value="regular">常规体</option>' +
+        '<option value="medium">中等</option>' +
+        '<option value="bold">加粗</option>' +
+        "</select>" +
+        '<button type="button" class="da-prop-color da-prop-color--sm" title="字体颜色"><input type="color" /></button>' +
+        "</div>";
+
+      fontField.querySelector('[data-k="family"]').value = daEditorPropState.titleFontFamily;
+      fontField.querySelector('[data-k="scale"]').value = daEditorPropState.titleFontScale;
+      fontField.querySelector('[data-k="size"]').value = daEditorPropState.titleFontSize;
+      fontField.querySelector('[data-k="weight"]').value = daEditorPropState.titleFontWeight;
+      const colorBtn = fontField.querySelector(".da-prop-color");
+      const colorInput = fontField.querySelector('input[type="color"]');
+      colorInput.value = daEditorPropState.titleFontColor;
+      colorBtn.style.background = daEditorPropState.titleFontColor;
+
+      fontField.querySelector('[data-k="family"]').addEventListener("change", (e) => {
+        daEditorPropState.titleFontFamily = e.target.value;
+        showToast("字体已更新（示意）", "info");
+      });
+      fontField.querySelector('[data-k="scale"]').addEventListener("change", (e) => {
+        daEditorPropState.titleFontScale = e.target.value;
+        showToast("字号类型已更新（示意）", "info");
+      });
+      fontField.querySelector('[data-k="size"]').addEventListener("change", (e) => {
+        daEditorPropState.titleFontSize = e.target.value;
+        showToast("字号已更新（示意）", "info");
+      });
+      fontField.querySelector('[data-k="weight"]').addEventListener("change", (e) => {
+        daEditorPropState.titleFontWeight = e.target.value;
+        showToast("字体样式已更新（示意）", "info");
+      });
+      colorInput.addEventListener("input", () => {
+        daEditorPropState.titleFontColor = colorInput.value;
+        colorBtn.style.background = colorInput.value;
+      });
+      colorInput.addEventListener("change", () => {
+        showToast("字体颜色已更新（示意）", "info");
+      });
+
+      wrap.appendChild(showRow);
+      wrap.appendChild(alignField);
+      wrap.appendChild(fontField);
+      return wrap;
+    }
+
+    function buildDaPropConfigForm() {
+      const root = document.createElement("div");
+      root.className = "da-prop-panel-inner";
+
+      const tabs = document.createElement("div");
+      tabs.className = "da-prop-tabs";
+      [
+        ["style", "样式"],
+        ["interaction", "交互"],
+      ].forEach(([id, label]) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "da-prop-tab" + (daEditorPropState.tab === id ? " is-active" : "");
+        btn.textContent = label;
+        btn.addEventListener("click", () => {
+          daEditorPropState.tab = id;
+          mountDataAnalysisCanvas();
+        });
+        tabs.appendChild(btn);
+      });
+      root.appendChild(tabs);
+
+      const scroll = document.createElement("div");
+      scroll.className = "da-prop-sections";
+
+      if (daEditorPropState.tab !== "style") {
+        const accordion = document.createElement("div");
+        accordion.className = "da-prop-accordion";
+        const item = document.createElement("div");
+        item.className =
+          "da-prop-acc-item" + (daEditorPropState.openSections.jump ? " is-open" : "");
+        const hd = document.createElement("button");
+        hd.type = "button";
+        hd.className = "da-prop-acc-hd";
+        hd.innerHTML =
+          '<span class="da-prop-acc-arrow" aria-hidden="true">›</span><span>跳转设置</span>';
+        hd.addEventListener("click", () => {
+          daEditorPropState.openSections.jump = !daEditorPropState.openSections.jump;
+          mountDataAnalysisCanvas();
+        });
+        const bd = document.createElement("div");
+        bd.className = "da-prop-acc-bd da-prop-acc-bd--jump";
+        bd.appendChild(buildDaPropJumpEntry());
+        item.appendChild(hd);
+        item.appendChild(bd);
+        accordion.appendChild(item);
+        scroll.appendChild(accordion);
+        root.appendChild(scroll);
+        return root;
+      }
+
+      const titleBlock = document.createElement("div");
+      titleBlock.className = "da-prop-title-block";
+      titleBlock.innerHTML =
+        '<label class="da-prop-title-label"><span class="req">*</span>组件标题</label>' +
+        '<input class="da-prop-title-input" type="text" />';
+      const titleInput = titleBlock.querySelector("input");
+      titleInput.value = daEditorPropState.componentTitle;
+      titleInput.addEventListener("change", () => {
+        daEditorPropState.componentTitle = titleInput.value.trim() || "筛选栏_2000";
+        titleInput.value = daEditorPropState.componentTitle;
+        showToast("组件标题已更新（示意）", "info");
+      });
+      scroll.appendChild(titleBlock);
+
+      const accordion = document.createElement("div");
+      accordion.className = "da-prop-accordion";
+      const sections = [
+        { id: "filter", label: "筛选栏配置", body: "filter" },
+        { id: "titleFormat", label: "标题格式", body: "titleFormat" },
+      ];
+      sections.forEach((sec) => {
+        const item = document.createElement("div");
+        item.className = "da-prop-acc-item" + (daEditorPropState.openSections[sec.id] ? " is-open" : "");
+        const hd = document.createElement("button");
+        hd.type = "button";
+        hd.className = "da-prop-acc-hd";
+        hd.innerHTML = '<span class="da-prop-acc-arrow" aria-hidden="true">›</span><span>' + sec.label + "</span>";
+        hd.addEventListener("click", () => {
+          daEditorPropState.openSections[sec.id] = !daEditorPropState.openSections[sec.id];
+          mountDataAnalysisCanvas();
+        });
+        const bd = document.createElement("div");
+        bd.className = "da-prop-acc-bd";
+        if (sec.body === "filter") {
+          bd.appendChild(buildDaPropFilterFields());
+        } else if (sec.body === "titleFormat") {
+          bd.classList.add("da-prop-acc-bd--title");
+          bd.appendChild(buildDaPropTitleFormatFields());
+        } else {
+          const tip = document.createElement("div");
+          tip.className = "da-prop-empty";
+          tip.style.padding = "8px 6px";
+          tip.textContent = sec.label + "（示意）";
+          bd.appendChild(tip);
+        }
+        item.appendChild(hd);
+        item.appendChild(bd);
+        accordion.appendChild(item);
+      });
+      scroll.appendChild(accordion);
+      root.appendChild(scroll);
+      return root;
+    }
+
+    function buildDaModuleNav() {
+      const moduleNav = document.createElement("nav");
+      moduleNav.className = "da-module-nav";
+      moduleNav.setAttribute("aria-label", "数据分析模块");
+      daModuleNavItems.forEach((item) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "da-module-nav-item" + (daModuleNavActive === item.id ? " is-active" : "");
+        btn.textContent = item.label;
+        btn.addEventListener("click", () => {
+          daModuleNavActive = item.id;
+          if (item.id !== "create-report") {
+            showToast("「" + item.label + "」（示意）", "info");
+          } else {
+            daCanvasMode = "list";
+          }
+          mountDataAnalysisCanvas();
+        });
+        moduleNav.appendChild(btn);
+      });
+      const rail = document.createElement("div");
+      rail.className = "da-module-nav-rail";
+      rail.innerHTML =
+        '<button type="button" class="da-module-nav-rail-btn" title="收起" aria-label="收起">‹</button>' +
+        '<button type="button" class="da-module-nav-rail-btn" title="刷新" aria-label="刷新">↻</button>';
+      rail.querySelectorAll("button").forEach((b) => {
+        b.addEventListener("click", () => showToast(b.title + "（示意）", "info"));
+      });
+      moduleNav.appendChild(rail);
+      return moduleNav;
+    }
+
+    function mountDataAnalysisEditorCanvas() {
+      const root = document.createElement("div");
+      root.className = "da-editor-root";
+      root.appendChild(buildDaModuleNav());
+
+      const workspace = document.createElement("div");
+      workspace.className = "da-editor-workspace";
+
+      const head = document.createElement("div");
+      head.className = "da-editor-head";
+      const backBtn = document.createElement("button");
+      backBtn.type = "button";
+      backBtn.className = "da-editor-back";
+      backBtn.innerHTML =
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>' +
+        daEditorTitle +
+        "</span>";
+      backBtn.addEventListener("click", () => {
+        daCanvasMode = "list";
+        mountDataAnalysisCanvas();
+      });
+      const headActions = document.createElement("div");
+      headActions.className = "da-editor-head-actions";
+      const cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className = "da-btn";
+      cancelBtn.textContent = "取消";
+      cancelBtn.addEventListener("click", () => {
+        daCanvasMode = "list";
+        mountDataAnalysisCanvas();
+      });
+      const saveBtn = document.createElement("button");
+      saveBtn.type = "button";
+      saveBtn.className = "da-btn da-btn-primary";
+      saveBtn.textContent = "保存";
+      saveBtn.addEventListener("click", () => showToast("已保存「" + daEditorTitle + "」（示意）", "success"));
+      headActions.appendChild(cancelBtn);
+      headActions.appendChild(saveBtn);
+      head.appendChild(backBtn);
+      head.appendChild(headActions);
+      workspace.appendChild(head);
+
+      const toolbar = document.createElement("div");
+      toolbar.className = "da-editor-toolbar";
+      toolbar.setAttribute("aria-label", "设计工具栏");
+      const toolLeft = document.createElement("div");
+      toolLeft.className = "da-editor-toolbar-left";
+      const daContainerIconSvg =
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1.5"/><path d="M7 9h10M7 13h7"/><path d="M6 19h12"/></svg>';
+      const daControllerIconSvg =
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h10"/><circle cx="16" cy="8" r="2.2"/><path d="M20 16H10"/><circle cx="8" cy="16" r="2.2"/></svg>';
+      const daControllerMenuGroups = [
+        {
+          title: "常规",
+          items: ["下拉列表", "多选下拉列表", "单选按钮", "多选框", "文本", "下拉树"],
+        },
+        {
+          title: "日期",
+          items: ["日期范围", "日期"],
+        },
+        {
+          title: "数值",
+          items: [
+            { label: "数值范围" },
+            { label: "数值" },
+            { label: "滑块" },
+            { label: "范围滑块", muted: true },
+          ],
+        },
+        {
+          title: "按钮",
+          items: ["查询", "重置", "导出"],
+        },
+      ];
+      [
+        ["▤", "柱状图"],
+        ["controller", "控制器"],
+        ["⬡", "流程"],
+        ["container", "容器"],
+        ["sep"],
+        ["↺", "刷新"],
+        ["↩", "撤销"],
+        ["↪", "重做"],
+        ["🗑", "删除"],
+        ["T", "文本"],
+        ["⬇", "导出"],
+        ["⧉", "复制"],
+        ["☰", "图层"],
+        ["sep"],
+        ["🖥", "预览"],
+      ].forEach(([icon, title]) => {
+        if (icon === "sep") {
+          const sep = document.createElement("span");
+          sep.className = "da-editor-tool-sep";
+          sep.setAttribute("aria-hidden", "true");
+          toolLeft.appendChild(sep);
+          return;
+        }
+        if (icon === "controller" || icon === "container") {
+          const wrap = document.createElement("div");
+          wrap.className = "da-editor-tool-menu";
+          const tool = document.createElement("button");
+          tool.type = "button";
+          tool.className = "da-editor-tool";
+          tool.title = title;
+          tool.setAttribute("aria-haspopup", "true");
+          tool.setAttribute("aria-label", title);
+          tool.innerHTML = icon === "controller" ? daControllerIconSvg : daContainerIconSvg;
+          const dropdown = document.createElement("div");
+          dropdown.className =
+            "da-editor-tool-dropdown" + (icon === "controller" ? " da-editor-tool-dropdown--ctrl" : "");
+          dropdown.setAttribute("role", "menu");
+          if (icon === "controller") {
+            daControllerMenuGroups.forEach((group) => {
+              const groupEl = document.createElement("div");
+              groupEl.className = "da-editor-tool-group";
+              const groupTitle = document.createElement("div");
+              groupTitle.className = "da-editor-tool-group-title";
+              groupTitle.textContent = group.title;
+              groupEl.appendChild(groupTitle);
+              group.items.forEach((entry) => {
+                const label = typeof entry === "string" ? entry : entry.label;
+                const muted = typeof entry === "object" && entry.muted;
+                const item = document.createElement("button");
+                item.type = "button";
+                item.className = "da-editor-tool-dropdown-item" + (muted ? " is-muted" : "");
+                item.setAttribute("role", "menuitem");
+                item.textContent = label;
+                item.addEventListener("click", (e) => {
+                  e.stopPropagation();
+                  showToast("添加控制器「" + label + "」（示意）", "info");
+                });
+                groupEl.appendChild(item);
+              });
+              dropdown.appendChild(groupEl);
+            });
+          } else {
+            ["标签卡", "轮播卡", "筛选区"].forEach((label) => {
+              const item = document.createElement("button");
+              item.type = "button";
+              item.className = "da-editor-tool-dropdown-item";
+              item.setAttribute("role", "menuitem");
+              item.textContent = label;
+              item.addEventListener("click", (e) => {
+                e.stopPropagation();
+                showToast("添加「" + label + "」（示意）", "info");
+              });
+              dropdown.appendChild(item);
+            });
+          }
+          wrap.appendChild(tool);
+          wrap.appendChild(dropdown);
+          toolLeft.appendChild(wrap);
+          return;
+        }
+        const tool = document.createElement("button");
+        tool.type = "button";
+        tool.className = "da-editor-tool";
+        tool.textContent = icon;
+        tool.title = title;
+        tool.addEventListener("click", () => showToast(title + "（示意）", "info"));
+        toolLeft.appendChild(tool);
+      });
+      const shortcuts = document.createElement("a");
+      shortcuts.href = "javascript:void(0)";
+      shortcuts.className = "da-editor-shortcuts";
+      shortcuts.textContent = "快捷键";
+      shortcuts.addEventListener("click", (e) => {
+        e.preventDefault();
+        showToast("快捷键说明（示意）", "info");
+      });
+      toolbar.appendChild(toolLeft);
+      toolbar.appendChild(shortcuts);
+      workspace.appendChild(toolbar);
+
+      const body = document.createElement("div");
+      body.className = "da-editor-body";
+
+      const compList = document.createElement("aside");
+      compList.className = "da-comp-list";
+      compList.setAttribute("aria-label", "组件列表");
+      const compHd = document.createElement("div");
+      compHd.className = "da-comp-list-hd";
+      compHd.innerHTML = "<span>组件列表</span>";
+      const compAi = document.createElement("button");
+      compAi.type = "button";
+      compAi.className = "da-comp-list-ai";
+      compAi.textContent = "Ai";
+      compAi.title = "AI 助手";
+      compAi.addEventListener("click", () => showToast("AI 助手（示意）", "info"));
+      compHd.appendChild(compAi);
+      compList.appendChild(compHd);
+      const compItems = document.createElement("div");
+      compItems.className = "da-comp-items";
+      daEditorComponents.slice().sort((a, b) => a.listOrder - b.listOrder).forEach((comp) => {
+        const row = document.createElement("div");
+        row.className = "da-comp-item" + (daSelectedComponentId === comp.id ? " is-active" : "");
+        const label = document.createElement("span");
+        label.textContent = comp.label;
+        const eye = document.createElement("button");
+        eye.type = "button";
+        eye.className = "da-comp-item-eye";
+        eye.textContent = "👁";
+        eye.title = "显示/隐藏";
+        eye.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showToast(comp.label + " 可见性切换（示意）", "info");
+        });
+        row.appendChild(label);
+        row.appendChild(eye);
+        row.addEventListener("click", () => {
+          daSelectedComponentId = comp.id;
+          mountDataAnalysisCanvas();
+        });
+        compItems.appendChild(row);
+      });
+      compList.appendChild(compItems);
+      body.appendChild(compList);
+
+      const canvas = document.createElement("div");
+      canvas.className = "da-editor-canvas";
+      const widgets = document.createElement("div");
+      widgets.className = "da-editor-widgets";
+      widgets.appendChild(buildDaContractBoard());
+      canvas.appendChild(widgets);
+      const canvasFab = document.createElement("button");
+      canvasFab.type = "button";
+      canvasFab.className = "da-editor-canvas-fab";
+      canvasFab.textContent = "Ai";
+      canvasFab.title = "AI 助手";
+      canvasFab.addEventListener("click", () => showToast("AI 助手（示意）", "info"));
+      canvas.appendChild(canvasFab);
+      body.appendChild(canvas);
+
+      const propPanel = document.createElement("aside");
+      propPanel.className = "da-prop-panel";
+      propPanel.setAttribute("aria-label", "属性面板");
+      propPanel.appendChild(buildDaPropConfigForm());
+      body.appendChild(propPanel);
+
+      workspace.appendChild(body);
+      root.appendChild(workspace);
+      canvasEl.appendChild(root);
+    }
+
+    function mountDataAnalysisListCanvas() {
       const meta = daReportMeta[daSelectedReportId] || daReportMeta.demo0514;
 
       let filteredRows = daChartRows.filter((row) => {
@@ -47567,7 +51343,7 @@ showToast("发布「" + row.name + "」（示意）", "info");
       tabAddBtn.textContent = "+";
       tabAddBtn.dataset.opFlowNewBound = "1";
       tabAddBtn.addEventListener("click", () => {
-showToast("新建仪表板（示意）", "info");
+        showToast("新建仪表板（示意）", "info");
       });
       tabSide.appendChild(tabSideTitle);
       tabSide.appendChild(tabSearchBtn);
@@ -47606,7 +51382,15 @@ showToast("新建仪表板（示意）", "info");
         b.className = "da-rail-btn" + (active ? " is-active" : "");
         b.textContent = icon;
         b.title = mode === "view" ? "查看" : "设计";
-        b.addEventListener("click", () => showToast((mode === "view" ? "查看" : "设计") + "模式（示意）", "info"));
+        b.addEventListener("click", () => {
+          if (mode === "design") {
+            daCanvasMode = "editor";
+            daEditorTitle = meta.title;
+            mountDataAnalysisCanvas();
+            return;
+          }
+          showToast("查看模式（示意）", "info");
+        });
         rail.appendChild(b);
       });
       body.appendChild(rail);
@@ -47660,8 +51444,10 @@ showToast("新建仪表板（示意）", "info");
                 daOpenTabs.push({ id: child.id, label: child.label });
               }
               const reportMeta = daReportMeta[child.id];
-              const reportTitle = reportMeta ? reportMeta.title : child.label;
-
+              daEditorTitle = reportMeta ? reportMeta.title : child.label;
+              daCanvasMode = "list";
+              daPage = 1;
+              mountDataAnalysisCanvas();
             });
             sectionLi.appendChild(leaf);
           });
@@ -47688,14 +51474,16 @@ showToast("新建仪表板（示意）", "info");
       publishBtn.className = "da-btn da-btn-primary";
       publishBtn.innerHTML = '<span aria-hidden="true">➤</span> 发布';
       publishBtn.addEventListener("click", () => {
-showToast("发布「" + meta.title + "」（示意）", "info");
+        showToast("发布「" + meta.title + "」（示意）", "info");
       });
       const editBtn = document.createElement("button");
       editBtn.type = "button";
       editBtn.className = "da-btn";
       editBtn.innerHTML = '<span aria-hidden="true">✎</span> 编辑';
       editBtn.addEventListener("click", () => {
-showToast("编辑「" + meta.title + "」（示意）", "info");
+        daCanvasMode = "editor";
+        daEditorTitle = meta.title;
+        mountDataAnalysisCanvas();
       });
       const moreBtn = document.createElement("button");
       moreBtn.type = "button";
@@ -47817,11 +51605,18 @@ showToast("编辑「" + meta.title + "」（示意）", "info");
       aiFab.textContent = "AI";
       aiFab.title = "AI 助手";
       aiFab.addEventListener("click", () => {
-showToast("AI 助手（示意）", "info");
+        showToast("AI 助手（示意）", "info");
       });
       root.appendChild(aiFab);
 
-      canvasEl.appendChild(root);
+      const shell = document.createElement("div");
+      shell.className = "da-editor-root";
+      shell.appendChild(buildDaModuleNav());
+      const workspace = document.createElement("div");
+      workspace.className = "da-editor-workspace";
+      workspace.appendChild(root);
+      shell.appendChild(workspace);
+      canvasEl.appendChild(shell);
     }
 
     const BM_KB_TREE_ALL = "all";
@@ -52540,6 +56335,9 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
       }
       if (leafId === "create-report") {
         daPage = 1;
+        daCanvasMode = "list";
+        daModuleNavActive = "create-report";
+        daSelectedComponentId = "filter-area";
         devPathFlowState = null;
         return;
       }
@@ -52690,6 +56488,15 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
         canvasToolbarEl.textContent = "模型注册";
         canvasEl.classList.remove("canvas--physical");
         mountSystemModelRegistryPage();
+        return;
+      }
+
+      if (centerOverride === "app-data-analysis") {
+        if (canvasWrapEl) canvasWrapEl.classList.add("canvas-wrap--fullpage");
+        canvasToolbarEl.textContent =
+          daCanvasMode === "editor" ? "数据分析 · 制作报告" : "数据分析 · 报告列表";
+        canvasEl.classList.remove("canvas--physical");
+        mountDataAnalysisCanvas();
         return;
       }
 
@@ -53268,9 +57075,20 @@ showToast(toggleLabel + "实例「" + row.id + "」（示意）", "info");
             showToast("示例原型：「资产概览」待接入", "info");
             return;
           }
+          if (center === "app") {
+            goToAppCenter();
+            return;
+          }
           if (center === "scene") {
             goToBusinessProcesses();
           }
+        });
+      });
+
+      document.querySelectorAll(".sub-nav-item[data-hub-app]").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          goToAppCenter({ appKey: el.getAttribute("data-hub-app") || "data-analysis" });
         });
       });
 
