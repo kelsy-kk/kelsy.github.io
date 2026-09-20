@@ -1305,6 +1305,131 @@
       color: rgba(0, 0, 0, 0.65);
     }
 
+    .mig-map-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 0 0 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-map-tab {
+      position: relative;
+      height: 40px;
+      padding: 0 16px;
+      border: 0;
+      background: transparent;
+      color: rgba(0, 0, 0, 0.65);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .mig-map-tab:hover {
+      color: #1677ff;
+    }
+
+    .mig-map-tab.is-active {
+      color: #1677ff;
+      font-weight: 600;
+    }
+
+    .mig-map-tab.is-active::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+      height: 2px;
+      background: #1677ff;
+      border-radius: 1px 1px 0 0;
+    }
+
+    .mig-map-tab-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 0;
+    }
+
+    .mig-map-app-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 0 0 4px;
+    }
+
+    .mig-map-app-row__label {
+      flex: 0 0 auto;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .mig-map-app-row__label .is-req {
+      color: #ff4d4f;
+      margin-right: 2px;
+    }
+
+    .mig-map-app-select {
+      width: min(360px, 100%);
+      height: 32px;
+      padding: 0 28px 0 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      background: #fff;
+      color: rgba(0, 0, 0, 0.88);
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .mig-map-app-select:focus {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .mig-map-dir-mode {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .mig-map-dir-mode__options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+
+    .mig-map-dir-mode__option {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mig-map-dir-mode__option input {
+      margin: 0;
+      accent-color: #1677ff;
+      cursor: pointer;
+    }
+
+    .mig-map-dir-mode__tip {
+      margin: 0;
+      padding: 10px 12px;
+      border: 1px solid #91caff;
+      border-radius: 6px;
+      background: #e6f4ff;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     .mig-map-cascade {
       display: grid;
       grid-template-columns: minmax(160px, 1fr) minmax(160px, 1fr);
@@ -2576,19 +2701,274 @@
     }
 
     .mig-cmp-struct tr.is-mismatch td {
-      background: #fff7e6;
+      background: transparent;
     }
 
-    .mig-cmp-struct tr.is-missing td {
-      background: #fff2f0;
+    .mig-cmp-struct tr.is-missing td,
+    .mig-cmp-struct tr.is-deleted td {
+      background: transparent;
+      color: #cf1322;
+      text-decoration: line-through;
     }
 
-    .mig-cmp-struct tr.is-extra td {
-      background: #e6f4ff;
+    .mig-cmp-struct tr.is-extra td,
+    .mig-cmp-struct tr.is-added td {
+      background: transparent;
     }
 
     .mig-cmp-struct tr.is-same td {
-      background: #f6ffed;
+      background: transparent;
+    }
+
+    .mig-cmp-struct tr.is-empty td {
+      background: transparent;
+      color: rgba(0, 0, 0, 0.25);
+    }
+
+    .mig-cmp-struct .is-diff-cell {
+      color: #cf1322;
+      font-weight: 700;
+    }
+
+    .mig-cmp-struct-pair {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .mig-cmp-struct-pair__hd {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex-shrink: 0;
+      border-bottom: 1px solid #f0f0f0;
+      background: #f0f5ff;
+    }
+
+    .mig-cmp-struct-pair__hd-cell {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0958d9;
+      text-align: center;
+    }
+
+    .mig-cmp-struct-pair__hd-cell + .mig-cmp-struct-pair__hd-cell {
+      border-left: 1px solid #d6e4ff;
+    }
+
+    .mig-cmp-struct-pair__scroll {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .mig-cmp-struct-pair__table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mig-cmp-struct-pair__table > thead > tr > th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 0;
+      border: 0;
+      background: #fafafa;
+    }
+
+    .mig-cmp-struct-pair__side-hd {
+      display: grid;
+      grid-template-columns: minmax(88px, 1.2fr) minmax(72px, 1fr) 72px 56px 48px 48px 56px;
+      width: 100%;
+    }
+
+    .mig-cmp-struct-pair__side-hd span {
+      padding: 10px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      border-right: 1px solid #f0f0f0;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .mig-cmp-struct-pair__side-hd span:last-child {
+      border-right: 0;
+    }
+
+    .mig-cmp-struct-pair__table > thead > tr > th + th {
+      border-left: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-struct-pair__table > tbody > tr > td {
+      padding: 0;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: stretch;
+    }
+
+    .mig-cmp-struct-pair__table > tbody > tr > td + td {
+      border-left: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-struct-pair__side {
+      display: grid;
+      grid-template-columns: minmax(88px, 1.2fr) minmax(72px, 1fr) 72px 56px 48px 48px 56px;
+      width: 100%;
+      min-height: 40px;
+    }
+
+    .mig-cmp-struct-pair__side span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+      border-right: 1px solid #f0f0f0;
+      text-align: center;
+      box-sizing: border-box;
+      word-break: break-all;
+    }
+
+    .mig-cmp-struct-pair__side span:last-child {
+      border-right: 0;
+    }
+
+    .mig-cmp-struct-pair__side.is-empty {
+      color: rgba(0, 0, 0, 0.25);
+    }
+
+    .mig-cmp-struct-pair__side.is-deleted {
+      color: #cf1322;
+      text-decoration: line-through;
+    }
+
+    .mig-cmp-struct-pair__side .is-diff-cell {
+      color: #cf1322;
+      font-weight: 700;
+    }
+
+    .mig-cmp-struct-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .mig-cmp-struct-modal__box {
+      width: min(1180px, 96vw);
+      height: min(780px, 90vh);
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+    }
+
+    .mig-cmp-struct-modal__hd {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+      padding: 14px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-struct-modal__title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-cmp-struct-modal__sub {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+      line-height: 1.5;
+    }
+
+    .mig-cmp-struct-modal__close {
+      border: 0;
+      background: transparent;
+      font-size: 20px;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .mig-cmp-struct-modal__toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      padding: 10px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mig-cmp-struct-modal__search {
+      width: min(280px, 100%);
+      height: 32px;
+      box-sizing: border-box;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      padding: 0 10px;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .mig-cmp-struct-modal__search:focus {
+      border-color: #1677ff;
+      outline: none;
+    }
+
+    .mig-cmp-struct-modal__body {
+      flex: 1;
+      min-height: 0;
+      padding: 12px 16px 16px;
+      overflow: hidden;
+    }
+
+    .mig-cmp-struct-modal__body .mig-cmp-struct {
+      height: 100%;
+      min-height: 0;
+    }
+
+    .mig-cmp-struct-modal__body .mig-cmp-struct__col {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .mig-cmp-struct-modal__body .mig-cmp-struct__hd {
+      flex-shrink: 0;
+    }
+
+    .mig-cmp-struct-modal__scroll {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .mig-cmp-struct-modal__body .mig-cmp-struct th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
 
     .mig-cmp-legend {
@@ -3393,8 +3773,17 @@
       color: #52c41a;
     }
 
+    .mig-cat-card__count.is-fail {
+      color: #ff4d4f;
+    }
+
     .mig-cat-card__count.is-zero {
       color: #1677ff;
+    }
+
+    .mig-cat-card__stat-sep {
+      margin: 0 2px;
+      color: #d9d9d9;
     }
 
     .mig-detail-list-hd {
@@ -3448,6 +3837,12 @@
 
     .mig-link:hover {
       color: #4096ff;
+    }
+
+    .mig-link:disabled,
+    .mig-link:disabled:hover {
+      color: #bfbfbf;
+      cursor: not-allowed;
     }
 
     .mig-link:last-child {
@@ -5153,7 +5548,7 @@
       width: 14px;
       height: 14px;
       accent-color: #1677ff;
-      cursor: not-allowed;
+      cursor: pointer;
     }
 
     .sys-auth-cfg-empty {
@@ -31014,6 +31409,13 @@
       if (!sceneFlowMigrationExportRows) {
         sceneFlowMigrationExportRows = [
           {
+            id: "ex-fail",
+            name: "劳务智能问数导出失败示例",
+            creator: "葛伟",
+            status: "fail",
+            time: "2026-07-15 16:08:22",
+          },
+          {
             id: "ex1",
             name: "劳务智能问数测试1",
             creator: "葛伟",
@@ -36322,7 +36724,12 @@
     }
 
     function getSysAuthSceneFlowItems() {
-      return [...readStoredProcesses(), ...getBpDemoPresets()].filter((x) => !demoDeletedIds.has(x.id));
+      const items = [...readStoredProcesses(), ...getBpDemoPresets()].filter(
+        (x) => !demoDeletedIds.has(x.id)
+      );
+      if (items.length) return items;
+      // 场景中心可为空态；迁出/配置资源仍需可演示的场景与流程
+      return buildBpDemoPresets().filter((x) => !demoDeletedIds.has(x.id));
     }
 
     function collectSysAuthFlowResources(flowItems) {
@@ -36368,9 +36775,8 @@
         .sort((a, b) => getBpDisplayTitle(a).localeCompare(getBpDisplayTitle(b), "zh-CN"));
 
       const NAV_ROOT_ID = "__all__";
-      let selectAllMode = true;
-      const selectedBoardIds = new Set();
-      const selectedDomainKeys = new Set();
+      // 场景树单选：null | { kind:'all' } | { kind:'board', boardId } | { kind:'domain', boardId, domain }
+      let navSelection = null;
       const expandedNavBoardIds = new Set([NAV_ROOT_ID]);
       let flowQuery = "";
       let flowTab = "pending"; // pending | selected
@@ -36407,29 +36813,31 @@
       const firstWithDomains = boards.find((b) => b.domains && b.domains.length);
       if (firstWithDomains) expandedNavBoardIds.add(firstWithDomains.id);
 
-      function domainKey(boardId, domain) {
-        return boardId + "::" + domain;
+      function hasSceneSelection() {
+        return !!navSelection;
       }
 
-      function boardHasSelectedDomain(boardId) {
-        const prefix = boardId + "::";
-        for (const key of selectedDomainKeys) {
-          if (String(key).startsWith(prefix)) return true;
+      function matchesNavSelection(item) {
+        if (!navSelection) return false;
+        if (navSelection.kind === "all") return true;
+        const bd = resolveBpBoardDomain(item);
+        if (!bd.boardId) return false;
+        if (navSelection.kind === "domain") {
+          return bd.boardId === navSelection.boardId && bd.domain === navSelection.domain;
+        }
+        if (navSelection.kind === "board") {
+          return bd.boardId === navSelection.boardId;
         }
         return false;
       }
 
-      function matchesNavSelection(item) {
-        if (selectAllMode || (!selectedBoardIds.size && !selectedDomainKeys.size)) return true;
-        const bd = resolveBpBoardDomain(item);
-        if (!bd.boardId) return false;
-        if (bd.domain && selectedDomainKeys.has(domainKey(bd.boardId, bd.domain))) return true;
-        if (boardHasSelectedDomain(bd.boardId)) return false;
-        return selectedBoardIds.has(bd.boardId);
+      function getSceneMatchedFlows() {
+        return allFlows.filter((item) => matchesNavSelection(item));
       }
 
+      // 待选 Tab：展示当前场景下全部流程（已勾选的仍留在列表中）
       function getPendingFlows() {
-        return allFlows.filter((item) => matchesNavSelection(item) && !selectedFlowMap.has(item.id));
+        return getSceneMatchedFlows();
       }
 
       function getSelectedFlows() {
@@ -36449,13 +36857,31 @@
         return rows.filter((f) => getBpDisplayTitle(f).toLowerCase().includes(q));
       }
 
+      function addFlowsToSelected(flows) {
+        (flows || []).forEach((flow) => {
+          if (flow && flow.id) selectedFlowMap.set(flow.id, flow);
+        });
+      }
+
+      function removeFlowsFromSelected(flows) {
+        (flows || []).forEach((flow) => {
+          if (flow && flow.id) selectedFlowMap.delete(flow.id);
+        });
+      }
+
+      function toggleFlowSelected(flow, checked) {
+        if (!flow || !flow.id) return;
+        if (checked) selectedFlowMap.set(flow.id, flow);
+        else selectedFlowMap.delete(flow.id);
+      }
+
       const body = document.createElement("div");
       body.className = "sys-auth-cfg-drawer__body";
 
       const nav = document.createElement("aside");
       nav.className = "sys-auth-cfg-nav";
       nav.innerHTML =
-        '<div class="sys-auth-cfg-nav__hd">场景列表（可多选）</div>' +
+        '<div class="sys-auth-cfg-nav__hd">场景列表</div>' +
         '<div class="sys-auth-cfg-nav__tree" data-role="scene-nav"></div>';
 
       const main = document.createElement("section");
@@ -36494,62 +36920,44 @@
       }
 
       function selectNavAll() {
-        selectAllMode = true;
-        selectedBoardIds.clear();
-        selectedDomainKeys.clear();
+        navSelection = { kind: "all" };
+        flowTab = "pending";
         renderSceneNav();
         renderFlowTable();
       }
 
-      function toggleNavBoard(boardId) {
+      function selectNavBoard(boardId) {
         if (!boardId) return;
-        selectAllMode = false;
-        if (selectedBoardIds.has(boardId)) {
-          selectedBoardIds.delete(boardId);
-          const prefix = boardId + "::";
-          Array.from(selectedDomainKeys).forEach((key) => {
-            if (String(key).startsWith(prefix)) selectedDomainKeys.delete(key);
-          });
-        } else {
-          selectedBoardIds.add(boardId);
-          const prefix = boardId + "::";
-          Array.from(selectedDomainKeys).forEach((key) => {
-            if (String(key).startsWith(prefix)) selectedDomainKeys.delete(key);
-          });
-          const board = boards.find((b) => b.id === boardId);
-          if (board && board.domains && board.domains.length) {
-            expandedNavBoardIds.add(boardId);
-          }
-        }
-        if (!selectedBoardIds.size && !selectedDomainKeys.size) selectAllMode = true;
-        renderSceneNav();
-        renderFlowTable();
-      }
-
-      function toggleNavDomain(boardId, domain) {
-        if (!boardId || !domain) return;
-        selectAllMode = false;
-        const key = domainKey(boardId, domain);
-        if (selectedDomainKeys.has(key)) {
-          selectedDomainKeys.delete(key);
-        } else {
-          selectedDomainKeys.add(key);
-          selectedBoardIds.delete(boardId);
+        navSelection = { kind: "board", boardId };
+        const board = boards.find((b) => b.id === boardId);
+        if (board && board.domains && board.domains.length) {
           expandedNavBoardIds.add(boardId);
         }
-        if (!selectedBoardIds.size && !selectedDomainKeys.size) selectAllMode = true;
+        flowTab = "pending";
+        renderSceneNav();
+        renderFlowTable();
+      }
+
+      function selectNavDomain(boardId, domain) {
+        if (!boardId || !domain) return;
+        navSelection = { kind: "domain", boardId, domain };
+        expandedNavBoardIds.add(boardId);
+        flowTab = "pending";
         renderSceneNav();
         renderFlowTable();
       }
 
       function isBoardActive(boardId) {
-        if (selectAllMode) return false;
-        if (selectedBoardIds.has(boardId) && !boardHasSelectedDomain(boardId)) return true;
-        return false;
+        return navSelection && navSelection.kind === "board" && navSelection.boardId === boardId;
       }
 
       function isDomainActive(boardId, domain) {
-        return !selectAllMode && selectedDomainKeys.has(domainKey(boardId, domain));
+        return (
+          navSelection &&
+          navSelection.kind === "domain" &&
+          navSelection.boardId === boardId &&
+          navSelection.domain === domain
+        );
       }
 
       function renderSceneNav() {
@@ -36567,7 +36975,8 @@
         root.className = "sys-auth-cfg-nav-root";
 
         const rootHead = document.createElement("div");
-        rootHead.className = "sys-auth-cfg-nav-row" + (selectAllMode ? " is-active" : "");
+        rootHead.className =
+          "sys-auth-cfg-nav-row" + (navSelection && navSelection.kind === "all" ? " is-active" : "");
         const rootCaret = document.createElement("button");
         rootCaret.type = "button";
         rootCaret.className = "sys-auth-cfg-nav-row__caret";
@@ -36626,7 +37035,7 @@
             boardBtn.textContent = board.label;
             boardBtn.addEventListener("click", (e) => {
               e.stopPropagation();
-              toggleNavBoard(board.id);
+              selectNavBoard(board.id);
             });
             boardHead.appendChild(boardBtn);
             boardWrap.appendChild(boardHead);
@@ -36643,7 +37052,7 @@
                 domainBtn.textContent = domain;
                 domainBtn.addEventListener("click", (e) => {
                   e.stopPropagation();
-                  toggleNavDomain(board.id, domain);
+                  selectNavDomain(board.id, domain);
                 });
                 domainsWrap.appendChild(domainBtn);
               });
@@ -36657,35 +37066,42 @@
       }
 
       function syncTabChrome() {
-        const pendingN = getPendingFlows().length;
+        const sceneFlowN = getSceneMatchedFlows().length;
         const selectedN = selectedFlowMap.size;
-        pendingCountEl.textContent = "(" + pendingN + ")";
+        const selectedInSceneN = getSceneMatchedFlows().filter((f) => selectedFlowMap.has(f.id)).length;
+        pendingCountEl.textContent = "(" + sceneFlowN + ")";
         selectedCountEl.textContent = "(" + selectedN + ")";
         tabBtns.forEach((btn) => {
           btn.classList.toggle("is-active", btn.getAttribute("data-tab") === flowTab);
         });
 
         if (flowTab === "pending") {
-          flowMetaEl.textContent =
-            "已自动全选 " +
-            getVisibleFlows().length +
-            " 个待选流程 · 由左侧场景多选决定，不可单独勾选";
+          if (!hasSceneSelection()) {
+            flowMetaEl.textContent = "请先在左侧切换选择场景，再勾选流程";
+          } else {
+            flowMetaEl.textContent =
+              "当前场景 " +
+              sceneFlowN +
+              " 个流程，已勾选 " +
+              selectedInSceneN +
+              " 个 · 勾选后仍留在列表，并自动加入「已选」";
+          }
         } else {
           flowMetaEl.textContent = "已选 " + selectedN + " 个流程";
         }
 
         tabActionsEl.innerHTML = "";
         if (flowTab === "pending") {
-          const addBtn = document.createElement("button");
-          addBtn.type = "button";
-          addBtn.className = "is-link";
-          addBtn.textContent = "添加所选";
-          addBtn.disabled = !getPendingFlows().length;
-          addBtn.addEventListener("click", () => {
-            getPendingFlows().forEach((flow) => selectedFlowMap.set(flow.id, flow));
+          const selectAllBtn = document.createElement("button");
+          selectAllBtn.type = "button";
+          selectAllBtn.className = "is-link";
+          selectAllBtn.textContent = "全选当前";
+          selectAllBtn.disabled = !getVisibleFlows().length;
+          selectAllBtn.addEventListener("click", () => {
+            addFlowsToSelected(getVisibleFlows());
             renderFlowTable();
           });
-          tabActionsEl.appendChild(addBtn);
+          tabActionsEl.appendChild(selectAllBtn);
         } else {
           const clearBtn = document.createElement("button");
           clearBtn.type = "button";
@@ -36708,11 +37124,13 @@
         if (!rows.length) {
           const empty = document.createElement("div");
           empty.className = "sys-auth-cfg-empty";
-          empty.textContent = flowQuery
-            ? "未找到匹配的流程"
-            : flowTab === "pending"
-              ? "当前场景下暂无待选流程"
-              : "暂无已选流程，可在「待选」中添加";
+          if (flowQuery) {
+            empty.textContent = "未找到匹配的流程";
+          } else if (flowTab === "pending") {
+            empty.textContent = hasSceneSelection() ? "当前场景下暂无流程" : "请先在左侧选择场景";
+          } else {
+            empty.textContent = "暂无已选流程，可在「待选」中勾选添加";
+          }
           flowTableEl.appendChild(empty);
           return;
         }
@@ -36722,7 +37140,7 @@
         if (flowTab === "pending") {
           table.innerHTML =
             "<thead><tr>" +
-            "<th style='width:48px'><input type='checkbox' checked disabled aria-label='已全选' /></th>" +
+            "<th style='width:48px'><input type='checkbox' data-role='pending-check-all' aria-label='全选当前流程' /></th>" +
             "<th>流程名称</th>" +
             "</tr></thead>";
         } else {
@@ -36736,13 +37154,29 @@
         const tbody = document.createElement("tbody");
         rows.forEach((flow) => {
           const tr = document.createElement("tr");
+          const isChecked = selectedFlowMap.has(flow.id);
+          if (isChecked && flowTab === "pending") {
+            tr.classList.add("is-checked");
+          }
           const tdCheck = document.createElement("td");
           if (flowTab === "pending") {
             const cb = document.createElement("input");
             cb.type = "checkbox";
-            cb.checked = true;
-            cb.disabled = true;
-            cb.setAttribute("aria-label", "已选中，不可修改");
+            cb.checked = isChecked;
+            cb.setAttribute("aria-label", "选择流程：" + getBpDisplayTitle(flow));
+            cb.addEventListener("change", () => {
+              toggleFlowSelected(flow, cb.checked);
+              // 不整表重绘，保留当前列表勾选态，仅刷新角标与表头全选
+              syncTabChrome();
+              tr.classList.toggle("is-checked", cb.checked);
+              const checkAll = flowTableEl.querySelector('[data-role="pending-check-all"]');
+              if (checkAll) {
+                const visible = getVisibleFlows();
+                const checkedN = visible.filter((f) => selectedFlowMap.has(f.id)).length;
+                checkAll.checked = visible.length > 0 && checkedN === visible.length;
+                checkAll.indeterminate = checkedN > 0 && checkedN < visible.length;
+              }
+            });
             tdCheck.appendChild(cb);
           }
           tr.appendChild(tdCheck);
@@ -36773,6 +37207,20 @@
         });
         table.appendChild(tbody);
         flowTableEl.appendChild(table);
+
+        if (flowTab === "pending") {
+          const checkAll = table.querySelector('[data-role="pending-check-all"]');
+          if (checkAll) {
+            const checkedN = rows.filter((f) => selectedFlowMap.has(f.id)).length;
+            checkAll.checked = rows.length > 0 && checkedN === rows.length;
+            checkAll.indeterminate = checkedN > 0 && checkedN < rows.length;
+            checkAll.addEventListener("change", () => {
+              if (checkAll.checked) addFlowsToSelected(rows);
+              else removeFlowsFromSelected(rows);
+              renderFlowTable();
+            });
+          }
+        }
       }
 
       tabBtns.forEach((btn) => {
@@ -36945,6 +37393,24 @@
 
       const sceneImportRows = [
         {
+          id: "im-fail",
+          name: "劳务智能问数导入失败示例",
+          creator: "葛伟",
+          status: "fail",
+          time: "2026-07-14 14:36:19",
+          failReason:
+            "导入失败（物理模型 · 项目成本归集明细）：目标数仓缺少写元数据权限，已停止执行",
+          oneStopRows: [
+            {
+              id: "osi-im-fail-1",
+              name: "物料库零拷贝采集",
+              type: "离线",
+              status: "失败",
+              updateTime: "2026-07-14 14:36:19",
+            },
+          ],
+        },
+        {
           id: "im1",
           name: "劳务智能问数导入包1",
           creator: "葛伟",
@@ -37064,6 +37530,7 @@
       let sceneImportSeq = 100;
       let editingExportRow = null; // null=新建；有值=详情查看（旧迁出创建复用）
       let importCreateStep = 1; // 1=基本信息 2=对象映射 3=资源比对 4=预览 5=执行
+      let dataMigMapTab = "warehouse"; // warehouse | analysis
       let importPreviewTab = "import"; // import | delete
       let importPreviewDeleteCategory = "物理模型";
       let detailContentTab = "import"; // import | delete
@@ -37110,29 +37577,51 @@
         { key: "数据集", count: 5 },
       ];
 
-      function getMigDetailCategories(row) {
+      const MIG_CONTENT_FAIL_DEMO = {
+        业务流程: 1,
+        物理模型: 2,
+        逻辑模型: 1,
+        语义模型: 1,
+        离线集成任务: 1,
+        API: 1,
+      };
+
+      function getMigCategoryFailCount(key, total, withFail) {
+        if (!withFail || !total) return 0;
+        const n = Number(MIG_CONTENT_FAIL_DEMO[key] || 0);
+        return Math.min(n, total);
+      }
+
+      function getMigDetailCategories(row, options) {
+        options = options || {};
+        const withFail = !!options.withFail;
         const flowCount =
           (row && Array.isArray(row.flows) && row.flows.length) ||
           (row && row.flowCount) ||
           0;
         return MIG_CONTENT_CATEGORIES.map((cat) => {
-          if (cat.key === "业务流程") {
-            return {
-              key: cat.key,
-              count: flowCount > 0 ? flowCount : cat.count,
-            };
-          }
-          return { key: cat.key, count: Number(cat.count) || 0 };
+          const total = cat.key === "业务流程" && flowCount > 0 ? flowCount : Number(cat.count) || 0;
+          const failCount = getMigCategoryFailCount(cat.key, total, withFail);
+          return {
+            key: cat.key,
+            count: total,
+            failCount: failCount,
+            successCount: Math.max(0, total - failCount),
+          };
         });
       }
 
-      function buildMigCategoryItems(category, count, taskName, row) {
+      function buildMigCategoryItems(category, count, taskName, row, options) {
+        options = options || {};
+        const failCount = Math.min(Number(options.failCount || 0), Number(count || 0));
         if (category === "业务流程" && row && Array.isArray(row.flows) && row.flows.length) {
+          const total = row.flows.length;
+          const flowFail = Math.min(failCount, total);
           return row.flows.map((flow, i) => ({
             id: flow.id || "flow-" + (i + 1),
             name: flow.name || flow.title || "未命名业务流程",
             type: "业务流程",
-            status: "success",
+            status: i >= total - flowFail ? "fail" : "success",
             updateTime: row.time || "2026-07-15 15:23:01",
           }));
         }
@@ -37157,7 +37646,7 @@
             id: category + "-" + i,
             name: name,
             type: type,
-            status: "success",
+            status: i > count - failCount ? "fail" : "success",
             updateTime: "2026-07-15 15:23:0" + (i % 10),
           });
         }
@@ -37348,7 +37837,12 @@
         return rows.filter((r) => String(r.name || "").toLowerCase().includes(q));
       }
 
+      function isImportRowInProgress(row) {
+        return getRowStatusLabel(row) === "进行中";
+      }
+
       function appendActionLinks(tdAct, row, actions) {
+        const disableAll = listTab === "import" && isImportRowInProgress(row);
         actions.forEach((act, idx) => {
           if (idx > 0) {
             const sep = document.createElement("span");
@@ -37361,7 +37855,7 @@
           link.className = "mig-link";
           link.style.marginRight = "0";
           link.textContent = act.label;
-          if (act.disabled) link.disabled = true;
+          if (disableAll || act.disabled) link.disabled = true;
           link.addEventListener("click", () => {
             if (link.disabled) return;
             if (typeof act.onClick === "function") {
@@ -37971,6 +38465,7 @@
           if (activeAssistant === "scene-flow" && !isExport) {
             dataMigFromAssistant = "scene-flow";
             importCreateStep = 1;
+            dataMigMapTab = "warehouse";
             dataMigDraft = createDataMigDraft();
             pageView = "data-migration-import";
             renderAll();
@@ -37979,6 +38474,7 @@
           if ((activeAssistant === "governance" || activeAssistant === "analysis") && !isExport) {
             dataMigFromAssistant = activeAssistant;
             importCreateStep = 1;
+            dataMigMapTab = "warehouse";
             dataMigDraft = createDataMigDraft();
             pageView = "data-migration-import";
             renderAll();
@@ -38294,7 +38790,7 @@
           if (!picker) return;
           const flows = picker.getSelectedFlows();
           if (!flows.length) {
-            showToast("请选择要迁移的场景流程（在「待选」中点击「添加所选」）", "warn");
+            showToast("请选择要迁移的场景流程（先切换左侧场景，再在「待选」中勾选流程）", "warn");
             return;
           }
           sceneFlowMigExportSeq += 1;
@@ -38394,10 +38890,9 @@
         meta.appendChild(statusVal);
         basicSection.appendChild(basicTitle);
         basicSection.appendChild(meta);
+        body.appendChild(basicSection);
 
-        const isImportFail = !isExport && row.status === "fail" && row.failReason;
-
-        if (isImportFail) {
+        if (!isExport && row.status === "fail" && row.failReason) {
           const failBox = document.createElement("div");
           failBox.className = "mig-detail-fail";
           const failTitle = document.createElement("h3");
@@ -38408,9 +38903,9 @@
           failReason.textContent = row.failReason;
           failBox.appendChild(failTitle);
           failBox.appendChild(failReason);
-          body.appendChild(basicSection);
           body.appendChild(failBox);
-        } else {
+        }
+
         const deletedResources = !isExport ? getImportRowDeletedResources(row) : [];
         const showDeleteTab = !isExport && deletedResources.length > 0;
         if (showDeleteTab) {
@@ -38442,7 +38937,8 @@
         deleteListHost.style.borderRadius = "8px";
 
         function renderCategoryList() {
-          const categories = getMigDetailCategories(row);
+          const showFail = !isExport && row.status === "fail";
+          const categories = getMigDetailCategories(row, { withFail: showFail });
           listHost.innerHTML = "";
           if (!categories.length) {
             const empty = document.createElement("div");
@@ -38453,7 +38949,9 @@
           }
           const cat =
             categories.find((c) => c.key === detailCategory) || categories[0];
-          const items = buildMigCategoryItems(cat.key, cat.count, row.name, row);
+          const items = buildMigCategoryItems(cat.key, cat.count, row.name, row, {
+            failCount: showFail ? cat.failCount : 0,
+          });
 
           const listHd = document.createElement("div");
           listHd.className = "mig-detail-list-hd";
@@ -38463,7 +38961,17 @@
           listTitle.textContent = cat.key + "列表";
           const listSub = document.createElement("span");
           listSub.className = "mig-detail-list-hd__sub";
-          listSub.textContent = "共 " + items.length + " 条";
+          if (showFail && cat.count > 0) {
+            listSub.textContent =
+              "共 " +
+              items.length +
+              " 条 · 成功 " +
+              (cat.successCount || 0) +
+              " · 失败 " +
+              (cat.failCount || 0);
+          } else {
+            listSub.textContent = "共 " + items.length + " 条";
+          }
           listHd.appendChild(listTitle);
           listHd.appendChild(listSub);
           listHost.appendChild(listHd);
@@ -38513,9 +39021,40 @@
           listHost.appendChild(table);
         }
 
+        function appendCatCardStat(stat, cat, showFail) {
+          if (!cat.count) {
+            const countEl = document.createElement("span");
+            countEl.className = "mig-cat-card__count is-zero";
+            countEl.textContent = "0";
+            stat.appendChild(countEl);
+            return;
+          }
+          const okText = document.createElement("span");
+          okText.textContent = "成功";
+          const okCount = document.createElement("span");
+          okCount.className = "mig-cat-card__count is-ok";
+          okCount.textContent = String(cat.successCount != null ? cat.successCount : cat.count);
+          stat.appendChild(okText);
+          stat.appendChild(okCount);
+          if (showFail) {
+            const sep = document.createElement("span");
+            sep.className = "mig-cat-card__stat-sep";
+            sep.textContent = "/";
+            const failText = document.createElement("span");
+            failText.textContent = "失败";
+            const failCount = document.createElement("span");
+            failCount.className = "mig-cat-card__count is-fail";
+            failCount.textContent = String(cat.failCount || 0);
+            stat.appendChild(sep);
+            stat.appendChild(failText);
+            stat.appendChild(failCount);
+          }
+        }
+
         function renderCategoryCards() {
           catGrid.innerHTML = "";
-          const cats = getMigDetailCategories(row);
+          const showFail = !isExport && row.status === "fail";
+          const cats = getMigDetailCategories(row, { withFail: showFail });
           if (!cats.some((c) => c.key === detailCategory)) {
             detailCategory = cats[0] ? cats[0].key : "业务流程";
           }
@@ -38530,20 +39069,7 @@
             nameEl.textContent = cat.key;
             const stat = document.createElement("span");
             stat.className = "mig-cat-card__stat";
-            if (cat.count > 0) {
-              const okText = document.createElement("span");
-              okText.textContent = isExport ? "成功" : "成功";
-              const countEl = document.createElement("span");
-              countEl.className = "mig-cat-card__count is-ok";
-              countEl.textContent = String(cat.count);
-              stat.appendChild(okText);
-              stat.appendChild(countEl);
-            } else {
-              const countEl = document.createElement("span");
-              countEl.className = "mig-cat-card__count is-zero";
-              countEl.textContent = "0";
-              stat.appendChild(countEl);
-            }
+            appendCatCardStat(stat, cat, showFail);
             card.appendChild(nameEl);
             card.appendChild(stat);
             card.addEventListener("click", () => {
@@ -38711,14 +39237,12 @@
           contentSection.appendChild(listHost);
         }
 
-        body.appendChild(basicSection);
         body.appendChild(contentSection);
         renderCategoryCards();
         renderCategoryList();
         if (showDeleteTab) {
           renderDetailDeleteCategoryCards();
           renderDetailDeleteCategoryList();
-        }
         }
 
         const ft = document.createElement("div");
@@ -39131,6 +39655,10 @@
           neededMapKinds: [],
           parseDone: false,
           compareSkipped: false,
+          analysisAppId: "gdmp",
+          analysisAppName: "大数据开发平台应用(gdmp)",
+          datasetDirMode: "map", // map | reuse
+          reportDirMode: "map", // map | reuse
           /** 含报告：目录 + 分析数据源 */
           dsDirMaps: {
             PMLEAD公共: "",
@@ -39451,67 +39979,306 @@
         return model && (model.structStatus === "ok" || model.structStatus === "warn");
       }
 
-      function buildCompareStructDetailRow(model) {
-        const trDetail = document.createElement("tr");
-        trDetail.className = "mig-cmp-model-detail";
-        trDetail.setAttribute("data-cmp-detail", model.key);
-        const tdDetail = document.createElement("td");
-        tdDetail.colSpan = 5;
-        const structGrid = document.createElement("div");
-        structGrid.className = "mig-cmp-struct";
-        ["源结构", "目标结构"].forEach((title, idx) => {
-          const col = document.createElement("div");
-          col.className = "mig-cmp-struct__col";
-          col.innerHTML = '<div class="mig-cmp-struct__hd">' + title + "</div>";
-          const stbl = document.createElement("table");
-          stbl.innerHTML =
-            "<thead><tr><th>字段</th><th>中文名</th><th>类型</th><th>长度</th><th>主键</th><th>可空</th><th>索引</th></tr></thead>";
-          const stbody = document.createElement("tbody");
-          (idx === 0 ? model.structSource : model.structTarget).forEach((row) => {
-            const str = document.createElement("tr");
-            if (row.diff === "mismatch") str.className = "is-mismatch";
-            else if (row.diff === "missing") str.className = "is-missing";
-            else if (row.diff === "extra") str.className = "is-extra";
-            else str.className = "is-same";
-            str.innerHTML =
-              "<td>" +
-              row.name +
-              "</td><td>" +
-              (row.zhName || "—") +
-              "</td><td>" +
-              row.type +
-              "</td><td>" +
-              (row.len || "—") +
-              "</td><td>" +
-              row.pk +
-              "</td><td>" +
-              row.nullable +
-              "</td><td>" +
-              (row.idx || "—") +
-              "</td>";
-            stbody.appendChild(str);
-          });
-          stbl.appendChild(stbody);
-          col.appendChild(stbl);
-          structGrid.appendChild(col);
+      function closeCompareStructDetailModal() {
+        const existing = document.getElementById("migCmpStructModal");
+        if (existing) existing.remove();
+      }
+
+      function alignCompareStructPairs(sourceRows, targetRows) {
+        const sourceList = Array.isArray(sourceRows) ? sourceRows : [];
+        const targetList = Array.isArray(targetRows) ? targetRows : [];
+        const sourceMap = new Map();
+        const targetMap = new Map();
+        sourceList.forEach((row) => {
+          if (row && row.name && !sourceMap.has(row.name)) sourceMap.set(row.name, row);
         });
-        tdDetail.appendChild(structGrid);
-        trDetail.appendChild(tdDetail);
-        return trDetail;
+        targetList.forEach((row) => {
+          if (row && row.name && !targetMap.has(row.name)) targetMap.set(row.name, row);
+        });
+
+        const pairs = [];
+        const used = new Set();
+
+        sourceList.forEach((src) => {
+          if (!src || !src.name || used.has(src.name)) return;
+          if (!targetMap.has(src.name)) return;
+          used.add(src.name);
+          pairs.push({
+            name: src.name,
+            kind: "paired",
+            source: src,
+            target: targetMap.get(src.name),
+          });
+        });
+
+        targetList.forEach((tgt) => {
+          if (!tgt || !tgt.name || used.has(tgt.name)) return;
+          if (sourceMap.has(tgt.name)) return;
+          used.add(tgt.name);
+          pairs.push({
+            name: tgt.name,
+            kind: "deleted",
+            source: null,
+            target: tgt,
+          });
+        });
+
+        sourceList.forEach((src) => {
+          if (!src || !src.name || used.has(src.name)) return;
+          used.add(src.name);
+          pairs.push({
+            name: src.name,
+            kind: "added",
+            source: src,
+            target: null,
+          });
+        });
+
+        return pairs;
+      }
+
+      function buildStructFieldCells(row, peer, options) {
+        options = options || {};
+        const fields = [
+          { key: "name", empty: "—" },
+          { key: "zhName", empty: "—" },
+          { key: "type", empty: "—" },
+          { key: "len", empty: "—" },
+          { key: "pk", empty: "—" },
+          { key: "nullable", empty: "—" },
+          { key: "idx", empty: "—" },
+        ];
+        if (!row) {
+          return fields
+            .map(() => "<span>" + (options.placeholder || "—") + "</span>")
+            .join("");
+        }
+        return fields
+          .map((field) => {
+            const raw = row[field.key];
+            const text = raw === undefined || raw === null || raw === "" ? field.empty : String(raw);
+            const peerRaw = peer ? peer[field.key] : undefined;
+            const peerText =
+              peerRaw === undefined || peerRaw === null || peerRaw === ""
+                ? field.empty
+                : String(peerRaw);
+            const isDiff = options.compare && peer && text !== peerText;
+            return (
+              "<span" +
+              (isDiff ? ' class="is-diff-cell"' : "") +
+              ">" +
+              text +
+              "</span>"
+            );
+          })
+          .join("");
+      }
+
+      function filterCompareStructPairs(pairs, query) {
+        const q = String(query || "").trim().toLowerCase();
+        if (!q) return pairs;
+        return pairs.filter((pair) => {
+          const src = pair.source || {};
+          const tgt = pair.target || {};
+          const bag = [pair.name, src.zhName, tgt.zhName, src.name, tgt.name]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+          return bag.indexOf(q) >= 0;
+        });
+      }
+
+      function buildCompareStructPairView(pairs) {
+        const wrap = document.createElement("div");
+        wrap.className = "mig-cmp-struct-pair";
+
+        const hd = document.createElement("div");
+        hd.className = "mig-cmp-struct-pair__hd";
+        hd.innerHTML =
+          '<div class="mig-cmp-struct-pair__hd-cell">迁入字段列表</div>' +
+          '<div class="mig-cmp-struct-pair__hd-cell">当前环境字段列表</div>';
+        wrap.appendChild(hd);
+
+        const scroll = document.createElement("div");
+        scroll.className = "mig-cmp-struct-pair__scroll";
+        const table = document.createElement("table");
+        table.className = "mig-cmp-struct-pair__table";
+        table.innerHTML =
+          "<thead><tr>" +
+          "<th><div class='mig-cmp-struct-pair__side-hd'><span>字段</span><span>中文名</span><span>类型</span><span>长度</span><span>主键</span><span>可空</span><span>索引</span></div></th>" +
+          "<th><div class='mig-cmp-struct-pair__side-hd'><span>字段</span><span>中文名</span><span>类型</span><span>长度</span><span>主键</span><span>可空</span><span>索引</span></div></th>" +
+          "</tr></thead>";
+        const tbody = document.createElement("tbody");
+
+        if (!pairs.length) {
+          const emptyTr = document.createElement("tr");
+          emptyTr.innerHTML =
+            "<td colspan='2'><div class='mig-cmp-struct-pair__side is-empty'><span style='grid-column:1/-1'>无匹配字段</span></div></td>";
+          tbody.appendChild(emptyTr);
+        } else {
+          pairs.forEach((pair) => {
+            const tr = document.createElement("tr");
+            const leftCls =
+              pair.kind === "added"
+                ? "is-added"
+                : pair.kind === "deleted"
+                  ? "is-empty"
+                  : pair.source && pair.target
+                    ? hasStructFieldMismatch(pair.source, pair.target)
+                      ? "is-mismatch"
+                      : "is-same"
+                    : "is-empty";
+            const rightCls =
+              pair.kind === "deleted"
+                ? "is-deleted"
+                : pair.kind === "added"
+                  ? "is-empty"
+                  : pair.source && pair.target
+                    ? hasStructFieldMismatch(pair.source, pair.target)
+                      ? "is-mismatch"
+                      : "is-same"
+                    : "is-empty";
+            const tdLeft = document.createElement("td");
+            tdLeft.innerHTML =
+              '<div class="mig-cmp-struct-pair__side ' +
+              leftCls +
+              '">' +
+              buildStructFieldCells(pair.source, pair.target, {
+                compare: pair.kind === "paired",
+                placeholder: pair.kind === "deleted" ? "（无对应字段）" : "—",
+              }) +
+              "</div>";
+            const tdRight = document.createElement("td");
+            tdRight.innerHTML =
+              '<div class="mig-cmp-struct-pair__side ' +
+              rightCls +
+              '">' +
+              buildStructFieldCells(pair.target, pair.source, {
+                compare: pair.kind === "paired",
+                placeholder: pair.kind === "added" ? "（无对应字段）" : "—",
+              }) +
+              "</div>";
+            tr.appendChild(tdLeft);
+            tr.appendChild(tdRight);
+            tbody.appendChild(tr);
+          });
+        }
+
+        table.appendChild(tbody);
+        scroll.appendChild(table);
+        wrap.appendChild(scroll);
+        return wrap;
+      }
+
+      function hasStructFieldMismatch(a, b) {
+        if (!a || !b) return true;
+        return ["name", "zhName", "type", "len", "pk", "nullable", "idx"].some((key) => {
+          const left = a[key] === undefined || a[key] === null || a[key] === "" ? "—" : String(a[key]);
+          const right = b[key] === undefined || b[key] === null || b[key] === "" ? "—" : String(b[key]);
+          return left !== right;
+        });
+      }
+
+      function openCompareStructDetailModal(model) {
+        closeCompareStructDetailModal();
+        const sourceRows = model.structSource || [];
+        const targetRows = model.structTarget || [];
+        const allPairs = alignCompareStructPairs(sourceRows, targetRows);
+        const backdrop = document.createElement("div");
+        backdrop.id = "migCmpStructModal";
+        backdrop.className = "mig-cmp-struct-modal";
+        backdrop.setAttribute("role", "dialog");
+        backdrop.setAttribute("aria-modal", "true");
+        backdrop.setAttribute("aria-label", "结构详情");
+
+        const box = document.createElement("div");
+        box.className = "mig-cmp-struct-modal__box";
+        box.addEventListener("click", (e) => e.stopPropagation());
+
+        const hd = document.createElement("div");
+        hd.className = "mig-cmp-struct-modal__hd";
+        const hdLeft = document.createElement("div");
+        const title = document.createElement("h3");
+        title.className = "mig-cmp-struct-modal__title";
+        title.textContent = "结构详情 · " + (model.label || model.name || "");
+        const sub = document.createElement("p");
+        sub.className = "mig-cmp-struct-modal__sub";
+        const addedN = allPairs.filter((p) => p.kind === "added").length;
+        const deletedN = allPairs.filter((p) => p.kind === "deleted").length;
+        const mismatchN = allPairs.filter(
+          (p) => p.kind === "paired" && hasStructFieldMismatch(p.source, p.target)
+        ).length;
+        sub.textContent =
+          (model.name || "") +
+          (model.mapPath ? " · 映射路径：" + model.mapPath : "") +
+          " · 迁入 " +
+          sourceRows.length +
+          " 个 / 当前环境 " +
+          targetRows.length +
+          " 个 · 不一致 " +
+          mismatchN +
+          " · 删除 " +
+          deletedN +
+          " · 新增 " +
+          addedN;
+        hdLeft.appendChild(title);
+        hdLeft.appendChild(sub);
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "mig-cmp-struct-modal__close";
+        closeBtn.setAttribute("aria-label", "关闭");
+        closeBtn.textContent = "×";
+        hd.appendChild(hdLeft);
+        hd.appendChild(closeBtn);
+
+        const toolbar = document.createElement("div");
+        toolbar.className = "mig-cmp-struct-modal__toolbar";
+        const search = document.createElement("input");
+        search.className = "mig-cmp-struct-modal__search";
+        search.type = "search";
+        search.placeholder = "搜索字段名 / 中文名";
+        toolbar.appendChild(search);
+
+        const bodyEl = document.createElement("div");
+        bodyEl.className = "mig-cmp-struct-modal__body";
+
+        function renderStruct(query) {
+          bodyEl.innerHTML = "";
+          const filtered = filterCompareStructPairs(allPairs, query);
+          bodyEl.appendChild(buildCompareStructPairView(filtered));
+        }
+
+        function closeModal() {
+          closeCompareStructDetailModal();
+          document.removeEventListener("keydown", onEsc);
+        }
+        function onEsc(e) {
+          if (e.key === "Escape") closeModal();
+        }
+        closeBtn.addEventListener("click", closeModal);
+        backdrop.addEventListener("click", closeModal);
+        search.addEventListener("input", () => renderStruct(search.value));
+        document.addEventListener("keydown", onEsc);
+
+        renderStruct("");
+        box.appendChild(hd);
+        box.appendChild(toolbar);
+        box.appendChild(bodyEl);
+        backdrop.appendChild(box);
+        document.body.appendChild(backdrop);
+        window.setTimeout(() => search.focus(), 0);
       }
 
       function collapseCompareStructDetail(tbody, cmp) {
-        if (!tbody || !cmp || !cmp.expandedModelKey) return;
-        const key = cmp.expandedModelKey;
-        const modelRow = tbody.querySelector(".mig-cmp-model-row[data-model-key=\"" + key + "\"]");
-        if (modelRow) {
-          modelRow.classList.remove("is-expanded");
-          const btn = modelRow.querySelector(".mig-cmp-expand-btn");
+        closeCompareStructDetailModal();
+        if (cmp) cmp.expandedModelKey = null;
+        if (!tbody) return;
+        tbody.querySelectorAll(".mig-cmp-model-row.is-expanded").forEach((row) => {
+          row.classList.remove("is-expanded");
+          const btn = row.querySelector(".mig-cmp-expand-btn");
           if (btn) btn.textContent = "结构详情";
-        }
-        const detail = tbody.querySelector("[data-cmp-detail=\"" + key + "\"]");
-        if (detail) detail.remove();
-        cmp.expandedModelKey = null;
+        });
+        tbody.querySelectorAll(".mig-cmp-model-detail").forEach((el) => el.remove());
       }
 
       function buildMockStructFields(seed, hasDiff) {
@@ -39521,29 +40288,39 @@
           { name: "name", zhName: "名称", type: "VARCHAR", len: "128", pk: "否", nullable: "是", idx: "" },
           { name: "update_time", zhName: "更新时间", type: "DATETIME", len: "", pk: "否", nullable: "是", idx: "" },
         ];
-        if (!hasDiff) {
-          return { source: base.slice(), target: base.map((r) => Object.assign({}, r)) };
-        }
-        const source = base.concat([
-          {
-            name: "legacy_flag",
-            zhName: "历史标记",
-            type: "TINYINT",
-            len: "1",
+        const extras = [];
+        for (let i = 1; i <= 96; i += 1) {
+          extras.push({
+            name: "col_" + String(i).padStart(3, "0"),
+            zhName: "扩展字段 " + i,
+            type: i % 7 === 0 ? "INT" : "VARCHAR",
+            len: i % 7 === 0 ? "11" : "64",
             pk: "否",
             nullable: "是",
             idx: "",
-            diff: "missing",
-          },
-        ]);
-        const target = base.map((r, i) => {
-          const row = Object.assign({}, r);
-          if (i === 1) {
-            row.len = "128";
-            row.diff = "mismatch";
-          }
-          return row;
+          });
+        }
+        const source = base.concat(extras);
+        const target = base.concat(extras).map((r) => Object.assign({}, r));
+        if (!hasDiff) {
+          return { source: source.slice(), target };
+        }
+        // 迁入侧独有 → 新增（排在最下）
+        source.push({
+          name: "legacy_flag",
+          zhName: "历史标记",
+          type: "TINYINT",
+          len: "1",
+          pk: "否",
+          nullable: "是",
+          idx: "",
         });
+        // 同名字段属性不一致 → 单元格红字加粗
+        if (target[1]) {
+          target[1].len = "128";
+          target[1].type = "VARCHAR";
+        }
+        // 当前环境独有 → 删除（红横线）
         target.push({
           name: "extra_remark",
           zhName: "备注说明",
@@ -39552,7 +40329,6 @@
           pk: "否",
           nullable: "是",
           idx: "",
-          diff: "extra",
         });
         return { source, target };
       }
@@ -40340,7 +41116,6 @@
             { label: "表", val: sum.tableCount || 0, filter: "table" },
             { label: "视图", val: sum.viewCount || 0, filter: "view" },
             { label: "新增", val: sum.newCount || 0, filter: "new" },
-            { label: "未比对字段", val: sum.skipCount || 0, filter: "skip" },
             { label: "结构一致", val: sum.ok || 0, filter: "ok" },
             { label: "存在差异", val: sum.warn || 0, filter: "warn" },
             { label: "比对失败", val: sum.fail || 0, filter: "fail" },
@@ -40434,20 +41209,11 @@
                 expandBtn.className = "mig-btn mig-btn--ghost mig-cmp-expand-btn";
                 expandBtn.style.padding = "0 6px";
                 expandBtn.style.fontSize = "12px";
-                expandBtn.textContent = cmp.expandedModelKey === model.key ? "收起" : "结构详情";
+                expandBtn.textContent = "结构详情";
                 expandBtn.addEventListener("click", (e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  const tbody = tr.parentElement;
-                  if (cmp.expandedModelKey === model.key) {
-                    collapseCompareStructDetail(tbody, cmp);
-                    return;
-                  }
-                  collapseCompareStructDetail(tbody, cmp);
-                  cmp.expandedModelKey = model.key;
-                  tr.classList.add("is-expanded");
-                  expandBtn.textContent = "收起";
-                  tr.insertAdjacentElement("afterend", buildCompareStructDetailRow(model));
+                  openCompareStructDetailModal(model);
                 });
                 tdAct.appendChild(expandBtn);
               } else {
@@ -40459,9 +41225,6 @@
               tr.appendChild(tdSummary);
               tr.appendChild(tdAct);
               tbody.appendChild(tr);
-              if (cmp.expandedModelKey === model.key && canExpandCompareStruct(model)) {
-                tr.insertAdjacentElement("afterend", buildCompareStructDetailRow(model));
-              }
             });
             table.appendChild(tbody);
             listWrap.appendChild(table);
@@ -40915,6 +41678,18 @@
         "默认工程",
       ];
       const DATA_MIG_LAYER_TARGETS = ["ODS_层", "DWD_层", "ADS_层", "默认分层"];
+
+      const DATA_MIG_ANALYSIS_APP_OPTIONS = [
+        { id: "gdmp_devOps", label: "数据治理后台应用(gdmp_devOps)" },
+        { id: "gdap_controller", label: "数据分析平台_开发平台(gdap_controller)" },
+        { id: "AIDP", label: "智能算法开发平台(AIDP)" },
+        { id: "di-marketing", label: "企业数智营销(di-marketing)" },
+        { id: "gdmp-dap", label: "数据分析平台(gdmp-dap)" },
+        { id: "sjfxpt", label: "数据分析平台升级(sjfxpt)" },
+        { id: "gdmp-dataviz", label: "数据可视化(gdmp-dataviz)" },
+        { id: "gdmp", label: "大数据开发平台应用(gdmp)" },
+        { id: "finance", label: "金融" },
+      ];
 
       const DATA_MIG_MAP_KIND_DEFS_WITH_REPORT = [
         { key: "ds", label: "数据源" },
@@ -41773,8 +42548,7 @@
           const batchBtn = document.createElement("button");
           batchBtn.type = "button";
           batchBtn.className = "mig-btn mig-btn--ghost mig-map-batch-btn";
-          batchBtn.textContent = "批量设置";
-          batchBtn.hidden = true;
+          batchBtn.textContent = "批量映射";
           titleRow.appendChild(h);
           titleRow.appendChild(batchBtn);
 
@@ -41805,7 +42579,10 @@
           const rowChecks = {};
 
           function syncBatchBtn() {
-            batchBtn.hidden = selected.size === 0;
+            batchBtn.disabled = false;
+            batchBtn.title = selected.size
+              ? "对已勾选对象批量映射"
+              : "请先勾选要批量映射的对象";
           }
 
           function syncSelectAll() {
@@ -41856,9 +42633,12 @@
 
           batchBtn.addEventListener("click", () => {
             const count = selected.size;
-            if (!count) return;
+            if (!count) {
+              showToast("请先勾选要批量映射的对象", "warn");
+              return;
+            }
             openMigBatchTreeModal({
-              title: "批量设置：" + (options.titleText || ""),
+              title: "批量映射：" + (options.titleText || ""),
               nodes: treeNodes,
               searchPlaceholder: options.searchPlaceholder || "搜索目录",
               tip: options.batchTip || "在组织树中选择目标，将应用到已勾选的源对象。",
@@ -41870,10 +42650,11 @@
                 selected.clear();
                 syncBatchBtn();
                 syncSelectAll();
-                showToast("已批量设置 " + count + " 个源对象", "success");
+                showToast("已批量映射 " + count + " 个源对象", "success");
               },
             });
           });
+          syncBatchBtn();
 
           Object.keys(maps).forEach((src) => {
             if (mode === "analysis") {
@@ -42001,13 +42782,13 @@
               fileName: "业务流程迁出包_含报告.zip",
               badge: "含报告",
               badgeClass: "is-report",
-              desc: "在不含报告映射基础上，额外映射：分析数据源、数据集目录、报告目录",
+              desc: "在数仓信息映射基础上，额外打开分析资源映射：分析数据源、数据集目录、报告目录",
             },
             {
               fileName: "业务流程迁出包_不含报告.zip",
               badge: "不含报告",
               badgeClass: "is-plain",
-              desc: "解析后映射：数据源（业务/数仓）、工程、分层（同名自动匹配）",
+              desc: "仅数仓信息映射：业务数据源、数仓数据源、工程、分层（同名自动匹配）",
             },
           ];
 
@@ -42023,7 +42804,7 @@
           pkgHint.style.color = "rgba(0,0,0,0.45)";
           pkgHint.style.lineHeight = "1.6";
           pkgHint.textContent =
-            "原型演示用：点选下方任一示例包即可进入对应对象映射；自行上传时文件名含「含报告」或 report 视为含报告，含「不含报告」视为不含报告。";
+            "原型演示用：点选下方任一示例包即可进入对象映射；含报告时展示「数仓信息映射 / 分析资源映射」两个 Tab，不含报告时仅展示数仓信息映射。";
           const pkgGrid = document.createElement("div");
           pkgGrid.className = "mig-demo-pkgs";
           const pkgBtns = [];
@@ -42244,18 +43025,21 @@
             if (titleEl) titleEl.textContent = "解析完成";
             if (subEl) {
               subEl.textContent = parseResult.hasReport
-                ? "本包包含报告，即将进入完整对象映射（含分析数据源、数据集目录、报告目录）。"
-                : "本包不含报告，即将进入数据源/工程/分层映射（同名已自动匹配）。";
+                ? "本包包含报告/数据集，即将进入对象映射（数仓信息映射 + 分析资源映射）。"
+                : "本包不含报告/数据集，即将进入数仓信息映射（业务/数仓数据源、工程、分层；同名已自动匹配）。";
             }
             const mapDefs = getActiveMapKindDefs(parseResult.hasReport);
             if (resultEl) {
               resultEl.hidden = false;
               resultEl.textContent =
-                (parseResult.hasReport ? "含报告 · 需映射：" : "不含报告 · 需映射：") +
+                (parseResult.hasReport
+                  ? "含报告 · 数仓信息映射 + 分析资源映射："
+                  : "不含报告 · 仅数仓信息映射：") +
                 mapDefs.map((d) => d.label).join("、");
             }
             window.setTimeout(() => {
               if (importCreateStep !== "parsing") return;
+              dataMigMapTab = "warehouse";
               importCreateStep = 2;
               renderAll();
             }, 900);
@@ -42266,6 +43050,9 @@
             applyParseResultToDraft(resolvePackageParseResult(dataMigDraft.fileName));
           }
           const hasReport = !!dataMigDraft.hasReport;
+          if (!hasReport && dataMigMapTab === "analysis") {
+            dataMigMapTab = "warehouse";
+          }
           const notice = document.createElement("div");
           notice.className = "mig-map-notice";
           notice.setAttribute("aria-expanded", "true");
@@ -42291,78 +43078,244 @@
 
           const mapSection = document.createElement("section");
           mapSection.className = "mig-create__section";
-          const mapOpts = { host: mapSection };
 
-          if (needsMapKind("ds")) {
-            const dsGroup = document.createElement("div");
-            dsGroup.className = "mig-map-group";
-            const dsTitle = document.createElement("h3");
-            dsTitle.className = "mig-map-group__title";
-            dsTitle.textContent = "数据源映射";
-            dsGroup.appendChild(dsTitle);
-            appendPairMapTable("业务数据源", dataMigDraft.businessMaps, DATA_MIG_BIZ_DS_TARGETS, {
-              host: dsGroup,
-              asSub: true,
-              showAuto: true,
+          function fillWarehouseMapPanel(panel) {
+            if (needsMapKind("ds")) {
+              appendPairMapTable("业务数据源", dataMigDraft.businessMaps, DATA_MIG_BIZ_DS_TARGETS, {
+                host: panel,
+                showAuto: true,
+              });
+              appendPairMapTable("数仓数据源", dataMigDraft.warehouseMaps, DATA_MIG_WH_DS_TARGETS, {
+                host: panel,
+                showAuto: true,
+              });
+            }
+            if (needsMapKind("project")) {
+              appendPairMapTable("工程映射", dataMigDraft.projectMaps, DATA_MIG_PROJECT_TARGETS, {
+                host: panel,
+                showAuto: true,
+              });
+            }
+            if (needsMapKind("layer")) {
+              appendPairMapTable("分层映射", dataMigDraft.layerMaps, DATA_MIG_LAYER_TARGETS, {
+                host: panel,
+                showAuto: true,
+              });
+            }
+          }
+
+          function appendAnalysisAppSelector(panel) {
+            if (!dataMigDraft.analysisAppId) {
+              dataMigDraft.analysisAppId = "gdmp";
+              dataMigDraft.analysisAppName = "大数据开发平台应用(gdmp)";
+            }
+            const row = document.createElement("div");
+            row.className = "mig-map-app-row";
+            const label = document.createElement("label");
+            label.className = "mig-map-app-row__label";
+            label.setAttribute("for", "migAnalysisAppSelect");
+            label.innerHTML = '<span class="is-req">*</span>应用：';
+            const select = document.createElement("select");
+            select.id = "migAnalysisAppSelect";
+            select.className = "mig-map-app-select";
+            select.setAttribute("aria-label", "选择应用");
+            DATA_MIG_ANALYSIS_APP_OPTIONS.forEach((opt) => {
+              const option = document.createElement("option");
+              option.value = opt.id;
+              option.textContent = opt.label;
+              if (opt.id === dataMigDraft.analysisAppId) option.selected = true;
+              select.appendChild(option);
             });
-            appendPairMapTable("数仓数据源", dataMigDraft.warehouseMaps, DATA_MIG_WH_DS_TARGETS, {
-              host: dsGroup,
-              asSub: true,
-              showAuto: true,
+            if (!DATA_MIG_ANALYSIS_APP_OPTIONS.some((o) => o.id === dataMigDraft.analysisAppId)) {
+              select.value = "gdmp";
+              dataMigDraft.analysisAppId = "gdmp";
+              dataMigDraft.analysisAppName = "大数据开发平台应用(gdmp)";
+            }
+            select.addEventListener("change", () => {
+              const found = DATA_MIG_ANALYSIS_APP_OPTIONS.find((o) => o.id === select.value);
+              dataMigDraft.analysisAppId = select.value;
+              dataMigDraft.analysisAppName = found ? found.label : select.value;
             });
-            if (hasReport && needsMapKind("ds")) {
+            row.appendChild(label);
+            row.appendChild(select);
+            panel.appendChild(row);
+          }
+
+          function appendDirMapWithMode(panel, options) {
+            const modeKey = options.modeKey;
+            const maps = options.maps;
+            if (!dataMigDraft[modeKey]) dataMigDraft[modeKey] = "map";
+            ensurePathDirMaps(maps);
+
+            const wrap = document.createElement("div");
+            wrap.className = "mig-map-block";
+            const title = document.createElement("h3");
+            title.className = "mig-map-block__title";
+            title.textContent = options.titleText;
+            wrap.appendChild(title);
+
+            const modeBox = document.createElement("div");
+            modeBox.className = "mig-map-dir-mode";
+            const opts = document.createElement("div");
+            opts.className = "mig-map-dir-mode__options";
+            const mapId = "mig-dir-mode-" + modeKey + "-map";
+            const reuseId = "mig-dir-mode-" + modeKey + "-reuse";
+
+            const mapLabel = document.createElement("label");
+            mapLabel.className = "mig-map-dir-mode__option";
+            mapLabel.setAttribute("for", mapId);
+            const mapRadio = document.createElement("input");
+            mapRadio.type = "radio";
+            mapRadio.name = "mig-dir-mode-" + modeKey;
+            mapRadio.id = mapId;
+            mapRadio.value = "map";
+            mapRadio.checked = dataMigDraft[modeKey] === "map";
+            mapLabel.appendChild(mapRadio);
+            mapLabel.appendChild(document.createTextNode("自行映射目标目录"));
+
+            const reuseLabel = document.createElement("label");
+            reuseLabel.className = "mig-map-dir-mode__option";
+            reuseLabel.setAttribute("for", reuseId);
+            const reuseRadio = document.createElement("input");
+            reuseRadio.type = "radio";
+            reuseRadio.name = "mig-dir-mode-" + modeKey;
+            reuseRadio.id = reuseId;
+            reuseRadio.value = "reuse";
+            reuseRadio.checked = dataMigDraft[modeKey] === "reuse";
+            reuseLabel.appendChild(reuseRadio);
+            reuseLabel.appendChild(document.createTextNode("使用迁出目录信息（目标环境自动创建）"));
+
+            opts.appendChild(mapLabel);
+            opts.appendChild(reuseLabel);
+            modeBox.appendChild(opts);
+
+            const tip = document.createElement("p");
+            tip.className = "mig-map-dir-mode__tip";
+            tip.hidden = dataMigDraft[modeKey] !== "reuse";
+            tip.textContent =
+              "不进行目录映射时，将按迁出包中的目录结构在目标环境自动创建同名目录，并挂载到当前所选应用下。";
+            modeBox.appendChild(tip);
+            wrap.appendChild(modeBox);
+
+            const mapHost = document.createElement("div");
+            mapHost.hidden = dataMigDraft[modeKey] !== "map";
+            wrap.appendChild(mapHost);
+            panel.appendChild(wrap);
+
+            function syncMode(nextMode) {
+              dataMigDraft[modeKey] = nextMode;
+              tip.hidden = nextMode !== "reuse";
+              mapHost.hidden = nextMode !== "map";
+              if (nextMode === "map" && !mapHost.childElementCount) {
+                appendTreeObjectMapBlock({
+                  titleText: "映射列表",
+                  maps: maps,
+                  mode: "dir",
+                  tree: options.tree,
+                  host: mapHost,
+                  targetHeader: "目标目录",
+                  placeholder: "请选择目录",
+                  searchPlaceholder: "搜索目录",
+                });
+                const innerBlock = mapHost.querySelector(".mig-map-block");
+                if (innerBlock) {
+                  innerBlock.style.marginBottom = "0";
+                }
+              }
+            }
+
+            mapRadio.addEventListener("change", () => {
+              if (mapRadio.checked) syncMode("map");
+            });
+            reuseRadio.addEventListener("change", () => {
+              if (reuseRadio.checked) syncMode("reuse");
+            });
+            syncMode(dataMigDraft[modeKey]);
+          }
+
+          function fillAnalysisMapPanel(panel) {
+            appendAnalysisAppSelector(panel);
+            if (needsMapKind("ds")) {
               ensureAnalysisMaps();
               appendTreeObjectMapBlock({
                 titleText: "分析数据源",
                 maps: dataMigDraft.analysisMaps,
                 mode: "analysis",
-                host: dsGroup,
-                asSub: true,
+                host: panel,
                 targetHeader: "目标对象（映射目录）",
                 placeholder: "请选择映射目录（目录 / 数据源）",
                 searchPlaceholder: "搜索目录或数据源",
                 batchTip: "在组织树中选择目录及数据源，将应用到已勾选的源对象。",
               });
             }
-            mapSection.appendChild(dsGroup);
-          }
-          if (needsMapKind("project"))
-            appendPairMapTable("工程映射", dataMigDraft.projectMaps, DATA_MIG_PROJECT_TARGETS, {
-              host: mapSection,
-              showAuto: true,
-            });
-          if (needsMapKind("layer"))
-            appendPairMapTable("分层映射", dataMigDraft.layerMaps, DATA_MIG_LAYER_TARGETS, {
-              host: mapSection,
-              showAuto: true,
-            });
-          if (hasReport) {
             if (needsMapKind("datasetDir")) {
-              ensurePathDirMaps(dataMigDraft.datasetDirMaps);
-              appendTreeObjectMapBlock({
+              appendDirMapWithMode(panel, {
                 titleText: "数据集目录映射",
                 maps: dataMigDraft.datasetDirMaps,
-                mode: "dir",
                 tree: DATA_MIG_DATASET_DIR_TREE,
-                host: mapSection,
-                targetHeader: "目标目录",
-                placeholder: "请选择目录",
-                searchPlaceholder: "搜索目录",
+                modeKey: "datasetDirMode",
               });
             }
             if (needsMapKind("reportDir")) {
-              ensurePathDirMaps(dataMigDraft.reportDirMaps);
-              appendTreeObjectMapBlock({
+              appendDirMapWithMode(panel, {
                 titleText: "报告目录映射",
                 maps: dataMigDraft.reportDirMaps,
-                mode: "dir",
                 tree: DATA_MIG_REPORT_DIR_TREE,
-                host: mapSection,
-                targetHeader: "目标目录",
-                placeholder: "请选择目录",
-                searchPlaceholder: "搜索目录",
+                modeKey: "reportDirMode",
               });
             }
+          }
+
+          if (hasReport) {
+            const tabs = document.createElement("div");
+            tabs.className = "mig-map-tabs";
+            tabs.setAttribute("role", "tablist");
+            tabs.setAttribute("aria-label", "对象映射分类");
+
+            const warehouseTab = document.createElement("button");
+            warehouseTab.type = "button";
+            warehouseTab.className =
+              "mig-map-tab" + (dataMigMapTab === "warehouse" ? " is-active" : "");
+            warehouseTab.setAttribute("role", "tab");
+            warehouseTab.setAttribute("aria-selected", dataMigMapTab === "warehouse" ? "true" : "false");
+            warehouseTab.textContent = "数仓信息映射";
+            warehouseTab.addEventListener("click", () => {
+              if (dataMigMapTab === "warehouse") return;
+              dataMigMapTab = "warehouse";
+              renderAll();
+            });
+
+            const analysisTab = document.createElement("button");
+            analysisTab.type = "button";
+            analysisTab.className =
+              "mig-map-tab" + (dataMigMapTab === "analysis" ? " is-active" : "");
+            analysisTab.setAttribute("role", "tab");
+            analysisTab.setAttribute("aria-selected", dataMigMapTab === "analysis" ? "true" : "false");
+            analysisTab.textContent = "分析资源映射";
+            analysisTab.addEventListener("click", () => {
+              if (dataMigMapTab === "analysis") return;
+              dataMigMapTab = "analysis";
+              renderAll();
+            });
+
+            tabs.appendChild(warehouseTab);
+            tabs.appendChild(analysisTab);
+            mapSection.appendChild(tabs);
+
+            const panel = document.createElement("div");
+            panel.className = "mig-map-tab-panel";
+            if (dataMigMapTab === "analysis") fillAnalysisMapPanel(panel);
+            else fillWarehouseMapPanel(panel);
+            mapSection.appendChild(panel);
+          } else {
+            const onlyTitle = document.createElement("h3");
+            onlyTitle.className = "mig-create__section-title";
+            onlyTitle.textContent = "数仓信息映射";
+            mapSection.appendChild(onlyTitle);
+            const panel = document.createElement("div");
+            panel.className = "mig-map-tab-panel";
+            fillWarehouseMapPanel(panel);
+            mapSection.appendChild(panel);
           }
           body.appendChild(mapSection);
 
@@ -42371,58 +43324,81 @@
           nextBtn.className = "mig-btn mig-btn--primary";
           nextBtn.textContent = "下一步";
           nextBtn.addEventListener("click", () => {
+            function blockNext(tab, message) {
+              if (tab) dataMigMapTab = tab;
+              showToast(message, "warn");
+              renderAll();
+            }
+
+            // 数仓信息映射必填
             if (needsMapKind("ds")) {
               const missBiz = missPairMap(dataMigDraft.businessMaps);
               if (missBiz) {
-                showToast("请完成业务数据源映射：" + missBiz, "warn");
+                blockNext("warehouse", "请先完成「数仓信息映射」：业务数据源「" + missBiz + "」尚未映射");
                 return;
               }
               const missWh = missPairMap(dataMigDraft.warehouseMaps);
               if (missWh) {
-                showToast("请完成数仓数据源映射：" + missWh, "warn");
+                blockNext("warehouse", "请先完成「数仓信息映射」：数仓数据源「" + missWh + "」尚未映射");
                 return;
-              }
-              if (hasReport) {
-                ensureAnalysisMaps();
-                const missAna = missAnalysisMap(dataMigDraft.analysisMaps);
-                if (missAna) {
-                  showToast("请完成分析数据源映射：" + missAna + "（需选择目录与数据源）", "warn");
-                  return;
-                }
               }
             }
             if (needsMapKind("project")) {
               const miss = missPairMap(dataMigDraft.projectMaps);
               if (miss) {
-                showToast("请完成工程映射：" + miss, "warn");
+                blockNext("warehouse", "请先完成「数仓信息映射」：工程「" + miss + "」尚未映射");
                 return;
               }
             }
             if (needsMapKind("layer")) {
               const miss = missPairMap(dataMigDraft.layerMaps);
               if (miss) {
-                showToast("请完成分层映射：" + miss, "warn");
+                blockNext("warehouse", "请先完成「数仓信息映射」：分层「" + miss + "」尚未映射");
                 return;
               }
             }
+
+            // 含报告时：分析资源映射 Tab 也必须完成
             if (hasReport) {
-              if (needsMapKind("datasetDir")) {
-                ensurePathDirMaps(dataMigDraft.datasetDirMaps);
-                const miss = missPathDirMap(dataMigDraft.datasetDirMaps);
-                if (miss) {
-                  showToast("请完成数据集目录映射：" + miss, "warn");
+              if (!dataMigDraft.analysisAppId) {
+                blockNext("analysis", "请先完成「分析资源映射」：请选择应用");
+                return;
+              }
+              if (needsMapKind("ds")) {
+                ensureAnalysisMaps();
+                const missAna = missAnalysisMap(dataMigDraft.analysisMaps);
+                if (missAna) {
+                  blockNext(
+                    "analysis",
+                    "请先完成「分析资源映射」：分析数据源「" + missAna + "」尚未映射（需选择目录与数据源）"
+                  );
                   return;
                 }
               }
-              if (needsMapKind("reportDir")) {
+              if (needsMapKind("datasetDir") && dataMigDraft.datasetDirMode !== "reuse") {
+                ensurePathDirMaps(dataMigDraft.datasetDirMaps);
+                const miss = missPathDirMap(dataMigDraft.datasetDirMaps);
+                if (miss) {
+                  blockNext(
+                    "analysis",
+                    "请先完成「分析资源映射」：数据集目录「" + miss + "」尚未映射（或改为使用迁出目录信息）"
+                  );
+                  return;
+                }
+              }
+              if (needsMapKind("reportDir") && dataMigDraft.reportDirMode !== "reuse") {
                 ensurePathDirMaps(dataMigDraft.reportDirMaps);
                 const miss = missPathDirMap(dataMigDraft.reportDirMaps);
                 if (miss) {
-                  showToast("请完成报告目录映射：" + miss, "warn");
+                  blockNext(
+                    "analysis",
+                    "请先完成「分析资源映射」：报告目录「" + miss + "」尚未映射（或改为使用迁出目录信息）"
+                  );
                   return;
                 }
               }
             }
+
             importCreateStep = 3;
             renderAll();
           });
