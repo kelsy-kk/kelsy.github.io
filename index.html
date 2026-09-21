@@ -1311,6 +1311,10 @@
       gap: 0;
       margin: 0 0 16px;
       border-bottom: 1px solid #f0f0f0;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: #fff;
     }
 
     .mig-map-tab {
@@ -1352,12 +1356,38 @@
       min-height: 0;
     }
 
+    .mig-map-tabs--scope {
+      top: 40px;
+      z-index: 29;
+      margin: 0 0 12px;
+    }
+
+    .mig-create--import .mig-map-tabs {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-shadow: 0 1px 0 #f0f0f0;
+    }
+
     .mig-map-app-row {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      padding: 0 0 4px;
+      padding: 8px 0 10px;
+      position: sticky;
+      top: 80px;
+      z-index: 28;
+      background: #fff;
+    }
+
+    .mig-create--import .mig-map-app-row {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-shadow: 0 1px 0 #f0f0f0;
     }
 
     .mig-map-app-row__label {
@@ -1430,6 +1460,57 @@
       line-height: 1.6;
     }
 
+    .mig-map-dir-export {
+      margin: 0;
+      padding: 12px 14px;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+
+    .mig-map-dir-export__title {
+      margin: 0 0 8px;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .mig-map-dir-export__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mig-map-dir-export__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mig-map-dir-export__item::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 6px;
+      height: 6px;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: #1677ff;
+    }
+
+    .mig-map-dir-export__empty {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
     .mig-map-cascade {
       display: grid;
       grid-template-columns: minmax(160px, 1fr) minmax(160px, 1fr);
@@ -1474,8 +1555,9 @@
 
     .mig-map-block__title-row {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
+      justify-content: flex-start;
       gap: 8px 12px;
       margin-bottom: 10px;
     }
@@ -1483,12 +1565,46 @@
     .mig-map-block__title-row .mig-map-block__title,
     .mig-map-block__title-row .mig-map-group__sub-title {
       margin: 0;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
     }
 
     .mig-map-batch-btn {
       font-size: 12px;
       padding: 2px 10px;
       height: 28px;
+    }
+
+    .mig-map-list-search {
+      width: min(240px, 100%);
+      height: 28px;
+      padding: 0 10px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      font: inherit;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.88);
+    }
+
+    .mig-map-list-search:focus {
+      outline: none;
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12);
+    }
+
+    .mig-map-list-pager {
+      padding: 8px 0 0;
+      justify-content: flex-end;
+    }
+
+    .mig-ana-map__empty {
+      padding: 28px 12px;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.35);
+      font-size: 13px;
     }
 
     .mig-map-tree-picker__panel {
@@ -5541,6 +5657,38 @@
     .sys-auth-cfg-table td.is-ellipsis {
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sys-auth-cfg-table td.is-remark {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .sys-auth-cfg-remark {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      background: #fff7e6;
+      border: 1px solid #ffd591;
+      color: #ad6800;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .sys-auth-cfg-remark__tag {
+      flex: 0 0 auto;
+      padding: 0 4px;
+      border-radius: 2px;
+      background: #fa8c16;
+      color: #fff;
+      font-size: 11px;
+      line-height: 18px;
       white-space: nowrap;
     }
 
@@ -27132,6 +27280,59 @@
       return migrateLegacyFlowToModules(item || {});
     }
 
+    /** 流程是否涉及分析资源（报告/数据集等），迁出列表备注用 */
+    function flowInvolvesAnalysisResources(flow) {
+      const modules = getBpFlowModules(flow) || [];
+      for (let i = 0; i < modules.length; i++) {
+        const mod = modules[i] || {};
+        const leafId = String(mod.leafId || "");
+        if (
+          leafId === "create-report" ||
+          leafId === "smart-query" ||
+          /报告|数据集|分析/.test(String(mod.label || "")) ||
+          /报告|数据集|分析/.test(String(mod.sectionTitle || ""))
+        ) {
+          return true;
+        }
+        const resources = mod.resources || [];
+        for (let j = 0; j < resources.length; j++) {
+          const res = resources[j] || {};
+          const kind = String(res.kind || "");
+          if (
+            kind === "reports" ||
+            kind === "datasets" ||
+            /报告|数据集|分析|仪表板/.test(String(res.name || ""))
+          ) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    const FLOW_ANALYSIS_EXPORT_REMARK =
+      "当前包含授权或者系统分组内容，请到迁入环境提前做好下发和授权工作";
+
+    function buildFlowAnalysisRemarkEl(flow) {
+      if (!flowInvolvesAnalysisResources(flow)) {
+        const empty = document.createElement("span");
+        empty.textContent = "—";
+        empty.style.color = "rgba(0,0,0,0.25)";
+        return empty;
+      }
+      const tip = document.createElement("span");
+      tip.className = "sys-auth-cfg-remark";
+      tip.title = FLOW_ANALYSIS_EXPORT_REMARK;
+      const tag = document.createElement("span");
+      tag.className = "sys-auth-cfg-remark__tag";
+      tag.textContent = "分析资源";
+      const text = document.createElement("span");
+      text.textContent = FLOW_ANALYSIS_EXPORT_REMARK;
+      tip.appendChild(tag);
+      tip.appendChild(text);
+      return tip;
+    }
+
     function syncLegacyFlowFieldsFromModules(item) {
       const modules = getBpFlowModules(item);
       item.flowModules = modules;
@@ -37141,13 +37342,15 @@
           table.innerHTML =
             "<thead><tr>" +
             "<th style='width:48px'><input type='checkbox' data-role='pending-check-all' aria-label='全选当前流程' /></th>" +
-            "<th>流程名称</th>" +
+            "<th style='width:28%'>流程名称</th>" +
+            "<th>备注</th>" +
             "</tr></thead>";
         } else {
           table.innerHTML =
             "<thead><tr>" +
             "<th style='width:48px'></th>" +
-            "<th>流程名称</th>" +
+            "<th style='width:28%'>流程名称</th>" +
+            "<th>备注</th>" +
             "<th style='width:72px'>操作</th>" +
             "</tr></thead>";
         }
@@ -37187,6 +37390,11 @@
           tdName.title = name;
           tdName.textContent = name;
           tr.appendChild(tdName);
+
+          const tdRemark = document.createElement("td");
+          tdRemark.className = "is-remark";
+          tdRemark.appendChild(buildFlowAnalysisRemarkEl(flow));
+          tr.appendChild(tdRemark);
 
           if (flowTab === "selected") {
             const tdAct = document.createElement("td");
@@ -37531,6 +37739,7 @@
       let editingExportRow = null; // null=新建；有值=详情查看（旧迁出创建复用）
       let importCreateStep = 1; // 1=基本信息 2=对象映射 3=资源比对 4=预览 5=执行
       let dataMigMapTab = "warehouse"; // warehouse | analysis
+      let dataMigAnalysisGroupTab = "system"; // system | public | auth
       let importPreviewTab = "import"; // import | delete
       let importPreviewDeleteCategory = "物理模型";
       let detailContentTab = "import"; // import | delete
@@ -39670,16 +39879,30 @@
             项目看板分析源: { dir: "all", ds: "" },
             合规问数分析源: { dir: "all", ds: "" },
           },
-          datasetDirMaps: {
-            数据分析标准化: "",
-            演示分类: "",
-            测试: "",
+          analysisSystemMaps: {
+            系统内置分析源: { dir: "all", ds: "" },
+            系统监控分析源: { dir: "all", ds: "" },
           },
-          reportDirMaps: {
-            数据分析标准化: "",
-            演示分类: "",
-            测试: "",
+          analysisAuthMaps: {
+            "授权分析源-财务": { dir: "all", ds: "" },
+            "授权分析源-税务": { dir: "all", ds: "" },
+            "授权分析源-项目": { dir: "all", ds: "" },
           },
+          datasetDirMaps: Object.assign({}, DATA_MIG_DATASET_DIR_DEFAULT_MAPS.datasetDirMaps),
+          datasetSystemDirMaps: Object.assign(
+            {},
+            DATA_MIG_DATASET_DIR_DEFAULT_MAPS.datasetSystemDirMaps
+          ),
+          datasetAuthDirMaps: Object.assign(
+            {},
+            DATA_MIG_DATASET_DIR_DEFAULT_MAPS.datasetAuthDirMaps
+          ),
+          reportDirMaps: Object.assign({}, DATA_MIG_REPORT_DIR_DEFAULT_MAPS.reportDirMaps),
+          reportSystemDirMaps: Object.assign(
+            {},
+            DATA_MIG_REPORT_DIR_DEFAULT_MAPS.reportSystemDirMaps
+          ),
+          reportAuthDirMaps: Object.assign({}, DATA_MIG_REPORT_DIR_DEFAULT_MAPS.reportAuthDirMaps),
           /** 不含报告：数据源/工程/分层 */
           businessMaps: {
             "pml-经营决策-实体数据源": "",
@@ -41426,36 +41649,137 @@
       ];
 
       const DATA_MIG_DS_DIR_TARGETS = ["PMLEAD公共", "测试", "应用集成库_ads", "默认数据源目录"];
-      /** 数据集 / 报告目录树：全部 → 一级 → 二级 */
-      const DATA_MIG_DATASET_DIR_TREE = {
-        数据分析空间: {
-          数据分析标准化: true,
-          演示分类: true,
-        },
-        公共数据集空间: {
-          测试: true,
-          默认数据集目录: true,
-        },
+
+      function buildDemoDirMaps(prefix, count, extras) {
+        const maps = {};
+        (extras || []).forEach((name) => {
+          maps[name] = "";
+        });
+        for (let i = 1; i <= count; i++) {
+          const n = i < 10 ? "0" + i : String(i);
+          maps[prefix + n] = "";
+        }
+        return maps;
+      }
+
+      const DATA_MIG_DATASET_DIR_DEFAULT_MAPS = {
+        datasetSystemDirMaps: buildDemoDirMaps("系统数据集目录_", 18, [
+          "系统数据集目录",
+          "系统默认目录",
+        ]),
+        datasetAuthDirMaps: buildDemoDirMaps("授权数据集目录_", 22, [
+          "财务数据集目录",
+          "项目数据集目录",
+        ]),
+        datasetDirMaps: buildDemoDirMaps("公共数据集目录_", 28, [
+          "数据分析标准化",
+          "演示分类",
+          "测试",
+        ]),
       };
-      const DATA_MIG_REPORT_DIR_TREE = {
-        报告空间: {
-          数据分析标准化: true,
-          演示分类: true,
-        },
-        公共报告空间: {
-          测试: true,
-          默认报告目录: true,
-        },
+      const DATA_MIG_REPORT_DIR_DEFAULT_MAPS = {
+        reportSystemDirMaps: buildDemoDirMaps("系统报告目录_", 16, [
+          "系统报告目录",
+          "系统默认报告",
+        ]),
+        reportAuthDirMaps: buildDemoDirMaps("授权报告目录_", 20, [
+          "财务报告目录",
+          "项目报告目录",
+        ]),
+        reportDirMaps: buildDemoDirMaps("公共报告目录_", 26, [
+          "数据分析标准化",
+          "演示分类",
+          "测试",
+        ]),
       };
-      /** 分析数据源目标目录树：一级 → 二级 → 数据源列表 */
+
+      function expandDirTreeLeaves(tree, mapsByGroup) {
+        Object.keys(mapsByGroup || {}).forEach((mapsKey) => {
+          const groupTitle =
+            mapsKey.indexOf("System") >= 0
+              ? "系统分组"
+              : mapsKey.indexOf("Auth") >= 0
+                ? "授权分组"
+                : "公共分组";
+          if (!tree[groupTitle]) tree[groupTitle] = {};
+          Object.keys(mapsByGroup[mapsKey] || {}).forEach((name) => {
+            tree[groupTitle][name] = true;
+          });
+        });
+        return tree;
+      }
+
+      /** 数据集 / 报告目录树：系统 / 授权 / 公共 三分组 → 二级目录 */
+      const DATA_MIG_DATASET_DIR_TREE = expandDirTreeLeaves(
+        {
+          系统分组: {},
+          授权分组: {},
+          公共分组: { 默认数据集目录: true },
+        },
+        DATA_MIG_DATASET_DIR_DEFAULT_MAPS
+      );
+      const DATA_MIG_REPORT_DIR_TREE = expandDirTreeLeaves(
+        {
+          系统分组: {},
+          授权分组: {},
+          公共分组: { 默认报告目录: true },
+        },
+        DATA_MIG_REPORT_DIR_DEFAULT_MAPS
+      );
+
+      const DATA_MIG_DATASET_DIR_GROUPS = [
+        { key: "system", title: "系统分组", mapsKey: "datasetSystemDirMaps" },
+        { key: "public", title: "公共分组", mapsKey: "datasetDirMaps" },
+        { key: "auth", title: "授权分组", mapsKey: "datasetAuthDirMaps" },
+      ];
+      const DATA_MIG_REPORT_DIR_GROUPS = [
+        { key: "system", title: "系统分组", mapsKey: "reportSystemDirMaps" },
+        { key: "public", title: "公共分组", mapsKey: "reportDirMaps" },
+        { key: "auth", title: "授权分组", mapsKey: "reportAuthDirMaps" },
+      ];
+      /** 分析数据源目标目录树：系统 / 授权 / 公共 三分组 → 二级分类 → 数据源 */
       const DATA_MIG_ANALYSIS_DS_TREE = {
-        分析数据源目录: {
+        系统分组: {
+          系统默认: ["系统内置分析源", "系统监控分析源"],
+        },
+        授权分组: {
+          财务授权: ["授权分析源-财务", "授权分析源-税务"],
+          项目授权: ["授权分析源-项目"],
+        },
+        公共分组: {
           默认分类: ["经营分析-MySQL", "项目看板-PG", "合规问数-Hive"],
           演示分类: ["演示分析源-A", "演示分析源-B"],
-        },
-        公共分析空间: {
           共享分类: ["公共分析源-01", "公共分析源-02"],
           测试分类: ["测试分析源"],
+        },
+      };
+
+      const DATA_MIG_ANALYSIS_SCOPE_TABS = [
+        { key: "system", title: "系统" },
+        { key: "public", title: "公共" },
+        { key: "auth", title: "授权" },
+      ];
+
+      const DATA_MIG_ANALYSIS_DS_GROUPS = [
+        { key: "system", title: "系统分组", mapsKey: "analysisSystemMaps" },
+        { key: "public", title: "公共分组", mapsKey: "analysisMaps" },
+        { key: "auth", title: "授权分组", mapsKey: "analysisAuthMaps" },
+      ];
+
+      const DATA_MIG_ANALYSIS_DS_DEFAULT_MAPS = {
+        analysisSystemMaps: {
+          系统内置分析源: { dir: "all", ds: "" },
+          系统监控分析源: { dir: "all", ds: "" },
+        },
+        analysisAuthMaps: {
+          "授权分析源-财务": { dir: "all", ds: "" },
+          "授权分析源-税务": { dir: "all", ds: "" },
+          "授权分析源-项目": { dir: "all", ds: "" },
+        },
+        analysisMaps: {
+          经营分析数据源: { dir: "all", ds: "" },
+          项目看板分析源: { dir: "all", ds: "" },
+          合规问数分析源: { dir: "all", ds: "" },
         },
       };
 
@@ -41591,10 +41915,26 @@
         return null;
       }
 
-      function buildAnalysisDsTreeNodes() {
+      function getAnalysisScopeGroup(groups, key) {
+        return (groups || []).find((g) => g.key === key) || (groups || [])[0] || null;
+      }
+
+      function sliceTreeByScope(tree, groupKey) {
+        const group = getAnalysisScopeGroup(DATA_MIG_ANALYSIS_DS_GROUPS, groupKey);
+        const l1 = group ? group.title : "";
+        if (tree && l1 && tree[l1]) {
+          const slice = {};
+          slice[l1] = tree[l1];
+          return slice;
+        }
+        return tree;
+      }
+
+      function buildAnalysisDsTreeNodes(tree) {
+        const source = tree || DATA_MIG_ANALYSIS_DS_TREE;
         const nodes = [];
-        Object.keys(DATA_MIG_ANALYSIS_DS_TREE).forEach((l1) => {
-          const l2Map = DATA_MIG_ANALYSIS_DS_TREE[l1] || {};
+        Object.keys(source).forEach((l1) => {
+          const l2Map = source[l1] || {};
           const l1Children = [];
           Object.keys(l2Map).forEach((l2) => {
             const dirKey = "l2:" + l1 + "/" + l2;
@@ -41762,6 +42102,74 @@
         return auto;
       }
 
+      function findAnalysisDsItemByName(name) {
+        const src = String(name || "").trim();
+        if (!src) return null;
+        const items = getAnalysisDsPickerItems();
+        let hit = items.find((item) => item.dsName === src);
+        if (hit) return hit;
+        hit = items.find(
+          (item) => src.indexOf(item.dsName) >= 0 || item.dsName.indexOf(src) >= 0
+        );
+        return hit || null;
+      }
+
+      function autoMatchAnalysisMapsByName(maps) {
+        const auto = {};
+        Object.keys(maps || {}).forEach((src) => {
+          const row = maps[src];
+          if (row && typeof row === "object" && row.ds) {
+            auto[src] = !!(dataMigDraft && dataMigDraft.autoMatched && dataMigDraft.autoMatched[src]);
+            return;
+          }
+          const hit = findAnalysisDsItemByName(src);
+          if (hit) {
+            maps[src] = { dir: hit.dirKey, ds: hit.dsName };
+            auto[src] = true;
+            return;
+          }
+          if (!maps[src] || typeof maps[src] !== "object") {
+            maps[src] = { dir: "all", ds: "" };
+          }
+          auto[src] = false;
+        });
+        return auto;
+      }
+
+      function findPathDirKeyByName(tree, srcName) {
+        const src = String(srcName || "").trim();
+        if (!src) return "";
+        const l1Keys = Object.keys(tree || {});
+        for (let i = 0; i < l1Keys.length; i++) {
+          const l1 = l1Keys[i];
+          const l2Map = tree[l1] || {};
+          if (Object.prototype.hasOwnProperty.call(l2Map, src)) {
+            return "l2:" + l1 + "/" + src;
+          }
+        }
+        return "";
+      }
+
+      function autoMatchPathDirMapsByName(maps, tree) {
+        const auto = {};
+        Object.keys(maps || {}).forEach((src) => {
+          const cur = maps[src];
+          if (cur && String(cur)) {
+            auto[src] = !!(dataMigDraft && dataMigDraft.autoMatched && dataMigDraft.autoMatched[src]);
+            return;
+          }
+          const key = findPathDirKeyByName(tree, src);
+          if (key) {
+            maps[src] = key;
+            auto[src] = true;
+            return;
+          }
+          maps[src] = "";
+          auto[src] = false;
+        });
+        return auto;
+      }
+
       function applyAutoMatchForCommonMaps() {
         if (!dataMigDraft) return;
         dataMigDraft.autoMatched = {};
@@ -41781,9 +42189,27 @@
           dataMigDraft.autoMatched,
           autoMatchMapsByName(dataMigDraft.layerMaps, DATA_MIG_LAYER_TARGETS)
         );
-        if (dataMigDraft.hasReport && dataMigDraft.analysisMaps) {
-          Object.keys(dataMigDraft.analysisMaps).forEach((src) => {
-            dataMigDraft.autoMatched[src] = false;
+        if (dataMigDraft.hasReport) {
+          DATA_MIG_ANALYSIS_DS_GROUPS.forEach((group) => {
+            const maps = dataMigDraft[group.mapsKey];
+            if (!maps) return;
+            Object.assign(dataMigDraft.autoMatched, autoMatchAnalysisMapsByName(maps));
+          });
+          DATA_MIG_DATASET_DIR_GROUPS.forEach((group) => {
+            const maps = dataMigDraft[group.mapsKey];
+            if (!maps) return;
+            Object.assign(
+              dataMigDraft.autoMatched,
+              autoMatchPathDirMapsByName(maps, DATA_MIG_DATASET_DIR_TREE)
+            );
+          });
+          DATA_MIG_REPORT_DIR_GROUPS.forEach((group) => {
+            const maps = dataMigDraft[group.mapsKey];
+            if (!maps) return;
+            Object.assign(
+              dataMigDraft.autoMatched,
+              autoMatchPathDirMapsByName(maps, DATA_MIG_REPORT_DIR_TREE)
+            );
           });
         }
       }
@@ -41994,35 +42420,112 @@
         }
 
         function missAnalysisMap(maps) {
-          return Object.keys(maps).find((k) => {
+          return Object.keys(maps || {}).find((k) => {
             const row = maps[k] || {};
             return !(row.dir && row.ds);
           });
         }
 
-        function ensureAnalysisMaps() {
-          if (!dataMigDraft.analysisMaps || typeof dataMigDraft.analysisMaps !== "object") {
-            dataMigDraft.analysisMaps = {
-              经营分析数据源: { dir: "all", ds: "" },
-              项目看板分析源: { dir: "all", ds: "" },
-              合规问数分析源: { dir: "all", ds: "" },
-            };
+        function normalizeAnalysisMapRow(row) {
+          if (!row || typeof row !== "object") return { dir: "all", ds: "" };
+          let dir = row.dir || "";
+          if (!dir && (row.l1 || row.l2)) {
+            if (row.l1 && row.l2) dir = "l2:" + row.l1 + "/" + row.l2;
+            else if (row.l1) dir = "l1:" + row.l1;
+            else dir = "all";
           }
-          Object.keys(dataMigDraft.analysisMaps).forEach((src) => {
-            const row = dataMigDraft.analysisMaps[src];
-            if (!row || typeof row !== "object") {
-              dataMigDraft.analysisMaps[src] = { dir: "all", ds: "" };
-              return;
-            }
-            let dir = row.dir || "";
-            if (!dir && (row.l1 || row.l2)) {
-              if (row.l1 && row.l2) dir = "l2:" + row.l1 + "/" + row.l2;
-              else if (row.l1) dir = "l1:" + row.l1;
-              else dir = "all";
-            }
-            if (!dir) dir = "all";
-            dataMigDraft.analysisMaps[src] = { dir: dir, ds: row.ds || "" };
+          if (!dir) dir = "all";
+          return { dir: dir, ds: row.ds || "" };
+        }
+
+        function ensureAnalysisMapBag(mapsKey) {
+          const defaults = DATA_MIG_ANALYSIS_DS_DEFAULT_MAPS[mapsKey] || {};
+          if (!dataMigDraft[mapsKey] || typeof dataMigDraft[mapsKey] !== "object") {
+            dataMigDraft[mapsKey] = JSON.parse(JSON.stringify(defaults));
+          }
+          Object.keys(dataMigDraft[mapsKey]).forEach((src) => {
+            dataMigDraft[mapsKey][src] = normalizeAnalysisMapRow(dataMigDraft[mapsKey][src]);
           });
+          Object.keys(defaults).forEach((src) => {
+            if (!Object.prototype.hasOwnProperty.call(dataMigDraft[mapsKey], src)) {
+              dataMigDraft[mapsKey][src] = normalizeAnalysisMapRow(defaults[src]);
+            }
+          });
+        }
+
+        function ensureAnalysisMaps() {
+          DATA_MIG_ANALYSIS_DS_GROUPS.forEach((group) => {
+            ensureAnalysisMapBag(group.mapsKey);
+          });
+        }
+
+        function missAnyAnalysisGroupMap() {
+          for (let i = 0; i < DATA_MIG_ANALYSIS_DS_GROUPS.length; i++) {
+            const group = DATA_MIG_ANALYSIS_DS_GROUPS[i];
+            const maps = dataMigDraft[group.mapsKey];
+            const miss = missAnalysisMap(maps);
+            if (miss) {
+              return { groupTitle: group.title, src: miss };
+            }
+          }
+          return null;
+        }
+
+        function ensurePathDirMapBag(mapsKey, defaults) {
+          const seed = defaults || {};
+          if (!dataMigDraft[mapsKey] || typeof dataMigDraft[mapsKey] !== "object") {
+            dataMigDraft[mapsKey] = JSON.parse(JSON.stringify(seed));
+          }
+          ensurePathDirMaps(dataMigDraft[mapsKey]);
+          Object.keys(seed).forEach((src) => {
+            if (!Object.prototype.hasOwnProperty.call(dataMigDraft[mapsKey], src)) {
+              dataMigDraft[mapsKey][src] = "";
+            }
+          });
+        }
+
+        function ensureDatasetDirMaps() {
+          DATA_MIG_DATASET_DIR_GROUPS.forEach((group) => {
+            ensurePathDirMapBag(
+              group.mapsKey,
+              DATA_MIG_DATASET_DIR_DEFAULT_MAPS[group.mapsKey]
+            );
+          });
+        }
+
+        function ensureReportDirMaps() {
+          DATA_MIG_REPORT_DIR_GROUPS.forEach((group) => {
+            ensurePathDirMapBag(
+              group.mapsKey,
+              DATA_MIG_REPORT_DIR_DEFAULT_MAPS[group.mapsKey]
+            );
+          });
+        }
+
+        function missAnyPathDirGroupMap(groups, skipKeys) {
+          const skip = skipKeys || [];
+          for (let i = 0; i < groups.length; i++) {
+            const group = groups[i];
+            if (skip.indexOf(group.key) >= 0) continue;
+            const maps = dataMigDraft[group.mapsKey];
+            ensurePathDirMaps(maps);
+            const miss = missPathDirMap(maps);
+            if (miss) {
+              return { groupTitle: group.title, src: miss };
+            }
+          }
+          return null;
+        }
+
+        function collectGroupedExportDirPaths(groups, tree) {
+          const paths = [];
+          (groups || []).forEach((group) => {
+            const maps = dataMigDraft[group.mapsKey] || {};
+            resolveExportDirPaths(maps, tree).forEach((pathLabel) => {
+              paths.push(pathLabel);
+            });
+          });
+          return paths;
         }
 
         function closeAllMigPickers(except) {
@@ -42536,7 +43039,13 @@
           const maps = options.maps || {};
           const treeNodes =
             options.nodes ||
-            (mode === "analysis" ? buildAnalysisDsTreeNodes() : buildPathDirTreeNodes(options.tree));
+            (mode === "analysis"
+              ? buildAnalysisDsTreeNodes(options.tree)
+              : buildPathDirTreeNodes(options.tree));
+          const allKeys = Object.keys(maps);
+          let listQuery = "";
+          let listPage = 1;
+          let listPageSize = Number(options.pageSize) || 10;
 
           const block = document.createElement("div");
           block.className = options.asSub ? "mig-map-group__sub" : "mig-map-block";
@@ -42549,8 +43058,15 @@
           batchBtn.type = "button";
           batchBtn.className = "mig-btn mig-btn--ghost mig-map-batch-btn";
           batchBtn.textContent = "批量映射";
-          titleRow.appendChild(h);
+          if (options.titleText) titleRow.appendChild(h);
+          const searchInput = document.createElement("input");
+          searchInput.type = "search";
+          searchInput.className = "mig-map-list-search";
+          searchInput.placeholder = "搜索源对象";
+          searchInput.setAttribute("aria-label", "搜索源对象");
           titleRow.appendChild(batchBtn);
+          titleRow.appendChild(searchInput);
+          block.appendChild(titleRow);
 
           const list = document.createElement("div");
           list.className = "mig-ana-map mig-ana-map--batch";
@@ -42560,8 +43076,8 @@
           hdCheck.className = "mig-ana-map__check";
           const selectAll = document.createElement("input");
           selectAll.type = "checkbox";
-          selectAll.setAttribute("aria-label", "全选源对象");
-          selectAll.title = "全选";
+          selectAll.setAttribute("aria-label", "全选当前页源对象");
+          selectAll.title = "全选当前页";
           hdCheck.appendChild(selectAll);
           const hdSrc = document.createElement("span");
           hdSrc.textContent = "源对象";
@@ -42572,37 +43088,44 @@
           hd.appendChild(hdSrc);
           hd.appendChild(hdTarget);
           list.appendChild(hd);
+          block.appendChild(list);
+
+          const pager = document.createElement("div");
+          pager.className = "mig-pagination mig-map-list-pager";
+          block.appendChild(pager);
+          host.appendChild(block);
 
           const selected = new Set();
           const rowPickers = {};
           const rowMatchTags = {};
           const rowChecks = {};
 
+          function isRowMapped(src) {
+            return mode === "analysis" ? isAnalysisMapComplete(maps[src]) : !!maps[src];
+          }
+
+          function getFilteredKeys() {
+            const q = listQuery.trim().toLowerCase();
+            if (!q) return allKeys.slice();
+            return allKeys.filter((src) => String(src).toLowerCase().indexOf(q) >= 0);
+          }
+
           function syncBatchBtn() {
             batchBtn.disabled = false;
             batchBtn.title = selected.size
-              ? "对已勾选对象批量映射"
+              ? "对已勾选对象批量映射（跨页保留勾选）"
               : "请先勾选要批量映射的对象";
+            if (selected.size) batchBtn.textContent = "批量映射（" + selected.size + "）";
+            else batchBtn.textContent = "批量映射";
           }
 
-          function syncSelectAll() {
-            const keys = Object.keys(rowChecks);
+          function syncSelectAll(pageKeys) {
+            const keys = pageKeys || [];
             const total = keys.length;
-            const checkedCount = keys.filter((k) => rowChecks[k].checked).length;
+            const checkedCount = keys.filter((k) => rowChecks[k] && rowChecks[k].checked).length;
             selectAll.checked = total > 0 && checkedCount === total;
             selectAll.indeterminate = checkedCount > 0 && checkedCount < total;
           }
-
-          selectAll.addEventListener("change", () => {
-            const checked = selectAll.checked;
-            Object.keys(rowChecks).forEach((src) => {
-              rowChecks[src].checked = checked;
-              if (checked) selected.add(src);
-              else selected.delete(src);
-            });
-            selectAll.indeterminate = false;
-            syncBatchBtn();
-          });
 
           function applyTargetToSrc(src, key, node) {
             if (mode === "analysis") {
@@ -42623,11 +43146,7 @@
             }
             if (rowPickers[src]) rowPickers[src].setValue(key);
             if (rowMatchTags[src]) {
-              const complete =
-                mode === "analysis"
-                  ? isAnalysisMapComplete(maps[src])
-                  : !!maps[src];
-              updateMapMatchTag(rowMatchTags[src], src, complete);
+              updateMapMatchTag(rowMatchTags[src], src, isRowMapped(src));
             }
           }
 
@@ -42644,19 +43163,76 @@
               tip: options.batchTip || "在组织树中选择目标，将应用到已勾选的源对象。",
               onSelect(key, node) {
                 selected.forEach((src) => applyTargetToSrc(src, key, node));
-                selected.forEach((src) => {
-                  if (rowChecks[src]) rowChecks[src].checked = false;
-                });
                 selected.clear();
-                syncBatchBtn();
-                syncSelectAll();
+                renderRows();
                 showToast("已批量映射 " + count + " 个源对象", "success");
               },
             });
           });
-          syncBatchBtn();
 
-          Object.keys(maps).forEach((src) => {
+          function renderPager(filtered) {
+            pager.innerHTML = "";
+            const total = filtered.length;
+            const pageCount = Math.max(1, Math.ceil(total / listPageSize) || 1);
+            if (listPage > pageCount) listPage = pageCount;
+            if (total <= listPageSize && !listQuery.trim() && allKeys.length <= listPageSize) {
+              pager.hidden = true;
+              return;
+            }
+            pager.hidden = false;
+            const totalEl = document.createElement("span");
+            totalEl.className = "mig-pagination__total";
+            totalEl.textContent =
+              "第 " + listPage + "/" + pageCount + " 页";
+            const sizeSel = document.createElement("select");
+            sizeSel.className = "mig-pagination__size";
+            sizeSel.setAttribute("aria-label", "每页条数");
+            [10, 20, 50].forEach((n) => {
+              const opt = document.createElement("option");
+              opt.value = String(n);
+              opt.textContent = n + "条/页";
+              if (n === listPageSize) opt.selected = true;
+              sizeSel.appendChild(opt);
+            });
+            sizeSel.addEventListener("change", () => {
+              listPageSize = Number(sizeSel.value) || 10;
+              listPage = 1;
+              renderRows();
+            });
+            const nav = document.createElement("div");
+            nav.className = "mig-pagination__nav";
+            const prev = document.createElement("button");
+            prev.type = "button";
+            prev.className = "mig-pagination__btn";
+            prev.textContent = "<";
+            prev.disabled = listPage <= 1;
+            prev.addEventListener("click", () => {
+              if (listPage <= 1) return;
+              listPage -= 1;
+              renderRows();
+            });
+            const page = document.createElement("span");
+            page.className = "mig-pagination__page";
+            page.textContent = String(listPage);
+            const next = document.createElement("button");
+            next.type = "button";
+            next.className = "mig-pagination__btn";
+            next.textContent = ">";
+            next.disabled = listPage >= pageCount;
+            next.addEventListener("click", () => {
+              if (listPage >= pageCount) return;
+              listPage += 1;
+              renderRows();
+            });
+            nav.appendChild(prev);
+            nav.appendChild(page);
+            nav.appendChild(next);
+            pager.appendChild(totalEl);
+            pager.appendChild(sizeSel);
+            pager.appendChild(nav);
+          }
+
+          function buildRow(src) {
             if (mode === "analysis") {
               if (!maps[src] || typeof maps[src] !== "object") maps[src] = { dir: "all", ds: "" };
               if (!maps[src].dir) maps[src].dir = "all";
@@ -42669,11 +43245,15 @@
             const check = document.createElement("input");
             check.type = "checkbox";
             check.setAttribute("aria-label", "选择 " + src);
+            check.checked = selected.has(src);
             check.addEventListener("change", () => {
               if (check.checked) selected.add(src);
               else selected.delete(src);
               syncBatchBtn();
-              syncSelectAll();
+              syncSelectAll(getFilteredKeys().slice(
+                (listPage - 1) * listPageSize,
+                listPage * listPageSize
+              ));
             });
             rowChecks[src] = check;
             checkCell.appendChild(check);
@@ -42683,16 +43263,12 @@
             const srcText = document.createElement("span");
             srcText.textContent = src;
             srcCell.appendChild(srcText);
-            if (mode === "analysis") {
+            if (mode === "analysis" || options.showAuto) {
               if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
               if (typeof dataMigDraft.autoMatched[src] === "undefined") {
                 dataMigDraft.autoMatched[src] = false;
               }
-              rowMatchTags[src] = appendAutoMatchTag(
-                srcCell,
-                src,
-                isAnalysisMapComplete(maps[src])
-              );
+              rowMatchTags[src] = appendAutoMatchTag(srcCell, src, isRowMapped(src));
             }
 
             const targetCell = document.createElement("div");
@@ -42719,13 +43295,59 @@
             row.appendChild(checkCell);
             row.appendChild(srcCell);
             row.appendChild(targetCell);
-            list.appendChild(row);
+            return row;
+          }
+
+          function renderRows() {
+            Object.keys(rowChecks).forEach((k) => delete rowChecks[k]);
+            Object.keys(rowPickers).forEach((k) => delete rowPickers[k]);
+            Object.keys(rowMatchTags).forEach((k) => delete rowMatchTags[k]);
+            while (list.children.length > 1) list.removeChild(list.lastChild);
+
+            const filtered = getFilteredKeys();
+            const pageCount = Math.max(1, Math.ceil(filtered.length / listPageSize) || 1);
+            if (listPage > pageCount) listPage = pageCount;
+            const start = (listPage - 1) * listPageSize;
+            const pageKeys = filtered.slice(start, start + listPageSize);
+
+            if (!pageKeys.length) {
+              const empty = document.createElement("div");
+              empty.className = "mig-ana-map__empty";
+              empty.textContent = listQuery.trim()
+                ? "未找到匹配的源对象"
+                : "暂无源对象";
+              list.appendChild(empty);
+            } else {
+              pageKeys.forEach((src) => list.appendChild(buildRow(src)));
+            }
+
+            selectAll.onchange = () => {
+              const checked = selectAll.checked;
+              pageKeys.forEach((src) => {
+                if (rowChecks[src]) rowChecks[src].checked = checked;
+                if (checked) selected.add(src);
+                else selected.delete(src);
+              });
+              selectAll.indeterminate = false;
+              syncBatchBtn();
+            };
+
+            renderPager(filtered);
+            syncBatchBtn();
+            syncSelectAll(pageKeys);
+          }
+
+          let searchTimer = null;
+          searchInput.addEventListener("input", () => {
+            window.clearTimeout(searchTimer);
+            searchTimer = window.setTimeout(() => {
+              listQuery = searchInput.value || "";
+              listPage = 1;
+              renderRows();
+            }, 180);
           });
 
-          block.appendChild(titleRow);
-          block.appendChild(list);
-          host.appendChild(block);
-          syncSelectAll();
+          renderRows();
 
           if (!window.__migPickerDocCloseBound) {
             window.__migPickerDocCloseBound = true;
@@ -42759,6 +43381,24 @@
           });
         }
 
+        /** 根据迁出包内源目录名，反查树路径用于「使用迁出目录」展示 */
+        function resolveExportDirPaths(maps, tree) {
+          const paths = [];
+          Object.keys(maps || {}).forEach((src) => {
+            let pathLabel = src;
+            Object.keys(tree || {}).some((l1) => {
+              const l2Map = tree[l1] || {};
+              if (Object.prototype.hasOwnProperty.call(l2Map, src)) {
+                pathLabel = l1 + " / " + src;
+                return true;
+              }
+              return false;
+            });
+            paths.push(pathLabel);
+          });
+          return paths;
+        }
+
         function missPathDirMap(maps) {
           return Object.keys(maps).find((k) => !maps[k]);
         }
@@ -42769,6 +43409,8 @@
           if (dataMigDraft.hasReport) {
             dataMigDraft.neededMapKinds = (result.neededMapKinds || []).slice();
             ensureAnalysisMaps();
+            ensureDatasetDirMaps();
+            ensureReportDirMaps();
           } else {
             dataMigDraft.neededMapKinds = DATA_MIG_MAP_KIND_DEFS_NO_REPORT.map((d) => d.key);
           }
@@ -43143,17 +43785,29 @@
 
           function appendDirMapWithMode(panel, options) {
             const modeKey = options.modeKey;
-            const maps = options.maps;
+            const groups = options.groups || null;
+            const singleMaps = options.maps;
+            const hideMode = !!options.hideMode;
             if (!dataMigDraft[modeKey]) dataMigDraft[modeKey] = "map";
-            ensurePathDirMaps(maps);
+            if (options.ensureMaps) options.ensureMaps();
+            if (groups) {
+              groups.forEach((group) => ensurePathDirMaps(dataMigDraft[group.mapsKey]));
+            } else {
+              ensurePathDirMaps(singleMaps);
+            }
 
             const wrap = document.createElement("div");
             wrap.className = "mig-map-block";
-            const title = document.createElement("h3");
-            title.className = "mig-map-block__title";
-            title.textContent = options.titleText;
-            wrap.appendChild(title);
+            if (!hideMode) {
+              const title = document.createElement("h3");
+              title.className = "mig-map-block__title";
+              title.textContent = options.titleText;
+              wrap.appendChild(title);
+            }
 
+            let tip = null;
+            let exportBox = null;
+            if (!hideMode) {
             const modeBox = document.createElement("div");
             modeBox.className = "mig-map-dir-mode";
             const opts = document.createElement("div");
@@ -43189,30 +43843,91 @@
             opts.appendChild(reuseLabel);
             modeBox.appendChild(opts);
 
-            const tip = document.createElement("p");
+            tip = document.createElement("p");
             tip.className = "mig-map-dir-mode__tip";
             tip.hidden = dataMigDraft[modeKey] !== "reuse";
             tip.textContent =
               "不进行目录映射时，将按迁出包中的目录结构在目标环境自动创建同名目录，并挂载到当前所选应用下。";
             modeBox.appendChild(tip);
+
+            exportBox = document.createElement("div");
+            exportBox.className = "mig-map-dir-export";
+            exportBox.hidden = dataMigDraft[modeKey] !== "reuse";
+            const exportTitle = document.createElement("p");
+            exportTitle.className = "mig-map-dir-export__title";
+            exportTitle.textContent = "迁出目录";
+            exportBox.appendChild(exportTitle);
+            const exportDirs = groups
+              ? collectGroupedExportDirPaths(groups, options.tree)
+              : resolveExportDirPaths(singleMaps, options.tree);
+            if (exportDirs.length) {
+              const exportList = document.createElement("ul");
+              exportList.className = "mig-map-dir-export__list";
+              exportDirs.forEach((pathLabel) => {
+                const li = document.createElement("li");
+                li.className = "mig-map-dir-export__item";
+                li.textContent = pathLabel;
+                exportList.appendChild(li);
+              });
+              exportBox.appendChild(exportList);
+            } else {
+              const empty = document.createElement("p");
+              empty.className = "mig-map-dir-export__empty";
+              empty.textContent = "迁出包中暂无目录信息";
+              exportBox.appendChild(empty);
+            }
+            modeBox.appendChild(exportBox);
             wrap.appendChild(modeBox);
 
+            mapRadio.addEventListener("change", () => {
+              if (mapRadio.checked) syncMode("map");
+            });
+            reuseRadio.addEventListener("change", () => {
+              if (reuseRadio.checked) syncMode("reuse");
+            });
+            }
+
             const mapHost = document.createElement("div");
-            mapHost.hidden = dataMigDraft[modeKey] !== "map";
+            mapHost.className = groups ? "mig-map-group" : "";
             wrap.appendChild(mapHost);
             panel.appendChild(wrap);
 
-            function syncMode(nextMode) {
-              dataMigDraft[modeKey] = nextMode;
-              tip.hidden = nextMode !== "reuse";
-              mapHost.hidden = nextMode !== "map";
-              if (nextMode === "map" && !mapHost.childElementCount) {
+            function renderMapGroups() {
+              mapHost.innerHTML = "";
+              if (groups) {
+                if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
+                groups.forEach((group) => {
+                  const maps = dataMigDraft[group.mapsKey];
+                  Object.assign(
+                    dataMigDraft.autoMatched,
+                    autoMatchPathDirMapsByName(maps, options.tree)
+                  );
+                  appendTreeObjectMapBlock({
+                    titleText: group.title,
+                    maps: maps,
+                    mode: "dir",
+                    tree: options.tree,
+                    asSub: true,
+                    showAuto: true,
+                    host: mapHost,
+                    targetHeader: "目标目录",
+                    placeholder: "请选择目录",
+                    searchPlaceholder: "搜索目录",
+                  });
+                });
+              } else {
+                if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
+                Object.assign(
+                  dataMigDraft.autoMatched,
+                  autoMatchPathDirMapsByName(singleMaps, options.tree)
+                );
                 appendTreeObjectMapBlock({
-                  titleText: "映射列表",
-                  maps: maps,
+                  titleText: hideMode ? options.titleText || "" : "映射列表",
+                  maps: singleMaps,
                   mode: "dir",
                   tree: options.tree,
                   host: mapHost,
+                  showAuto: true,
                   targetHeader: "目标目录",
                   placeholder: "请选择目录",
                   searchPlaceholder: "搜索目录",
@@ -43224,23 +43939,72 @@
               }
             }
 
-            mapRadio.addEventListener("change", () => {
-              if (mapRadio.checked) syncMode("map");
-            });
-            reuseRadio.addEventListener("change", () => {
-              if (reuseRadio.checked) syncMode("reuse");
-            });
-            syncMode(dataMigDraft[modeKey]);
+            function syncMode(nextMode) {
+              dataMigDraft[modeKey] = nextMode;
+              if (tip) tip.hidden = nextMode !== "reuse";
+              if (exportBox) exportBox.hidden = nextMode !== "reuse";
+              mapHost.hidden = nextMode !== "map";
+              if (nextMode === "map" && !mapHost.childElementCount) {
+                renderMapGroups();
+              }
+            }
+
+            if (hideMode) {
+              mapHost.hidden = false;
+              renderMapGroups();
+            } else {
+              syncMode(dataMigDraft[modeKey]);
+            }
           }
 
           function fillAnalysisMapPanel(panel) {
+            const scopeKey =
+              DATA_MIG_ANALYSIS_SCOPE_TABS.some((t) => t.key === dataMigAnalysisGroupTab)
+                ? dataMigAnalysisGroupTab
+                : "system";
+            dataMigAnalysisGroupTab = scopeKey;
+
+            const scopeTabs = document.createElement("div");
+            scopeTabs.className = "mig-map-tabs mig-map-tabs--scope";
+            scopeTabs.setAttribute("role", "tablist");
+            scopeTabs.setAttribute("aria-label", "分析资源分组");
+            DATA_MIG_ANALYSIS_SCOPE_TABS.forEach((tabDef) => {
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.className =
+                "mig-map-tab" + (scopeKey === tabDef.key ? " is-active" : "");
+              btn.setAttribute("role", "tab");
+              btn.setAttribute("aria-selected", scopeKey === tabDef.key ? "true" : "false");
+              btn.textContent = tabDef.title;
+              btn.addEventListener("click", () => {
+                if (dataMigAnalysisGroupTab === tabDef.key) return;
+                dataMigAnalysisGroupTab = tabDef.key;
+                renderAll();
+              });
+              scopeTabs.appendChild(btn);
+            });
+            panel.appendChild(scopeTabs);
             appendAnalysisAppSelector(panel);
-            if (needsMapKind("ds")) {
+
+            const dsGroup = getAnalysisScopeGroup(DATA_MIG_ANALYSIS_DS_GROUPS, scopeKey);
+            const datasetGroup = getAnalysisScopeGroup(DATA_MIG_DATASET_DIR_GROUPS, scopeKey);
+            const reportGroup = getAnalysisScopeGroup(DATA_MIG_REPORT_DIR_GROUPS, scopeKey);
+            const dsTree = sliceTreeByScope(DATA_MIG_ANALYSIS_DS_TREE, scopeKey);
+            const datasetTree = sliceTreeByScope(DATA_MIG_DATASET_DIR_TREE, scopeKey);
+            const reportTree = sliceTreeByScope(DATA_MIG_REPORT_DIR_TREE, scopeKey);
+
+            if (needsMapKind("ds") && dsGroup) {
               ensureAnalysisMaps();
+              if (!dataMigDraft.autoMatched) dataMigDraft.autoMatched = {};
+              Object.assign(
+                dataMigDraft.autoMatched,
+                autoMatchAnalysisMapsByName(dataMigDraft[dsGroup.mapsKey])
+              );
               appendTreeObjectMapBlock({
                 titleText: "分析数据源",
-                maps: dataMigDraft.analysisMaps,
+                maps: dataMigDraft[dsGroup.mapsKey],
                 mode: "analysis",
+                tree: dsTree,
                 host: panel,
                 targetHeader: "目标对象（映射目录）",
                 placeholder: "请选择映射目录（目录 / 数据源）",
@@ -43248,20 +44012,26 @@
                 batchTip: "在组织树中选择目录及数据源，将应用到已勾选的源对象。",
               });
             }
-            if (needsMapKind("datasetDir")) {
+            if (needsMapKind("datasetDir") && datasetGroup) {
+              ensureDatasetDirMaps();
               appendDirMapWithMode(panel, {
                 titleText: "数据集目录映射",
-                maps: dataMigDraft.datasetDirMaps,
-                tree: DATA_MIG_DATASET_DIR_TREE,
+                maps: dataMigDraft[datasetGroup.mapsKey],
+                tree: datasetTree,
                 modeKey: "datasetDirMode",
+                ensureMaps: ensureDatasetDirMaps,
+                hideMode: scopeKey !== "public",
               });
             }
-            if (needsMapKind("reportDir")) {
+            if (needsMapKind("reportDir") && reportGroup) {
+              ensureReportDirMaps();
               appendDirMapWithMode(panel, {
                 titleText: "报告目录映射",
-                maps: dataMigDraft.reportDirMaps,
-                tree: DATA_MIG_REPORT_DIR_TREE,
+                maps: dataMigDraft[reportGroup.mapsKey],
+                tree: reportTree,
                 modeKey: "reportDirMode",
+                ensureMaps: ensureReportDirMaps,
+                hideMode: scopeKey !== "public",
               });
             }
           }
@@ -43366,33 +44136,49 @@
               }
               if (needsMapKind("ds")) {
                 ensureAnalysisMaps();
-                const missAna = missAnalysisMap(dataMigDraft.analysisMaps);
+                const missAna = missAnyAnalysisGroupMap();
                 if (missAna) {
                   blockNext(
                     "analysis",
-                    "请先完成「分析资源映射」：分析数据源「" + missAna + "」尚未映射（需选择目录与数据源）"
+                    "请先完成「分析资源映射」：" +
+                      missAna.groupTitle +
+                      "「" +
+                      missAna.src +
+                      "」尚未映射（需选择目录与数据源）"
                   );
                   return;
                 }
               }
-              if (needsMapKind("datasetDir") && dataMigDraft.datasetDirMode !== "reuse") {
-                ensurePathDirMaps(dataMigDraft.datasetDirMaps);
-                const miss = missPathDirMap(dataMigDraft.datasetDirMaps);
+              if (needsMapKind("datasetDir")) {
+                ensureDatasetDirMaps();
+                const skipPublic = dataMigDraft.datasetDirMode === "reuse" ? ["public"] : [];
+                const miss = missAnyPathDirGroupMap(DATA_MIG_DATASET_DIR_GROUPS, skipPublic);
                 if (miss) {
                   blockNext(
                     "analysis",
-                    "请先完成「分析资源映射」：数据集目录「" + miss + "」尚未映射（或改为使用迁出目录信息）"
+                    "请先完成「分析资源映射」：数据集目录·" +
+                      miss.groupTitle +
+                      "「" +
+                      miss.src +
+                      "」尚未映射" +
+                      (miss.groupTitle === "公共分组" ? "（或改为使用迁出目录信息）" : "")
                   );
                   return;
                 }
               }
-              if (needsMapKind("reportDir") && dataMigDraft.reportDirMode !== "reuse") {
-                ensurePathDirMaps(dataMigDraft.reportDirMaps);
-                const miss = missPathDirMap(dataMigDraft.reportDirMaps);
+              if (needsMapKind("reportDir")) {
+                ensureReportDirMaps();
+                const skipPublic = dataMigDraft.reportDirMode === "reuse" ? ["public"] : [];
+                const miss = missAnyPathDirGroupMap(DATA_MIG_REPORT_DIR_GROUPS, skipPublic);
                 if (miss) {
                   blockNext(
                     "analysis",
-                    "请先完成「分析资源映射」：报告目录「" + miss + "」尚未映射（或改为使用迁出目录信息）"
+                    "请先完成「分析资源映射」：报告目录·" +
+                      miss.groupTitle +
+                      "「" +
+                      miss.src +
+                      "」尚未映射" +
+                      (miss.groupTitle === "公共分组" ? "（或改为使用迁出目录信息）" : "")
                   );
                   return;
                 }
