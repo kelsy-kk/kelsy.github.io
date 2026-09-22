@@ -714,6 +714,11 @@
       color: #1677ff;
     }
 
+    .mig-status.is-draft {
+      background: #fff7e6;
+      color: #d46b08;
+    }
+
     .mig-status.is-exporting {
       background: #e6f4ff;
       color: #1677ff;
@@ -1695,6 +1700,17 @@
       border-radius: 8px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
       overflow: hidden;
+    }
+
+    .mig-batch-modal__box--log {
+      width: min(720px, 100%);
+      max-height: min(640px, 100%);
+    }
+
+    .mig-batch-modal__box--log .mig-exec-log {
+      min-height: 320px;
+      max-height: min(480px, calc(100vh - 200px));
+      flex: 1;
     }
 
     .mig-batch-modal__hd {
@@ -37608,6 +37624,43 @@
           time: "2026-07-14 14:36:19",
           failReason:
             "导入失败（物理模型 · 项目成本归集明细）：目标数仓缺少写元数据权限，已停止执行",
+          execLogs: [
+            {
+              time: "14:35:52",
+              level: "info",
+              text: "开始执行迁入：先导入资源，再删除历史多余资源",
+            },
+            {
+              time: "14:35:53",
+              level: "ok",
+              text: "[导入] 业务流程 · 劳务智能问数主流程 … 成功",
+            },
+            {
+              time: "14:35:55",
+              level: "ok",
+              text: "[导入] 物理模型 · 物料出入库明细 … 成功",
+            },
+            {
+              time: "14:35:58",
+              level: "ok",
+              text: "[导入] 物理模型 · 项目人员台账 … 成功",
+            },
+            {
+              time: "14:36:04",
+              level: "ok",
+              text: "[导入] 逻辑模型 · 项目成本汇总视图 … 成功",
+            },
+            {
+              time: "14:36:11",
+              level: "ok",
+              text: "[导入] 语义模型 · 劳务智能问数指标集 … 成功",
+            },
+            {
+              time: "14:36:19",
+              level: "fail",
+              text: "[导入] 物理模型 · 项目成本归集明细 … 失败：目标数仓缺少写元数据权限，无法创建对象「项目成本归集明细」",
+            },
+          ],
           oneStopRows: [
             {
               id: "osi-im-fail-1",
@@ -37624,6 +37677,43 @@
           creator: "葛伟",
           status: "success",
           time: "2026-07-14 10:12:08",
+          execLogs: [
+            {
+              time: "10:11:40",
+              level: "info",
+              text: "开始执行迁入：先导入资源，再删除历史多余资源",
+            },
+            {
+              time: "10:11:42",
+              level: "ok",
+              text: "[导入] 业务流程 · 劳务智能问数主流程 … 成功",
+            },
+            {
+              time: "10:11:48",
+              level: "ok",
+              text: "[导入] 物理模型 · 物料出入库明细 … 成功",
+            },
+            {
+              time: "10:11:55",
+              level: "ok",
+              text: "[导入] 离线集成任务 · 物料库零拷贝采集 … 成功",
+            },
+            {
+              time: "10:12:01",
+              level: "ok",
+              text: "[导入] 离线集成任务 · 项目标识存量接入 … 成功",
+            },
+            {
+              time: "10:12:05",
+              level: "ok",
+              text: "[删除] 物理模型 · 历史冗余模型_v1（pm_legacy_v1） … 成功",
+            },
+            {
+              time: "10:12:08",
+              level: "ok",
+              text: "迁入任务执行完成",
+            },
+          ],
           oneStopRows: [
             {
               id: "osi-im-1",
@@ -37647,6 +37737,28 @@
           creator: "葛伟",
           status: "pending",
           time: "2026-07-14 11:05:33",
+          execLogs: [
+            {
+              time: "11:05:20",
+              level: "info",
+              text: "开始执行迁入：仅导入资源（不清理历史多余资源）",
+            },
+            {
+              time: "11:05:22",
+              level: "ok",
+              text: "[导入] 业务流程 · 劳务智能问数主流程 … 成功",
+            },
+            {
+              time: "11:05:28",
+              level: "ok",
+              text: "[导入] 离线集成任务 · 物料库零拷贝采集 … 成功",
+            },
+            {
+              time: "11:05:33",
+              level: "info",
+              text: "任务排队中，等待后续资源导入…",
+            },
+          ],
           oneStopRows: [
             {
               id: "osi-im-3",
@@ -37702,6 +37814,28 @@
           status: "success",
           creator: "萧伟",
           time: "2026-07-14 16:20:11",
+          execLogs: [
+            {
+              time: "16:19:50",
+              level: "info",
+              text: "开始执行迁入：先导入资源，再删除历史多余资源",
+            },
+            {
+              time: "16:20:02",
+              level: "ok",
+              text: "[导入] 数据标准 · 组织主数据标准 … 成功",
+            },
+            {
+              time: "16:20:08",
+              level: "ok",
+              text: "[导入] 质量规则 · 组织编码唯一性校验 … 成功",
+            },
+            {
+              time: "16:20:11",
+              level: "ok",
+              text: "迁入任务执行完成",
+            },
+          ],
         },
         {
           id: "836199",
@@ -37710,6 +37844,18 @@
           status: "pending",
           creator: "萧伟",
           time: "2026-07-14 15:08:42",
+          execLogs: [
+            {
+              time: "15:08:30",
+              level: "info",
+              text: "开始执行迁入：仅导入资源（不清理历史多余资源）",
+            },
+            {
+              time: "15:08:42",
+              level: "info",
+              text: "任务排队中，等待后续资源导入…",
+            },
+          ],
         },
       ];
 
@@ -37730,6 +37876,28 @@
           creator: "蒋伟",
           time: "2026/07/14 18:20:05",
           status: "success",
+          execLogs: [
+            {
+              time: "18:19:40",
+              level: "info",
+              text: "开始执行迁入：先导入资源，再删除历史多余资源",
+            },
+            {
+              time: "18:19:48",
+              level: "ok",
+              text: "[导入] 制作报告 · 劳务智能问数看板 … 成功",
+            },
+            {
+              time: "18:19:56",
+              level: "ok",
+              text: "[导入] 语义模型 · 劳务指标口径集 … 成功",
+            },
+            {
+              time: "18:20:05",
+              level: "ok",
+              text: "迁入任务执行完成",
+            },
+          ],
         },
       ];
 
@@ -37756,6 +37924,7 @@
       };
       let dataMigFromAssistant = "analysis";
       let dataMigDraft = null;
+      let dataMigDraftRowId = null; // 暂存后回列表的草稿行 id，继续设置时复用
       let compareReportRow = null;
       let detailRow = null;
       let detailKind = "export"; // export | import
@@ -37897,6 +38066,7 @@
         if (status === "exporting") return "导出中";
         if (status === "importing") return "迁入中";
         if (status === "pending") return "进行中";
+        if (status === "draft") return "未完成设置";
         if (status === "fail") return "失败";
         return "成功";
       }
@@ -37905,6 +38075,7 @@
         if (status === "exporting") return "mig-status is-exporting";
         if (status === "importing") return "mig-status is-importing";
         if (status === "pending") return "mig-status is-pending";
+        if (status === "draft") return "mig-status is-draft";
         if (status === "fail") return "mig-status is-fail";
         return "mig-status";
       }
@@ -37942,7 +38113,9 @@
 
       function appendRowStatusCell(tdStatus, row, isExport) {
         const st = document.createElement("span");
-        const clickable = !isExport && canOpenDataMigImportExec(row);
+        const clickableExec = !isExport && canOpenDataMigImportExec(row);
+        const clickableDraft = !isExport && row && row.status === "draft";
+        const clickable = clickableExec || clickableDraft;
         st.className =
           (isExport ? statusClass(row.status) : getRowStatusClass(row)) +
           (clickable ? " is-clickable" : "");
@@ -37950,15 +38123,22 @@
         if (clickable) {
           st.setAttribute("role", "button");
           st.setAttribute("tabindex", "0");
-          st.setAttribute("title", "点击查看迁入执行进度");
+          st.setAttribute(
+            "title",
+            clickableDraft ? "点击继续完成设置" : "点击查看迁入执行进度"
+          );
+          const open = () => {
+            if (clickableDraft) openDataMigImportDraft(row);
+            else openDataMigImportExecPage(row);
+          };
           st.addEventListener("click", (e) => {
             e.stopPropagation();
-            openDataMigImportExecPage(row);
+            open();
           });
           st.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              openDataMigImportExecPage(row);
+              open();
             }
           });
         }
@@ -38064,7 +38244,7 @@
           link.className = "mig-link";
           link.style.marginRight = "0";
           link.textContent = act.label;
-          if (disableAll || act.disabled) link.disabled = true;
+          if ((disableAll && !act.keepEnabled) || act.disabled) link.disabled = true;
           link.addEventListener("click", () => {
             if (link.disabled) return;
             if (typeof act.onClick === "function") {
@@ -38075,6 +38255,93 @@
           });
           tdAct.appendChild(link);
         });
+      }
+
+      function openImportExecLog(row) {
+        const overlay = document.createElement("div");
+        overlay.className = "mig-batch-modal";
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.remove();
+        });
+        const box = document.createElement("div");
+        box.className = "mig-batch-modal__box mig-batch-modal__box--log";
+        box.addEventListener("click", (e) => e.stopPropagation());
+
+        const hd = document.createElement("div");
+        hd.className = "mig-batch-modal__hd";
+        const hdTitle = document.createElement("span");
+        hdTitle.textContent = "执行日志 — " + (row.name || "迁入任务");
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "mig-batch-modal__close";
+        closeBtn.setAttribute("aria-label", "关闭");
+        closeBtn.textContent = "×";
+        closeBtn.addEventListener("click", () => overlay.remove());
+        hd.appendChild(hdTitle);
+        hd.appendChild(closeBtn);
+
+        const body = document.createElement("div");
+        body.className = "mig-batch-modal__body";
+        body.style.display = "flex";
+        body.style.flexDirection = "column";
+        body.style.minHeight = "0";
+        body.style.flex = "1";
+
+        if (row.status === "fail" && row.failReason) {
+          const failBanner = document.createElement("div");
+          failBanner.className = "mig-exec-fail-banner";
+          failBanner.innerHTML =
+            "<strong>导入失败，已停止执行</strong>" + row.failReason;
+          body.appendChild(failBanner);
+        }
+
+        const logs = Array.isArray(row.execLogs) ? row.execLogs : [];
+        const logBox = document.createElement("div");
+        logBox.className =
+          "mig-exec-log" + (row.status === "fail" ? " is-paused" : "");
+        if (!logs.length) {
+          const empty = document.createElement("p");
+          empty.className = "mig-exec-log__line is-info";
+          empty.textContent = "暂无执行日志";
+          logBox.appendChild(empty);
+        } else {
+          logs.forEach((line) => {
+            const p = document.createElement("p");
+            p.className =
+              "mig-exec-log__line" + (line.level ? " is-" + line.level : "");
+            p.textContent = "[" + line.time + "] " + line.text;
+            logBox.appendChild(p);
+          });
+        }
+        body.appendChild(logBox);
+
+        const actions = document.createElement("div");
+        actions.className = "mig-cmp-hd__actions";
+        actions.style.justifyContent = "flex-end";
+        actions.style.marginTop = "12px";
+        const okBtn = document.createElement("button");
+        okBtn.type = "button";
+        okBtn.className = "mig-btn mig-btn--primary";
+        okBtn.textContent = "关闭";
+        okBtn.addEventListener("click", () => overlay.remove());
+        actions.appendChild(okBtn);
+        body.appendChild(actions);
+
+        box.appendChild(hd);
+        box.appendChild(body);
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+        window.requestAnimationFrame(() => {
+          logBox.scrollTop = logBox.scrollHeight;
+        });
+      }
+
+      function buildImportExecLogAction() {
+        return {
+          label: "日志",
+          keepEnabled: true,
+          onClick: openImportExecLog,
+        };
       }
 
       function openImportCompareReport(row) {
@@ -38174,6 +38441,122 @@
           execProgress: 0,
           inList: false,
           backgroundRun: false,
+        };
+      }
+
+      function cloneDataMigDraftSnapshot(draft) {
+        if (!draft) return null;
+        try {
+          return JSON.parse(JSON.stringify(draft));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function normalizeImportDraftStep(step) {
+        if (typeof step === "number" && step >= 1 && step <= 4) return step;
+        return 1;
+      }
+
+      function saveDataMigImportDraft(syncFn) {
+        if (typeof syncFn === "function") syncFn();
+        if (!dataMigDraft) {
+          showToast("暂无可保存的设置", "warn");
+          return false;
+        }
+        const name = String(dataMigDraft.name || "").trim();
+        if (!name) {
+          showToast("请先填写名称后再暂存", "warn");
+          return false;
+        }
+        dataMigDraft.name = name;
+        const savedStep = normalizeImportDraftStep(
+          importCreateStep === "parsing" ? 1 : importCreateStep
+        );
+        const snapshot = cloneDataMigDraftSnapshot(dataMigDraft);
+        if (!snapshot) {
+          showToast("暂存失败，请重试", "warn");
+          return false;
+        }
+        const rows = getDataMigImportRows();
+        let row =
+          dataMigDraftRowId &&
+          rows.find((r) => r.id === dataMigDraftRowId && r.status === "draft");
+        if (row) {
+          row.name = name;
+          row.time = formatNow();
+          row.savedStep = savedStep;
+          row.savedDraft = snapshot;
+          row.assistant = dataMigFromAssistant;
+        } else {
+          row = {
+            id: "draft-" + Date.now(),
+            name: name,
+            creator: "当前用户",
+            status: "draft",
+            time: formatNow(),
+            assistant: dataMigFromAssistant,
+            savedStep: savedStep,
+            savedDraft: snapshot,
+            execLogs: [],
+          };
+          rows.unshift(row);
+          dataMigDraftRowId = row.id;
+        }
+        showToast("已暂存，可在迁入列表继续设置", "success");
+        pageView = "home";
+        listTab = "import";
+        activeAssistant = dataMigFromAssistant;
+        renderAll();
+        return true;
+      }
+
+      function openDataMigImportDraft(row) {
+        if (!row || row.status !== "draft" || !row.savedDraft) {
+          showToast("该任务暂无已保存的设置", "warn");
+          return;
+        }
+        const restored = cloneDataMigDraftSnapshot(row.savedDraft);
+        if (!restored) {
+          showToast("恢复设置失败，请重试", "warn");
+          return;
+        }
+        dataMigFromAssistant = row.assistant || activeAssistant;
+        activeAssistant = dataMigFromAssistant;
+        dataMigDraftRowId = row.id;
+        dataMigDraft = restored;
+        importCreateStep = normalizeImportDraftStep(row.savedStep);
+        dataMigMapTab = "warehouse";
+        pageView = "data-migration-import";
+        renderAll();
+      }
+
+      function consumeDataMigDraftRowBeforeExec() {
+        if (!dataMigDraftRowId) return;
+        const rows = getDataMigImportRows();
+        const idx = rows.findIndex(
+          (r) => r.id === dataMigDraftRowId && r.status === "draft"
+        );
+        if (idx >= 0) rows.splice(idx, 1);
+        dataMigDraftRowId = null;
+      }
+
+      function appendImportDraftSaveButton(ft, syncFn) {
+        const draftBtn = document.createElement("button");
+        draftBtn.type = "button";
+        draftBtn.className = "mig-btn mig-btn--ghost";
+        draftBtn.textContent = "暂存";
+        draftBtn.addEventListener("click", () => {
+          saveDataMigImportDraft(syncFn);
+        });
+        ft.appendChild(draftBtn);
+        return draftBtn;
+      }
+
+      function buildImportContinueSetupAction() {
+        return {
+          label: "继续设置",
+          onClick: openDataMigImportDraft,
         };
       }
 
@@ -38675,6 +39058,7 @@
             dataMigFromAssistant = "scene-flow";
             importCreateStep = 1;
             dataMigMapTab = "warehouse";
+            dataMigDraftRowId = null;
             dataMigDraft = createDataMigDraft();
             pageView = "data-migration-import";
             renderAll();
@@ -38684,6 +39068,7 @@
             dataMigFromAssistant = activeAssistant;
             importCreateStep = 1;
             dataMigMapTab = "warehouse";
+            dataMigDraftRowId = null;
             dataMigDraft = createDataMigDraft();
             pageView = "data-migration-import";
             renderAll();
@@ -38784,13 +39169,20 @@
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdAct = document.createElement("td");
-              const govActions = [
-                !isExport && row.compareReport
-                  ? buildDataMigImportDetailAction()
-                  : { label: "详情", msg: "查看详情" },
-              ];
-              if (isExport) govActions.push({ label: "下载", msg: "开始下载" });
-              if (!isExport) govActions.splice(1, 0, buildImportCompareReportAction());
+              const govActions = isExport
+                ? [
+                    { label: "详情", msg: "查看详情" },
+                    { label: "下载", msg: "开始下载" },
+                  ]
+                : row.status === "draft"
+                  ? [buildImportContinueSetupAction()]
+                  : [
+                      row.compareReport
+                        ? buildDataMigImportDetailAction()
+                        : { label: "详情", msg: "查看详情" },
+                      buildImportCompareReportAction(),
+                      buildImportExecLogAction(),
+                    ];
               appendActionLinks(tdAct, row, govActions);
               tr.appendChild(tdId);
               tr.appendChild(tdName);
@@ -38811,14 +39203,21 @@
               const tdStatus = document.createElement("td");
               appendRowStatusCell(tdStatus, row, isExport);
               const tdAct = document.createElement("td");
-              const analysisActions = [
-                !isExport && row.compareReport
-                  ? buildDataMigImportDetailAction()
-                  : { label: "详情", msg: "查看详情" },
-              ];
-              if (isExport) analysisActions.push({ label: "下载", msg: "开始下载" });
-              analysisActions.push({ label: "删除", msg: "已删除（示意）" });
-              if (!isExport) analysisActions.splice(1, 0, buildImportCompareReportAction());
+              const analysisActions = isExport
+                ? [
+                    { label: "详情", msg: "查看详情" },
+                    { label: "下载", msg: "开始下载" },
+                    { label: "删除", msg: "已删除（示意）" },
+                  ]
+                : row.status === "draft"
+                  ? [buildImportContinueSetupAction()]
+                  : [
+                      row.compareReport
+                        ? buildDataMigImportDetailAction()
+                        : { label: "详情", msg: "查看详情" },
+                      buildImportCompareReportAction(),
+                      buildImportExecLogAction(),
+                    ];
               appendActionLinks(tdAct, row, analysisActions);
               tr.appendChild(tdIdx);
               tr.appendChild(tdName);
@@ -38838,9 +39237,9 @@
               const tdTime = document.createElement("td");
               tdTime.textContent = row.time;
               const tdAct = document.createElement("td");
-              const sceneActions = [{ label: "删除", msg: "已删除（示意）" }];
+              const sceneActions = [];
               if (isExport) {
-                sceneActions.unshift(
+                sceneActions.push(
                   {
                     label: "详情",
                     msg: "查看详情",
@@ -38852,24 +39251,30 @@
                       renderAll();
                     },
                   },
-                  { label: "下载", msg: "开始下载" }
+                  { label: "下载", msg: "开始下载" },
+                  { label: "删除", msg: "已删除（示意）" }
                 );
               } else {
-                sceneActions.unshift(
-                  row.compareReport
-                    ? buildDataMigImportDetailAction()
-                    : {
-                        label: "详情",
-                        onClick: (r) => {
-                          detailRow = r;
-                          detailKind = "import";
-                          detailCategory = "业务流程";
-                          pageView = "scene-transfer-detail";
-                          renderAll();
+                if (row.status === "draft") {
+                  sceneActions.push(buildImportContinueSetupAction());
+                } else {
+                  sceneActions.push(
+                    row.compareReport
+                      ? buildDataMigImportDetailAction()
+                      : {
+                          label: "详情",
+                          onClick: (r) => {
+                            detailRow = r;
+                            detailKind = "import";
+                            detailCategory = "业务流程";
+                            pageView = "scene-transfer-detail";
+                            renderAll();
+                          },
                         },
-                      }
-                );
-                sceneActions.splice(1, 0, buildImportCompareReportAction());
+                    buildImportCompareReportAction(),
+                    buildImportExecLogAction()
+                  );
+                }
               }
               appendActionLinks(tdAct, row, sceneActions);
               tr.appendChild(tdIdx);
@@ -41519,6 +41924,7 @@
               cmp.pollTimer = null;
               cmp.deleteExtraKeys = [];
               dataMigDraft.compareSkipped = true;
+              consumeDataMigDraftRowBeforeExec();
               dataMigExecRecord = createDataMigImportRecord(dataMigDraft);
               importCreateStep = 5;
               startDataMigImportExec();
@@ -41553,6 +41959,7 @@
           ft.appendChild(exportCurBtn);
           ft.appendChild(retryBtn);
         }
+        appendImportDraftSaveButton(ft);
         ft.appendChild(prevBtn);
       }
 
@@ -42277,7 +42684,7 @@
         backBtn.addEventListener("click", goHome);
         const title = document.createElement("h2");
         title.className = "mig-create__title";
-        title.textContent = "新建导入任务";
+        title.textContent = dataMigDraftRowId ? "继续设置导入任务" : "新建导入任务";
         hdLeft.appendChild(backBtn);
         hdLeft.appendChild(title);
         hd.appendChild(hdLeft);
@@ -43594,6 +44001,9 @@
           cancelBtn.textContent = "取消";
           cancelBtn.addEventListener("click", goHome);
           ft.appendChild(nextBtn);
+          appendImportDraftSaveButton(ft, () => {
+            dataMigDraft.name = (nameInput.value || "").trim();
+          });
           ft.appendChild(cancelBtn);
         } else if (isParsing) {
           const parseResult = resolvePackageParseResult(dataMigDraft.fileName);
@@ -44197,6 +44607,7 @@
             renderAll();
           });
           ft.appendChild(nextBtn);
+          appendImportDraftSaveButton(ft);
           ft.appendChild(prevBtn);
         } else if (importCreateStep === 3) {
           renderDataMigVersionCompare(body, ft, goHome, dataMigDraft);
@@ -44515,6 +44926,7 @@
           execBtn.className = "mig-btn mig-btn--primary";
           execBtn.textContent = "执行";
           execBtn.addEventListener("click", () => {
+            consumeDataMigDraftRowBeforeExec();
             dataMigExecRecord = createDataMigImportRecord(dataMigDraft);
             importCreateStep = 5;
             startDataMigImportExec();
@@ -44534,6 +44946,7 @@
           cancelBtn.textContent = "取消";
           cancelBtn.addEventListener("click", goHome);
           ft.appendChild(execBtn);
+          appendImportDraftSaveButton(ft);
           ft.appendChild(prevBtn);
           ft.appendChild(cancelBtn);
         }
